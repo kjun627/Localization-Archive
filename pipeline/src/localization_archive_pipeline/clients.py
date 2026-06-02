@@ -31,7 +31,7 @@ class OpenAlexClient:
 
 @dataclass
 class SemanticScholarClient:
-    api_key: str
+    api_key: str | None = None
 
     def get_paper(self, paper_id: str) -> dict[str, Any]:
         params = urllib.parse.urlencode(
@@ -40,11 +40,11 @@ class SemanticScholarClient:
             }
         )
         url = f"https://api.semanticscholar.org/graph/v1/paper/{urllib.parse.quote(paper_id)}?{params}"
-        return _get_json(url, headers={"x-api-key": self.api_key})
+        headers = {"x-api-key": self.api_key} if self.api_key else None
+        return _get_json(url, headers=headers)
 
 
 def _get_json(url: str, headers: dict[str, str] | None = None) -> dict[str, Any]:
     request = urllib.request.Request(url, headers=headers or {})
     with urllib.request.urlopen(request, timeout=DEFAULT_TIMEOUT) as response:
         return json.loads(response.read().decode("utf-8"))
-

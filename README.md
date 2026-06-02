@@ -27,7 +27,7 @@ The data APIs are:
 
 1. Copy `.env.example` to `.env` and set:
    - `OPENALEX_API_KEY`
-   - `SEMANTIC_SCHOLAR_API_KEY`
+   - `SEMANTIC_SCHOLAR_API_KEY` if you want authenticated Semantic Scholar requests
 2. Create a Python environment and install pipeline dependencies.
 3. Install frontend dependencies in `web/`.
 4. Build graph data with:
@@ -42,7 +42,7 @@ python3 pipeline/build_graph.py
 python3 pipeline/validate_data.py
 ```
 
-6. Fetch candidate papers once API keys are available:
+6. Fetch candidate papers once your OpenAlex key is available:
 
 ```bash
 python3 pipeline/fetch_seed_candidates.py --limit 20
@@ -67,3 +67,8 @@ npm run dev
 ## Deployment
 
 The repository includes a GitHub Pages workflow in `.github/workflows/deploy.yml`.
+
+## API Notes
+
+- `OpenAlex` is currently treated as authenticated in this repository.
+- `Semantic Scholar` can be used without an API key. If `SEMANTIC_SCHOLAR_API_KEY` is unset, the client falls back to unauthenticated requests.

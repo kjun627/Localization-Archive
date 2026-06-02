@@ -24,3 +24,9 @@ def require_env(name: str) -> str:
         raise RuntimeError(f"Missing required environment variable: {name}")
     return value
 
+
+def get_env(name: str) -> str | None:
+    value = os.getenv(name)
+    if not value:
+        return None
+    return value
