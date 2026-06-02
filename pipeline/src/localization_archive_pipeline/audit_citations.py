@@ -64,8 +64,8 @@ def parser() -> argparse.ArgumentParser:
     )
     argument_parser.add_argument(
         "--fail-on",
-        choices=["none", "recorded", "missing", "any"],
-        default="any",
+        choices=["none", "recorded", "missing", "confirmed", "any"],
+        default="confirmed",
         help="Choose which issue categories should produce a non-zero exit code.",
     )
     return argument_parser
@@ -173,15 +173,14 @@ def build_audit_payload(
         if not resolved_source:
             continue
         if not resolved_source.referenced_works:
-            if source.citations:
-                references_unavailable.append(
-                    {
-                        "source": source.paper_id,
-                        "sourceTitle": source.title,
-                        "reason": "OpenAlex matched the paper but returned no referenced_works",
-                        "recordedCitationCount": len(source.citations),
-                    }
-                )
+            references_unavailable.append(
+                {
+                    "source": source.paper_id,
+                    "sourceTitle": source.title,
+                    "reason": "OpenAlex matched the paper but returned no referenced_works",
+                    "recordedCitationCount": len(source.citations),
+                }
+            )
             continue
 
         recorded_targets = set(source.citations)
@@ -227,6 +226,14 @@ def build_audit_payload(
         "resolvedCount": len(resolved),
         "unresolvedCount": len(unresolved),
         "referencesUnavailableCount": len(references_unavailable),
+        "unconfirmedRecordedCitationCount": sum(
+            item["recordedCitationCount"] for item in references_unavailable
+        )
+        + sum(
+            len(records_by_id[item["paperId"]].citations)
+            for item in unresolved
+            if item["paperId"] in records_by_id
+        ),
         "recordedMismatchCount": len(recorded_mismatches),
         "missingArchiveCitationCount": len(missing_archive_citations),
         "unresolved": unresolved,
@@ -253,16 +260,14 @@ def should_fail(payload: dict[str, Any], fail_on: str) -> bool:
     if fail_on == "none":
         return False
     if fail_on == "recorded":
+        return bool(payload["recordedMismatchCount"])
+    if fail_on == "missing":
+        return bool(payload["missingArchiveCitationCount"])
+    if fail_on == "confirmed":
         return bool(
             payload["recordedMismatchCount"]
-            or payload["unresolvedCount"]
-            or payload["referencesUnavailableCount"]
-        )
-    if fail_on == "missing":
-        return bool(
-            payload["missingArchiveCitationCount"]
-            or payload["unresolvedCount"]
-            or payload["referencesUnavailableCount"]
+            or payload["missingArchiveCitationCount"]
+            or payload["unconfirmedRecordedCitationCount"]
         )
     return bool(
         payload["recordedMismatchCount"]
@@ -308,6 +313,7 @@ def main() -> int:
         f"{payload['resolvedCount']}/{len(records)} resolved, "
         f"{payload['recordedMismatchCount']} recorded mismatches, "
         f"{payload['missingArchiveCitationCount']} missing archive citations, "
+        f"{payload['unconfirmedRecordedCitationCount']} unconfirmed recorded citations, "
         f"{payload['referencesUnavailableCount']} unavailable reference lists, "
         f"{payload['unresolvedCount']} unresolved."
     )

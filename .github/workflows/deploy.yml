@@ -38,6 +38,9 @@ jobs:
       - name: Validate curation data
         run: python3 pipeline/validate_data.py
 
+      - name: Audit OpenAlex citation references
+        run: python3 pipeline/audit_citations.py --fail-on confirmed --sleep 0.15
+
       - name: Build graph data
         run: python3 pipeline/build_graph.py
 

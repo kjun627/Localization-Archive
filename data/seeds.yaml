@@ -20,7 +20,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:score-forest-2013"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013"]
   - id: "paper:netvlad-2016"
     title: "NetVLAD: CNN Architecture for Weakly Supervised Place Recognition"
     year: 2016
@@ -28,7 +28,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: []
+    citations: ["paper:sift-2004", "paper:247-place-recognition-2015", "paper:posenet-2015"]
   - id: "paper:dsac-2017"
     title: "DSAC: Differentiable RANSAC for Camera Localization"
     year: 2017
@@ -36,7 +36,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:score-forest-2013", "paper:posenet-2015"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:netvlad-2016"]
   - id: "paper:aachen-day-night-2018"
     title: "Benchmarking 6DOF Outdoor Visual Localization in Changing Conditions"
     year: 2018
@@ -44,7 +44,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:netvlad-2016"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:247-place-recognition-2015", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:image-based-localization-lstms-2017", "paper:vidloc-2017", "paper:inloc-2018"]
   - id: "paper:d2net-2019"
     title: "D2-Net: A Trainable CNN for Joint Description and Detection of Local Features"
     year: 2019
@@ -52,7 +52,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:aachen-day-night-2018"]
+    citations: ["paper:sift-2004", "paper:247-place-recognition-2015", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:local-feature-eval-2017", "paper:delf-2017", "paper:aachen-day-night-2018", "paper:inloc-2018"]
   - id: "paper:invsfm-2019"
     title: "Revealing Scenes by Inverting Structure From Motion Reconstructions"
     year: 2019
@@ -60,7 +60,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: []
+    citations: ["paper:sfm-revisited-2016", "paper:privacy-preserving-image-based-localization-2019"]
   - id: "paper:privacy-preserving-image-based-localization-2019"
     title: "Privacy Preserving Image-Based Localization"
     year: 2019
@@ -68,7 +68,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:invsfm-2019", "paper:netvlad-2016", "paper:dsac-2017"]
+    citations: ["paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017"]
   - id: "paper:hf-net-2019"
     title: "From Coarse to Fine: Robust Hierarchical Localization at Large Scale"
     year: 2019
@@ -76,7 +76,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:netvlad-2016", "paper:aachen-day-night-2018"]
+    citations: ["paper:sift-2004", "paper:247-place-recognition-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:local-feature-eval-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:delf-2017", "paper:aachen-day-night-2018", "paper:mapnet-2018", "paper:inloc-2018", "paper:semantic-match-consistency-2018", "paper:apr-limitations-2019"]
   - id: "paper:apr-limitations-2019"
     title: "Understanding the Limitations of CNN-Based Absolute Camera Pose Regression"
     year: 2019
@@ -84,7 +84,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:posenet-2015"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:247-place-recognition-2015", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:vidloc-2017", "paper:aachen-day-night-2018", "paper:mapnet-2018", "paper:inloc-2018", "paper:semantic-match-consistency-2018"]
   - id: "paper:ppiq-2019"
     title: "Privacy Preserving Image Queries for Camera Localization"
     year: 2019
@@ -92,7 +92,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:privacy-preserving-image-based-localization-2019", "paper:invsfm-2019"]
+    citations: ["paper:posenet-2015", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017"]
   - id: "paper:superglue-2020"
     title: "SuperGlue: Learning Feature Matching With Graph Neural Networks"
     year: 2020
@@ -100,7 +100,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:d2net-2019", "paper:aachen-day-night-2018"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:contextdesc-2019", "paper:d2net-2019"]
   - id: "paper:loftr-2021"
     title: "LoFTR: Detector-Free Local Feature Matching With Transformers"
     year: 2021
@@ -108,7 +108,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:superglue-2020", "paper:d2net-2019"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:inloc-2018", "paper:contextdesc-2019", "paper:d2net-2019", "paper:aslfeat-2020", "paper:disk-2020", "paper:cotr-2021", "paper:reference-pose-generation-2021"]
   - id: "paper:pixloc-2021"
     title: "Back to the Feature: Learning Robust Camera Localization From Pixels to Pose"
     year: 2021
@@ -116,7 +116,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:superglue-2020", "paper:aachen-day-night-2018"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:247-place-recognition-2015", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:delf-2017", "paper:aachen-day-night-2018", "paper:semantic-match-consistency-2018", "paper:d2net-2019", "paper:fine-tuning-cnn-retrieval-2019", "paper:sanet-2019", "paper:apr-limitations-2019", "paper:dsac-star-2021"]
   - id: "paper:line2point-2021"
     title: "How Privacy-Preserving Are Line Clouds? Recovering Scene Details From 3D Lines"
     year: 2021
@@ -124,7 +124,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:privacy-preserving-image-based-localization-2019", "paper:invsfm-2019", "paper:netvlad-2016", "paper:d2net-2019"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:247-place-recognition-2015", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:mapnet-2018", "paper:inloc-2018", "paper:d2net-2019", "paper:ppiq-2019", "paper:apr-limitations-2019", "paper:privacy-preserving-structure-from-motion-2020", "paper:dsac-star-2021"]
   - id: "paper:dsac-star-2021"
     title: "DSAC*: Differentiable RANSAC for Camera Localization"
     year: 2021
@@ -132,7 +132,7 @@ papers:
     venue_type: journal
     venue_tier: Q1
     included: true
-    citations: ["paper:dsac-2017", "paper:score-forest-2013", "paper:posenet-2015"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:netvlad-2016"]
   - id: "paper:ace-2023"
     title: "Accelerated Coordinate Encoding: Learning to Relocalize in Minutes using RGB and Poses"
     year: 2023
@@ -140,7 +140,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:dsac-star-2021", "paper:dsac-2017", "paper:score-forest-2013"]
+    citations: ["paper:score-forest-2013", "paper:247-place-recognition-2015", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:mapnet-2018", "paper:sanet-2019", "paper:apr-limitations-2019", "paper:disk-2020", "paper:dsac-star-2021"]
   - id: "paper:paired-point-lifting-2023"
     title: "Paired-Point Lifting for Enhanced Privacy-Preserving Visual Localization"
     year: 2023
@@ -148,7 +148,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:privacy-preserving-image-based-localization-2019", "paper:line2point-2021", "paper:posenet-2015"]
+    citations: ["paper:sift-2004", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:ppiq-2019", "paper:privacy-preserving-structure-from-motion-2020", "paper:privacy-preserving-visual-slam-2020", "paper:dsac-star-2021", "paper:privacy-preserving-localization-mapping-uncalibrated-2021"]
   - id: "paper:coordinate-permutation-2023"
     title: "Privacy Preserving Localization via Coordinate Permutations"
     year: 2023
@@ -156,7 +156,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:ppiq-2019", "paper:line2point-2021", "paper:paired-point-lifting-2023"]
+    citations: ["paper:posenet-2015", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:ppiq-2019", "paper:privacy-preserving-structure-from-motion-2020", "paper:privacy-preserving-visual-slam-2020", "paper:dsac-star-2021", "paper:privacy-preserving-localization-mapping-uncalibrated-2021", "paper:long-term-visual-localization-revisited-2022", "paper:privacy-preserving-partial-localization-2022", "paper:paired-point-lifting-2023"]
   - id: "paper:lightglue-2023"
     title: "LightGlue: Local Feature Matching at Light Speed"
     year: 2023
@@ -164,7 +164,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:superglue-2020", "paper:loftr-2021"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:aachen-day-night-2018", "paper:d2net-2019", "paper:loftr-2021", "paper:aspanformer-2022", "paper:lamar-2022"]
   - id: "paper:marepo-2024"
     title: "Map-Relative Pose Regression for Visual Re-Localization"
     year: 2024
@@ -172,7 +172,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:ace-2023"]
+    citations: ["paper:score-forest-2013", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:vidloc-2017", "paper:mapnet-2018", "paper:sanet-2019", "paper:apr-limitations-2019", "paper:atloc-2020", "paper:dsac-star-2021", "paper:loftr-2021", "paper:ace-2023"]
   - id: "paper:glace-2024"
     title: "GLACE: Global Local Accelerated Coordinate Encoding"
     year: 2024
@@ -180,7 +180,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:ace-2023", "paper:dsac-star-2021"]
+    citations: ["paper:247-place-recognition-2015", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:aachen-day-night-2018", "paper:mapnet-2018", "paper:inloc-2018", "paper:sanet-2019", "paper:apr-limitations-2019", "paper:dsac-star-2021", "paper:long-term-visual-localization-revisited-2022", "paper:ace-2023"]
   - id: "paper:dust3r-2024"
     title: "DUSt3R: Geometric 3D Vision Made Easy"
     year: 2024
@@ -188,7 +188,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:loftr-2021", "paper:superglue-2020"]
+    citations: []
   - id: "paper:ray-cloud-2024"
     title: "Efficient Privacy-Preserving Visual Localization Using 3D Ray Clouds"
     year: 2024
@@ -196,7 +196,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:line2point-2021", "paper:paired-point-lifting-2023", "paper:privacy-preserving-image-based-localization-2019"]
+    citations: []
   - id: "paper:sphere-cloud-2024"
     title: "Depth-Guided Privacy-Preserving Visual Localization Using 3D Sphere Clouds"
     year: 2024
@@ -204,7 +204,7 @@ papers:
     venue_type: conference
     venue_tier: A
     included: true
-    citations: ["paper:ray-cloud-2024", "paper:line2point-2021", "paper:paired-point-lifting-2023", "paper:score-forest-2013", "paper:dsac-star-2021"]
+    citations: []
   - id: "paper:mast3r-2024"
     title: "Grounding Image Matching in 3D with MASt3R"
     year: 2024
@@ -212,7 +212,7 @@ papers:
     venue_type: conference
     venue_tier: A
     included: true
-    citations: ["paper:dust3r-2024", "paper:loftr-2021"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:local-feature-eval-2017", "paper:inloc-2018", "paper:d2net-2019", "paper:aslfeat-2020", "paper:cotr-2021", "paper:loftr-2021", "paper:patch2pix-2021", "paper:reference-pose-generation-2021", "paper:aspanformer-2022", "paper:dkm-2023", "paper:lightglue-2023", "paper:dust3r-2024", "paper:roma-2024"]
   - id: "paper:neighborhood-recovery-2025"
     title: "Obfuscation Based Privacy Preserving Representations are Recoverable Using Neighborhood Information"
     year: 2025
@@ -220,7 +220,7 @@ papers:
     venue_type: conference
     venue_tier: A
     included: true
-    citations: ["paper:ppiq-2019", "paper:coordinate-permutation-2023", "paper:line2point-2021"]
+    citations: []
   - id: "paper:air-hloc-2025"
     title: "AIR-HLoc: Adaptive Retrieved Images Selection for Efficient Visual Localisation"
     year: 2025
@@ -228,7 +228,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:hf-net-2019", "paper:netvlad-2016", "paper:superglue-2020"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:dsac-2017", "paper:geometric-posenet-2017", "paper:aachen-day-night-2018", "paper:mapnet-2018", "paper:inloc-2018", "paper:d2net-2019", "paper:apr-limitations-2019", "paper:dsac-star-2021", "paper:reference-pose-generation-2021", "paper:lamar-2022", "paper:ace-2023", "paper:glace-2024", "paper:marepo-2024"]
   - id: "paper:dcl-2026"
     title: "Revisiting Geometric Obfuscation with Dual Convergent Lines for Privacy-Preserving Image Queries in Visual Localization"
     year: 2026
@@ -236,7 +236,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:ppiq-2019", "paper:coordinate-permutation-2023", "paper:neighborhood-recovery-2025", "paper:invsfm-2019", "paper:netvlad-2016", "paper:ace-2023"]
+    citations: []
   - id: "paper:sift-2004"
     title: "Distinctive Image Features from Scale-Invariant Keypoints"
     year: 2004
@@ -252,7 +252,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: []
+    citations: ["paper:sift-2004"]
   - id: "paper:sfm-revisited-2016"
     title: "Structure-From-Motion Revisited"
     year: 2016
@@ -268,7 +268,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:posenet-2015"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:prioritized-matching-2017"]
   - id: "paper:image-based-localization-lstms-2017"
     title: "Image-Based Localization Using LSTMs for Structured Feature Correlation"
     year: 2017
@@ -276,7 +276,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:posenet-2015", "paper:geometric-posenet-2017"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:247-place-recognition-2015", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:prioritized-matching-2017"]
   - id: "paper:vidloc-2017"
     title: "VidLoc: A Deep Spatio-Temporal Model for 6-DoF Video-Clip Relocalization"
     year: 2017
@@ -284,7 +284,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:posenet-2015"]
+    citations: ["paper:score-forest-2013", "paper:posenet-2015"]
   - id: "paper:prioritized-matching-2017"
     title: "Efficient and Effective Prioritized Matching for Large-Scale Image-Based Localization"
     year: 2017
@@ -300,7 +300,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:sift-2004", "paper:sfm-revisited-2016"]
+    citations: ["paper:sift-2004", "paper:247-place-recognition-2015", "paper:sfm-revisited-2016", "paper:prioritized-matching-2017"]
   - id: "paper:large-scale-3d-models-2017"
     title: "Are Large-Scale 3D Models Really Necessary for Accurate Visual Localization?"
     year: 2017
@@ -308,7 +308,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:prioritized-matching-2017"]
+    citations: ["paper:sift-2004", "paper:247-place-recognition-2015", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:geometric-posenet-2017"]
   - id: "paper:delf-2017"
     title: "Large-Scale Image Retrieval with Attentive Deep Local Features"
     year: 2017
@@ -316,7 +316,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:netvlad-2016"]
+    citations: ["paper:sift-2004", "paper:netvlad-2016"]
   - id: "paper:mapnet-2018"
     title: "Geometry-Aware Learning of Maps for Camera Localization"
     year: 2018
@@ -324,7 +324,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:posenet-2015", "paper:geometric-posenet-2017"]
+    citations: ["paper:score-forest-2013", "paper:posenet-2015", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:vidloc-2017"]
   - id: "paper:inloc-2018"
     title: "InLoc: Indoor Visual Localization With Dense Matching and View Synthesis"
     year: 2018
@@ -332,7 +332,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:netvlad-2016", "paper:large-scale-3d-models-2017", "paper:prioritized-matching-2017"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:247-place-recognition-2015", "paper:netvlad-2016", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:aachen-day-night-2018"]
   - id: "paper:learning-less-is-more-2018"
     title: "Learning Less Is More - 6D Camera Localization via 3D Surface Regression"
     year: 2018
@@ -340,7 +340,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:dsac-2017", "paper:score-forest-2013"]
+    citations: ["paper:score-forest-2013", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017"]
   - id: "paper:semantic-visual-localization-2018"
     title: "Semantic Visual Localization"
     year: 2018
@@ -348,7 +348,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:sfm-revisited-2016", "paper:prioritized-matching-2017"]
+    citations: []
   - id: "paper:semantic-match-consistency-2018"
     title: "Semantic Match Consistency for Long-Term Visual Localization"
     year: 2018
@@ -356,7 +356,7 @@ papers:
     venue_type: conference
     venue_tier: "A"
     included: true
-    citations: ["paper:semantic-visual-localization-2018", "paper:prioritized-matching-2017"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:247-place-recognition-2015", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:aachen-day-night-2018", "paper:semantic-visual-localization-2018"]
   - id: "paper:r2d2-2019"
     title: "R2D2: Reliable and Repeatable Detector and Descriptor"
     year: 2019
@@ -364,7 +364,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:aachen-day-night-2018", "paper:d2net-2019"]
+    citations: []
   - id: "paper:contextdesc-2019"
     title: "ContextDesc: Local Descriptor Augmentation With Cross-Modality Context"
     year: 2019
@@ -372,7 +372,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:sift-2004", "paper:local-feature-eval-2017"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:local-feature-eval-2017", "paper:delf-2017"]
   - id: "paper:sosnet-2019"
     title: "SOSNet: Second Order Similarity Regularization for Local Descriptor Learning"
     year: 2019
@@ -380,7 +380,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:sift-2004", "paper:local-feature-eval-2017"]
+    citations: ["paper:sift-2004", "paper:local-feature-eval-2017", "paper:aachen-day-night-2018"]
   - id: "paper:sanet-2019"
     title: "SANet: Scene Agnostic Network for Camera Localization"
     year: 2019
@@ -388,7 +388,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:score-forest-2013", "paper:dsac-2017"]
+    citations: ["paper:score-forest-2013", "paper:posenet-2015", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:inloc-2018"]
   - id: "paper:fine-tuning-cnn-retrieval-2019"
     title: "Fine-Tuning CNN Image Retrieval with No Human Annotation"
     year: 2019
@@ -396,7 +396,7 @@ papers:
     venue_type: journal
     venue_tier: "Q1"
     included: true
-    citations: ["paper:netvlad-2016", "paper:sfm-revisited-2016"]
+    citations: ["paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:delf-2017"]
   - id: "paper:privacy-preserving-structure-from-motion-2020"
     title: "Privacy Preserving Structure-from-Motion"
     year: 2020
@@ -404,7 +404,7 @@ papers:
     venue_type: conference
     venue_tier: "A"
     included: true
-    citations: ["paper:privacy-preserving-image-based-localization-2019", "paper:invsfm-2019"]
+    citations: ["paper:sfm-revisited-2016", "paper:ppiq-2019", "paper:privacy-preserving-visual-slam-2020"]
   - id: "paper:privacy-preserving-visual-slam-2020"
     title: "Privacy Preserving Visual SLAM"
     year: 2020
@@ -412,7 +412,7 @@ papers:
     venue_type: conference
     venue_tier: "A"
     included: true
-    citations: ["paper:privacy-preserving-image-based-localization-2019", "paper:invsfm-2019"]
+    citations: ["paper:sift-2004", "paper:ppiq-2019"]
   - id: "paper:hscnet-2020"
     title: "Hierarchical Scene Coordinate Classification and Regression for Visual Localization"
     year: 2020
@@ -420,7 +420,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:score-forest-2013", "paper:dsac-2017", "paper:aachen-day-night-2018"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:aachen-day-night-2018", "paper:mapnet-2018", "paper:inloc-2018", "paper:semantic-match-consistency-2018", "paper:d2net-2019", "paper:hf-net-2019", "paper:sanet-2019", "paper:apr-limitations-2019"]
   - id: "paper:aslfeat-2020"
     title: "ASLFeat: Learning Local Features of Accurate Shape and Localization"
     year: 2020
@@ -428,7 +428,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:d2net-2019", "paper:contextdesc-2019", "paper:aachen-day-night-2018"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:local-feature-eval-2017", "paper:contextdesc-2019", "paper:d2net-2019"]
   - id: "paper:benchmarking-image-retrieval-2020"
     title: "Benchmarking Image Retrieval for Visual Localization"
     year: 2020
@@ -436,7 +436,7 @@ papers:
     venue_type: conference
     venue_tier: "A"
     included: true
-    citations: ["paper:netvlad-2016", "paper:hf-net-2019", "paper:d2net-2019", "paper:inloc-2018"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:local-feature-eval-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:delf-2017", "paper:aachen-day-night-2018", "paper:mapnet-2018", "paper:inloc-2018", "paper:d2net-2019", "paper:sanet-2019", "paper:apr-limitations-2019"]
   - id: "paper:disk-2020"
     title: "DISK: Learning Local Features with Policy Gradient"
     year: 2020
@@ -444,7 +444,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:r2d2-2019", "paper:d2net-2019"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:local-feature-eval-2017", "paper:delf-2017", "paper:contextdesc-2019", "paper:apr-limitations-2019", "paper:superglue-2020"]
   - id: "paper:atloc-2020"
     title: "AtLoc: Attention Guided Camera Localization"
     year: 2020
@@ -452,7 +452,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:posenet-2015", "paper:mapnet-2018", "paper:apr-limitations-2019"]
+    citations: ["paper:score-forest-2013", "paper:posenet-2015", "paper:netvlad-2016", "paper:dsac-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:vidloc-2017", "paper:mapnet-2018", "paper:apr-limitations-2019"]
   - id: "paper:privacy-preserving-image-features-2021"
     title: "Privacy-Preserving Image Features via Adversarial Affine Subspace Embeddings"
     year: 2021
@@ -460,7 +460,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:invsfm-2019", "paper:privacy-preserving-image-based-localization-2019"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:local-feature-eval-2017", "paper:aachen-day-night-2018", "paper:d2net-2019", "paper:ppiq-2019", "paper:privacy-preserving-structure-from-motion-2020", "paper:privacy-preserving-visual-slam-2020"]
   - id: "paper:privacy-preserving-localization-mapping-uncalibrated-2021"
     title: "Privacy Preserving Localization and Mapping from Uncalibrated Cameras"
     year: 2021
@@ -468,7 +468,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:privacy-preserving-structure-from-motion-2020", "paper:privacy-preserving-image-based-localization-2019"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:ppiq-2019", "paper:privacy-preserving-structure-from-motion-2020", "paper:privacy-preserving-visual-slam-2020"]
   - id: "paper:pdc-net-2021"
     title: "Learning Accurate Dense Correspondences and When To Trust Them"
     year: 2021
@@ -476,7 +476,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:d2net-2019"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:aachen-day-night-2018"]
   - id: "paper:cotr-2021"
     title: "COTR: Correspondence Transformer for Matching Across Images"
     year: 2021
@@ -484,7 +484,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:d2net-2019"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:d2net-2019", "paper:disk-2020", "paper:loftr-2021"]
   - id: "paper:cross-descriptor-vlm-2021"
     title: "Cross-Descriptor Visual Localization and Mapping"
     year: 2021
@@ -492,7 +492,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:sift-2004", "paper:sosnet-2019", "paper:contextdesc-2019", "paper:inloc-2018", "paper:aachen-day-night-2018"]
+    citations: ["paper:sift-2004", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:local-feature-eval-2017", "paper:delf-2017", "paper:aachen-day-night-2018", "paper:inloc-2018", "paper:d2net-2019", "paper:aslfeat-2020"]
   - id: "paper:patch2pix-2021"
     title: "Patch2Pix: Epipolar-Guided Pixel-Level Correspondences"
     year: 2021
@@ -500,7 +500,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:d2net-2019", "paper:superglue-2020", "paper:aachen-day-night-2018", "paper:inloc-2018"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:delf-2017", "paper:aachen-day-night-2018", "paper:inloc-2018", "paper:contextdesc-2019", "paper:d2net-2019", "paper:r2d2-2019", "paper:aslfeat-2020"]
   - id: "paper:patch-netvlad-2021"
     title: "Patch-NetVLAD: Multi-Scale Fusion of Locally-Global Descriptors for Place Recognition"
     year: 2021
@@ -508,7 +508,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:netvlad-2016", "paper:247-place-recognition-2015"]
+    citations: ["paper:delf-2017", "paper:aachen-day-night-2018", "paper:inloc-2018", "paper:d2net-2019"]
   - id: "paper:reference-pose-generation-2021"
     title: "Reference Pose Generation for Long-term Visual Localization via Learned Features and View Synthesis"
     year: 2021
@@ -516,7 +516,7 @@ papers:
     venue_type: journal
     venue_tier: "Q1"
     included: true
-    citations: ["paper:aachen-day-night-2018", "paper:d2net-2019", "paper:superglue-2020", "paper:hf-net-2019"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:delf-2017", "paper:vidloc-2017", "paper:aachen-day-night-2018", "paper:mapnet-2018", "paper:inloc-2018", "paper:learning-less-is-more-2018", "paper:semantic-match-consistency-2018", "paper:d2net-2019", "paper:sanet-2019", "paper:apr-limitations-2019", "paper:dsac-star-2021"]
   - id: "paper:privacy-preserving-partial-localization-2022"
     title: "Privacy Preserving Partial Localization"
     year: 2022
@@ -524,7 +524,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:privacy-preserving-image-based-localization-2019", "paper:line2point-2021"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:aachen-day-night-2018", "paper:ppiq-2019", "paper:privacy-preserving-structure-from-motion-2020", "paper:privacy-preserving-visual-slam-2020", "paper:dsac-star-2021", "paper:privacy-preserving-localization-mapping-uncalibrated-2021", "paper:long-term-visual-localization-revisited-2022"]
   - id: "paper:aspanformer-2022"
     title: "ASpanFormer: Detector-Free Image Matching with Adaptive Span Transformer"
     year: 2022
@@ -532,7 +532,7 @@ papers:
     venue_type: conference
     venue_tier: "A"
     included: true
-    citations: ["paper:loftr-2021", "paper:superglue-2020", "paper:patch2pix-2021"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:aachen-day-night-2018", "paper:inloc-2018", "paper:contextdesc-2019", "paper:d2net-2019", "paper:aslfeat-2020", "paper:cotr-2021", "paper:loftr-2021", "paper:reference-pose-generation-2021"]
   - id: "paper:lamar-2022"
     title: "LaMAR: Benchmarking Localization and Mapping for Augmented Reality"
     year: 2022
@@ -540,7 +540,7 @@ papers:
     venue_type: conference
     venue_tier: "A"
     included: true
-    citations: ["paper:hf-net-2019", "paper:superglue-2020", "paper:loftr-2021", "paper:inloc-2018", "paper:cross-descriptor-vlm-2021"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:247-place-recognition-2015", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:local-feature-eval-2017", "paper:geometric-posenet-2017", "paper:aachen-day-night-2018", "paper:inloc-2018", "paper:d2net-2019", "paper:privacy-preserving-structure-from-motion-2020", "paper:privacy-preserving-visual-slam-2020", "paper:loftr-2021", "paper:privacy-preserving-localization-mapping-uncalibrated-2021"]
   - id: "paper:long-term-visual-localization-revisited-2022"
     title: "Long-Term Visual Localization Revisited"
     year: 2022
@@ -548,7 +548,7 @@ papers:
     venue_type: journal
     venue_tier: "Q1"
     included: true
-    citations: ["paper:aachen-day-night-2018", "paper:netvlad-2016", "paper:d2net-2019", "paper:hf-net-2019", "paper:inloc-2018"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:247-place-recognition-2015", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:image-based-localization-lstms-2017", "paper:vidloc-2017", "paper:aachen-day-night-2018", "paper:inloc-2018", "paper:semantic-match-consistency-2018", "paper:d2net-2019", "paper:r2d2-2019", "paper:dsac-star-2021"]
   - id: "paper:cosplace-2022"
     title: "Rethinking Visual Geo-localization for Large-Scale Applications"
     year: 2022
@@ -556,7 +556,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:netvlad-2016", "paper:fine-tuning-cnn-retrieval-2019"]
+    citations: []
   - id: "paper:mixvpr-2023"
     title: "MixVPR: Feature Mixing for Visual Place Recognition"
     year: 2023
@@ -564,7 +564,7 @@ papers:
     venue_type: conference
     venue_tier: "A"
     included: true
-    citations: ["paper:netvlad-2016", "paper:patch-netvlad-2021", "paper:cosplace-2022"]
+    citations: ["paper:sift-2004", "paper:inloc-2018", "paper:cosplace-2022"]
   - id: "paper:segloc-2023"
     title: "SegLoc: Learning Segmentation-Based Representations for Privacy-Preserving Visual Localization"
     year: 2023
@@ -572,7 +572,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:privacy-preserving-image-based-localization-2019", "paper:privacy-preserving-image-features-2021"]
+    citations: ["paper:score-forest-2013", "paper:posenet-2015", "paper:netvlad-2016", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:delf-2017", "paper:aachen-day-night-2018", "paper:semantic-match-consistency-2018", "paper:ppiq-2019", "paper:apr-limitations-2019", "paper:privacy-preserving-structure-from-motion-2020", "paper:privacy-preserving-visual-slam-2020", "paper:dsac-star-2021", "paper:long-term-visual-localization-revisited-2022", "paper:privacy-preserving-partial-localization-2022"]
   - id: "paper:dkm-2023"
     title: "DKM: Dense Kernelized Feature Matching for Geometry Estimation"
     year: 2023
@@ -580,7 +580,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:loftr-2021", "paper:aspanformer-2022", "paper:patch2pix-2021", "paper:pdc-net-2021"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:aachen-day-night-2018", "paper:inloc-2018", "paper:d2net-2019", "paper:cotr-2021", "paper:loftr-2021", "paper:patch2pix-2021", "paper:aspanformer-2022", "paper:long-term-visual-localization-revisited-2022"]
   - id: "paper:gluestick-2023"
     title: "GlueStick: Robust Image Matching by Sticking Points and Lines Together"
     year: 2023
@@ -588,7 +588,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:superglue-2020", "paper:loftr-2021", "paper:lightglue-2023"]
+    citations: []
   - id: "paper:neumap-2023"
     title: "NeuMap: Neural Coordinate Mapping by Auto-Transdecoder for Camera Localization"
     year: 2023
@@ -596,7 +596,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:aachen-day-night-2018", "paper:invsfm-2019", "paper:ace-2023", "paper:sanet-2019"]
+    citations: ["paper:score-forest-2013", "paper:posenet-2015", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:d2net-2019", "paper:sanet-2019", "paper:dsac-star-2021", "paper:loftr-2021", "paper:aspanformer-2022"]
   - id: "paper:xfeat-2024"
     title: "XFeat: Accelerated Features for Lightweight Image Matching"
     year: 2024
@@ -604,7 +604,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:lightglue-2023", "paper:superglue-2020"]
+    citations: []
   - id: "paper:efficient-loftr-2024"
     title: "Efficient LoFTR: Semi-Dense Local Feature Matching with Sparse-Like Speed"
     year: 2024
@@ -612,7 +612,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:loftr-2021", "paper:lightglue-2023", "paper:aspanformer-2022"]
+    citations: []
   - id: "paper:roma-2024"
     title: "RoMa: Robust Dense Feature Matching"
     year: 2024
@@ -620,7 +620,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:loftr-2021", "paper:aspanformer-2022", "paper:dkm-2023"]
+    citations: []
   - id: "paper:omniglue-2024"
     title: "OmniGlue: Generalizable Feature Matching with Foundation Model Guidance"
     year: 2024
@@ -628,7 +628,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:superglue-2020", "paper:lightglue-2023", "paper:roma-2024"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:delf-2017", "paper:disk-2020", "paper:loftr-2021", "paper:dkm-2023", "paper:lightglue-2023"]
   - id: "paper:gsff-privacy-preserving-visual-localization-2025"
     title: "Gaussian Splatting Feature Fields for Privacy-Preserving Visual Localization"
     year: 2025
@@ -636,7 +636,7 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:segloc-2023", "paper:mast3r-2024", "paper:dust3r-2024"]
+    citations: []
   - id: "paper:vpr-cloak-2025"
     title: "VPR-Cloak: A First Look at Privacy Cloak Against Visual Place Recognition"
     year: 2025
@@ -644,4 +644,4 @@ papers:
     venue_type: conference
     venue_tier: "A*"
     included: true
-    citations: ["paper:netvlad-2016", "paper:hf-net-2019"]
+    citations: ["paper:247-place-recognition-2015"]
