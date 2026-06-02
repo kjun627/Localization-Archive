@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from "react";
 import type { GraphEdge, GraphNode } from "../types";
 
 type ArchiveBrowserProps = {
@@ -13,6 +13,7 @@ type ArchiveBrowserProps = {
 };
 
 const MONTHS = ["", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+const VENUE_DRAG_DELAY_MS = 260;
 
 const CitationGraphModal = lazy(() =>
   import("./CitationGraphModal").then((module) => ({ default: module.CitationGraphModal })),
@@ -173,6 +174,25 @@ function sortWithinYear(papers: GraphNode[]) {
     if (venueDiff) return venueDiff;
     return venueMonth(right) - venueMonth(left) || left.label.localeCompare(right.label);
   });
+}
+
+function venueSortIndex(venue: string) {
+  const index = VENUE_ORDER.indexOf(venue);
+  return index === -1 ? VENUE_ORDER.length : index;
+}
+
+function reorderVenue(source: string, target: string, order: string[]) {
+  if (source === target) return order;
+  if (!order.includes(source) || !order.includes(target)) return order;
+  const withoutSource = order.filter((venue) => venue !== source);
+  const targetIndex = withoutSource.indexOf(target);
+  const next = [...withoutSource];
+  next.splice(targetIndex, 0, source);
+  return next;
+}
+
+function sameOrder(left: string[], right: string[]) {
+  return left.length === right.length && left.every((item, index) => item === right[index]);
 }
 
 function getCitationStats(paperKey: string, edges: GraphEdge[]) {
@@ -527,7 +547,18 @@ export function ArchiveBrowser({
   const [graphPaper, setGraphPaper] = useState<GraphNode | null>(null);
   const [compareMode, setCompareMode] = useState(false);
   const [compareTargetKey, setCompareTargetKey] = useState<string | null>(null);
+  const [venueTabOrder, setVenueTabOrder] = useState<string[]>([]);
+  const [draggingVenue, setDraggingVenue] = useState<string | null>(null);
+  const [venueDropTarget, setVenueDropTarget] = useState<string | null>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const venueDragRef = useRef<{
+    active: boolean;
+    startX: number;
+    startY: number;
+    timeoutId: number | null;
+    venue: string;
+  } | null>(null);
+  const lastVenueDragEndRef = useRef(0);
   const papersByKey = useMemo(() => new Map(papers.map((paper) => [paper.key, paper])), [papers]);
   const compareTargetPaper = compareTargetKey ? papersByKey.get(compareTargetKey) ?? null : null;
 
@@ -566,11 +597,102 @@ export function ArchiveBrowser({
     return () => element.removeEventListener("wheel", onWheel);
   }, []);
 
-  const venueCounts = papers.reduce<Record<string, number>>((counts, paper) => {
-    const venue = venueCode(paper);
-    counts[venue] = (counts[venue] ?? 0) + 1;
-    return counts;
-  }, {});
+  const venueCounts = useMemo(
+    () =>
+      papers.reduce<Record<string, number>>((counts, paper) => {
+        const venue = venueCode(paper);
+        counts[venue] = (counts[venue] ?? 0) + 1;
+        return counts;
+      }, {}),
+    [papers],
+  );
+  const availableVenues = useMemo(
+    () => Object.keys(venueCounts).sort((left, right) => venueSortIndex(left) - venueSortIndex(right) || left.localeCompare(right)),
+    [venueCounts],
+  );
+
+  useEffect(() => {
+    setVenueTabOrder((current) => {
+      const retained = current.filter((venue) => venue in venueCounts);
+      const added = availableVenues.filter((venue) => !retained.includes(venue));
+      const next = [...retained, ...added];
+      return sameOrder(current, next) ? current : next;
+    });
+  }, [availableVenues, venueCounts]);
+
+  useEffect(() => {
+    const endVenueDrag = (event?: PointerEvent) => {
+      const session = venueDragRef.current;
+      if (!session) return;
+      if (session.timeoutId !== null) {
+        window.clearTimeout(session.timeoutId);
+      }
+      const wasActive = session.active;
+      venueDragRef.current = null;
+      if (wasActive) {
+        event?.preventDefault();
+        lastVenueDragEndRef.current = Date.now();
+      }
+      setDraggingVenue(null);
+      setVenueDropTarget(null);
+      document.body.classList.remove("venue-tab-dragging");
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      const session = venueDragRef.current;
+      if (!session) return;
+      const distance = Math.hypot(event.clientX - session.startX, event.clientY - session.startY);
+      if (!session.active && distance > 8) {
+        endVenueDrag();
+        return;
+      }
+      if (!session.active) return;
+      event.preventDefault();
+      const target = document.elementFromPoint(event.clientX, event.clientY) as HTMLElement | null;
+      const targetVenue = target?.closest<HTMLElement>("[data-venue-tab]")?.dataset.venueTab;
+      if (!targetVenue || targetVenue === session.venue) return;
+      setVenueDropTarget(targetVenue);
+      setVenueTabOrder((current) => reorderVenue(session.venue, targetVenue, current));
+    };
+
+    const onPointerUp = (event: PointerEvent) => endVenueDrag(event);
+    const onPointerCancel = (event: PointerEvent) => endVenueDrag(event);
+
+    window.addEventListener("pointermove", onPointerMove, { passive: false });
+    window.addEventListener("pointerup", onPointerUp);
+    window.addEventListener("pointercancel", onPointerCancel);
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
+      window.removeEventListener("pointercancel", onPointerCancel);
+      const session = venueDragRef.current;
+      if (session && session.timeoutId !== null) window.clearTimeout(session.timeoutId);
+      venueDragRef.current = null;
+      document.body.classList.remove("venue-tab-dragging");
+    };
+  }, []);
+
+  const beginVenuePress = (event: ReactPointerEvent<HTMLElement>, venue: string) => {
+    if (event.button !== 0) return;
+    const session = {
+      active: false,
+      startX: event.clientX,
+      startY: event.clientY,
+      timeoutId: null as number | null,
+      venue,
+    };
+    session.timeoutId = window.setTimeout(() => {
+      session.active = true;
+      setDraggingVenue(venue);
+      setVenueDropTarget(venue);
+      document.body.classList.add("venue-tab-dragging");
+    }, VENUE_DRAG_DELAY_MS);
+    venueDragRef.current = session;
+  };
+
+  const orderedVenueEntries = (venueTabOrder.length ? venueTabOrder : availableVenues)
+    .filter((venue) => venue in venueCounts)
+    .map((venue) => [venue, venueCounts[venue]] as const);
 
   const filteredPapers = papers.filter((paper) => {
     const query = search.trim().toLowerCase();
@@ -656,15 +778,25 @@ export function ArchiveBrowser({
               value={search}
             />
           </label>
-          <div className="toggles">
-            {Object.entries(venueCounts).map(([venue, count]) => (
+          <div className="toggles" data-reordering={Boolean(draggingVenue)}>
+            {orderedVenueEntries.map(([venue, count]) => (
               <div
                 className="toggle"
+                data-dragging={draggingVenue === venue || undefined}
+                data-drop-target={venueDropTarget === venue && draggingVenue !== venue ? true : undefined}
                 data-on={activeVenues[venue] !== false}
+                data-venue-tab={venue}
                 key={venue}
-                onClick={() => onToggleVenue(venue)}
+                onClick={(event) => {
+                  if (Date.now() - lastVenueDragEndRef.current < 350) {
+                    event.preventDefault();
+                    return;
+                  }
+                  onToggleVenue(venue);
+                }}
+                onPointerDown={(event) => beginVenuePress(event, venue)}
                 style={{ "--tone": VENUE_THEME[venue] ?? VENUE_THEME.FILE } as CSSProperties}
-                title={`${venue} - ${count} papers`}
+                title={`${venue} - ${count} papers. Long-press and drag to reorder.`}
               >
                 <span className="dot" />
                 {venue}&nbsp;·&nbsp;{count}

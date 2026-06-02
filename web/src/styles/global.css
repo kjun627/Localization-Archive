@@ -161,23 +161,34 @@ a {
   scrollbar-width: none;
 }
 
+.toggles[data-reordering="true"] {
+  cursor: grabbing;
+}
+
 .toggles::-webkit-scrollbar {
   display: none;
 }
 
 .toggle {
+  position: relative;
   flex: 0 0 auto;
   padding: 5px 11px;
   border: 1px solid rgba(0, 0, 0, 0.4);
   background: var(--tone);
   color: #fdf6dd;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
-  cursor: pointer;
+  cursor: grab;
   font-family: var(--ff-mono);
   font-size: 10.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: opacity 0.12s, transform 0.08s;
+  touch-action: pan-x;
+  transition:
+    box-shadow 0.16s ease,
+    filter 0.16s ease,
+    opacity 0.16s ease,
+    outline-color 0.16s ease,
+    transform 0.16s cubic-bezier(0.2, 0.7, 0.3, 1);
   user-select: none;
   white-space: nowrap;
 }
@@ -189,6 +200,33 @@ a {
 
 .toggle:hover {
   transform: translateY(-1px);
+}
+
+.toggle:active {
+  cursor: grabbing;
+}
+
+.toggle[data-dragging="true"] {
+  z-index: 3;
+  transform: translateY(-3px) scale(1.035);
+  box-shadow:
+    0 8px 16px rgba(25, 31, 40, 0.18),
+    0 0 0 2px rgba(255, 255, 255, 0.9);
+  cursor: grabbing;
+}
+
+.toggle[data-drop-target="true"] {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  transform: translateY(-1px);
+}
+
+.toggles[data-reordering="true"] .toggle:not([data-dragging="true"]) {
+  opacity: 0.74;
+}
+
+.venue-tab-dragging .toggle {
+  cursor: grabbing;
 }
 
 .toggle .dot {
@@ -901,7 +939,7 @@ a {
 
 .detail-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 6px;
   margin-top: 10px;
 }
