@@ -12,18 +12,25 @@ DEFAULT_TIMEOUT = 30
 
 @dataclass
 class OpenAlexClient:
-    api_key: str
+    api_key: str | None = None
     mailto: str = "localization-archive@example.com"
 
-    def search_works(self, query: str, per_page: int = 15) -> list[dict[str, Any]]:
-        params = urllib.parse.urlencode(
-            {
-                "search": query,
-                "per-page": per_page,
-                "mailto": self.mailto,
-                "api_key": self.api_key,
-            }
-        )
+    def search_works(
+        self,
+        query: str,
+        per_page: int = 15,
+        select: str | None = None,
+    ) -> list[dict[str, Any]]:
+        payload = {
+            "search": query,
+            "per-page": per_page,
+            "mailto": self.mailto,
+        }
+        if self.api_key:
+            payload["api_key"] = self.api_key
+        if select:
+            payload["select"] = select
+        params = urllib.parse.urlencode(payload)
         url = f"https://api.openalex.org/works?{params}"
         payload = _get_json(url)
         return payload.get("results", [])
