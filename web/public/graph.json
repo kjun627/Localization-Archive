@@ -234,7 +234,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://openaccess.thecvf.com/content_cvpr_2018/papers_backup/Sattler_Benchmarking_6DOF_Outdoor_CVPR_2018_paper.pdf"
+            "url": "https://openaccess.thecvf.com/content_cvpr_2018/html/Sattler_Benchmarking_6DOF_Outdoor_CVPR_2018_paper.html"
           }
         ],
         "figure": {
@@ -376,7 +376,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://openaccess.thecvf.com/content/CVPR2023/papers/Brachmann_Accelerated_Coordinate_Encoding_Learning_to_Relocalize_in_Minutes_Using_RGB_CVPR_2023_paper.pdf"
+            "url": "https://openaccess.thecvf.com/content/CVPR2023/html/Brachmann_Accelerated_Coordinate_Encoding_Learning_to_Relocalize_in_Minutes_Using_RGB_CVPR_2023_paper.html"
           },
           {
             "label": "Code",
@@ -7272,7 +7272,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://openaccess.thecvf.com/content/CVPR2021/papers/Sun_LoFTR_Detector-Free_Local_Feature_Matching_With_Transformers_CVPR_2021_paper.pdf"
+            "url": "https://openaccess.thecvf.com/content/CVPR2021/html/Sun_LoFTR_Detector-Free_Local_Feature_Matching_With_Transformers_CVPR_2021_paper.html"
           },
           {
             "label": "Code",
@@ -9501,7 +9501,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://openaccess.thecvf.com/content/CVPR2021/papers/Sarlin_Back_to_the_Feature_Learning_Robust_Camera_Localization_From_Pixels_CVPR_2021_paper.pdf"
+            "url": "https://openaccess.thecvf.com/content/CVPR2021/html/Sarlin_Back_to_the_Feature_Learning_Robust_Camera_Localization_From_Pixels_CVPR_2021_paper.html"
           },
           {
             "label": "Code",
@@ -9631,7 +9631,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Kendall_PoseNet_A_Convolutional_ICCV_2015_paper.pdf"
+            "url": "https://openaccess.thecvf.com/content_iccv_2015/html/Kendall_PoseNet_A_Convolutional_ICCV_2015_paper.html"
           },
           {
             "label": "Project",
@@ -10867,7 +10867,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123460324.pdf"
+            "url": "https://www.ecva.net/papers/eccv_2020/papers_ECCV/html/1273_ECCV_2020_paper.php"
           },
           {
             "label": "Project",
@@ -11047,7 +11047,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123670103.pdf"
+            "url": "https://www.ecva.net/papers/eccv_2020/papers_ECCV/html/3947_ECCV_2020_paper.php"
           },
           {
             "label": "Project",
@@ -13127,7 +13127,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://bmva-archive.org.uk/bmvc/2024/papers/Paper_267/paper.pdf"
+            "url": "https://bmvc2024.org/proceedings/267/"
           },
           {
             "label": "Code",
@@ -13307,7 +13307,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://openaccess.thecvf.com/content_CVPR_2020/papers/Sarlin_SuperGlue_Learning_Feature_Matching_With_Graph_Neural_Networks_CVPR_2020_paper.pdf"
+            "url": "https://openaccess.thecvf.com/content_CVPR_2020/html/Sarlin_SuperGlue_Learning_Feature_Matching_With_Graph_Neural_Networks_CVPR_2020_paper.html"
           },
           {
             "label": "Code",

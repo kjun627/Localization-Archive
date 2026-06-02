@@ -27,7 +27,7 @@ limitations:
 - Public line-cloud SLAM benchmarks were lacking.
 source_links:
 - label: Paper
-  url: https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123670103.pdf
+  url: https://www.ecva.net/papers/eccv_2020/papers_ECCV/html/3947_ECCV_2020_paper.php
 - label: Project
   url: https://xdspacelab.github.io/lcvslam/
 figure:

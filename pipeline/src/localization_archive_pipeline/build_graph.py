@@ -99,17 +99,24 @@ def is_paper_link(link: dict[str, str]) -> bool:
     )
 
 
+def is_direct_pdf_url(url: str) -> bool:
+    return url.lower().split("?", 1)[0].endswith(".pdf")
+
+
 def paper_link_priority(link: dict[str, str]) -> int:
     label = link.get("label", "").lower()
     url = link.get("url", "").lower()
-    if "openaccess.thecvf.com" in url and not url.endswith(".pdf"):
+    is_pdf = is_direct_pdf_url(url)
+    if "openaccess.thecvf.com" in url and not is_pdf:
         return 0
-    if "ecva.net" in url and not url.endswith(".pdf"):
+    if "ecva.net" in url and not is_pdf:
         return 1
-    if "bmvc" in url and not url.endswith(".pdf"):
+    if "bmvc" in url and not is_pdf:
         return 2
-    if "microsoft.com" in url and not url.endswith(".pdf"):
+    if "microsoft.com" in url and not is_pdf:
         return 3
+    if is_pdf:
+        return 9
     if label == "paper":
         return 4
     if label == "doi":

@@ -120,13 +120,19 @@ function isPaperLink(link: SourceLink) {
   return PAPER_LINK_LABELS.has(label) || label.includes("paper") || label.includes("arxiv") || label.includes("doi");
 }
 
+function isDirectPdfUrl(url: string) {
+  return url.toLowerCase().split("?", 1)[0].endsWith(".pdf");
+}
+
 function paperLinkPriority(link: SourceLink) {
   const url = link.url.toLowerCase();
   const label = link.label.toLowerCase();
-  if (url.includes("openaccess.thecvf.com") && !url.endsWith(".pdf")) return 0;
-  if (url.includes("ecva.net") && !url.endsWith(".pdf")) return 1;
-  if (url.includes("bmvc") && !url.endsWith(".pdf")) return 2;
-  if (url.includes("microsoft.com") && !url.endsWith(".pdf")) return 3;
+  const isPdf = isDirectPdfUrl(url);
+  if (url.includes("openaccess.thecvf.com") && !isPdf) return 0;
+  if (url.includes("ecva.net") && !isPdf) return 1;
+  if (url.includes("bmvc") && !isPdf) return 2;
+  if (url.includes("microsoft.com") && !isPdf) return 3;
+  if (isPdf) return 9;
   if (label === "paper") return 4;
   if (label === "doi") return 5;
   if (label === "arxiv") return 6;
@@ -754,7 +760,7 @@ export function ArchiveBrowser({
 
   const years = groupByYear(filteredPapers);
   const compareActive = compareMode || Boolean(compareTargetPaper);
-  const displayPaper = compareActive ? selectedPaper : hoveredPaper ?? selectedPaper;
+  const displayPaper = compareActive ? selectedPaper : selectedPaper ?? hoveredPaper;
   const detailOpen = Boolean(displayPaper) || manualOpen;
   const citationEdges = edges.filter((edge) => edge.type === "cites");
   const linkedBuilds = useMemo(
@@ -927,7 +933,7 @@ export function ArchiveBrowser({
                           onSelectPaper(alreadyPinned ? null : item);
                           setManualOpen(!alreadyPinned);
                         }}
-                        onHover={compareActive ? () => undefined : setHoveredPaper}
+                        onHover={compareActive || Boolean(selectedPaper) ? () => undefined : setHoveredPaper}
                         onLeave={() => {
                           if (!compareActive) setHoveredPaper(null);
                         }}

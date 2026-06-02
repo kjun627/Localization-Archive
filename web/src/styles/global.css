@@ -445,6 +445,10 @@ a {
   filter: saturate(0.3);
 }
 
+.card.dim:hover {
+  transform: none;
+}
+
 .card.compare-candidate {
   animation: compareCandidateIn 0.24s ease both;
 }

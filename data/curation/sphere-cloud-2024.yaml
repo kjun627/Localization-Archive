@@ -36,7 +36,7 @@ limitations:
 - Privacy/localization trade-off depends on fake-point and true-positive ratio hyperparameters.
 source_links:
 - label: Paper
-  url: https://bmva-archive.org.uk/bmvc/2024/papers/Paper_267/paper.pdf
+  url: https://bmvc2024.org/proceedings/267/
 - label: Code
   url: https://github.com/PHANTOM0122/Sphere-cloud
 figure:

@@ -33,7 +33,7 @@ limitations:
 - Reconstruction quality trails standard COLMAP.
 source_links:
 - label: Paper
-  url: https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123460324.pdf
+  url: https://www.ecva.net/papers/eccv_2020/papers_ECCV/html/1273_ECCV_2020_paper.php
 - label: Project
   url: https://speciale.ar/publication/privacypreservingsfm/
 figure:

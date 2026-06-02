@@ -27,7 +27,7 @@ limitations:
   generalization.
 source_links:
 - label: Paper
-  url: https://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Kendall_PoseNet_A_Convolutional_ICCV_2015_paper.pdf
+  url: https://openaccess.thecvf.com/content_iccv_2015/html/Kendall_PoseNet_A_Convolutional_ICCV_2015_paper.html
 - label: Project
   url: http://mi.eng.cam.ac.uk/projects/relocalisation/
 figure:

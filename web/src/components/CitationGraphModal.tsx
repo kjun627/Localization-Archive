@@ -221,8 +221,8 @@ function makeCitationNodeObject(
   const isDirect = activeNeighborIds.has(node.id);
   const tone = isActive ? "#191f28" : influenceColor(node);
   const radius = Math.max(
-    isActive ? 4.9 : isFocal ? 4.5 : isDirect ? 3.8 : 2.25,
-    2.1 + node.influence * 4.2,
+    isActive ? 6.6 : isFocal ? 6.1 : isDirect ? 5.2 : 3.35,
+    3.15 + node.influence * 5.8,
   );
   const group = new THREE.Group();
 
@@ -403,11 +403,106 @@ function linkRotation(link: CitationLink) {
 }
 
 function linkParticleCount(link: CitationLink, activeId: string | null | undefined, selectedKey: string) {
-  if (linkInvolves(link, activeId)) return 5;
+  if (linkInvolves(link, activeId)) return 4;
   const sourceId = linkEndpointId(link.source);
   const targetId = linkEndpointId(link.target);
-  if (sourceId === selectedKey || targetId === selectedKey) return 3;
+  if (sourceId === selectedKey || targetId === selectedKey) return 2;
   return 0;
+}
+
+function selectVisibleLinks(
+  nodes: CitationNode[],
+  links: CitationLink[],
+  selectedKey: string,
+  activeId: string | null | undefined,
+) {
+  const nodeById = new Map(nodes.map((node) => [node.id, node]));
+  const visible = new Map<string, CitationLink>();
+  const focalNeighborIds = new Set<string>([selectedKey]);
+
+  links.forEach((link) => {
+    const sourceId = linkEndpointId(link.source);
+    const targetId = linkEndpointId(link.target);
+    if (sourceId === selectedKey) focalNeighborIds.add(targetId);
+    if (targetId === selectedKey) focalNeighborIds.add(sourceId);
+  });
+
+  const add = (link: CitationLink) => visible.set(link.id, link);
+  const score = (link: CitationLink) => {
+    const source = nodeById.get(linkEndpointId(link.source));
+    const target = nodeById.get(linkEndpointId(link.target));
+    return (source?.influence ?? 0) + (target?.influence ?? 0);
+  };
+
+  links.forEach((link) => {
+    if (linkInvolves(link, selectedKey) || linkInvolves(link, activeId)) add(link);
+  });
+
+  links
+    .filter((link) => {
+      if (visible.has(link.id)) return false;
+      const sourceId = linkEndpointId(link.source);
+      const targetId = linkEndpointId(link.target);
+      return focalNeighborIds.has(sourceId) && focalNeighborIds.has(targetId);
+    })
+    .sort((left, right) => score(right) - score(left))
+    .slice(0, 64)
+    .forEach(add);
+
+  links
+    .filter((link) => !visible.has(link.id))
+    .sort((left, right) => score(right) - score(left))
+    .slice(0, 72)
+    .forEach(add);
+
+  return Array.from(visible.values());
+}
+
+function selectVisibleNodes(
+  nodes: CitationNode[],
+  links: CitationLink[],
+  selectedKey: string,
+  activeId: string | null | undefined,
+) {
+  const visibleIds = new Set<string>([selectedKey]);
+  if (activeId) visibleIds.add(activeId);
+  links.forEach((link) => {
+    visibleIds.add(linkEndpointId(link.source));
+    visibleIds.add(linkEndpointId(link.target));
+  });
+  return nodes.filter((node) => visibleIds.has(node.id));
+}
+
+function configureGraphForces(
+  graphInstance: ForceGraphMethods<CitationNode, CitationLink> | undefined,
+  selectedKey: string,
+  activeId: string | null | undefined,
+) {
+  if (!graphInstance) return;
+  const charge = graphInstance.d3Force("charge");
+  charge?.strength?.((node: CitationNode) => {
+    if (node.id === activeId || node.id === selectedKey) return -360;
+    if (node.group === "ancestor" || node.group === "descendant") return -240;
+    return -150;
+  });
+  charge?.distanceMin?.(28);
+  charge?.distanceMax?.(760);
+
+  const linkForce = graphInstance.d3Force("link");
+  linkForce?.distance?.((link: CitationLink) => {
+    if (linkInvolves(link, activeId)) return 124;
+    if (linkInvolves(link, selectedKey)) return 142;
+    return 182;
+  });
+  linkForce?.strength?.((link: CitationLink) => {
+    if (linkInvolves(link, activeId)) return 0.22;
+    if (linkInvolves(link, selectedKey)) return 0.16;
+    return 0.055;
+  });
+  linkForce?.iterations?.(1);
+
+  const center = graphInstance.d3Force("center");
+  center?.strength?.(0.025);
 }
 
 function relationLabel(node: CitationNode | undefined, selectedKey: string) {
@@ -482,6 +577,26 @@ export function CitationGraphModal({ edges, onClose, onSelectPaper, papers, sele
     [nodeContext.incoming, nodeContext.outgoing],
   );
 
+  const visibleLinks = useMemo(
+    () => selectVisibleLinks(graph.nodes, graph.links, selectedPaper.key, activeNode?.id),
+    [activeNode?.id, graph.links, graph.nodes, selectedPaper.key],
+  );
+  const visibleNodes = useMemo(
+    () => selectVisibleNodes(graph.nodes, visibleLinks, selectedPaper.key, activeNode?.id),
+    [activeNode?.id, graph.nodes, selectedPaper.key, visibleLinks],
+  );
+  const visibleGraph = useMemo(
+    () => ({ links: visibleLinks, nodes: visibleNodes }),
+    [visibleLinks, visibleNodes],
+  );
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      configureGraphForces(graphRef.current, selectedPaper.key, activeNode?.id);
+    }, 80);
+    return () => window.clearTimeout(timer);
+  }, [activeNode?.id, selectedPaper.key, visibleLinks.length, visibleNodes.length]);
+
   const stats = useMemo(
     () => ({
       incoming: graph.descendants.size,
@@ -503,7 +618,9 @@ export function CitationGraphModal({ edges, onClose, onSelectPaper, papers, sele
             <h2>{selectedPaper.label}</h2>
           </div>
           <div className="graph-head-actions">
-            <span>{stats.totalPapers} papers / {stats.totalLinks} links</span>
+            <span>
+              showing {visibleNodes.length} of {stats.totalPapers} papers / {visibleLinks.length} of {stats.totalLinks} links
+            </span>
             <button type="button" onClick={onClose}>
               Close
             </button>
@@ -518,7 +635,7 @@ export function CitationGraphModal({ edges, onClose, onSelectPaper, papers, sele
             d3AlphaDecay={0.018}
             d3VelocityDecay={0.22}
             enableNodeDrag
-            graphData={graph}
+            graphData={visibleGraph}
             height={canvasSize.height}
             linkColor={(link) => linkTone(link, activeNode?.id, selectedPaper.key)}
             linkCurvature={(link) => linkCurve(link, activeNode?.id, selectedPaper.key)}
@@ -526,28 +643,28 @@ export function CitationGraphModal({ edges, onClose, onSelectPaper, papers, sele
             linkDirectionalArrowLength={0}
             linkDirectionalParticles={(link) => linkParticleCount(link, activeNode?.id, selectedPaper.key)}
             linkDirectionalParticleColor={(link) => linkTone(link, activeNode?.id, selectedPaper.key)}
-            linkDirectionalParticleSpeed={(link) => (linkInvolves(link, activeNode?.id) ? 0.012 : 0.007)}
+            linkDirectionalParticleSpeed={(link) => (linkInvolves(link, activeNode?.id) ? 0.01 : 0.006)}
             linkDirectionalParticleWidth={(link) => {
-              if (linkInvolves(link, activeNode?.id)) return 4.2;
-              return linkParticleCount(link, activeNode?.id, selectedPaper.key) ? 2.8 : 0;
+              if (linkInvolves(link, activeNode?.id)) return 2.3;
+              return linkParticleCount(link, activeNode?.id, selectedPaper.key) ? 1.45 : 0;
             }}
             linkLabel={linkLabel}
-            linkOpacity={0.5}
+            linkOpacity={0.36}
             linkResolution={8}
             linkWidth={(link) => {
-              if (linkInvolves(link, activeNode?.id)) return 2.8;
-              return linkParticleCount(link, activeNode?.id, selectedPaper.key) ? 1.55 : 0.52;
+              if (linkInvolves(link, activeNode?.id)) return 1.22;
+              return linkParticleCount(link, activeNode?.id, selectedPaper.key) ? 0.82 : 0.24;
             }}
             nodeLabel={nodeLabel}
             nodeOpacity={0.96}
-            nodeRelSize={5}
+            nodeRelSize={7}
             nodeResolution={24}
             nodeThreeObject={(node) => makeCitationNodeObject(node, activeNode?.id ?? null, selectedPaper.key, activeNeighborIds)}
             nodeVal={(node) => {
-              const impactValue = 1.8 + node.influence * 12;
-              if (node.id === activeNode?.id) return Math.max(11, impactValue + 3);
-              if (node.group === "selected") return Math.max(9, impactValue);
-              if (node.group === "ancestor" || node.group === "descendant") return Math.max(5.4, impactValue);
+              const impactValue = 3.1 + node.influence * 15;
+              if (node.id === activeNode?.id) return Math.max(15, impactValue + 4);
+              if (node.group === "selected") return Math.max(13, impactValue);
+              if (node.group === "ancestor" || node.group === "descendant") return Math.max(8, impactValue);
               return impactValue;
             }}
             onBackgroundClick={(event) => {
