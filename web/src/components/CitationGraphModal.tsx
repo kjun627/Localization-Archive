@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import ForceGraph3D, {
   type ForceGraphMethods,
   type LinkObject,
   type NodeObject,
 } from "react-force-graph-3d";
+import * as THREE from "three";
 import type { GraphEdge, GraphNode } from "../types";
 
 type CitationGraphModalProps = {
@@ -44,18 +45,22 @@ const NODE_COLOR: Record<CitationNode["group"], string> = {
 
 const VENUE_COLOR: Record<string, string> = {
   "3DV": "#fe9800",
+  AAAI: "#7048e8",
   BMVC: "#e83e8c",
   CVPR: "#3182f6",
   ECCV: "#00a76f",
   FILE: "#6b7684",
-  IJCV: "#f04452",
+  IJCV: "#087f5b",
   ICCV: "#191f28",
-  ICRA: "#8b3ddb",
-  IVC: "#8b3ddb",
+  ICRA: "#7c5cff",
+  IROS: "#795548",
+  IVC: "#7c2d12",
+  NeurIPS: "#f04452",
   OTHER: "#6b7684",
-  PR: "#00a76f",
-  RAL: "#8b3ddb",
-  TPAMI: "#f04452",
+  PR: "#64748b",
+  RAL: "#0f766e",
+  TPAMI: "#c92a2a",
+  WACV: "#00b8d9",
 };
 
 function escapeHtml(value: string | number | undefined) {
@@ -72,12 +77,16 @@ function venueCode(paper: GraphNode) {
   if (venue.includes("Computer Vision and Pattern Recognition")) return "CVPR";
   if (venue.includes("European Conference on Computer Vision")) return "ECCV";
   if (venue.includes("International Conference on Computer Vision")) return "ICCV";
+  if (venue.includes("Neural Information Processing Systems")) return "NeurIPS";
+  if (venue.includes("AAAI")) return "AAAI";
+  if (venue.includes("Winter Conference on Applications of Computer Vision")) return "WACV";
   if (venue.includes("3D Vision")) return "3DV";
   if (venue.includes("British Machine Vision Conference")) return "BMVC";
+  if (venue.includes("Robotics and Automation Letters")) return "RAL";
   if (venue.includes("Robotics and Automation")) return "ICRA";
+  if (venue.includes("Intelligent Robots and Systems")) return "IROS";
   if (venue.includes("Pattern Analysis and Machine Intelligence")) return "TPAMI";
   if (venue.includes("International Journal of Computer Vision")) return "IJCV";
-  if (venue.includes("Robotics and Automation Letters")) return "RAL";
   if (venue.includes("Pattern Recognition")) return "PR";
   if (venue.includes("Image and Vision Computing")) return "IVC";
   return "OTHER";
@@ -130,6 +139,143 @@ function influenceColor(node: CitationNode) {
   if (node.influence >= 0.48) return "#f59f56";
   if (node.influence >= 0.28) return node.group === "descendant" ? "#5be1ca" : "#8fd3ff";
   return VENUE_COLOR[node.venue] ?? NODE_COLOR[node.group];
+}
+
+function hashString(value: string) {
+  let hash = 0;
+  for (let index = 0; index < value.length; index += 1) {
+    hash = (hash << 5) - hash + value.charCodeAt(index);
+    hash |= 0;
+  }
+  return Math.abs(hash);
+}
+
+function graphShortTitle(value: string) {
+  const source = value.split(":")[0] || value;
+  return source.length > 34 ? `${source.slice(0, 31)}...` : source;
+}
+
+function makeHaloSprite(color: string, size: number, opacity: number) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 128;
+  canvas.height = 128;
+  const context = canvas.getContext("2d");
+  if (!context) return undefined;
+  const gradient = context.createRadialGradient(64, 64, 8, 64, 64, 62);
+  gradient.addColorStop(0, color);
+  gradient.addColorStop(0.28, `${color}88`);
+  gradient.addColorStop(0.72, `${color}22`);
+  gradient.addColorStop(1, `${color}00`);
+  context.fillStyle = gradient;
+  context.fillRect(0, 0, 128, 128);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  const material = new THREE.SpriteMaterial({
+    depthWrite: false,
+    map: texture,
+    opacity,
+    transparent: true,
+  });
+  const sprite = new THREE.Sprite(material);
+  sprite.scale.set(size, size, 1);
+  return sprite;
+}
+
+function makeTextSprite(text: string, color: string, strong: boolean) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 512;
+  canvas.height = 128;
+  const context = canvas.getContext("2d");
+  if (!context) return undefined;
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = "rgba(255,255,255,0.92)";
+  context.strokeStyle = strong ? color : "rgba(25,31,40,0.36)";
+  context.lineWidth = strong ? 5 : 3;
+  context.beginPath();
+  context.roundRect(10, 24, 492, 70, 8);
+  context.fill();
+  context.stroke();
+  context.fillStyle = color;
+  context.font = "700 22px Inter, system-ui, sans-serif";
+  context.fillText(text, 28, 68, 456);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  const material = new THREE.SpriteMaterial({
+    depthWrite: false,
+    map: texture,
+    transparent: true,
+  });
+  const sprite = new THREE.Sprite(material);
+  sprite.scale.set(strong ? 26 : 21, strong ? 6.5 : 5.4, 1);
+  return sprite;
+}
+
+function makeCitationNodeObject(
+  node: CitationNode,
+  activeNodeId: string | null,
+  selectedKey: string,
+  activeNeighborIds: Set<string>,
+) {
+  const isActive = node.id === activeNodeId;
+  const isFocal = node.id === selectedKey;
+  const isDirect = activeNeighborIds.has(node.id);
+  const tone = isActive ? "#191f28" : influenceColor(node);
+  const radius = Math.max(
+    isActive ? 4.9 : isFocal ? 4.5 : isDirect ? 3.8 : 2.25,
+    2.1 + node.influence * 4.2,
+  );
+  const group = new THREE.Group();
+
+  const halo = makeHaloSprite(tone, radius * (isActive || isFocal ? 7.2 : isDirect ? 5.4 : 3.4), isActive || isFocal ? 0.34 : isDirect ? 0.2 : 0.11);
+  if (halo) group.add(halo);
+
+  const shell = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(radius, 2),
+    new THREE.MeshStandardMaterial({
+      color: tone,
+      emissive: tone,
+      emissiveIntensity: isActive || isFocal ? 0.16 : 0.045,
+      metalness: 0.16,
+      roughness: 0.46,
+    }),
+  );
+  group.add(shell);
+
+  const inner = new THREE.Mesh(
+    new THREE.SphereGeometry(radius * 0.38, 20, 16),
+    new THREE.MeshBasicMaterial({
+      color: isActive ? "#ffffff" : isFocal ? "#fdf6dd" : "#ffffff",
+      transparent: true,
+      opacity: isActive || isFocal ? 0.96 : 0.72,
+    }),
+  );
+  group.add(inner);
+
+  if (isActive || isFocal || isDirect) {
+    const ringMaterial = new THREE.MeshBasicMaterial({
+      color: tone,
+      opacity: isActive || isFocal ? 0.86 : 0.54,
+      transparent: true,
+    });
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(radius * 1.42, Math.max(0.045, radius * 0.035), 10, 72), ringMaterial);
+    ring.rotation.x = Math.PI / 2;
+    group.add(ring);
+    if (isActive || isFocal) {
+      const orbit = new THREE.Mesh(new THREE.TorusGeometry(radius * 1.86, Math.max(0.035, radius * 0.025), 8, 84), ringMaterial);
+      orbit.rotation.y = Math.PI / 2.7;
+      group.add(orbit);
+    }
+  }
+
+  if (isActive || isFocal || isDirect) {
+    const label = makeTextSprite(`${node.venue} '${String(node.year).slice(-2)} · ${graphShortTitle(node.title)}`, tone, isActive || isFocal);
+    if (label) {
+      label.position.set(0, radius + (isActive || isFocal ? 5.4 : 4.5), 0);
+      group.add(label);
+    }
+  }
+
+  return group;
 }
 
 function buildCitationGraph(papers: GraphNode[], edges: GraphEdge[], selectedKey: string) {
@@ -231,6 +377,39 @@ function linkEndpointId(endpoint: CitationLink["source"]) {
   return typeof endpoint === "object" ? String(endpoint.id) : String(endpoint);
 }
 
+function linkInvolves(link: CitationLink, nodeId: string | null | undefined) {
+  if (!nodeId) return false;
+  return linkEndpointId(link.source) === nodeId || linkEndpointId(link.target) === nodeId;
+}
+
+function linkTone(link: CitationLink, activeId: string | null | undefined, selectedKey: string) {
+  const sourceId = linkEndpointId(link.source);
+  const targetId = linkEndpointId(link.target);
+  if (linkInvolves(link, activeId)) return "#191f28";
+  if (sourceId === selectedKey) return "#ff9f1a";
+  if (targetId === selectedKey) return "#00a76f";
+  return "#8f9bad";
+}
+
+function linkCurve(link: CitationLink, activeId: string | null | undefined, selectedKey: string) {
+  const base = ((hashString(link.id) % 9) - 4) * 0.028;
+  if (linkInvolves(link, activeId)) return base * 1.8 || 0.18;
+  if (linkEndpointId(link.source) === selectedKey || linkEndpointId(link.target) === selectedKey) return base * 1.45 || 0.12;
+  return base;
+}
+
+function linkRotation(link: CitationLink) {
+  return ((hashString(`${link.id}:rotation`) % 360) / 180) * Math.PI;
+}
+
+function linkParticleCount(link: CitationLink, activeId: string | null | undefined, selectedKey: string) {
+  if (linkInvolves(link, activeId)) return 5;
+  const sourceId = linkEndpointId(link.source);
+  const targetId = linkEndpointId(link.target);
+  if (sourceId === selectedKey || targetId === selectedKey) return 3;
+  return 0;
+}
+
 function relationLabel(node: CitationNode | undefined, selectedKey: string) {
   if (!node) return "No node selected";
   if (node.id === selectedKey) return "Focal paper";
@@ -298,6 +477,11 @@ export function CitationGraphModal({ edges, onClose, onSelectPaper, papers, sele
     return { impactRank, incoming, outgoing, percentile };
   }, [activeNode?.id, graph.links, graph.nodes]);
 
+  const activeNeighborIds = useMemo(
+    () => new Set([...nodeContext.incoming, ...nodeContext.outgoing].map((node) => node.id)),
+    [nodeContext.incoming, nodeContext.outgoing],
+  );
+
   const stats = useMemo(
     () => ({
       incoming: graph.descendants.size,
@@ -336,58 +520,29 @@ export function CitationGraphModal({ edges, onClose, onSelectPaper, papers, sele
             enableNodeDrag
             graphData={graph}
             height={canvasSize.height}
-            linkColor={(link) => {
-              const sourceId = linkEndpointId(link.source);
-              const targetId = linkEndpointId(link.target);
-              if (sourceId === activeNode?.id || targetId === activeNode?.id) return "#191f28";
-              if (sourceId === selectedPaper.key) return "#ff9f1a";
-              if (targetId === selectedPaper.key) return "#00a76f";
-              return "#98a2b3";
-            }}
-            linkDirectionalArrowLength={3}
-            linkDirectionalArrowColor={(link) => {
-              const sourceId = linkEndpointId(link.source);
-              const targetId = linkEndpointId(link.target);
-              if (sourceId === activeNode?.id || targetId === activeNode?.id) return "#191f28";
-              if (sourceId === selectedPaper.key) return "#ff9f1a";
-              if (targetId === selectedPaper.key) return "#00a76f";
-              return "#98a2b3";
-            }}
-            linkDirectionalArrowRelPos={1}
-            linkDirectionalParticles={(link) => {
-              const sourceId = linkEndpointId(link.source);
-              const targetId = linkEndpointId(link.target);
-              if (sourceId === activeNode?.id || targetId === activeNode?.id) return 3;
-              return sourceId === selectedPaper.key || targetId === selectedPaper.key ? 2 : 0;
-            }}
-            linkDirectionalParticleColor={(link) => {
-              const sourceId = linkEndpointId(link.source);
-              const targetId = linkEndpointId(link.target);
-              if (sourceId === activeNode?.id || targetId === activeNode?.id) return "#191f28";
-              if (sourceId === selectedPaper.key) return "#ff9f1a";
-              if (targetId === selectedPaper.key) return "#00a76f";
-              return "#98a2b3";
-            }}
-            linkDirectionalParticleSpeed={0.008}
+            linkColor={(link) => linkTone(link, activeNode?.id, selectedPaper.key)}
+            linkCurvature={(link) => linkCurve(link, activeNode?.id, selectedPaper.key)}
+            linkCurveRotation={linkRotation}
+            linkDirectionalArrowLength={0}
+            linkDirectionalParticles={(link) => linkParticleCount(link, activeNode?.id, selectedPaper.key)}
+            linkDirectionalParticleColor={(link) => linkTone(link, activeNode?.id, selectedPaper.key)}
+            linkDirectionalParticleSpeed={(link) => (linkInvolves(link, activeNode?.id) ? 0.012 : 0.007)}
             linkDirectionalParticleWidth={(link) => {
-              const sourceId = linkEndpointId(link.source);
-              const targetId = linkEndpointId(link.target);
-              if (sourceId === activeNode?.id || targetId === activeNode?.id) return 3.4;
-              return sourceId === selectedPaper.key || targetId === selectedPaper.key ? 2.4 : 0;
+              if (linkInvolves(link, activeNode?.id)) return 4.2;
+              return linkParticleCount(link, activeNode?.id, selectedPaper.key) ? 2.8 : 0;
             }}
             linkLabel={linkLabel}
-            linkOpacity={0.46}
+            linkOpacity={0.5}
+            linkResolution={8}
             linkWidth={(link) => {
-              const sourceId = linkEndpointId(link.source);
-              const targetId = linkEndpointId(link.target);
-              if (sourceId === activeNode?.id || targetId === activeNode?.id) return 2.4;
-              return sourceId === selectedPaper.key || targetId === selectedPaper.key ? 1.5 : 0.45;
+              if (linkInvolves(link, activeNode?.id)) return 2.8;
+              return linkParticleCount(link, activeNode?.id, selectedPaper.key) ? 1.55 : 0.52;
             }}
-            nodeColor={(node) => (node.id === activeNode?.id ? "#191f28" : influenceColor(node))}
             nodeLabel={nodeLabel}
             nodeOpacity={0.96}
             nodeRelSize={5}
             nodeResolution={24}
+            nodeThreeObject={(node) => makeCitationNodeObject(node, activeNode?.id ?? null, selectedPaper.key, activeNeighborIds)}
             nodeVal={(node) => {
               const impactValue = 1.8 + node.influence * 12;
               if (node.id === activeNode?.id) return Math.max(11, impactValue + 3);
@@ -410,6 +565,25 @@ export function CitationGraphModal({ edges, onClose, onSelectPaper, papers, sele
             showPointerCursor
             width={canvasSize.width}
           />
+          {activeNode ? (
+            <aside className="graph-node-card" style={{ "--node-tone": influenceColor(activeNode) } as CSSProperties}>
+              <span>{relationLabel(activeNode, selectedPaper.key)}</span>
+              <strong>{activeNode.title}</strong>
+              <div>
+                <small>{activeNode.venue} {activeNode.year}</small>
+                <small>impact {Math.round(activeNode.influence * 100)}</small>
+                <small>rank {nodeContext.impactRank ? `#${nodeContext.impactRank}` : "-"}</small>
+              </div>
+              <dl>
+                <dt>Cites</dt>
+                <dd>{activeNode.cites}</dd>
+                <dt>Cited by</dt>
+                <dd>{activeNode.citedBy}</dd>
+                <dt>Direct flow</dt>
+                <dd>{nodeContext.outgoing.length} out / {nodeContext.incoming.length} in</dd>
+              </dl>
+            </aside>
+          ) : null}
           <div className="graph-legend">
             <span><i className="legend-selected" />focal</span>
             <span><i className="legend-prior" />cited by focal</span>

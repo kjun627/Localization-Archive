@@ -549,14 +549,26 @@ export function ArchiveBrowser({
   const [compareTargetKey, setCompareTargetKey] = useState<string | null>(null);
   const [venueTabOrder, setVenueTabOrder] = useState<string[]>([]);
   const [draggingVenue, setDraggingVenue] = useState<string | null>(null);
+  const [venueDragPreview, setVenueDragPreview] = useState<{
+    height: number;
+    left: number;
+    top: number;
+    venue: string;
+    width: number;
+  } | null>(null);
   const [venueDropTarget, setVenueDropTarget] = useState<string | null>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const venueDragRef = useRef<{
     active: boolean;
+    height: number;
+    lastTarget: string;
+    offsetX: number;
+    offsetY: number;
     startX: number;
     startY: number;
     timeoutId: number | null;
     venue: string;
+    width: number;
   } | null>(null);
   const lastVenueDragEndRef = useRef(0);
   const papersByKey = useMemo(() => new Map(papers.map((paper) => [paper.key, paper])), [papers]);
@@ -634,6 +646,7 @@ export function ArchiveBrowser({
         lastVenueDragEndRef.current = Date.now();
       }
       setDraggingVenue(null);
+      setVenueDragPreview(null);
       setVenueDropTarget(null);
       document.body.classList.remove("venue-tab-dragging");
     };
@@ -648,9 +661,19 @@ export function ArchiveBrowser({
       }
       if (!session.active) return;
       event.preventDefault();
+      setVenueDragPreview((current) =>
+        current
+          ? {
+              ...current,
+              left: event.clientX - session.offsetX,
+              top: event.clientY - session.offsetY,
+            }
+          : current,
+      );
       const target = document.elementFromPoint(event.clientX, event.clientY) as HTMLElement | null;
       const targetVenue = target?.closest<HTMLElement>("[data-venue-tab]")?.dataset.venueTab;
-      if (!targetVenue || targetVenue === session.venue) return;
+      if (!targetVenue || targetVenue === session.venue || targetVenue === session.lastTarget) return;
+      session.lastTarget = targetVenue;
       setVenueDropTarget(targetVenue);
       setVenueTabOrder((current) => reorderVenue(session.venue, targetVenue, current));
     };
@@ -674,16 +697,29 @@ export function ArchiveBrowser({
 
   const beginVenuePress = (event: ReactPointerEvent<HTMLElement>, venue: string) => {
     if (event.button !== 0) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
     const session = {
       active: false,
+      height: bounds.height,
+      lastTarget: venue,
+      offsetX: event.clientX - bounds.left,
+      offsetY: event.clientY - bounds.top,
       startX: event.clientX,
       startY: event.clientY,
       timeoutId: null as number | null,
       venue,
+      width: bounds.width,
     };
     session.timeoutId = window.setTimeout(() => {
       session.active = true;
       setDraggingVenue(venue);
+      setVenueDragPreview({
+        height: session.height,
+        left: session.startX - session.offsetX,
+        top: session.startY - session.offsetY,
+        venue,
+        width: session.width,
+      });
       setVenueDropTarget(venue);
       document.body.classList.add("venue-tab-dragging");
     }, VENUE_DRAG_DELAY_MS);
@@ -779,30 +815,62 @@ export function ArchiveBrowser({
             />
           </label>
           <div className="toggles" data-reordering={Boolean(draggingVenue)}>
-            {orderedVenueEntries.map(([venue, count]) => (
-              <div
-                className="toggle"
-                data-dragging={draggingVenue === venue || undefined}
-                data-drop-target={venueDropTarget === venue && draggingVenue !== venue ? true : undefined}
-                data-on={activeVenues[venue] !== false}
-                data-venue-tab={venue}
-                key={venue}
-                onClick={(event) => {
-                  if (Date.now() - lastVenueDragEndRef.current < 350) {
-                    event.preventDefault();
-                    return;
-                  }
-                  onToggleVenue(venue);
-                }}
-                onPointerDown={(event) => beginVenuePress(event, venue)}
-                style={{ "--tone": VENUE_THEME[venue] ?? VENUE_THEME.FILE } as CSSProperties}
-                title={`${venue} - ${count} papers. Long-press and drag to reorder.`}
-              >
-                <span className="dot" />
-                {venue}&nbsp;·&nbsp;{count}
-              </div>
-            ))}
+            {orderedVenueEntries.map(([venue, count]) => {
+              const tone = VENUE_THEME[venue] ?? VENUE_THEME.FILE;
+              if (draggingVenue === venue) {
+                return (
+                  <div
+                    className="venue-drop-slot"
+                    data-venue-tab={venue}
+                    key={venue}
+                    style={{ "--tone": tone } as CSSProperties}
+                  >
+                    <span className="dot" />
+                    {venue}&nbsp;·&nbsp;{count}
+                  </div>
+                );
+              }
+              return (
+                <div
+                  className="toggle"
+                  data-drop-target={venueDropTarget === venue && draggingVenue !== venue ? true : undefined}
+                  data-on={activeVenues[venue] !== false}
+                  data-venue-tab={venue}
+                  key={venue}
+                  onClick={(event) => {
+                    if (Date.now() - lastVenueDragEndRef.current < 350) {
+                      event.preventDefault();
+                      return;
+                    }
+                    onToggleVenue(venue);
+                  }}
+                  onPointerDown={(event) => beginVenuePress(event, venue)}
+                  style={{ "--tone": tone } as CSSProperties}
+                  title={`${venue} - ${count} papers. Long-press and drag to reorder.`}
+                >
+                  <span className="dot" />
+                  {venue}&nbsp;·&nbsp;{count}
+                </div>
+              );
+            })}
           </div>
+          {venueDragPreview ? (
+            <div
+              aria-hidden="true"
+              className="toggle venue-drag-proxy"
+              data-on={activeVenues[venueDragPreview.venue] !== false}
+              style={{
+                "--tone": VENUE_THEME[venueDragPreview.venue] ?? VENUE_THEME.FILE,
+                height: venueDragPreview.height,
+                left: venueDragPreview.left,
+                top: venueDragPreview.top,
+                width: venueDragPreview.width,
+              } as CSSProperties}
+            >
+              <span className="dot" />
+              {venueDragPreview.venue}&nbsp;·&nbsp;{venueCounts[venueDragPreview.venue] ?? 0}
+            </div>
+          ) : null}
         </div>
       </div>
 

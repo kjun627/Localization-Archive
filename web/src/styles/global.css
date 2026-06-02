@@ -215,6 +215,56 @@ a {
   cursor: grabbing;
 }
 
+.venue-drop-slot {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 5px 11px;
+  border: 1px dashed var(--tone);
+  background: transparent;
+  color: var(--tone);
+  font-family: var(--ff-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  opacity: 0.46;
+  text-transform: uppercase;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.venue-drop-slot::before {
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--tone);
+  background: transparent;
+  content: "";
+  opacity: 0.28;
+}
+
+.venue-drop-slot .dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 7px;
+  background: var(--tone);
+  opacity: 0.9;
+  vertical-align: middle;
+}
+
+.venue-drag-proxy {
+  position: fixed;
+  z-index: 120;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transform: translateY(-8px) scale(1.05);
+  box-shadow:
+    0 14px 26px rgba(25, 31, 40, 0.24),
+    0 0 0 2px rgba(255, 255, 255, 0.96),
+    0 0 0 4px color-mix(in srgb, var(--tone) 28%, transparent);
+  filter: saturate(1.08);
+}
+
 .toggle[data-drop-target="true"] {
   outline: 2px solid var(--ink);
   outline-offset: 2px;
@@ -1171,10 +1221,12 @@ a {
   min-height: 0;
   border-bottom: 1px solid var(--ink);
   background:
+    radial-gradient(circle at 20% 12%, rgba(49, 130, 246, 0.1), transparent 28%),
+    radial-gradient(circle at 78% 76%, rgba(0, 167, 111, 0.1), transparent 26%),
     linear-gradient(rgba(25, 31, 40, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(25, 31, 40, 0.035) 1px, transparent 1px),
     #fbfcfe;
-  background-size: 28px 28px;
+  background-size: auto, auto, 28px 28px, 28px 28px, auto;
   cursor: grab;
 }
 
@@ -1184,10 +1236,89 @@ a {
   height: 100%;
 }
 
+.graph-node-card {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: min(340px, calc(100% - 32px));
+  padding: 13px 14px 12px 18px;
+  border: 1px solid var(--ink);
+  border-left: 7px solid var(--node-tone, var(--accent));
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 5px 5px 0 rgba(25, 31, 40, 0.14);
+  color: var(--ink);
+  pointer-events: none;
+}
+
+.graph-node-card::after {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--ink);
+  background: var(--node-tone, var(--accent));
+  box-shadow: 0 0 18px var(--node-tone, var(--accent));
+  content: "";
+}
+
+.graph-node-card > span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--accent);
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.graph-node-card strong {
+  display: block;
+  margin-right: 18px;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.graph-node-card div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+  margin-top: 9px;
+  color: var(--ink-soft);
+  font-family: var(--ff-mono);
+  font-size: 10px;
+}
+
+.graph-node-card dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 12px 0 0;
+}
+
+.graph-node-card dt {
+  color: var(--ink-soft);
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.graph-node-card dd {
+  margin: 2px 0 0;
+  color: var(--ink);
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  font-weight: 800;
+}
+
 .graph-legend {
   position: absolute;
-  left: 16px;
+  right: 16px;
   bottom: 16px;
+  left: auto;
   max-width: min(720px, calc(100% - 32px));
   display: flex;
   flex-wrap: wrap;
@@ -1427,6 +1558,13 @@ a {
     left: 10px;
     bottom: 10px;
     max-width: none;
+  }
+
+  .graph-node-card {
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    max-width: 360px;
   }
 
   .detail-actions {
