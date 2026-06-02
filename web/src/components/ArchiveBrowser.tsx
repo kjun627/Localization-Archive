@@ -1,4 +1,4 @@
-import { Fragment, lazy, Suspense, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent } from "react";
 import type { GraphEdge, GraphNode } from "../types";
 
 type ArchiveBrowserProps = {
@@ -18,25 +18,24 @@ const CitationGraphModal = lazy(() =>
   import("./CitationGraphModal").then((module) => ({ default: module.CitationGraphModal })),
 );
 
-const MAX_COMPARE = 4;
-
 const VENUE_THEME: Record<string, string> = {
   BMVC: "#e83e8c",
-  CVPR: "var(--c-CVPR)",
-  AAAI: "#8b3ddb",
-  ICRA: "#8b3ddb",
-  ICCV: "var(--c-ICCV)",
-  ECCV: "var(--c-ECCV)",
+  CVPR: "#3182f6",
+  AAAI: "#7048e8",
+  ICRA: "#7c5cff",
+  IROS: "#795548",
+  ICCV: "#191f28",
+  ECCV: "#00a76f",
   NeurIPS: "#f04452",
-  TPAMI: "var(--c-TPAMI)",
-  IJCV: "var(--c-TPAMI)",
-  PR: "#00a76f",
-  RAL: "#8b3ddb",
-  WACV: "#00a76f",
-  "3DV": "var(--c-3DV)",
-  IVC: "var(--c-IVC)",
-  FILE: "var(--c-FILE)",
-  OTHER: "var(--c-FILE)",
+  TPAMI: "#c92a2a",
+  IJCV: "#087f5b",
+  PR: "#64748b",
+  RAL: "#0f766e",
+  WACV: "#00b8d9",
+  "3DV": "#fe9800",
+  IVC: "#7c2d12",
+  FILE: "#495057",
+  OTHER: "#6b7684",
 };
 
 const VENUE_ORDER = [
@@ -192,6 +191,9 @@ type CardProps = {
   paper: GraphNode;
   index: number;
   activeId: string | undefined;
+  compareBaseId?: string;
+  compareMode?: boolean;
+  compareTargetId?: string | null;
   pinnedId: string | undefined;
   anyActive: boolean;
   linkedBuilds: Set<string>;
@@ -205,6 +207,9 @@ function PaperCard({
   paper,
   index,
   activeId,
+  compareBaseId,
+  compareMode,
+  compareTargetId,
   pinnedId,
   anyActive,
   linkedBuilds,
@@ -220,7 +225,10 @@ function PaperCard({
     "card",
     activeId === paper.key && "hl",
     pinnedId === paper.key && "pinned",
-    anyActive && activeId !== paper.key && !linkedBuild && !linkedCite && "dim",
+    compareMode && paper.key !== compareBaseId && "compare-candidate",
+    compareMode && paper.key === compareBaseId && "compare-base-card",
+    compareTargetId === paper.key && "compare-target-card",
+    anyActive && !compareMode && compareTargetId !== paper.key && activeId !== paper.key && !linkedBuild && !linkedCite && "dim",
     linkedBuild && "link-builds",
     linkedCite && "link-cited",
   ]
@@ -264,10 +272,14 @@ type DetailProps = {
   pinned: boolean;
   edges: GraphEdge[];
   papersByKey: Map<string, GraphNode>;
-  compareKeys: string[];
+  compareMode?: boolean;
+  comparePaired?: boolean;
+  compareRole?: "source" | "target";
+  placement?: "compare-source" | "compare-target";
   onClose: () => void;
+  onClearCompare: () => void;
   onOpenGraph: () => void;
-  onToggleCompare: (paper: GraphNode) => void;
+  onStartCompare: (paper: GraphNode) => void;
   onUnpin: () => void;
   onJumpTo: (key: string) => void;
 };
@@ -278,10 +290,14 @@ function DetailPanel({
   pinned,
   edges,
   papersByKey,
-  compareKeys,
+  compareMode = false,
+  comparePaired = false,
+  compareRole,
+  placement,
   onClose,
+  onClearCompare,
   onOpenGraph,
-  onToggleCompare,
+  onStartCompare,
   onUnpin,
   onJumpTo,
 }: DetailProps) {
@@ -354,12 +370,26 @@ function DetailPanel({
     .map((edge) => ({ edge, paper: papersByKey.get(edge.source) }))
     .filter((item): item is { edge: GraphEdge; paper: GraphNode } => Boolean(item.paper));
   const sourceLinks = normalizeSourceLinks(paper.metadata?.sourceLinks);
-  const inCompare = compareKeys.includes(paper.key);
-  const compareFull = compareKeys.length >= MAX_COMPARE && !inCompare;
+  const compareActive = compareMode || comparePaired || compareRole === "target";
+  const compareLabel =
+    compareRole === "target"
+      ? "Close compare"
+      : compareMode
+        ? "Cancel compare"
+        : comparePaired
+          ? "Change compare"
+          : "Compare card";
+  const compareAction = () => {
+    if (compareRole === "target" || compareMode) {
+      onClearCompare();
+      return;
+    }
+    onStartCompare(paper);
+  };
 
   return (
     <aside
-      className={`detail ${pinned ? "pinned" : ""}`}
+      className={`detail ${pinned ? "pinned" : ""} ${placement ?? ""} ${compareRole ? `compare-${compareRole}` : ""}`}
       style={
         {
           ...panelStyle,
@@ -370,6 +400,7 @@ function DetailPanel({
       <div className="tag drag-handle" onMouseDown={startDrag}>
         <span>
           {venue} · {paper.metadata?.year}
+          {compareRole ? ` · ${compareRole}` : ""}
         </span>
         <span className="tag-right">
           {MONTHS[venueMonth(paper)]}
@@ -454,12 +485,11 @@ function DetailPanel({
             View citation graph
           </button>
           <button
-            className={`compare-link ${inCompare ? "active" : ""}`}
-            disabled={compareFull}
-            onClick={() => onToggleCompare(paper)}
+            className={`compare-link ${compareActive ? "active" : ""}`}
+            onClick={compareAction}
             type="button"
           >
-            {inCompare ? "Remove compare" : compareFull ? "Compare full" : "Compare card"}
+            {compareLabel}
           </button>
         </div>
 
@@ -481,112 +511,6 @@ function DetailPanel({
   );
 }
 
-type CompareDockProps = {
-  edges: GraphEdge[];
-  onClear: () => void;
-  onRemove: (key: string) => void;
-  onSelect: (paper: GraphNode) => void;
-  papers: GraphNode[];
-};
-
-function compareText(value: string | string[] | undefined, fallback = "not recorded") {
-  if (Array.isArray(value)) return value.length ? value.join(", ") : fallback;
-  return value?.trim() || fallback;
-}
-
-function CompareDock({ edges, onClear, onRemove, onSelect, papers }: CompareDockProps) {
-  if (!papers.length) return null;
-
-  const rows = [
-    {
-      label: "Problem",
-      value: (paper: GraphNode) => compareText(paper.metadata?.problem),
-    },
-    {
-      label: "Prior gap",
-      value: (paper: GraphNode) => compareText(paper.metadata?.priorGap),
-    },
-    {
-      label: "Advance",
-      value: (paper: GraphNode) => compareText(paper.metadata?.advance ?? paper.metadata?.summary),
-    },
-    {
-      label: "Datasets",
-      value: (paper: GraphNode) => compareText(paper.metadata?.datasets),
-    },
-    {
-      label: "Limits",
-      value: (paper: GraphNode) => compareText(paper.metadata?.limitations),
-    },
-  ];
-
-  return (
-    <aside className="compare-dock" aria-label="Paper comparison">
-      <header className="compare-head">
-        <div>
-          <span>Card Compare</span>
-          <strong>
-            {papers.length}/{MAX_COMPARE} selected
-          </strong>
-        </div>
-        <button onClick={onClear} type="button">
-          Clear
-        </button>
-      </header>
-      <div className="compare-grid" style={{ "--compare-cols": papers.length } as CSSProperties}>
-        <div className="compare-label compare-corner">Field</div>
-        {papers.map((paper) => {
-          const stats = getCitationStats(paper.key, edges);
-          const sourceLinks = normalizeSourceLinks(paper.metadata?.sourceLinks);
-          return (
-            <article className="compare-paper" key={paper.key} style={{ "--tone": VENUE_THEME[venueCode(paper)] ?? VENUE_THEME.FILE } as CSSProperties}>
-              <button className="compare-title" onClick={() => onSelect(paper)} type="button">
-                <span>
-                  {venueCode(paper)} · {paper.metadata?.year ?? "----"}
-                </span>
-                {paper.label}
-              </button>
-              <div className="compare-stats">
-                <span>{stats.cites} cites</span>
-                <span>{stats.citedBy} cited by</span>
-              </div>
-              <div className="compare-link-slots">
-                {sourceLinks.map((link) =>
-                  link.url ? (
-                    <a href={link.url} key={link.label} rel="noopener noreferrer" target="_blank">
-                      {link.label}
-                    </a>
-                  ) : (
-                    <span className="off" key={link.label}>
-                      {link.label}
-                    </span>
-                  ),
-                )}
-              </div>
-              <button className="compare-remove" onClick={() => onRemove(paper.key)} type="button">
-                Remove
-              </button>
-            </article>
-          );
-        })}
-        {rows.map((row) => (
-          <Fragment key={row.label}>
-            <div className="compare-label" key={`${row.label}-label`}>
-              {row.label}
-            </div>
-            {papers.map((paper) => (
-              <div className="compare-cell" key={`${row.label}-${paper.key}`}>
-                {row.value(paper)}
-              </div>
-            ))}
-          </Fragment>
-        ))}
-      </div>
-      {papers.length === 1 ? <div className="compare-hint">Select another paper and add it to compare.</div> : null}
-    </aside>
-  );
-}
-
 export function ArchiveBrowser({
   edges,
   papers,
@@ -600,10 +524,31 @@ export function ArchiveBrowser({
   const [hoveredPaper, setHoveredPaper] = useState<GraphNode | null>(null);
   const [manualOpen, setManualOpen] = useState(false);
   const [graphOpen, setGraphOpen] = useState(false);
-  const [compareKeys, setCompareKeys] = useState<string[]>([]);
+  const [graphPaper, setGraphPaper] = useState<GraphNode | null>(null);
+  const [compareMode, setCompareMode] = useState(false);
+  const [compareTargetKey, setCompareTargetKey] = useState<string | null>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const papersByKey = useMemo(() => new Map(papers.map((paper) => [paper.key, paper])), [papers]);
-  const comparePapers = compareKeys.map((key) => papersByKey.get(key)).filter((paper): paper is GraphNode => Boolean(paper));
+  const compareTargetPaper = compareTargetKey ? papersByKey.get(compareTargetKey) ?? null : null;
+
+  const clearCompare = () => {
+    setCompareMode(false);
+    setCompareTargetKey(null);
+  };
+
+  const startCompare = (paper: GraphNode) => {
+    setHoveredPaper(null);
+    onSelectPaper(paper);
+    setManualOpen(true);
+    setCompareTargetKey(null);
+    setCompareMode(true);
+  };
+
+  const openGraphFor = (paper: GraphNode | null) => {
+    if (!paper) return;
+    setGraphPaper(paper);
+    setGraphOpen(true);
+  };
 
   useEffect(() => {
     const element = scrollerRef.current;
@@ -650,7 +595,8 @@ export function ArchiveBrowser({
   });
 
   const years = groupByYear(filteredPapers);
-  const displayPaper = hoveredPaper ?? selectedPaper;
+  const compareActive = compareMode || Boolean(compareTargetPaper);
+  const displayPaper = compareActive ? selectedPaper : hoveredPaper ?? selectedPaper;
   const detailOpen = Boolean(displayPaper) || manualOpen;
   const citationEdges = edges.filter((edge) => edge.type === "cites");
   const linkedBuilds = useMemo(
@@ -665,19 +611,13 @@ export function ArchiveBrowser({
   const jumpToPaper = (key: string) => {
     const target = papersByKey.get(key);
     if (!target) return;
+    clearCompare();
     setHoveredPaper(null);
     onSelectPaper(target);
     setManualOpen(true);
     requestAnimationFrame(() => {
       const element = scrollerRef.current?.querySelector(`[data-paper-id="${key}"]`) as HTMLElement | null;
       element?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-    });
-  };
-
-  const toggleComparePaper = (paper: GraphNode) => {
-    setCompareKeys((current) => {
-      if (current.includes(paper.key)) return current.filter((key) => key !== paper.key);
-      return [...current.slice(Math.max(0, current.length - (MAX_COMPARE - 1))), paper.key];
     });
   };
 
@@ -689,6 +629,7 @@ export function ArchiveBrowser({
           setHoveredPaper(null);
           onSelectPaper(null);
           setManualOpen(false);
+          clearCompare();
         }
       }}
     >
@@ -737,10 +678,11 @@ export function ArchiveBrowser({
         className="stage"
         onClick={(event) => {
           const target = event.target as HTMLElement;
-          if (target.closest(".card, .detail, .graph-modal, .compare-dock")) return;
+          if (target.closest(".card, .detail, .graph-modal, .compare-prompt")) return;
           setHoveredPaper(null);
           onSelectPaper(null);
           setManualOpen(false);
+          clearCompare();
         }}
       >
         <div className="scroller" ref={scrollerRef}>
@@ -764,17 +706,31 @@ export function ArchiveBrowser({
                       <PaperCard
                         activeId={displayPaper?.key}
                         anyActive={Boolean(displayPaper)}
+                        compareBaseId={selectedPaper?.key}
+                        compareMode={compareMode}
+                        compareTargetId={compareTargetKey}
                         index={index + 1}
                         key={paper.key}
                         linkedBuilds={linkedBuilds}
                         linkedCited={linkedCited}
                         onClick={(item) => {
+                          if (compareMode && selectedPaper) {
+                            if (item.key === selectedPaper.key) return;
+                            setHoveredPaper(null);
+                            setCompareTargetKey(item.key);
+                            setCompareMode(false);
+                            setManualOpen(true);
+                            return;
+                          }
                           const alreadyPinned = selectedPaper?.key === item.key;
+                          clearCompare();
                           onSelectPaper(alreadyPinned ? null : item);
                           setManualOpen(!alreadyPinned);
                         }}
-                        onHover={setHoveredPaper}
-                        onLeave={() => setHoveredPaper(null)}
+                        onHover={compareActive ? () => undefined : setHoveredPaper}
+                        onLeave={() => {
+                          if (!compareActive) setHoveredPaper(null);
+                        }}
                         paper={paper}
                         pinnedId={selectedPaper?.key}
                       />
@@ -786,22 +742,35 @@ export function ArchiveBrowser({
           </div>
         </div>
 
+        {compareMode && selectedPaper ? (
+          <div className="compare-prompt">
+            <span>Compare mode</span>
+            <strong>Select another paper card</strong>
+            <button onClick={clearCompare} type="button">
+              Cancel
+            </button>
+          </div>
+        ) : null}
+
         <DetailPanel
-          compareKeys={compareKeys}
+          compareMode={compareMode}
+          comparePaired={Boolean(compareTargetPaper)}
+          compareRole={compareTargetPaper || compareMode ? "source" : undefined}
           edges={edges}
+          onClearCompare={clearCompare}
           onClose={() => {
             setHoveredPaper(null);
             onSelectPaper(null);
             setManualOpen(false);
+            clearCompare();
           }}
           onJumpTo={jumpToPaper}
-          onOpenGraph={() => {
-            if (displayPaper) setGraphOpen(true);
-          }}
-          onToggleCompare={toggleComparePaper}
+          onOpenGraph={() => openGraphFor(displayPaper)}
+          onStartCompare={startCompare}
           onUnpin={() => {
             onSelectPaper(null);
             setManualOpen(false);
+            clearCompare();
           }}
           open={detailOpen}
           paper={detailOpen ? displayPaper : null}
@@ -809,19 +778,26 @@ export function ArchiveBrowser({
           pinned={Boolean(selectedPaper && displayPaper?.key === selectedPaper.key)}
         />
 
-        <CompareDock
-          edges={edges}
-          onClear={() => setCompareKeys([])}
-          onRemove={(key) => setCompareKeys((current) => current.filter((item) => item !== key))}
-          onSelect={(paper) => {
-            setHoveredPaper(null);
-            onSelectPaper(paper);
-            setManualOpen(true);
-          }}
-          papers={comparePapers}
-        />
+        {compareTargetPaper ? (
+          <DetailPanel
+            comparePaired
+            compareRole="target"
+            edges={edges}
+            onClearCompare={clearCompare}
+            onClose={clearCompare}
+            onJumpTo={jumpToPaper}
+            onOpenGraph={() => openGraphFor(compareTargetPaper)}
+            onStartCompare={startCompare}
+            onUnpin={clearCompare}
+            open
+            paper={compareTargetPaper}
+            papersByKey={papersByKey}
+            pinned={false}
+            placement="compare-target"
+          />
+        ) : null}
 
-        {graphOpen && displayPaper ? (
+        {graphOpen && graphPaper ? (
           <Suspense
             fallback={
               <div className="graph-modal" role="dialog" aria-label="Loading citation graph">
@@ -833,11 +809,12 @@ export function ArchiveBrowser({
               edges={edges}
               onClose={() => setGraphOpen(false)}
               onSelectPaper={(paper) => {
+                clearCompare();
                 setHoveredPaper(null);
                 onSelectPaper(paper);
               }}
               papers={papers}
-              selectedPaper={displayPaper}
+              selectedPaper={graphPaper}
             />
           </Suspense>
         ) : null}
