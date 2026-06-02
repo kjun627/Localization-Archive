@@ -1,0 +1,43 @@
+paper_id: paper:neumap-2023
+title: 'NeuMap: Neural Coordinate Mapping by Auto-Transdecoder for Camera Localization'
+year: 2023
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Neural coordinate mapping paper focused on 3D visual localization archives.
+summary: Uses auto-transdecoder latent scene codes and a transformer decoder for coordinate prediction.
+problem: Compress scene maps while preserving scene coordinate localization accuracy.
+prior_gap: Scene coordinate systems needed per-scene representations that were costly to store and adapt.
+stage: Neural coordinate mapping
+advance: Uses auto-transdecoder latent scene codes and a transformer decoder for coordinate prediction.
+metric:
+- median translation error
+- median rotation error
+- localization recall
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- 7-Scenes
+- Cambridge Landmarks
+- Aachen Day-Night
+- InLoc
+- 12-Scenes
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Compression and generalization trade off.
+- Still needs scene codes or maps.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2023/html/Tang_NeuMap_Neural_Coordinate_Mapping_by_Auto-Transdecoder_for_Camera_Localization_CVPR_2023_paper.html
+- label: Code
+  url: https://github.com/Tangshitao/NeuMap
+figure:
+  alt: 'NeuMap: Neural Coordinate Mapping by Auto-Transdecoder for Camera Localization representative
+    figure'
+  caption: Neural coordinate mapping
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

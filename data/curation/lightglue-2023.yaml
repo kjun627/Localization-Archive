@@ -1,42 +1,44 @@
-paper_id: "paper:lightglue-2023"
-title: "LightGlue: Local Feature Matching at Light Speed"
+paper_id: paper:lightglue-2023
+title: 'LightGlue: Local Feature Matching at Light Speed'
 year: 2023
 venue: IEEE/CVF International Conference on Computer Vision
 venue_type: conference
 venue_tier: A*
-abstract: Revisits SuperGlue-style sparse matching with adaptive computation for faster local feature matching.
-summary: Makes context-aware sparse matching practical for localization pipelines by pruning depth and width on easier image pairs.
+abstract: Revisits SuperGlue-style sparse matching with adaptive computation for faster local feature
+  matching.
+summary: Makes context-aware sparse matching practical for localization pipelines by pruning depth and
+  width on easier image pairs.
 problem: Reduce the latency and memory cost of SuperGlue-quality matching for localization and SfM.
-prior_gap: Context-aware feature matching improved robustness but was expensive for repeated retrieval-and-match localization pipelines.
+prior_gap: Context-aware feature matching improved robustness but was expensive for repeated retrieval-and-match
+  localization pipelines.
 stage: Sparse local feature matching
 advance: Adds adaptive depth and width pruning while supporting SuperPoint, DISK, ALIKED, and SIFT features.
 metric:
-  - Matching accuracy
-  - Relative pose AUC
-  - Homography estimation
-  - FPS
-  - Memory
-why_this_metric: Matching improvements matter only if they improve geometric estimation while reducing runtime cost.
+- Matching accuracy
+- Relative pose AUC
+- Homography estimation
+- FPS
+- Memory
+why_this_metric: Matching improvements matter only if they improve geometric estimation while reducing
+  runtime cost.
 dataset:
-  - HPatches
-  - MegaDepth
-  - HLoc localization integrations
+- HPatches
+- MegaDepth
+- HLoc localization integrations
 dataset_limitations:
-  - Adaptive pruning thresholds can depend on hardware and feature quality.
+- Adaptive pruning thresholds can depend on hardware and feature quality.
 limitations:
-  - Still depends on detector and descriptor quality.
-  - Hardware-specific pruning settings may need tuning for production latency.
+- Still depends on detector and descriptor quality.
+- Hardware-specific pruning settings may need tuning for production latency.
 source_links:
-  - label: Paper
-    url: https://openaccess.thecvf.com/content/ICCV2023/html/Lindenberger_LightGlue_Local_Feature_Matching_at_Light_Speed_ICCV_2023_paper.html
-  - label: PDF
-    url: https://openaccess.thecvf.com/content/ICCV2023/papers/Lindenberger_LightGlue_Local_Feature_Matching_at_Light_Speed_ICCV_2023_paper.pdf
-  - label: Code
-    url: https://github.com/cvg/LightGlue
+- label: Paper
+  url: https://openaccess.thecvf.com/content/ICCV2023/html/Lindenberger_LightGlue_Local_Feature_Matching_at_Light_Speed_ICCV_2023_paper.html
+- label: Code
+  url: https://github.com/cvg/LightGlue
 figure:
   alt: Adaptive local feature matching
   caption: Adaptive sparse matching at localization speed
 provenance:
-  - subagent_research
-  - cvf_link
+- subagent_research
+- cvf_link
 confidence: 0.86

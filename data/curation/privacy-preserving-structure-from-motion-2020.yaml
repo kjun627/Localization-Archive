@@ -1,0 +1,45 @@
+paper_id: paper:privacy-preserving-structure-from-motion-2020
+title: Privacy Preserving Structure-from-Motion
+year: 2020
+venue: European Conference on Computer Vision
+venue_type: conference
+venue_tier: A
+abstract: Privacy-preserving SfM paper focused on 3D visual localization archives.
+summary: Uses line-based observations and specialized initialization to reconstruct privacy-preserving
+  maps.
+problem: Build SfM maps from privacy-preserving line features instead of raw keypoints.
+prior_gap: Line-cloud localization protected map appearance but did not fully solve privacy-preserving
+  map construction.
+stage: Privacy-preserving SfM
+advance: Uses line-based observations and specialized initialization to reconstruct privacy-preserving
+  maps.
+metric:
+- reconstruction accuracy
+- registered images
+- localization accuracy
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Strecha datasets
+- Tower of London
+- Gendarmenmarkt
+- Madrid Metropolis
+- Alamo
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Uses weaker geometric constraints than point-based SfM.
+- Reconstruction quality trails standard COLMAP.
+source_links:
+- label: Paper
+  url: https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123460324.pdf
+- label: Project
+  url: https://speciale.ar/publication/privacypreservingsfm/
+figure:
+  alt: Privacy Preserving Structure-from-Motion representative figure
+  caption: Privacy-preserving SfM
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

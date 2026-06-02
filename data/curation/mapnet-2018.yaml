@@ -1,0 +1,39 @@
+paper_id: paper:mapnet-2018
+title: Geometry-Aware Learning of Maps for Camera Localization
+year: 2018
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Geometry-aware APR paper focused on 3D visual localization archives.
+summary: Uses relative pose constraints and pose graph optimization to improve learned map consistency.
+problem: Make learned camera pose regression less noisy and more geometrically consistent.
+prior_gap: PoseNet-style methods predicted each pose independently and ignored geometric consistency across
+  images.
+stage: Geometry-aware APR
+advance: Uses relative pose constraints and pose graph optimization to improve learned map consistency.
+metric:
+- median translation error
+- median rotation error
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- 7-Scenes
+- Oxford RobotCar
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Still a learned scene representation.
+- Not as accurate as feature or SCR pipelines.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_cvpr_2018/html/Brahmbhatt_Geometry-Aware_Learning_of_CVPR_2018_paper.html
+- label: Code
+  url: https://github.com/NVlabs/geomapnet
+figure:
+  alt: Geometry-Aware Learning of Maps for Camera Localization representative figure
+  caption: Geometry-aware APR
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

@@ -1,0 +1,38 @@
+paper_id: paper:atloc-2020
+title: 'AtLoc: Attention Guided Camera Localization'
+year: 2020
+venue: AAAI Conference on Artificial Intelligence
+venue_type: conference
+venue_tier: A*
+abstract: Attention-guided APR paper focused on 3D visual localization archives.
+summary: Adds spatial attention so pose regression can emphasize geometrically useful regions.
+problem: Use attention to make single-image APR focus on stable geometry.
+prior_gap: APR predictions were sensitive to dynamics and appearance distractors.
+stage: Attention-guided APR
+advance: Adds spatial attention so pose regression can emphasize geometrically useful regions.
+metric:
+- median translation error
+- median rotation error
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- 7-Scenes
+- Oxford RobotCar
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Still APR and scene-specific.
+- Attention does not add explicit 3D constraints.
+source_links:
+- label: Paper
+  url: https://ojs.aaai.org/index.php/AAAI/article/view/6608
+- label: Code
+  url: https://github.com/BingCS/AtLoc
+figure:
+  alt: 'AtLoc: Attention Guided Camera Localization representative figure'
+  caption: Attention-guided APR
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.72

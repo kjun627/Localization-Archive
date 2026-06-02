@@ -1,46 +1,47 @@
-paper_id: "paper:ray-cloud-2024"
-title: "Efficient Privacy-Preserving Visual Localization Using 3D Ray Clouds"
+paper_id: paper:ray-cloud-2024
+title: Efficient Privacy-Preserving Visual Localization Using 3D Ray Clouds
 year: 2024
 venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
 venue_tier: A*
-abstract: Lifts map points to rays through two predefined centers, enabling efficient relative-pose-style localization while degrading density-based inversion.
-summary: Improves the runtime of map-side PPVL by changing line-cloud localization into a two-center ray-cloud pose problem.
-problem: Reduce the heavy runtime of line-cloud and PPL localization while retaining map-side privacy against geometry recovery.
+abstract: Lifts map points to rays through two predefined centers, enabling efficient relative-pose-style
+  localization while degrading density-based inversion.
+summary: Improves the runtime of map-side PPVL by changing line-cloud localization into a two-center ray-cloud
+  pose problem.
+problem: Reduce the heavy runtime of line-cloud and PPL localization while retaining map-side privacy
+  against geometry recovery.
 prior_gap: PPL improved privacy but still relied on computationally expensive line-cloud pose estimation.
 stage: Efficient map-side PPVL defense
-advance: Uses two ray centers to resolve scale, applies a p5+1R-style solver, and studies modified inversion attacks and voxel-based sampling.
+advance: Uses two ray centers to resolve scale, applies a p5+1R-style solver, and studies modified inversion
+  attacks and voxel-based sampling.
 metric:
-  - Rotation error
-  - Translation error
-  - RANSAC runtime
-  - Inlier ratio
-  - 3D point recovery error
-  - PSNR
-  - SSIM
-why_this_metric: The contribution is a privacy/runtime trade-off, so both pose speed and recovery-attack resistance matter.
+- Rotation error
+- Translation error
+- RANSAC runtime
+- Inlier ratio
+- 3D point recovery error
+- PSNR
+- SSIM
+why_this_metric: The contribution is a privacy/runtime trade-off, so both pose speed and recovery-attack
+  resistance matter.
 dataset:
-  - Energy Landscape
-  - Cambridge Landmarks
+- Energy Landscape
+- Cambridge Landmarks
 dataset_limitations:
-  - Street and Great Court follow PPL exclusions due to geometric outliers.
+- Street and Great Court follow PPL exclusions due to geometric outliers.
 limitations:
-  - Ray-center and sampling choices become a security surface.
-  - Outdoor Cambridge results can show slightly higher pose error than earlier line-cloud variants.
-  - Voxel-based ray sampling can slightly worsen pose accuracy.
+- Ray-center and sampling choices become a security surface.
+- Outdoor Cambridge results can show slightly higher pose error than earlier line-cloud variants.
+- Voxel-based ray sampling can slightly worsen pose accuracy.
 source_links:
-  - label: Paper
-    url: https://openaccess.thecvf.com/content/CVPR2024/html/Moon_Efficient_Privacy-Preserving_Visual_Localization_Using_3D_Ray_Clouds_CVPR_2024_paper.html
-  - label: PDF
-    url: https://openaccess.thecvf.com/content/CVPR2024/papers/Moon_Efficient_Privacy-Preserving_Visual_Localization_Using_3D_Ray_Clouds_CVPR_2024_paper.pdf
-  - label: Code
-    url: https://github.com/PHANTOM0122/Ray-cloud
-  - label: Poster
-    url: https://cvpr.thecvf.com/virtual/2024/poster/29921
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2024/html/Moon_Efficient_Privacy-Preserving_Visual_Localization_Using_3D_Ray_Clouds_CVPR_2024_paper.html
+- label: Code
+  url: https://github.com/PHANTOM0122/Ray-cloud
 figure:
   alt: Two-anchor ray cloud representation
   caption: Ray-cloud map representation for efficient PPVL
 provenance:
-  - subagent_research
-  - cvf_link
+- subagent_research
+- cvf_link
 confidence: 0.85

@@ -1,39 +1,42 @@
-paper_id: "paper:apr-limitations-2019"
-title: "Understanding the Limitations of CNN-Based Absolute Camera Pose Regression"
+paper_id: paper:apr-limitations-2019
+title: Understanding the Limitations of CNN-Based Absolute Camera Pose Regression
 year: 2019
 venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
 venue_tier: A*
-abstract: Analyzes absolute pose regression and shows that many CNN-based APR methods behave more like image retrieval than geometric pose estimation.
-summary: Provides a negative baseline explaining why compact absolute pose regressors often fail to match structure-based localization.
+abstract: Analyzes absolute pose regression and shows that many CNN-based APR methods behave more like
+  image retrieval than geometric pose estimation.
+summary: Provides a negative baseline explaining why compact absolute pose regressors often fail to match
+  structure-based localization.
 problem: Explain why CNN-based absolute camera pose regression underperforms geometry-based localization.
-prior_gap: APR papers reported compact and fast relocalization but lacked a clear account of geometric failure modes.
+prior_gap: APR papers reported compact and fast relocalization but lacked a clear account of geometric
+  failure modes.
 stage: Localization analysis
-advance: Shows APR often does not outperform retrieval baselines and predicts failure when viewpoint coverage is limited.
+advance: Shows APR often does not outperform retrieval baselines and predicts failure when viewpoint coverage
+  is limited.
 metric:
-  - Median translation error
-  - Median rotation error
-  - Retrieval baseline comparison
-why_this_metric: The paper tests whether learned regression actually improves pose estimation beyond nearest-neighbor retrieval.
+- Median translation error
+- Median rotation error
+- Retrieval baseline comparison
+why_this_metric: The paper tests whether learned regression actually improves pose estimation beyond nearest-neighbor
+  retrieval.
 dataset:
-  - Cambridge Landmarks
-  - 7Scenes
-  - APR diagnostic datasets
+- Cambridge Landmarks
+- 7Scenes
+- APR diagnostic datasets
 dataset_limitations:
-  - The analysis targets earlier APR families and does not fully settle later map-conditioned regressors.
+- The analysis targets earlier APR families and does not fully settle later map-conditioned regressors.
 limitations:
-  - Later map-relative and scene-conditioned pose regressors require separate analysis.
+- Later map-relative and scene-conditioned pose regressors require separate analysis.
 source_links:
-  - label: Paper
-    url: https://openaccess.thecvf.com/content_CVPR_2019/html/Sattler_Understanding_the_Limitations_of_CNN-Based_Absolute_Camera_Pose_Regression_CVPR_2019_paper.html
-  - label: PDF
-    url: https://openaccess.thecvf.com/content_CVPR_2019/papers/Sattler_Understanding_the_Limitations_of_CNN-Based_Absolute_Camera_Pose_Regression_CVPR_2019_paper.pdf
-  - label: Code/Data
-    url: https://github.com/tsattler/understanding_apr
+- label: Paper
+  url: https://openaccess.thecvf.com/content_CVPR_2019/html/Sattler_Understanding_the_Limitations_of_CNN-Based_Absolute_Camera_Pose_Regression_CVPR_2019_paper.html
+- label: Code
+  url: https://github.com/tsattler/understanding_apr
 figure:
   alt: APR analysis comparing regression and retrieval baselines
   caption: APR limitations and retrieval-like behavior
 provenance:
-  - subagent_research
-  - cvf_link
+- subagent_research
+- cvf_link
 confidence: 0.84

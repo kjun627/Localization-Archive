@@ -1,0 +1,41 @@
+paper_id: paper:long-term-visual-localization-revisited-2022
+title: Long-Term Visual Localization Revisited
+year: 2022
+venue: IEEE Transactions on Pattern Analysis and Machine Intelligence
+venue_type: journal
+venue_tier: Q1
+abstract: Long-term localization benchmark paper focused on 3D visual localization archives.
+summary: Extends public datasets with reference poses, protocols, and server-based state-of-the-art comparisons.
+problem: Standardize long-term visual localization evaluation across large appearance changes.
+prior_gap: Datasets had challenging imagery but lacked accurate 6-DoF reference poses and consistent hidden-test
+  evaluation.
+stage: Long-term localization benchmark
+advance: Extends public datasets with reference poses, protocols, and server-based state-of-the-art comparisons.
+metric:
+- pose accuracy at thresholds
+- correctly localized image percentage
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Aachen Day-Night
+- RobotCar Seasons
+- CMU Seasons
+- InLoc
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Benchmark rankings conflate retrieval, matching, mapping, and pose-estimation components.
+- Environments remain limited relative to global deployment.
+source_links:
+- label: Paper
+  url: https://doi.org/10.1109/TPAMI.2020.3032010
+- label: Project
+  url: https://www.visuallocalization.net/
+figure:
+  alt: Long-Term Visual Localization Revisited representative figure
+  caption: Long-term localization benchmark
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.82

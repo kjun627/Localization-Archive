@@ -1,0 +1,40 @@
+paper_id: paper:contextdesc-2019
+title: 'ContextDesc: Local Descriptor Augmentation With Cross-Modality Context'
+year: 2019
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Context-aware local descriptors paper focused on 3D visual localization archives.
+summary: Aggregates high-level visual context and 2D keypoint-distribution context into descriptor augmentation.
+problem: Resolve ambiguous local matches caused by repetitive or visually similar patches.
+prior_gap: Patch-only learned descriptors ignored keypoint layout and high-level image context.
+stage: Context-aware local descriptors
+advance: Aggregates high-level visual context and 2D keypoint-distribution context into descriptor augmentation.
+metric:
+- matching accuracy
+- pose estimation accuracy
+- reconstruction performance
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- HPatches
+- Aachen Day-Night
+- RobotCar Seasons
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Still depends on detected keypoints.
+- Adds context module complexity compared with compact descriptors.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_CVPR_2019/html/Luo_ContextDesc_Local_Descriptor_Augmentation_With_Cross-Modality_Context_CVPR_2019_paper.html
+- label: Code
+  url: https://github.com/lzx551402/contextdesc
+figure:
+  alt: 'ContextDesc: Local Descriptor Augmentation With Cross-Modality Context representative figure'
+  caption: Context-aware local descriptors
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

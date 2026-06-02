@@ -1,0 +1,45 @@
+paper_id: paper:lamar-2022
+title: 'LaMAR: Benchmarking Localization and Mapping for Augmented Reality'
+year: 2022
+venue: European Conference on Computer Vision
+venue_type: conference
+venue_tier: A
+abstract: AR localization and mapping benchmark paper focused on 3D visual localization archives.
+summary: Provides multi-session AR captures, laser-scan alignment, heterogeneous devices, and baselines.
+problem: Benchmark localization and mapping for persistent AR under realistic device, sensor, and session
+  variation.
+prior_gap: Existing benchmarks were often small, stationary, single-device, or insufficiently accurate
+  for AR requirements.
+stage: AR localization and mapping benchmark
+advance: Provides multi-session AR captures, laser-scan alignment, heterogeneous devices, and baselines.
+metric:
+- pose recall
+- mapping accuracy
+- trajectory alignment error
+- session localization success
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- LaMAR CAB
+- LaMAR HGE
+- LaMAR LIN
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Benchmark paper rather than one localization model.
+- Requires complex sensor and scan infrastructure for ground truth.
+source_links:
+- label: Paper
+  url: https://www.ecva.net/papers/eccv_2022/papers_ECCV/html/930_ECCV_2022_paper.php
+- label: Code
+  url: https://github.com/microsoft/lamar-benchmark
+- label: Project
+  url: https://lamar.ethz.ch/
+figure:
+  alt: 'LaMAR: Benchmarking Localization and Mapping for Augmented Reality representative figure'
+  caption: AR localization and mapping benchmark
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.8

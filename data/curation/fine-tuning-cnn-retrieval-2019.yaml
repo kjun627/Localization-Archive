@@ -1,0 +1,41 @@
+paper_id: paper:fine-tuning-cnn-retrieval-2019
+title: Fine-Tuning CNN Image Retrieval with No Human Annotation
+year: 2019
+venue: IEEE Transactions on Pattern Analysis and Machine Intelligence
+venue_type: journal
+venue_tier: Q1
+abstract: Global descriptor training paper focused on 3D visual localization archives.
+summary: Uses SfM-mined positive and negative pairs with learned pooling for image retrieval.
+problem: Train compact CNN retrieval descriptors without expensive human annotation.
+prior_gap: Deep retrieval training depended on curated labels or did not exploit geometry-derived supervision
+  at scale.
+stage: Global descriptor training
+advance: Uses SfM-mined positive and negative pairs with learned pooling for image retrieval.
+metric:
+- mean average precision
+- Recall at K
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Oxford5k
+- Paris6k
+- ROxford
+- RParis
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Landmark retrieval metrics do not always correlate with localization performance.
+- SfM-mined training can inherit landmark-photo biases.
+source_links:
+- label: Paper
+  url: https://doi.org/10.1109/TPAMI.2018.2846566
+- label: Code
+  url: https://github.com/filipradenovic/cnnimageretrieval-pytorch
+figure:
+  alt: Fine-Tuning CNN Image Retrieval with No Human Annotation representative figure
+  caption: Global descriptor training
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

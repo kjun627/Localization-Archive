@@ -1,0 +1,40 @@
+paper_id: paper:r2d2-2019
+title: 'R2D2: Reliable and Repeatable Detector and Descriptor'
+year: 2019
+venue: Advances in Neural Information Processing Systems
+venue_type: conference
+venue_tier: A*
+abstract: Reliable learned local features paper focused on 3D visual localization archives.
+summary: Jointly predicts repeatability and reliability to select stronger sparse local features.
+problem: Learn local features that are both repeatable and match-reliable.
+prior_gap: Learned detectors could find repeatable points that were not necessarily distinctive enough
+  for robust matching.
+stage: Reliable learned local features
+advance: Jointly predicts repeatability and reliability to select stronger sparse local features.
+metric:
+- matching score
+- localization recall
+- repeatability
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- HPatches
+- Aachen Day-Night
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Sparse detector pipeline still struggles in low-texture regions.
+- Depends on post-hoc matching and geometry.
+source_links:
+- label: Paper
+  url: https://papers.nips.cc/paper/9407-r2d2-reliable-and-repeatable-detector-and-descriptor
+- label: Code
+  url: https://github.com/naver/r2d2
+figure:
+  alt: 'R2D2: Reliable and Repeatable Detector and Descriptor representative figure'
+  caption: Reliable learned local features
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

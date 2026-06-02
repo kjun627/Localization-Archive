@@ -1,0 +1,39 @@
+paper_id: paper:large-scale-3d-models-2017
+title: Are Large-Scale 3D Models Really Necessary for Accurate Visual Localization?
+year: 2017
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Retrieval-conditioned local reconstruction paper focused on 3D visual localization archives.
+summary: Uses retrieved images to build local 3D models and estimate accurate query poses without a monolithic
+  global model.
+problem: Understand whether global large-scale SfM maps are required for accurate 6-DoF localization.
+prior_gap: Retrieval-based and structure-based localization were often treated as separate families and
+  compared unfairly.
+stage: Retrieval-conditioned local reconstruction
+advance: Uses retrieved images to build local 3D models and estimate accurate query poses without a monolithic
+  global model.
+metric:
+- pose recall at thresholds
+- localization accuracy
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Aachen
+- RobotCar
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Local reconstruction adds per-query cost.
+- Requires enough relevant retrieved database views.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_cvpr_2017/html/Sattler_Are_Large-Scale_3D_CVPR_2017_paper.html
+figure:
+  alt: Are Large-Scale 3D Models Really Necessary for Accurate Visual Localization? representative figure
+  caption: Retrieval-conditioned local reconstruction
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.8

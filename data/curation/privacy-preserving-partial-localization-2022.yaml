@@ -1,0 +1,37 @@
+paper_id: paper:privacy-preserving-partial-localization-2022
+title: Privacy Preserving Partial Localization
+year: 2022
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Partial pose privacy paper focused on 3D visual localization archives.
+summary: Returns partial pose constraints that can be fused client-side into full localization.
+problem: Prevent both map inversion and exact user-pose disclosure to the server.
+prior_gap: Earlier privacy-preserving localization protected maps or queries but still returned exact
+  server-side poses.
+stage: Partial pose privacy
+advance: Returns partial pose constraints that can be fused client-side into full localization.
+metric:
+- localization accuracy
+- privacy leakage
+- pose constraint quality
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- visual localization point-cloud and line-cloud datasets
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Full 6-DoF pose requires client-side fusion across multiple partial results.
+- System complexity increases.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2022/html/Geppert_Privacy_Preserving_Partial_Localization_CVPR_2022_paper.html
+figure:
+  alt: Privacy Preserving Partial Localization representative figure
+  caption: Partial pose privacy
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.8

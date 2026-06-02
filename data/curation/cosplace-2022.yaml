@@ -1,0 +1,43 @@
+paper_id: paper:cosplace-2022
+title: Rethinking Visual Geo-localization for Large-Scale Applications
+year: 2022
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Global descriptor training for VPR paper focused on 3D visual localization archives.
+summary: Uses geographically defined class groups and large-margin cosine classification.
+problem: Train compact descriptors for city-scale visual geo-localization at scale.
+prior_gap: Metric learning required costly mining and large memory, limiting large-scale training.
+stage: Global descriptor training for VPR
+advance: Uses geographically defined class groups and large-margin cosine classification.
+metric:
+- Recall@1
+- Recall@5
+- Recall@10
+- training memory
+- descriptor size
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- San Francisco eXtra Large
+- Pittsburgh 30k
+- Tokyo 24/7
+- Mapillary SLS
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Geo-localization recall does not guarantee 6-DoF pose accuracy.
+- Training assumes geo-tagged data and geographic grouping choices.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2022/html/Berton_Rethinking_Visual_Geo-Localization_for_Large-Scale_Applications_CVPR_2022_paper.html
+- label: Code
+  url: https://github.com/gmberton/CosPlace
+figure:
+  alt: Rethinking Visual Geo-localization for Large-Scale Applications representative figure
+  caption: Global descriptor training for VPR
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

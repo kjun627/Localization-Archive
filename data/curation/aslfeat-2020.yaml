@@ -1,0 +1,42 @@
+paper_id: paper:aslfeat-2020
+title: 'ASLFeat: Learning Local Features of Accurate Shape and Localization'
+year: 2020
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Learned local feature extraction paper focused on 3D visual localization archives.
+summary: Learns accurate local shapes and positions for sparse feature matching.
+problem: Improve the geometric accuracy of learned local features for pose estimation and localization.
+prior_gap: Learned features often improved distinctiveness but could have inaccurate support shape or
+  localization.
+stage: Learned local feature extraction
+advance: Learns accurate local shapes and positions for sparse feature matching.
+metric:
+- matching score
+- relative pose AUC
+- localization recall
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- HPatches
+- ETH3D
+- Aachen Day-Night
+- InLoc
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Sparse feature pipeline still misses low-texture regions.
+- Dense and detector-free methods can outperform on some cases.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_CVPR_2020/html/Luo_ASLFeat_Learning_Local_Features_of_Accurate_Shape_and_Localization_CVPR_2020_paper.html
+- label: Code
+  url: https://github.com/lzx551402/ASLFeat
+figure:
+  alt: 'ASLFeat: Learning Local Features of Accurate Shape and Localization representative figure'
+  caption: Learned local feature extraction
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

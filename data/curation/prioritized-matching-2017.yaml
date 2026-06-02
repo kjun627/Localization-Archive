@@ -1,0 +1,41 @@
+paper_id: paper:prioritized-matching-2017
+title: Efficient and Effective Prioritized Matching for Large-Scale Image-Based Localization
+year: 2017
+venue: IEEE Transactions on Pattern Analysis and Machine Intelligence
+venue_type: journal
+venue_tier: Q1
+abstract: Efficient 2D-3D matching paper focused on 3D visual localization archives.
+summary: Prioritizes candidate 3D points using visibility and matching evidence to reduce search while
+  preserving pose recall.
+problem: Localize images accurately against large 3D models without exhaustive descriptor matching.
+prior_gap: Structure-based localization was accurate but too expensive when querying large SfM models.
+stage: Efficient 2D-3D matching
+advance: Prioritizes candidate 3D points using visibility and matching evidence to reduce search while
+  preserving pose recall.
+metric:
+- pose recall
+- matching runtime
+- localized query count
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Aachen
+- Dubrovnik
+- Rome
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Designed around sparse descriptors and SfM visibility.
+- Less directly applicable to dense or learned end-to-end matchers.
+source_links:
+- label: Paper
+  url: https://doi.org/10.1109/TPAMI.2016.2611662
+figure:
+  alt: Efficient and Effective Prioritized Matching for Large-Scale Image-Based Localization representative
+    figure
+  caption: Efficient 2D-3D matching
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

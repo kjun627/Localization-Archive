@@ -1,0 +1,42 @@
+paper_id: paper:sfm-revisited-2016
+title: Structure-From-Motion Revisited
+year: 2016
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: SfM map construction paper focused on 3D visual localization archives.
+summary: Improved image registration, triangulation, bundle adjustment, filtering, and released COLMAP.
+problem: Make incremental SfM robust, accurate, complete, and scalable for unordered image collections.
+prior_gap: Earlier SfM systems remained brittle in image selection, triangulation, filtering, and large-scale
+  reconstruction.
+stage: SfM map construction
+advance: Improved image registration, triangulation, bundle adjustment, filtering, and released COLMAP.
+metric:
+- registered images
+- sparse points
+- reprojection error
+- runtime
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Internet photo collections
+- Rome
+- benchmark reconstruction datasets
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Still depends heavily on feature matching quality.
+- Incremental SfM can accumulate drift or fail on weak scene graphs.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_cvpr_2016/html/Schonberger_Structure-From-Motion_Revisited_CVPR_2016_paper.html
+- label: Code
+  url: https://github.com/colmap/colmap
+figure:
+  alt: Structure-From-Motion Revisited representative figure
+  caption: SfM map construction
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.86

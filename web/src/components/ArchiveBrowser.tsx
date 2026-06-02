@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent } from "react";
+import { Fragment, lazy, Suspense, useEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent } from "react";
 import type { GraphEdge, GraphNode } from "../types";
 
 type ArchiveBrowserProps = {
@@ -18,35 +18,62 @@ const CitationGraphModal = lazy(() =>
   import("./CitationGraphModal").then((module) => ({ default: module.CitationGraphModal })),
 );
 
+const MAX_COMPARE = 4;
+
 const VENUE_THEME: Record<string, string> = {
   BMVC: "#e83e8c",
   CVPR: "var(--c-CVPR)",
+  AAAI: "#8b3ddb",
   ICRA: "#8b3ddb",
   ICCV: "var(--c-ICCV)",
   ECCV: "var(--c-ECCV)",
+  NeurIPS: "#f04452",
   TPAMI: "var(--c-TPAMI)",
   IJCV: "var(--c-TPAMI)",
   PR: "#00a76f",
   RAL: "#8b3ddb",
+  WACV: "#00a76f",
   "3DV": "var(--c-3DV)",
   IVC: "var(--c-IVC)",
   FILE: "var(--c-FILE)",
   OTHER: "var(--c-FILE)",
 };
 
-const VENUE_ORDER = ["CVPR", "ECCV", "ICCV", "3DV", "BMVC", "ICRA", "TPAMI", "IJCV", "RAL", "PR", "IVC", "OTHER", "FILE"];
+const VENUE_ORDER = [
+  "CVPR",
+  "ECCV",
+  "ICCV",
+  "NeurIPS",
+  "AAAI",
+  "WACV",
+  "3DV",
+  "BMVC",
+  "ICRA",
+  "IROS",
+  "TPAMI",
+  "IJCV",
+  "RAL",
+  "PR",
+  "IVC",
+  "OTHER",
+  "FILE",
+];
 
 function venueCode(paper: GraphNode) {
   const venue = paper.metadata?.venue ?? "Unknown";
   if (venue.includes("Computer Vision and Pattern Recognition")) return "CVPR";
   if (venue.includes("European Conference on Computer Vision")) return "ECCV";
   if (venue.includes("International Conference on Computer Vision")) return "ICCV";
+  if (venue.includes("Neural Information Processing Systems")) return "NeurIPS";
+  if (venue.includes("AAAI")) return "AAAI";
+  if (venue.includes("Winter Conference on Applications of Computer Vision")) return "WACV";
   if (venue.includes("3D Vision")) return "3DV";
   if (venue.includes("British Machine Vision Conference")) return "BMVC";
+  if (venue.includes("Robotics and Automation Letters")) return "RAL";
   if (venue.includes("Robotics and Automation")) return "ICRA";
+  if (venue.includes("Intelligent Robots and Systems")) return "IROS";
   if (venue.includes("Pattern Analysis and Machine Intelligence")) return "TPAMI";
   if (venue.includes("International Journal of Computer Vision")) return "IJCV";
-  if (venue.includes("Robotics and Automation Letters")) return "RAL";
   if (venue.includes("Pattern Recognition")) return "PR";
   if (venue.includes("Image and Vision Computing")) return "IVC";
   return "OTHER";
@@ -57,6 +84,9 @@ function venueMonth(paper: GraphNode) {
   if (venue === "CVPR") return 6;
   if (venue === "ICCV") return 10;
   if (venue === "ECCV") return 9;
+  if (venue === "NeurIPS") return 12;
+  if (venue === "AAAI") return 2;
+  if (venue === "WACV") return 1;
   if (venue === "3DV") return 11;
   if (venue === "TPAMI") return 1;
   return 12;
@@ -241,13 +271,27 @@ type DetailProps = {
   pinned: boolean;
   edges: GraphEdge[];
   papersByKey: Map<string, GraphNode>;
+  compareKeys: string[];
   onClose: () => void;
   onOpenGraph: () => void;
+  onToggleCompare: (paper: GraphNode) => void;
   onUnpin: () => void;
   onJumpTo: (key: string) => void;
 };
 
-function DetailPanel({ paper, open, pinned, edges, papersByKey, onClose, onOpenGraph, onUnpin, onJumpTo }: DetailProps) {
+function DetailPanel({
+  paper,
+  open,
+  pinned,
+  edges,
+  papersByKey,
+  compareKeys,
+  onClose,
+  onOpenGraph,
+  onToggleCompare,
+  onUnpin,
+  onJumpTo,
+}: DetailProps) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const dragRef = useRef<{ baseX: number; baseY: number; startX: number; startY: number } | null>(null);
 
@@ -319,6 +363,8 @@ function DetailPanel({ paper, open, pinned, edges, papersByKey, onClose, onOpenG
   const sourceLinks = normalizeSourceLinks(paper.metadata?.sourceLinks);
   const figure = paper.metadata?.figure;
   const representativeImage = figureUrl(figure?.url);
+  const inCompare = compareKeys.includes(paper.key);
+  const compareFull = compareKeys.length >= MAX_COMPARE && !inCompare;
 
   return (
     <aside
@@ -420,9 +466,19 @@ function DetailPanel({ paper, open, pinned, edges, papersByKey, onClose, onOpenG
           </div>
         ) : null}
 
-        <button className="graph-link" onClick={onOpenGraph} type="button">
-          View citation graph
-        </button>
+        <div className="detail-actions">
+          <button className="graph-link" onClick={onOpenGraph} type="button">
+            View citation graph
+          </button>
+          <button
+            className={`compare-link ${inCompare ? "active" : ""}`}
+            disabled={compareFull}
+            onClick={() => onToggleCompare(paper)}
+            type="button"
+          >
+            {inCompare ? "Remove compare" : compareFull ? "Compare full" : "Compare card"}
+          </button>
+        </div>
 
         <div className="links">
           {sourceLinks.map((link) => (
@@ -442,6 +498,112 @@ function DetailPanel({ paper, open, pinned, edges, papersByKey, onClose, onOpenG
   );
 }
 
+type CompareDockProps = {
+  edges: GraphEdge[];
+  onClear: () => void;
+  onRemove: (key: string) => void;
+  onSelect: (paper: GraphNode) => void;
+  papers: GraphNode[];
+};
+
+function compareText(value: string | string[] | undefined, fallback = "not recorded") {
+  if (Array.isArray(value)) return value.length ? value.join(", ") : fallback;
+  return value?.trim() || fallback;
+}
+
+function CompareDock({ edges, onClear, onRemove, onSelect, papers }: CompareDockProps) {
+  if (!papers.length) return null;
+
+  const rows = [
+    {
+      label: "Problem",
+      value: (paper: GraphNode) => compareText(paper.metadata?.problem),
+    },
+    {
+      label: "Prior gap",
+      value: (paper: GraphNode) => compareText(paper.metadata?.priorGap),
+    },
+    {
+      label: "Advance",
+      value: (paper: GraphNode) => compareText(paper.metadata?.advance ?? paper.metadata?.summary),
+    },
+    {
+      label: "Datasets",
+      value: (paper: GraphNode) => compareText(paper.metadata?.datasets),
+    },
+    {
+      label: "Limits",
+      value: (paper: GraphNode) => compareText(paper.metadata?.limitations),
+    },
+  ];
+
+  return (
+    <aside className="compare-dock" aria-label="Paper comparison">
+      <header className="compare-head">
+        <div>
+          <span>Card Compare</span>
+          <strong>
+            {papers.length}/{MAX_COMPARE} selected
+          </strong>
+        </div>
+        <button onClick={onClear} type="button">
+          Clear
+        </button>
+      </header>
+      <div className="compare-grid" style={{ "--compare-cols": papers.length } as CSSProperties}>
+        <div className="compare-label compare-corner">Field</div>
+        {papers.map((paper) => {
+          const stats = getCitationStats(paper.key, edges);
+          const sourceLinks = normalizeSourceLinks(paper.metadata?.sourceLinks);
+          return (
+            <article className="compare-paper" key={paper.key} style={{ "--tone": VENUE_THEME[venueCode(paper)] ?? VENUE_THEME.FILE } as CSSProperties}>
+              <button className="compare-title" onClick={() => onSelect(paper)} type="button">
+                <span>
+                  {venueCode(paper)} · {paper.metadata?.year ?? "----"}
+                </span>
+                {paper.label}
+              </button>
+              <div className="compare-stats">
+                <span>{stats.cites} cites</span>
+                <span>{stats.citedBy} cited by</span>
+              </div>
+              <div className="compare-link-slots">
+                {sourceLinks.map((link) =>
+                  link.url ? (
+                    <a href={link.url} key={link.label} rel="noopener noreferrer" target="_blank">
+                      {link.label}
+                    </a>
+                  ) : (
+                    <span className="off" key={link.label}>
+                      {link.label}
+                    </span>
+                  ),
+                )}
+              </div>
+              <button className="compare-remove" onClick={() => onRemove(paper.key)} type="button">
+                Remove
+              </button>
+            </article>
+          );
+        })}
+        {rows.map((row) => (
+          <Fragment key={row.label}>
+            <div className="compare-label" key={`${row.label}-label`}>
+              {row.label}
+            </div>
+            {papers.map((paper) => (
+              <div className="compare-cell" key={`${row.label}-${paper.key}`}>
+                {row.value(paper)}
+              </div>
+            ))}
+          </Fragment>
+        ))}
+      </div>
+      {papers.length === 1 ? <div className="compare-hint">Select another paper and add it to compare.</div> : null}
+    </aside>
+  );
+}
+
 export function ArchiveBrowser({
   edges,
   papers,
@@ -455,8 +617,10 @@ export function ArchiveBrowser({
   const [hoveredPaper, setHoveredPaper] = useState<GraphNode | null>(null);
   const [manualOpen, setManualOpen] = useState(false);
   const [graphOpen, setGraphOpen] = useState(false);
+  const [compareKeys, setCompareKeys] = useState<string[]>([]);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const papersByKey = useMemo(() => new Map(papers.map((paper) => [paper.key, paper])), [papers]);
+  const comparePapers = compareKeys.map((key) => papersByKey.get(key)).filter((paper): paper is GraphNode => Boolean(paper));
 
   useEffect(() => {
     const element = scrollerRef.current;
@@ -527,6 +691,13 @@ export function ArchiveBrowser({
     });
   };
 
+  const toggleComparePaper = (paper: GraphNode) => {
+    setCompareKeys((current) => {
+      if (current.includes(paper.key)) return current.filter((key) => key !== paper.key);
+      return [...current.slice(Math.max(0, current.length - (MAX_COMPARE - 1))), paper.key];
+    });
+  };
+
   return (
     <div
       className="app"
@@ -583,7 +754,7 @@ export function ArchiveBrowser({
         className="stage"
         onClick={(event) => {
           const target = event.target as HTMLElement;
-          if (target.closest(".card, .detail, .graph-modal")) return;
+          if (target.closest(".card, .detail, .graph-modal, .compare-dock")) return;
           setHoveredPaper(null);
           onSelectPaper(null);
           setManualOpen(false);
@@ -633,6 +804,7 @@ export function ArchiveBrowser({
         </div>
 
         <DetailPanel
+          compareKeys={compareKeys}
           edges={edges}
           onClose={() => {
             setHoveredPaper(null);
@@ -643,6 +815,7 @@ export function ArchiveBrowser({
           onOpenGraph={() => {
             if (displayPaper) setGraphOpen(true);
           }}
+          onToggleCompare={toggleComparePaper}
           onUnpin={() => {
             onSelectPaper(null);
             setManualOpen(false);
@@ -651,6 +824,18 @@ export function ArchiveBrowser({
           paper={detailOpen ? displayPaper : null}
           papersByKey={papersByKey}
           pinned={Boolean(selectedPaper && displayPaper?.key === selectedPaper.key)}
+        />
+
+        <CompareDock
+          edges={edges}
+          onClear={() => setCompareKeys([])}
+          onRemove={(key) => setCompareKeys((current) => current.filter((item) => item !== key))}
+          onSelect={(paper) => {
+            setHoveredPaper(null);
+            onSelectPaper(paper);
+            setManualOpen(true);
+          }}
+          papers={comparePapers}
         />
 
         {graphOpen && displayPaper ? (

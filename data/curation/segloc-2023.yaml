@@ -1,0 +1,39 @@
+paper_id: paper:segloc-2023
+title: 'SegLoc: Learning Segmentation-Based Representations for Privacy-Preserving Visual Localization'
+year: 2023
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Segmentation-based privacy-preserving localization paper focused on 3D visual localization archives.
+summary: Learns fine-grained segmentation-like labels that support retrieval and pose refinement.
+problem: Use compact segmentation-based representations for privacy-aware localization.
+prior_gap: Feature obfuscation and line clouds protected some information but still faced recovery or
+  utility tradeoffs.
+stage: Segmentation-based privacy-preserving localization
+advance: Learns fine-grained segmentation-like labels that support retrieval and pose refinement.
+metric:
+- localization recall
+- pose accuracy
+- privacy leakage
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Extended CMU Seasons
+- Indoor6
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Refinement can be slower than classic local-feature pipelines.
+- Privacy depends on abstraction level.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2023/html/Pietrantoni_SegLoc_Learning_Segmentation-Based_Representations_for_Privacy-Preserving_Visual_Localization_CVPR_2023_paper.html
+figure:
+  alt: 'SegLoc: Learning Segmentation-Based Representations for Privacy-Preserving Visual Localization
+    representative figure'
+  caption: Segmentation-based privacy-preserving localization
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.8

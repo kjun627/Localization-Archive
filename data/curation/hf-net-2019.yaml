@@ -1,42 +1,43 @@
-paper_id: "paper:hf-net-2019"
-title: "From Coarse to Fine: Robust Hierarchical Localization at Large Scale"
+paper_id: paper:hf-net-2019
+title: 'From Coarse to Fine: Robust Hierarchical Localization at Large Scale'
 year: 2019
 venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
 venue_tier: A*
-abstract: HF-Net predicts global image descriptors and local features in a single network to support coarse retrieval followed by local feature matching and pose estimation.
-summary: "Defines a practical hierarchical localization pattern: retrieve candidate places, match local features, then run geometric pose estimation."
+abstract: HF-Net predicts global image descriptors and local features in a single network to support coarse
+  retrieval followed by local feature matching and pose estimation.
+summary: 'Defines a practical hierarchical localization pattern: retrieve candidate places, match local
+  features, then run geometric pose estimation.'
 problem: Achieve accurate, scalable, real-time visual localization under large-scale appearance change.
-prior_gap: Direct 2D-3D matching was expensive at scale, while retrieval-only localization was efficient but not metric-pose accurate.
+prior_gap: Direct 2D-3D matching was expensive at scale, while retrieval-only localization was efficient
+  but not metric-pose accurate.
 stage: Coarse-to-fine structure-based localization
-advance: Combines global retrieval descriptors and local features in one CNN for efficient hierarchical localization.
+advance: Combines global retrieval descriptors and local features in one CNN for efficient hierarchical
+  localization.
 metric:
-  - Pose recall at benchmark thresholds
-  - Runtime
-  - PnP success
-why_this_metric: The method is valuable only if retrieval speed and geometric pose accuracy are achieved together.
+- Pose recall at benchmark thresholds
+- Runtime
+- PnP success
+why_this_metric: The method is valuable only if retrieval speed and geometric pose accuracy are achieved
+  together.
 dataset:
-  - Aachen Day-Night
-  - CMU Seasons
-  - RobotCar Seasons
+- Aachen Day-Night
+- CMU Seasons
+- RobotCar Seasons
 dataset_limitations:
-  - Later pipelines often replace HF-Net with SuperPoint, SuperGlue, or LightGlue inside hloc-style systems.
+- Later pipelines often replace HF-Net with SuperPoint, SuperGlue, or LightGlue inside hloc-style systems.
 limitations:
-  - The original implementation depends on an older TensorFlow stack.
-  - Feature/matcher choices have been superseded in many practical hloc deployments.
+- The original implementation depends on an older TensorFlow stack.
+- Feature/matcher choices have been superseded in many practical hloc deployments.
 source_links:
-  - label: Paper
-    url: https://openaccess.thecvf.com/content_CVPR_2019/html/Sarlin_From_Coarse_to_Fine_Robust_Hierarchical_Localization_at_Large_Scale_CVPR_2019_paper.html
-  - label: PDF
-    url: https://openaccess.thecvf.com/content_CVPR_2019/papers/Sarlin_From_Coarse_to_Fine_Robust_Hierarchical_Localization_at_Large_Scale_CVPR_2019_paper.pdf
-  - label: Code
-    url: https://github.com/ethz-asl/hfnet
-  - label: HLoc toolbox
-    url: https://github.com/cvg/Hierarchical-Localization
+- label: Paper
+  url: https://openaccess.thecvf.com/content_CVPR_2019/html/Sarlin_From_Coarse_to_Fine_Robust_Hierarchical_Localization_at_Large_Scale_CVPR_2019_paper.html
+- label: Code
+  url: https://github.com/ethz-asl/hfnet
 figure:
   alt: Coarse retrieval followed by local matching and pose estimation
   caption: Coarse-to-fine hierarchical localization
 provenance:
-  - subagent_research
-  - cvf_link
+- subagent_research
+- cvf_link
 confidence: 0.82

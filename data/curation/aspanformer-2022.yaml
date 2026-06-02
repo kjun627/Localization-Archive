@@ -1,0 +1,42 @@
+paper_id: paper:aspanformer-2022
+title: 'ASpanFormer: Detector-Free Image Matching with Adaptive Span Transformer'
+year: 2022
+venue: European Conference on Computer Vision
+venue_type: conference
+venue_tier: A
+abstract: Detector-free transformer matching paper focused on 3D visual localization archives.
+summary: Predicts flow and uncertainty to adapt the spatial span of cross-image attention.
+problem: Produce robust detector-free correspondences under large viewpoint changes and texture-poor regions.
+prior_gap: Fixed attention neighborhoods missed long-range dependencies or wasted computation on irrelevant
+  regions.
+stage: Detector-free transformer matching
+advance: Predicts flow and uncertainty to adapt the spatial span of cross-image attention.
+metric:
+- relative pose AUC
+- matching precision
+- localization recall
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- ScanNet
+- MegaDepth
+- Aachen Day-Night
+- InLoc
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Higher compute than sparse matchers.
+- Evaluated mainly on common geometry benchmarks.
+source_links:
+- label: Paper
+  url: https://www.ecva.net/papers/eccv_2022/papers_ECCV/html/1701_ECCV_2022_paper.php
+- label: Code
+  url: https://github.com/apple/ml-aspanformer
+figure:
+  alt: 'ASpanFormer: Detector-Free Image Matching with Adaptive Span Transformer representative figure'
+  caption: Detector-free transformer matching
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

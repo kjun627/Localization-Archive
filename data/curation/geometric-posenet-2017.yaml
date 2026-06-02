@@ -1,0 +1,38 @@
+paper_id: paper:geometric-posenet-2017
+title: Geometric Loss Functions for Camera Pose Regression With Deep Learning
+year: 2017
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Absolute pose regression paper focused on 3D visual localization archives.
+summary: Introduced learned loss balancing and a reprojection loss grounded in scene geometry.
+problem: Train absolute pose regression without brittle manual balancing between translation and rotation
+  loss terms.
+prior_gap: PoseNet introduced direct camera pose regression but required hand-tuned loss weighting and
+  weak geometry supervision.
+stage: Absolute pose regression
+advance: Introduced learned loss balancing and a reprojection loss grounded in scene geometry.
+metric:
+- median translation error
+- median rotation error
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- 7-Scenes
+- Cambridge Landmarks
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Still direct APR.
+- Accuracy remains below explicit geometry-based localization.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_cvpr_2017/html/Kendall_Geometric_Loss_Functions_CVPR_2017_paper.html
+figure:
+  alt: Geometric Loss Functions for Camera Pose Regression With Deep Learning representative figure
+  caption: Absolute pose regression
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.8

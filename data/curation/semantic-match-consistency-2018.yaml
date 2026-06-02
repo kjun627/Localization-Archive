@@ -1,0 +1,37 @@
+paper_id: paper:semantic-match-consistency-2018
+title: Semantic Match Consistency for Long-Term Visual Localization
+year: 2018
+venue: European Conference on Computer Vision
+venue_type: conference
+venue_tier: A
+abstract: Semantic match verification paper focused on 3D visual localization archives.
+summary: Adds semantic consistency scores to correspondences before pose estimation.
+problem: Reduce outlier-heavy 2D-3D matching in long-term visual localization.
+prior_gap: RANSAC-based localization could be overwhelmed by erroneous matches under seasonal and illumination
+  changes.
+stage: Semantic match verification
+advance: Adds semantic consistency scores to correspondences before pose estimation.
+metric:
+- localization recall at pose thresholds
+- correctly localized query fraction
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- CMU Seasons
+- RobotCar Seasons
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Performance depends on segmentation quality and map semantics.
+- Semantic labels may be too coarse for repeated structures.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_ECCV_2018/html/Carl_Toft_Semantic_Match_Consistency_ECCV_2018_paper.html
+figure:
+  alt: Semantic Match Consistency for Long-Term Visual Localization representative figure
+  caption: Semantic match verification
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.76

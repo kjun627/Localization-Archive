@@ -1,0 +1,42 @@
+paper_id: paper:dkm-2023
+title: 'DKM: Dense Kernelized Feature Matching for Geometry Estimation'
+year: 2023
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Dense geometry matching paper focused on 3D visual localization archives.
+summary: Uses kernel regression for global dense matching, feature refinement, and learned confidence
+  sampling.
+problem: Use dense correspondences effectively for robust pose and geometry estimation.
+prior_gap: Earlier dense methods often underperformed sparse or semi-sparse methods on two-view geometry.
+stage: Dense geometry matching
+advance: Uses kernel regression for global dense matching, feature refinement, and learned confidence
+  sampling.
+metric:
+- relative pose AUC
+- Image Matching Challenge mAA
+- matching precision
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- MegaDepth-1500
+- ScanNet-1500
+- Image Matching Challenge
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Dense inference is heavier than sparse matching.
+- Localization benefit depends on sampling and robust estimation.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2023/html/Edstedt_DKM_Dense_Kernelized_Feature_Matching_for_Geometry_Estimation_CVPR_2023_paper.html
+- label: Code
+  url: https://github.com/Parskatt/DKM
+figure:
+  alt: 'DKM: Dense Kernelized Feature Matching for Geometry Estimation representative figure'
+  caption: Dense geometry matching
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.8

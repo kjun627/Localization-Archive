@@ -1,40 +1,41 @@
-paper_id: "paper:air-hloc-2025"
-title: "AIR-HLoc: Adaptive Retrieved Images Selection for Efficient Visual Localisation"
+paper_id: paper:air-hloc-2025
+title: 'AIR-HLoc: Adaptive Retrieved Images Selection for Efficient Visual Localisation'
 year: 2025
 venue: IEEE International Conference on Robotics and Automation
 venue_type: conference
 venue_tier: A*
-abstract: Adapts the number of retrieved reference images in HLoc-style localization by estimating query difficulty from global descriptor similarity.
-summary: Improves hierarchical localization efficiency by replacing a fixed retrieval top-k with adaptive query-dependent retrieval counts.
+abstract: Adapts the number of retrieved reference images in HLoc-style localization by estimating query
+  difficulty from global descriptor similarity.
+summary: Improves hierarchical localization efficiency by replacing a fixed retrieval top-k with adaptive
+  query-dependent retrieval counts.
 problem: Avoid wasting matching compute on easy queries while giving hard queries enough retrieved images.
 prior_gap: HLoc-style pipelines usually set retrieval top-k globally rather than per query.
 stage: Retrieval policy and localization efficiency
-advance: Classifies query difficulty from retrieval similarity and assigns adaptive image counts before local matching.
+advance: Classifies query difficulty from retrieval similarity and assigns adaptive image counts before
+  local matching.
 metric:
-  - Absolute trajectory error
-  - Angular rotation error
-  - Aachen threshold accuracy
-  - Matching runtime
-  - Retrieved image count
+- Absolute trajectory error
+- Angular rotation error
+- Aachen threshold accuracy
+- Matching runtime
+- Retrieved image count
 why_this_metric: The contribution targets compute efficiency without sacrificing localization accuracy.
 dataset:
-  - Cambridge Landmarks
-  - 7Scenes
-  - Aachen Day-Night v1.1
+- Cambridge Landmarks
+- 7Scenes
+- Aachen Day-Night v1.1
 dataset_limitations:
-  - Benefit depends on retrieval score calibration across scenes and descriptors.
+- Benefit depends on retrieval score calibration across scenes and descriptors.
 limitations:
-  - No official code link was confirmed during curation.
-  - Adaptive policy quality depends on global descriptor reliability.
+- No official code link was confirmed during curation.
+- Adaptive policy quality depends on global descriptor reliability.
 source_links:
-  - label: arXiv
-    url: https://arxiv.org/abs/2403.18281
-  - label: HTML
-    url: https://ar5iv.org/html/2403.18281v3
+- label: Paper
+  url: https://arxiv.org/abs/2403.18281
 figure:
   alt: Adaptive retrieved image selection for hierarchical localization
   caption: Adaptive retrieval count in HLoc-style pipelines
 provenance:
-  - subagent_research
-  - arxiv_link
+- subagent_research
+- arxiv_link
 confidence: 0.72

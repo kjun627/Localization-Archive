@@ -1,0 +1,44 @@
+paper_id: paper:benchmarking-image-retrieval-2020
+title: Benchmarking Image Retrieval for Visual Localization
+year: 2020
+venue: International Conference on 3D Vision
+venue_type: conference
+venue_tier: A
+abstract: Retrieval benchmark for localization paper focused on 3D visual localization archives.
+summary: Defines localization-oriented retrieval tasks and compares descriptor families across localization
+  datasets.
+problem: Understand when image retrieval helps or hurts downstream visual localization.
+prior_gap: Landmark retrieval benchmarks rewarded viewpoint invariance, but localization requires actual
+  scene overlap.
+stage: Retrieval benchmark for localization
+advance: Defines localization-oriented retrieval tasks and compares descriptor families across localization
+  datasets.
+metric:
+- Recall at K
+- pose accuracy at thresholds
+- localization success rate
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Aachen Day-Night
+- RobotCar Seasons
+- CMU Seasons
+- InLoc
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Conclusions depend on selected downstream localization pipelines.
+- Official page availability may vary.
+source_links:
+- label: Paper
+  url: https://europe.naverlabs.com/research/publications/benchmarking-image-retrieval-for-visual-localization/
+- label: Code
+  url: https://github.com/naver/kapture-localization
+figure:
+  alt: Benchmarking Image Retrieval for Visual Localization representative figure
+  caption: Retrieval benchmark for localization
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.74

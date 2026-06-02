@@ -1,0 +1,37 @@
+paper_id: paper:privacy-preserving-localization-mapping-uncalibrated-2021
+title: Privacy Preserving Localization and Mapping from Uncalibrated Cameras
+year: 2021
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Uncalibrated privacy-preserving localization paper focused on 3D visual localization archives.
+summary: Uses constraints that allow localization and mapping from uncalibrated image observations.
+problem: Support privacy-preserving localization and mapping when camera calibration is unavailable.
+prior_gap: Earlier privacy-preserving line-feature methods assumed calibrated cameras.
+stage: Uncalibrated privacy-preserving localization
+advance: Uses constraints that allow localization and mapping from uncalibrated image observations.
+metric:
+- reconstruction accuracy
+- localization accuracy
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- privacy-preserving localization datasets
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Assumes simplified intrinsic models.
+- Line-feature constraints remain weaker than point-feature constraints.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2021/html/Geppert_Privacy_Preserving_Localization_and_Mapping_From_Uncalibrated_Cameras_CVPR_2021_paper.html
+- label: Project
+  url: https://speciale.ar/publication/pp_loc_map/
+figure:
+  alt: Privacy Preserving Localization and Mapping from Uncalibrated Cameras representative figure
+  caption: Uncalibrated privacy-preserving localization
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

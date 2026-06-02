@@ -847,7 +847,7 @@ a {
 
 .graph-link {
   width: 100%;
-  margin: 10px 0 0;
+  margin: 0;
   padding: 8px 10px;
   border: 1px solid var(--ink);
   background: var(--ink);
@@ -862,6 +862,39 @@ a {
 
 .graph-link:hover {
   background: var(--tone);
+}
+
+.detail-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.compare-link {
+  width: 100%;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.compare-link.active {
+  border-color: var(--tone);
+  background: var(--tone);
+  color: #fdf6dd;
+}
+
+.compare-link:disabled {
+  cursor: not-allowed;
+  opacity: 0.36;
 }
 
 .detail.empty .tag {
@@ -909,6 +942,196 @@ a {
   font-style: italic;
   letter-spacing: 0.06em;
   white-space: nowrap;
+}
+
+.compare-dock {
+  position: absolute;
+  right: 392px;
+  bottom: 24px;
+  z-index: 11;
+  width: min(860px, calc(100vw - 456px));
+  max-height: min(410px, calc(100vh - 160px));
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 6px 6px 0 rgba(25, 31, 40, 0.14);
+}
+
+.compare-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--ff-mono);
+}
+
+.compare-head div {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.compare-head span {
+  color: var(--accent);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.compare-head strong {
+  color: var(--ink-soft);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.compare-head button,
+.compare-remove {
+  padding: 5px 9px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.compare-head button:hover,
+.compare-remove:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.compare-grid {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 88px repeat(var(--compare-cols), minmax(180px, 1fr));
+  overflow: auto;
+  background: var(--paper);
+}
+
+.compare-label,
+.compare-paper,
+.compare-cell {
+  border-right: 1px solid rgba(25, 31, 40, 0.2);
+  border-bottom: 1px solid rgba(25, 31, 40, 0.2);
+}
+
+.compare-label {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  padding: 10px 8px;
+  background: #f2f4f6;
+  color: var(--ink-soft);
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.compare-corner {
+  top: 0;
+  z-index: 4;
+}
+
+.compare-paper {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: 7px;
+  padding: 10px;
+  background: var(--paper);
+  box-shadow: inset 0 3px 0 var(--tone);
+}
+
+.compare-title {
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.compare-title span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--tone);
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.compare-title {
+  display: -webkit-box;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.28;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.compare-stats,
+.compare-link-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-family: var(--ff-mono);
+  font-size: 9.5px;
+}
+
+.compare-stats span {
+  color: var(--ink-soft);
+}
+
+.compare-link-slots a,
+.compare-link-slots .off {
+  padding: 2px 5px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.compare-link-slots .off {
+  opacity: 0.28;
+}
+
+.compare-cell {
+  min-height: 58px;
+  padding: 10px;
+  color: var(--ink);
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+.compare-hint {
+  padding: 8px 12px;
+  border-top: 1px solid rgba(25, 31, 40, 0.2);
+  color: var(--ink-soft);
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .graph-modal {
@@ -1208,5 +1431,22 @@ a {
     left: 10px;
     bottom: 10px;
     max-width: none;
+  }
+
+  .detail-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-dock {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 28px;
+    width: auto;
+    max-height: 300px;
+  }
+
+  .compare-grid {
+    grid-template-columns: 82px repeat(var(--compare-cols), minmax(172px, 1fr));
   }
 }

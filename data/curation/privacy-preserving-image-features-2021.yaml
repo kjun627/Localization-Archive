@@ -1,0 +1,37 @@
+paper_id: paper:privacy-preserving-image-features-2021
+title: Privacy-Preserving Image Features via Adversarial Affine Subspace Embeddings
+year: 2021
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Privacy-preserving image features paper focused on 3D visual localization archives.
+summary: Embeds descriptors in affine subspaces trained adversarially against inversion.
+problem: Prevent inversion of local image descriptors while retaining feature matching.
+prior_gap: Feature and SfM inversion work showed that descriptors and maps can leak image content.
+stage: Privacy-preserving image features
+advance: Embeds descriptors in affine subspaces trained adversarially against inversion.
+metric:
+- matching accuracy
+- localization accuracy
+- privacy attack success
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- visual localization benchmarks
+- face-authentication evaluations
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Protection is empirical rather than cryptographic.
+- Subspace matching is less standard than descriptor matching.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2021/html/Dusmanu_Privacy-Preserving_Image_Features_via_Adversarial_Affine_Subspace_Embeddings_CVPR_2021_paper.html
+figure:
+  alt: Privacy-Preserving Image Features via Adversarial Affine Subspace Embeddings representative figure
+  caption: Privacy-preserving image features
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.8

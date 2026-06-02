@@ -1,0 +1,40 @@
+paper_id: paper:247-place-recognition-2015
+title: 24/7 Place Recognition by View Synthesis
+year: 2015
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Long-term place recognition paper focused on 3D visual localization archives.
+summary: Synthesizes reference views so query and database images can be compared from more compatible
+  viewpoints.
+problem: Recognize places under large illumination, season, and viewpoint shifts.
+prior_gap: Earlier retrieval descriptors degraded when condition change and viewpoint change appeared
+  together.
+stage: Long-term place recognition
+advance: Synthesizes reference views so query and database images can be compared from more compatible
+  viewpoints.
+metric:
+- Recall at K
+- place recognition rate
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Tokyo 24/7
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- View synthesis depends on map geometry and viewpoint coverage.
+- It solves retrieval rather than full 6-DoF pose estimation.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_cvpr_2015/html/Torii_247_Place_Recognition_2015_CVPR_paper.html
+- label: Project
+  url: https://www.ok.ctrl.titech.ac.jp/~torii/project/247/
+figure:
+  alt: 24/7 Place Recognition by View Synthesis representative figure
+  caption: Long-term place recognition
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

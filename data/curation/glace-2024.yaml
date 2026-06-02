@@ -1,43 +1,45 @@
-paper_id: "paper:glace-2024"
-title: "GLACE: Global Local Accelerated Coordinate Encoding"
+paper_id: paper:glace-2024
+title: 'GLACE: Global Local Accelerated Coordinate Encoding'
 year: 2024
 venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
 venue_tier: A*
-abstract: Scales scene coordinate regression with global/local encodings, feature diffusion, and compact scene-specific heads.
-summary: Extends the ACE-style efficient mapping line toward larger scenes by injecting global and local context into coordinate encoding.
-problem: Make scene coordinate regression more viable for larger scenes without ground-truth 3D point supervision.
+abstract: Scales scene coordinate regression with global/local encodings, feature diffusion, and compact
+  scene-specific heads.
+summary: Extends the ACE-style efficient mapping line toward larger scenes by injecting global and local
+  context into coordinate encoding.
+problem: Make scene coordinate regression more viable for larger scenes without ground-truth 3D point
+  supervision.
 prior_gap: ACE made SCR fast, but repeated local appearances and large-scene ambiguity remained difficult.
 stage: Scene-coordinate regression
-advance: Combines pretrained global/local encodings with co-visibility-inspired feature diffusion and improved position decoding.
+advance: Combines pretrained global/local encodings with co-visibility-inspired feature diffusion and
+  improved position decoding.
 metric:
-  - Pose accuracy thresholds
-  - Median translation error
-  - Median rotation error
-  - Map size
-  - Training time
+- Pose accuracy thresholds
+- Median translation error
+- Median rotation error
+- Map size
+- Training time
 why_this_metric: The contribution targets both accuracy under ambiguity and practical mapping cost.
 dataset:
-  - 7Scenes
-  - 12Scenes
-  - Cambridge Landmarks
-  - Aachen Day-Night
+- 7Scenes
+- 12Scenes
+- Cambridge Landmarks
+- Aachen Day-Night
 dataset_limitations:
-  - Scene-specific training and benchmark pose availability still constrain evaluation.
+- Scene-specific training and benchmark pose availability still constrain evaluation.
 limitations:
-  - Still requires scene-specific components.
-  - Depends on DSAC*/RANSAC-style pose estimation bindings.
+- Still requires scene-specific components.
+- Depends on DSAC*/RANSAC-style pose estimation bindings.
 source_links:
-  - label: Paper
-    url: https://openaccess.thecvf.com/content/CVPR2024/html/Wang_GLACE_Global_Local_Accelerated_Coordinate_Encoding_CVPR_2024_paper.html
-  - label: PDF
-    url: https://openaccess.thecvf.com/content/CVPR2024/papers/Wang_GLACE_Global_Local_Accelerated_Coordinate_Encoding_CVPR_2024_paper.pdf
-  - label: Code
-    url: https://github.com/cvg/glace
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2024/html/Wang_GLACE_Global_Local_Accelerated_Coordinate_Encoding_CVPR_2024_paper.html
+- label: Code
+  url: https://github.com/cvg/glace
 figure:
   alt: Global-local accelerated coordinate encoding
   caption: Global/local scene-coordinate encoding
 provenance:
-  - subagent_research
-  - cvf_link
+- subagent_research
+- cvf_link
 confidence: 0.82

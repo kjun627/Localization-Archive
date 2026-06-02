@@ -1,0 +1,37 @@
+paper_id: paper:vidloc-2017
+title: 'VidLoc: A Deep Spatio-Temporal Model for 6-DoF Video-Clip Relocalization'
+year: 2017
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Temporal learned relocalization paper focused on 3D visual localization archives.
+summary: Uses recurrent spatio-temporal modeling for camera pose regression from video clips.
+problem: Exploit temporal context for visual relocalization rather than predicting poses independently
+  per frame.
+prior_gap: Single-image APR produced temporally inconsistent estimates and ignored useful motion context.
+stage: Temporal learned relocalization
+advance: Uses recurrent spatio-temporal modeling for camera pose regression from video clips.
+metric:
+- median translation error
+- median rotation error
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- 7-Scenes
+- Oxford RobotCar
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Temporal smoothing helps but does not add explicit 3D geometric constraints.
+- Requires sequential input.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_cvpr_2017/html/Clark_VidLoc_A_Deep_CVPR_2017_paper.html
+figure:
+  alt: 'VidLoc: A Deep Spatio-Temporal Model for 6-DoF Video-Clip Relocalization representative figure'
+  caption: Temporal learned relocalization
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.74

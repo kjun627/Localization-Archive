@@ -1,0 +1,37 @@
+paper_id: paper:gsff-privacy-preserving-visual-localization-2025
+title: Gaussian Splatting Feature Fields for Privacy-Preserving Visual Localization
+year: 2025
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: 3DGS feature-field localization paper focused on 3D visual localization archives.
+summary: Uses Gaussian splatting feature fields and segmentation conversion for privacy-preserving localization.
+problem: Use renderable feature fields for accurate and privacy-aware visual localization.
+prior_gap: Segmentation-based privacy methods improved abstraction but did not exploit modern 3DGS-style
+  scene representations.
+stage: 3DGS feature-field localization
+advance: Uses Gaussian splatting feature fields and segmentation conversion for privacy-preserving localization.
+metric:
+- pose accuracy
+- localization recall
+- privacy-preserving mode accuracy
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- real-world visual localization datasets
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- 3DGS representations may themselves encode scene detail.
+- Privacy-preserving mode relies on segmentation abstraction.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2025/html/Pietrantoni_Gaussian_Splatting_Feature_Fields_for_Privacy-Preserving_Visual_Localization_CVPR_2025_paper.html
+figure:
+  alt: Gaussian Splatting Feature Fields for Privacy-Preserving Visual Localization representative figure
+  caption: 3DGS feature-field localization
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.76

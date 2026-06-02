@@ -1,0 +1,45 @@
+paper_id: paper:hscnet-2020
+title: Hierarchical Scene Coordinate Classification and Regression for Visual Localization
+year: 2020
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Hierarchical scene coordinate regression paper focused on 3D visual localization archives.
+summary: Introduces coarse-to-fine classification and regression for scene coordinates.
+problem: Make scene coordinate regression scale to larger and more ambiguous scenes.
+prior_gap: Direct coordinate regression struggled when multiple locations could produce similar image
+  evidence.
+stage: Hierarchical scene coordinate regression
+advance: Introduces coarse-to-fine classification and regression for scene coordinates.
+metric:
+- median translation error
+- median rotation error
+- localization recall
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- 7-Scenes
+- 12-Scenes
+- Cambridge Landmarks
+- Aachen Day-Night
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Requires scene-specific models and suitable supervision.
+- Pipeline remains complex.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_CVPR_2020/html/Li_Hierarchical_Scene_Coordinate_Classification_and_Regression_for_Visual_Localization_CVPR_2020_paper.html
+- label: Code
+  url: https://github.com/AaltoVision/hscnet
+- label: Project
+  url: https://aaltovision.github.io/hscnet/
+figure:
+  alt: Hierarchical Scene Coordinate Classification and Regression for Visual Localization representative
+    figure
+  caption: Hierarchical scene coordinate regression
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

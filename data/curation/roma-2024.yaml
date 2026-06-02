@@ -1,0 +1,47 @@
+paper_id: paper:roma-2024
+title: 'RoMa: Robust Dense Feature Matching'
+year: 2024
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Foundation-feature dense matching paper focused on 3D visual localization archives.
+summary: Combines coarse pretrained foundation features, fine feature pyramids, transformer decoding,
+  and regression-by-classification.
+problem: Improve dense matching robustness on difficult real-world image pairs while preserving localizable
+  precision.
+prior_gap: Prior dense matchers struggled with extreme wide-baseline and appearance changes.
+stage: Foundation-feature dense matching
+advance: Combines coarse pretrained foundation features, fine feature pyramids, transformer decoding,
+  and regression-by-classification.
+metric:
+- relative pose AUC
+- Image Matching Challenge mAA
+- WxBS mean average precision
+- PCK
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- MegaDepth-1500
+- ScanNet-1500
+- Image Matching Challenge 2022
+- WxBS
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Dense foundation-guided matching is computationally heavy.
+- Still indirectly optimizes for localization and SfM.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2024/html/Edstedt_RoMa_Robust_Dense_Feature_Matching_CVPR_2024_paper.html
+- label: Code
+  url: https://github.com/Parskatt/RoMa
+- label: Project
+  url: https://parskatt.github.io/RoMa/
+figure:
+  alt: 'RoMa: Robust Dense Feature Matching representative figure'
+  caption: Foundation-feature dense matching
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.82

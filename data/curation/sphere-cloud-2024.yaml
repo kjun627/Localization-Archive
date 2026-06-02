@@ -1,46 +1,48 @@
-paper_id: "paper:sphere-cloud-2024"
-title: "Depth-Guided Privacy-Preserving Visual Localization Using 3D Sphere Clouds"
+paper_id: paper:sphere-cloud-2024
+title: Depth-Guided Privacy-Preserving Visual Localization Using 3D Sphere Clouds
 year: 2024
 venue: British Machine Vision Conference
 venue_type: conference
 venue_tier: A
-abstract: Lifts map points to centroid-crossing sphere-cloud lines so density-based recovery collapses toward the centroid, then uses depth to resolve localization scale.
-summary: A depth-guided map-side PPVL successor that targets the remaining density and runtime issues of line/ray cloud defenses.
-problem: Neutralize Line2Point-style density recovery while keeping localization practical for RGB-D or ToF-equipped devices.
-prior_gap: Ray and paired line clouds reduce but do not remove density-attack or direct-synthesis risks, and centroid-crossing lines introduce scale ambiguity.
+abstract: Lifts map points to centroid-crossing sphere-cloud lines so density-based recovery collapses
+  toward the centroid, then uses depth to resolve localization scale.
+summary: A depth-guided map-side PPVL successor that targets the remaining density and runtime issues
+  of line/ray cloud defenses.
+problem: Neutralize Line2Point-style density recovery while keeping localization practical for RGB-D or
+  ToF-equipped devices.
+prior_gap: Ray and paired line clouds reduce but do not remove density-attack or direct-synthesis risks,
+  and centroid-crossing lines introduce scale ambiguity.
 stage: Depth-guided map-side PPVL defense
-advance: Constructs centroid-centered sphere clouds, adds fake sphere points to reduce direct synthesis, and uses absolute depth for scale recovery.
+advance: Constructs centroid-centered sphere clouds, adds fake sphere points to reduce direct synthesis,
+  and uses absolute depth for scale recovery.
 metric:
-  - 3D point recovery error
-  - PSNR
-  - LPIPS
-  - SSIM
-  - Translation error
-  - Rotation error
-  - Runtime
-why_this_metric: Sphere clouds must be evaluated as both a privacy defense and a depth-guided localization method.
+- 3D point recovery error
+- PSNR
+- LPIPS
+- SSIM
+- Translation error
+- Rotation error
+- Runtime
+why_this_metric: Sphere clouds must be evaluated as both a privacy defense and a depth-guided localization
+  method.
 dataset:
-  - 7Scenes RGB-D
-  - 12Scenes RGB-D
+- 7Scenes RGB-D
+- 12Scenes RGB-D
 dataset_limitations:
-  - Pseudo-ground-truth and depth noise can influence direct synthesis and translation accuracy.
+- Pseudo-ground-truth and depth noise can influence direct synthesis and translation accuracy.
 limitations:
-  - Requires usable absolute depth or ToF measurements.
-  - Direct image synthesis around the sphere center remains a new attack surface.
-  - Privacy/localization trade-off depends on fake-point and true-positive ratio hyperparameters.
+- Requires usable absolute depth or ToF measurements.
+- Direct image synthesis around the sphere center remains a new attack surface.
+- Privacy/localization trade-off depends on fake-point and true-positive ratio hyperparameters.
 source_links:
-  - label: Paper
-    url: https://bmvc2024.org/proceedings/267/
-  - label: PDF
-    url: https://bmva-archive.org.uk/bmvc/2024/papers/Paper_267/paper.pdf
-  - label: arXiv
-    url: https://arxiv.org/abs/2605.00562
-  - label: Code
-    url: https://github.com/PHANTOM0122/Sphere-cloud
+- label: Paper
+  url: https://bmvc2024.org/proceedings/267/
+- label: Code
+  url: https://github.com/PHANTOM0122/Sphere-cloud
 figure:
   alt: Centroid-crossing sphere cloud representation
   caption: Sphere-cloud privacy with depth-guided scale
 provenance:
-  - subagent_research
-  - bmvc_page
+- subagent_research
+- bmvc_page
 confidence: 0.8

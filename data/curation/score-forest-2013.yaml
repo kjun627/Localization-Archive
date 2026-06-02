@@ -1,35 +1,39 @@
-paper_id: "paper:score-forest-2013"
-title: "Scene Coordinate Regression Forests for Camera Relocalization in RGB-D Images"
+paper_id: paper:score-forest-2013
+title: Scene Coordinate Regression Forests for Camera Relocalization in RGB-D Images
 year: 2013
 venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
 venue_tier: A*
 abstract: Randomized forests predict scene coordinates from RGB-D image patches for camera relocalization.
-summary: Establishes scene coordinate regression as a practical camera relocalization formulation using RGB-D inputs.
-problem: Recover camera pose in a known indoor scene from RGB-D observations without relying on sparse hand-crafted matches.
-prior_gap: Classical feature matching and structure-based localization could be brittle for texture-poor indoor RGB-D scenes.
+summary: Establishes scene coordinate regression as a practical camera relocalization formulation using
+  RGB-D inputs.
+problem: Recover camera pose in a known indoor scene from RGB-D observations without relying on sparse
+  hand-crafted matches.
+prior_gap: Classical feature matching and structure-based localization could be brittle for texture-poor
+  indoor RGB-D scenes.
 stage: Scene coordinate regression
-advance: Recasts relocalization as dense pixel-to-scene-coordinate prediction followed by robust pose optimization.
+advance: Recasts relocalization as dense pixel-to-scene-coordinate prediction followed by robust pose
+  optimization.
 metric:
-  - Pose accuracy at 5cm / 5deg
-  - Median translation and rotation error
-why_this_metric: Scene relocalization needs both thresholded success rates and pose-error statistics because downstream AR or robotics use cases fail sharply beyond small pose tolerances.
+- Pose accuracy at 5cm / 5deg
+- Median translation and rotation error
+why_this_metric: Scene relocalization needs both thresholded success rates and pose-error statistics because
+  downstream AR or robotics use cases fail sharply beyond small pose tolerances.
 dataset:
-  - 7Scenes
+- 7Scenes
 dataset_limitations:
-  - Indoor RGB-D benchmarks underrepresent outdoor scale, long-term appearance change, and low-overlap image retrieval cases.
+- Indoor RGB-D benchmarks underrepresent outdoor scale, long-term appearance change, and low-overlap image
+  retrieval cases.
 limitations:
-  - Requires scene-specific training and RGB-D style scene supervision.
+- Requires scene-specific training and RGB-D style scene supervision.
 source_links:
-  - label: DOI
-    url: https://doi.org/10.1109/CVPR.2013.377
-  - label: Paper
-    url: https://www.microsoft.com/en-us/research/publication/scene-coordinate-regression-forests-for-camera-relocalization-in-rgb-d-images-2/
+- label: Paper
+  url: https://doi.org/10.1109/CVPR.2013.377
 figure:
   url: figures/score-forest-2013.svg
   alt: Scene coordinate regression forest pipeline schematic
   caption: Scene coordinate regression forest pipeline placeholder
 provenance:
-  - openalex_title_check
-  - manual_curation
+- openalex_title_check
+- manual_curation
 confidence: 0.78

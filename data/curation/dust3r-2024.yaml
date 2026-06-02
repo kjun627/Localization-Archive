@@ -1,44 +1,46 @@
-paper_id: "paper:dust3r-2024"
-title: "DUSt3R: Geometric 3D Vision Made Easy"
+paper_id: paper:dust3r-2024
+title: 'DUSt3R: Geometric 3D Vision Made Easy'
 year: 2024
 venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
 venue_tier: A*
-abstract: Predicts dense pointmaps for unconstrained stereo and can recover geometry, depth, matches, focal lengths, and camera poses without known calibration.
-summary: A dense 3D foundation model that becomes important context for newer 3D-grounded matching and localization components.
+abstract: Predicts dense pointmaps for unconstrained stereo and can recover geometry, depth, matches,
+  focal lengths, and camera poses without known calibration.
+summary: A dense 3D foundation model that becomes important context for newer 3D-grounded matching and
+  localization components.
 problem: Simplify geometric 3D vision when camera intrinsics and extrinsics are unavailable.
 prior_gap: Classical SfM and MVS pipelines require calibrated images and many hand-engineered stages.
 stage: Foundation dense 3D reconstruction
-advance: Uses transformer pointmap prediction and global alignment to unify stereo, depth, matching, and camera recovery.
+advance: Uses transformer pointmap prediction and global alignment to unify stereo, depth, matching, and
+  camera recovery.
 metric:
-  - Depth estimation
-  - Relative pose estimation
-  - 3D reconstruction quality
-  - Matching quality
-why_this_metric: DUSt3R is adjacent to localization through pose and matching, not through a single relocalization benchmark alone.
+- Depth estimation
+- Relative pose estimation
+- 3D reconstruction quality
+- Matching quality
+why_this_metric: DUSt3R is adjacent to localization through pose and matching, not through a single relocalization
+  benchmark alone.
 dataset:
-  - CO3Dv2
-  - ARKitScenes
-  - ScanNet++
-  - BlendedMVS
-  - Waymo Open
-  - MegaDepth
+- CO3Dv2
+- ARKitScenes
+- ScanNet++
+- BlendedMVS
+- Waymo Open
+- MegaDepth
 dataset_limitations:
-  - It is not primarily a visual localization benchmark paper.
+- It is not primarily a visual localization benchmark paper.
 limitations:
-  - Large model and non-commercial license constraints limit direct deployment.
-  - Best treated as an adjacent foundation baseline rather than a PPVL method.
+- Large model and non-commercial license constraints limit direct deployment.
+- Best treated as an adjacent foundation baseline rather than a PPVL method.
 source_links:
-  - label: Paper
-    url: https://openaccess.thecvf.com/content/CVPR2024/html/Wang_DUSt3R_Geometric_3D_Vision_Made_Easy_CVPR_2024_paper.html
-  - label: PDF
-    url: https://openaccess.thecvf.com/content/CVPR2024/papers/Wang_DUSt3R_Geometric_3D_Vision_Made_Easy_CVPR_2024_paper.pdf
-  - label: Code
-    url: https://github.com/naver/dust3r
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2024/html/Wang_DUSt3R_Geometric_3D_Vision_Made_Easy_CVPR_2024_paper.html
+- label: Code
+  url: https://github.com/naver/dust3r
 figure:
   alt: Dense pointmap-based 3D vision
   caption: Dense pointmap geometry foundation
 provenance:
-  - subagent_research
-  - cvf_link
+- subagent_research
+- cvf_link
 confidence: 0.74

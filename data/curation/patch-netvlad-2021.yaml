@@ -1,0 +1,44 @@
+paper_id: paper:patch-netvlad-2021
+title: 'Patch-NetVLAD: Multi-Scale Fusion of Locally-Global Descriptors for Place Recognition'
+year: 2021
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Local-global VPR descriptor paper focused on 3D visual localization archives.
+summary: Extracts patch-level features from NetVLAD residuals and fuses multiple patch scales.
+problem: Improve visual place recognition under simultaneous viewpoint and condition changes.
+prior_gap: Global descriptors were efficient but coarse, while local matching was precise but less integrated
+  with global aggregation.
+stage: Local-global VPR descriptor
+advance: Extracts patch-level features from NetVLAD residuals and fuses multiple patch scales.
+metric:
+- Recall at K
+- Recall@1
+- AUC
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Pittsburgh
+- Tokyo 24/7
+- Mapillary SLS
+- Nordland
+- RobotCar Seasons
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- More computationally involved than a single global descriptor.
+- Needs downstream geometry for metric pose.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2021/html/Hausler_Patch-NetVLAD_Multi-Scale_Fusion_of_Locally-Global_Descriptors_for_Place_Recognition_CVPR_2021_paper.html
+- label: Code
+  url: https://github.com/QVPR/Patch-NetVLAD
+figure:
+  alt: 'Patch-NetVLAD: Multi-Scale Fusion of Locally-Global Descriptors for Place Recognition representative
+    figure'
+  caption: Local-global VPR descriptor
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

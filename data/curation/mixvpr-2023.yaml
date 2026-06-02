@@ -1,0 +1,41 @@
+paper_id: paper:mixvpr-2023
+title: 'MixVPR: Feature Mixing for Visual Place Recognition'
+year: 2023
+venue: IEEE/CVF Winter Conference on Applications of Computer Vision
+venue_type: conference
+venue_tier: A
+abstract: Feature-mixing VPR descriptor paper focused on 3D visual localization archives.
+summary: Mixes feature tokens to build compact global descriptors with strong place-recognition recall.
+problem: Improve global visual place recognition descriptors with efficient feature mixing.
+prior_gap: CNN/VLAD-style descriptors could miss richer spatial interactions without heavier local matching.
+stage: Feature-mixing VPR descriptor
+advance: Mixes feature tokens to build compact global descriptors with strong place-recognition recall.
+metric:
+- Recall@1
+- Recall@5
+- Recall@10
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- MSLS
+- Nordland
+- Pittsburgh
+- Tokyo 24/7
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Retrieval-only output does not provide 6-DoF pose.
+- Performance still depends on downstream geometric verification for localization.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/WACV2023/html/Ali-bey_MixVPR_Feature_Mixing_for_Visual_Place_Recognition_WACV_2023_paper.html
+- label: Code
+  url: https://github.com/amaralibey/MixVPR
+figure:
+  alt: 'MixVPR: Feature Mixing for Visual Place Recognition representative figure'
+  caption: Feature-mixing VPR descriptor
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.76

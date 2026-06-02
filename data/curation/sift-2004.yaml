@@ -1,0 +1,42 @@
+paper_id: paper:sift-2004
+title: Distinctive Image Features from Scale-Invariant Keypoints
+year: 2004
+venue: International Journal of Computer Vision
+venue_type: journal
+venue_tier: Q1
+abstract: Hand-crafted local features paper focused on 3D visual localization archives.
+summary: Introduced scale-space extrema detection, orientation-normalized descriptors, and nearest-neighbor
+  ratio filtering.
+problem: Find image features that remain matchable under scale, rotation, illumination, and moderate viewpoint
+  changes.
+prior_gap: Earlier local features lacked the repeatability and descriptor distinctiveness needed for large-scale
+  matching pipelines.
+stage: Hand-crafted local features
+advance: Introduced scale-space extrema detection, orientation-normalized descriptors, and nearest-neighbor
+  ratio filtering.
+metric:
+- matching repeatability
+- recognition accuracy
+- false match rate
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- object recognition image sets
+- transformed image matching tests
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Not learned from data.
+- Provides only partial affine and viewpoint invariance.
+- Can fail under severe appearance change or texture-poor scenes.
+source_links:
+- label: Paper
+  url: https://link.springer.com/article/10.1023/B:VISI.0000029664.99615.94
+figure:
+  alt: Distinctive Image Features from Scale-Invariant Keypoints representative figure
+  caption: Hand-crafted local features
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.86

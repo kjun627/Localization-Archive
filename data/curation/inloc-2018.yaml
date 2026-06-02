@@ -1,0 +1,41 @@
+paper_id: paper:inloc-2018
+title: 'InLoc: Indoor Visual Localization With Dense Matching and View Synthesis'
+year: 2018
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Indoor localization benchmark paper focused on 3D visual localization archives.
+summary: Combines retrieval, dense matching, and synthesized-view verification for indoor pose selection.
+problem: Estimate 6-DoF indoor poses in texture-poor, repetitive, dynamic, and viewpoint-changing environments.
+prior_gap: Outdoor sparse-feature methods did not transfer cleanly to indoor scenes with weak texture
+  and significant layout change.
+stage: Indoor localization benchmark
+advance: Combines retrieval, dense matching, and synthesized-view verification for indoor pose selection.
+metric:
+- pose recall at 0.25m/10deg
+- pose recall at 0.5m/10deg
+- pose recall at 1m/10deg
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- InLoc
+- DUC1
+- DUC2
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Requires RGB-D database geometry.
+- Dense verification is computationally heavier than sparse hloc-style matching.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_cvpr_2018/html/Taira_InLoc_Indoor_Visual_CVPR_2018_paper.html
+- label: Project
+  url: http://www.ok.sc.e.titech.ac.jp/INLOC/
+figure:
+  alt: 'InLoc: Indoor Visual Localization With Dense Matching and View Synthesis representative figure'
+  caption: Indoor localization benchmark
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.82

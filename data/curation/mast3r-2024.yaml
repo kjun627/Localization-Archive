@@ -1,43 +1,46 @@
-paper_id: "paper:mast3r-2024"
-title: "Grounding Image Matching in 3D with MASt3R"
+paper_id: paper:mast3r-2024
+title: Grounding Image Matching in 3D with MASt3R
 year: 2024
 venue: European Conference on Computer Vision
 venue_type: conference
 venue_tier: A
-abstract: Extends DUSt3R with dense local features and reciprocal matching so image matching is grounded in predicted 3D structure.
-summary: Bridges dense 3D foundation reconstruction and localization-oriented correspondence by making matching explicitly 3D-aware.
-problem: Improve robust dense matching for pose and localization under strong viewpoint and appearance changes.
-prior_gap: 2D matchers treat correspondence as image-plane matching even though localization is constrained by 3D geometry.
+abstract: Extends DUSt3R with dense local features and reciprocal matching so image matching is grounded
+  in predicted 3D structure.
+summary: Bridges dense 3D foundation reconstruction and localization-oriented correspondence by making
+  matching explicitly 3D-aware.
+problem: Improve robust dense matching for pose and localization under strong viewpoint and appearance
+  changes.
+prior_gap: 2D matchers treat correspondence as image-plane matching even though localization is constrained
+  by 3D geometry.
 stage: 3D-grounded dense matching
 advance: Adds a descriptor head and scalable reciprocal matching on top of pointmap regression.
 metric:
-  - Relative pose accuracy
-  - Visual localization recall
-  - Matching runtime
-  - VCRE AUC
-why_this_metric: MASt3R is useful to localization when 3D-grounded correspondences improve pose and retrieval-localization pipelines.
+- Relative pose accuracy
+- Visual localization recall
+- Matching runtime
+- VCRE AUC
+why_this_metric: MASt3R is useful to localization when 3D-grounded correspondences improve pose and retrieval-localization
+  pipelines.
 dataset:
-  - Map-free Visual Relocalization
-  - Aachen Day-Night
-  - InLoc
-  - 7Scenes
-  - Cambridge Landmarks
+- Map-free Visual Relocalization
+- Aachen Day-Night
+- InLoc
+- 7Scenes
+- Cambridge Landmarks
 dataset_limitations:
-  - The method is a matching/localization component rather than a PPVL defense.
+- The method is a matching/localization component rather than a PPVL defense.
 limitations:
-  - Heavy model and non-commercial code or checkpoint restrictions can limit deployment.
-  - Not a drop-in privacy-preserving localization method.
+- Heavy model and non-commercial code or checkpoint restrictions can limit deployment.
+- Not a drop-in privacy-preserving localization method.
 source_links:
-  - label: Paper
-    url: https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/9080_ECCV_2024_paper.php
-  - label: arXiv
-    url: https://arxiv.org/abs/2406.09756
-  - label: Code
-    url: https://github.com/naver/mast3r
+- label: Paper
+  url: https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/9080_ECCV_2024_paper.php
+- label: Code
+  url: https://github.com/naver/mast3r
 figure:
   alt: 3D-grounded image matching
   caption: Dense matching grounded in 3D pointmaps
 provenance:
-  - subagent_research
-  - ecva_link
+- subagent_research
+- ecva_link
 confidence: 0.78

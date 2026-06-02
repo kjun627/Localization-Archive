@@ -1,0 +1,43 @@
+paper_id: paper:vpr-cloak-2025
+title: 'VPR-Cloak: A First Look at Privacy Cloak Against Visual Place Recognition'
+year: 2025
+venue: IEEE/CVF International Conference on Computer Vision
+venue_type: conference
+venue_tier: A*
+abstract: VPR privacy defense paper focused on 3D visual localization archives.
+summary: Applies adversarial privacy cloaking to visual place recognition and validates against real-world
+  services.
+problem: Protect user images from unauthorized visual place recognition.
+prior_gap: Privacy work focused on map/query representations, while public images can still be geolocated
+  by VPR systems.
+stage: VPR privacy defense
+advance: Applies adversarial privacy cloaking to visual place recognition and validates against real-world
+  services.
+metric:
+- VPR retrieval drop
+- privacy attack success
+- image quality
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- VPR benchmarks
+- Google validation
+- Bing validation
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Targets VPR/geolocation privacy rather than precise 6-DoF localization.
+- Adversarial protection is threat-model specific.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/ICCV2025/html/Dong_VPR-Cloak_A_First_Look_at_Privacy_Cloak_Against_Visual_Place_ICCV_2025_paper.html
+- label: Code
+  url: https://github.com/Dilemma-CMZ/VPR-Cloak
+figure:
+  alt: 'VPR-Cloak: A First Look at Privacy Cloak Against Visual Place Recognition representative figure'
+  caption: VPR privacy defense
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.72

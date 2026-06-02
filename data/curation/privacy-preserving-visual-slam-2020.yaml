@@ -1,0 +1,39 @@
+paper_id: paper:privacy-preserving-visual-slam-2020
+title: Privacy Preserving Visual SLAM
+year: 2020
+venue: European Conference on Computer Vision
+venue_type: conference
+venue_tier: A
+abstract: Privacy-preserving visual SLAM paper focused on 3D visual localization archives.
+summary: Combines 3D line clouds and point clouds for privacy-aware tracking and mapping.
+problem: Run real-time SLAM while reducing the scene content exposed by map features.
+prior_gap: Line-cloud localization did not yet provide a full real-time SLAM system.
+stage: Privacy-preserving visual SLAM
+advance: Combines 3D line clouds and point clouds for privacy-aware tracking and mapping.
+metric:
+- trajectory error
+- mapping accuracy
+- runtime
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- CARLA
+- KITTI
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Quantitative evaluation relies heavily on synthetic data.
+- Public line-cloud SLAM benchmarks were lacking.
+source_links:
+- label: Paper
+  url: https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123670103.pdf
+- label: Project
+  url: https://xdspacelab.github.io/lcvslam/
+figure:
+  alt: Privacy Preserving Visual SLAM representative figure
+  caption: Privacy-preserving visual SLAM
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.76

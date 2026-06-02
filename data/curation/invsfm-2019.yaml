@@ -1,35 +1,38 @@
-paper_id: "paper:invsfm-2019"
-title: "Revealing Scenes by Inverting Structure From Motion Reconstructions"
+paper_id: paper:invsfm-2019
+title: Revealing Scenes by Inverting Structure From Motion Reconstructions
 year: 2019
 venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
 venue_tier: A*
-abstract: SfM reconstructions can leak enough sparse geometric, color, and descriptor evidence to synthesize recognizable scene images.
-summary: Establishes the inversion-attack threat model behind privacy-preserving localization by reconstructing visual scene content from sparse SfM maps.
+abstract: SfM reconstructions can leak enough sparse geometric, color, and descriptor evidence to synthesize
+  recognizable scene images.
+summary: Establishes the inversion-attack threat model behind privacy-preserving localization by reconstructing
+  visual scene content from sparse SfM maps.
 problem: Determine whether SfM point-cloud maps remain private after source images are removed.
-prior_gap: Sparse 3D reconstructions were often treated as safe map artifacts because they were not directly human-readable photographs.
+prior_gap: Sparse 3D reconstructions were often treated as safe map artifacts because they were not directly
+  human-readable photographs.
 stage: Privacy attack precursor
-advance: Converts sparse reconstruction attributes into image-space evidence and shows that learned inversion can recover recognizable private scene details.
+advance: Converts sparse reconstruction attributes into image-space evidence and shows that learned inversion
+  can recover recognizable private scene details.
 metric:
-  - Image reconstruction quality
-  - Attribute ablation
-why_this_metric: The attack is about visual leakage rather than pose accuracy, so reconstruction quality and attribute sensitivity expose the privacy risk.
+- Image reconstruction quality
+- Attribute ablation
+why_this_metric: The attack is about visual leakage rather than pose accuracy, so reconstruction quality
+  and attribute sensitivity expose the privacy risk.
 dataset:
-  - Public SfM reconstructions
+- Public SfM reconstructions
 dataset_limitations:
-  - Dataset composition and attack generalization vary with map density and stored point attributes.
+- Dataset composition and attack generalization vary with map density and stored point attributes.
 limitations:
-  - Recovery quality depends on map sparsity, point colors, descriptors, and learned inversion generalization.
-  - The work motivates privacy risk but does not propose a localization-preserving defense.
+- Recovery quality depends on map sparsity, point colors, descriptors, and learned inversion generalization.
+- The work motivates privacy risk but does not propose a localization-preserving defense.
 source_links:
-  - label: Paper
-    url: https://openaccess.thecvf.com/content_CVPR_2019/html/Pittaluga_Revealing_Scenes_by_Inverting_Structure_From_Motion_Reconstructions_CVPR_2019_paper.html
-  - label: PDF
-    url: https://openaccess.thecvf.com/content_CVPR_2019/papers/Pittaluga_Revealing_Scenes_by_Inverting_Structure_From_Motion_Reconstructions_CVPR_2019_paper.pdf
+- label: Paper
+  url: https://openaccess.thecvf.com/content_CVPR_2019/html/Pittaluga_Revealing_Scenes_by_Inverting_Structure_From_Motion_Reconstructions_CVPR_2019_paper.html
 figure:
   alt: Inverting sparse SfM maps into recognizable scene content
   caption: SfM map inversion threat model
 provenance:
-  - subagent_research
-  - cvf_link
+- subagent_research
+- cvf_link
 confidence: 0.78

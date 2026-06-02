@@ -1,42 +1,45 @@
-paper_id: "paper:superglue-2020"
-title: "SuperGlue: Learning Feature Matching With Graph Neural Networks"
+paper_id: paper:superglue-2020
+title: 'SuperGlue: Learning Feature Matching With Graph Neural Networks'
 year: 2020
 venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
 venue_tier: A*
 abstract: A graph neural network performs context-aware feature matching between local features.
-summary: Makes local feature matching more robust by reasoning over keypoint relationships before geometric verification.
+summary: Makes local feature matching more robust by reasoning over keypoint relationships before geometric
+  verification.
 problem: Match local features reliably when descriptors alone are ambiguous or outlier-prone.
-prior_gap: Nearest-neighbor descriptor matching ignored global assignment structure and could produce many inconsistent correspondences.
+prior_gap: Nearest-neighbor descriptor matching ignored global assignment structure and could produce
+  many inconsistent correspondences.
 stage: Context-aware matching
-advance: Turns sparse feature matching into graph-based assignment with contextual reasoning and differentiable optimal matching.
+advance: Turns sparse feature matching into graph-based assignment with contextual reasoning and differentiable
+  optimal matching.
 metric:
-  - Matching precision
-  - Pose estimation AUC
-  - Visual localization accuracy
-why_this_metric: The matcher must improve both correspondence correctness and downstream camera pose estimation, so assignment and pose metrics are both necessary.
+- Matching precision
+- Pose estimation AUC
+- Visual localization accuracy
+why_this_metric: The matcher must improve both correspondence correctness and downstream camera pose estimation,
+  so assignment and pose metrics are both necessary.
 dataset:
-  - ScanNet
-  - MegaDepth
-  - Aachen Day-Night
+- ScanNet
+- MegaDepth
+- Aachen Day-Night
 dataset_limitations:
-  - Matching benchmarks may favor pairwise correspondence quality while full localization also depends on retrieval and mapping quality.
+- Matching benchmarks may favor pairwise correspondence quality while full localization also depends on
+  retrieval and mapping quality.
 limitations:
-  - Graph matching accuracy comes with additional inference cost and dependency on upstream keypoint quality.
+- Graph matching accuracy comes with additional inference cost and dependency on upstream keypoint quality.
 source_links:
-  - label: DOI
-    url: https://doi.org/10.1109/CVPR42600.2020.00499
-  - label: PDF
-    url: https://openaccess.thecvf.com/content_CVPR_2020/papers/Sarlin_SuperGlue_Learning_Feature_Matching_With_Graph_Neural_Networks_CVPR_2020_paper.pdf
-  - label: Code
-    url: https://github.com/magicleap/SuperGluePretrainedNetwork
-  - label: Project
-    url: https://psarlin.com/superglue/
+- label: Paper
+  url: https://doi.org/10.1109/CVPR42600.2020.00499
+- label: Code
+  url: https://github.com/magicleap/SuperGluePretrainedNetwork
+- label: Project
+  url: https://psarlin.com/superglue/
 figure:
   url: figures/superglue-2020.svg
   alt: SuperGlue graph matching schematic
   caption: Graph neural local feature matcher placeholder
 provenance:
-  - openalex_title_check
-  - manual_curation
+- openalex_title_check
+- manual_curation
 confidence: 0.79

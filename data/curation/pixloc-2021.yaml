@@ -1,41 +1,45 @@
-paper_id: "paper:pixloc-2021"
-title: "Back to the Feature: Learning Robust Camera Localization From Pixels to Pose"
+paper_id: paper:pixloc-2021
+title: 'Back to the Feature: Learning Robust Camera Localization From Pixels to Pose'
 year: 2021
 venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
 venue_tier: A*
-abstract: Pixel-wise feature alignment refines camera pose through learned dense matching and geometric optimization.
-summary: Reintroduces geometric pose refinement around learned features to improve RGB camera localization robustness.
-problem: Refine camera poses from image evidence without depending only on sparse correspondences or direct pose regression.
-prior_gap: Retrieval and sparse matching pipelines could produce rough poses, while direct regression often lacked geometric precision.
+abstract: Pixel-wise feature alignment refines camera pose through learned dense matching and geometric
+  optimization.
+summary: Reintroduces geometric pose refinement around learned features to improve RGB camera localization
+  robustness.
+problem: Refine camera poses from image evidence without depending only on sparse correspondences or direct
+  pose regression.
+prior_gap: Retrieval and sparse matching pipelines could produce rough poses, while direct regression
+  often lacked geometric precision.
 stage: Feature-alignment pose refinement
-advance: Separates scene-agnostic feature learning from geometric pose optimization through direct 2D-3D feature alignment.
+advance: Separates scene-agnostic feature learning from geometric pose optimization through direct 2D-3D
+  feature alignment.
 metric:
-  - Pose accuracy at multiple thresholds
-  - Median translation and rotation error
-why_this_metric: Pose refinement should be judged by final metric pose precision at strict and relaxed thresholds, not only by feature similarity.
+- Pose accuracy at multiple thresholds
+- Median translation and rotation error
+why_this_metric: Pose refinement should be judged by final metric pose precision at strict and relaxed
+  thresholds, not only by feature similarity.
 dataset:
-  - 7Scenes
-  - Cambridge Landmarks
-  - Aachen Day-Night
+- 7Scenes
+- Cambridge Landmarks
+- Aachen Day-Night
 dataset_limitations:
-  - Common benchmarks do not fully represent real-time map updates or broad open-world appearance changes.
+- Common benchmarks do not fully represent real-time map updates or broad open-world appearance changes.
 limitations:
-  - Requires a good initialization and can inherit failure modes from retrieval or coarse pose estimation.
+- Requires a good initialization and can inherit failure modes from retrieval or coarse pose estimation.
 source_links:
-  - label: DOI
-    url: https://doi.org/10.1109/CVPR46437.2021.00326
-  - label: PDF
-    url: https://openaccess.thecvf.com/content/CVPR2021/papers/Sarlin_Back_to_the_Feature_Learning_Robust_Camera_Localization_From_Pixels_CVPR_2021_paper.pdf
-  - label: Code
-    url: https://github.com/cvg/pixloc
-  - label: Project
-    url: https://psarlin.com/pixloc/
+- label: Paper
+  url: https://doi.org/10.1109/CVPR46437.2021.00326
+- label: Code
+  url: https://github.com/cvg/pixloc
+- label: Project
+  url: https://psarlin.com/pixloc/
 figure:
   url: figures/pixloc-2021.svg
   alt: PixLoc pixel-to-pose refinement schematic
   caption: Pixel-wise pose refinement placeholder
 provenance:
-  - openalex_title_check
-  - manual_curation
+- openalex_title_check
+- manual_curation
 confidence: 0.76

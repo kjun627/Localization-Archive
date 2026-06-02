@@ -1,44 +1,46 @@
-paper_id: "paper:ppiq-2019"
-title: "Privacy Preserving Image Queries for Camera Localization"
+paper_id: paper:ppiq-2019
+title: Privacy Preserving Image Queries for Camera Localization
 year: 2019
 venue: IEEE/CVF International Conference on Computer Vision
 venue_type: conference
 venue_tier: A*
-abstract: Introduces query-side privacy by replacing each 2D query feature point with a randomly oriented 2D line through the hidden point.
-summary: Extends privacy-preserving localization from protected maps to protected image queries sent to a cloud localization server.
+abstract: Introduces query-side privacy by replacing each 2D query feature point with a randomly oriented
+  2D line through the hidden point.
+summary: Extends privacy-preserving localization from protected maps to protected image queries sent to
+  a cloud localization server.
 problem: Protect client query images and feature coordinates in cloud-based visual localization.
 prior_gap: Map-side line clouds do not hide private query features uploaded to the server.
 stage: Query-side geometric obfuscation
-advance: Uses 2D line query representations and line-based pose solvers for single-image and multi-image localization.
+advance: Uses 2D line query representations and line-based pose solvers for single-image and multi-image
+  localization.
 metric:
-  - Rotation error
-  - Translation error
-  - Reprojection error
-  - RANSAC runtime
-why_this_metric: Query privacy is useful only if obfuscated features still support accurate camera pose estimation.
+- Rotation error
+- Translation error
+- Reprojection error
+- RANSAC runtime
+why_this_metric: Query privacy is useful only if obfuscated features still support accurate camera pose
+  estimation.
 dataset:
-  - 15 real-world indoor/outdoor datasets
-  - Dubrovnik6k
-  - Roman Forum
-  - Trafalgar
-  - Gendarmenmarkt
+- 15 real-world indoor/outdoor datasets
+- Dubrovnik6k
+- Roman Forum
+- Trafalgar
+- Gendarmenmarkt
 dataset_limitations:
-  - The same-location output of successful localization still leaks approximate user position.
+- The same-location output of successful localization still leaks approximate user position.
 limitations:
-  - Neighboring or repeated descriptors can support line-intersection attacks.
-  - Multi-query line triangulation can attack static confidential content.
-  - Later neighborhood recovery work shows random-line geometry remains vulnerable.
+- Neighboring or repeated descriptors can support line-intersection attacks.
+- Multi-query line triangulation can attack static confidential content.
+- Later neighborhood recovery work shows random-line geometry remains vulnerable.
 source_links:
-  - label: Paper
-    url: https://openaccess.thecvf.com/content_ICCV_2019/html/Speciale_Privacy_Preserving_Image_Queries_for_Camera_Localization_ICCV_2019_paper.html
-  - label: PDF
-    url: https://www.microsoft.com/en-us/research/wp-content/uploads/2019/08/PSpeciale2019ICCV.pdf
-  - label: Project
-    url: https://www.microsoft.com/en-us/research/project/privacy-preserving-image-queries-for-camera-localization/publications/
+- label: Paper
+  url: https://openaccess.thecvf.com/content_ICCV_2019/html/Speciale_Privacy_Preserving_Image_Queries_for_Camera_Localization_ICCV_2019_paper.html
+- label: Project
+  url: https://www.microsoft.com/en-us/research/project/privacy-preserving-image-queries-for-camera-localization/publications/
 figure:
   alt: Query keypoints converted to obfuscated lines
   caption: Query-side privacy-preserving image lines
 provenance:
-  - subagent_research
-  - cvf_link
+- subagent_research
+- cvf_link
 confidence: 0.82

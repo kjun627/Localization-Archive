@@ -1,0 +1,40 @@
+paper_id: paper:cotr-2021
+title: 'COTR: Correspondence Transformer for Matching Across Images'
+year: 2021
+venue: IEEE/CVF International Conference on Computer Vision
+venue_type: conference
+venue_tier: A*
+abstract: Transformer correspondence paper focused on 3D visual localization archives.
+summary: Uses a queryable transformer for correspondence search across images.
+problem: Predict sparse or dense correspondences across images using global context.
+prior_gap: Previous correspondence methods relied on limited local search or hand-designed matching stages.
+stage: Transformer correspondence
+advance: Uses a queryable transformer for correspondence search across images.
+metric:
+- matching accuracy
+- relative pose AUC
+- PCK
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- MegaDepth
+- KITTI
+- HPatches
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Queryable dense matching is computationally heavy.
+- Later coarse-to-fine matchers improved efficiency.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/ICCV2021/html/Jiang_COTR_Correspondence_Transformer_for_Matching_Across_Images_ICCV_2021_paper.html
+- label: Code
+  url: https://github.com/ubc-vision/COTR
+figure:
+  alt: 'COTR: Correspondence Transformer for Matching Across Images representative figure'
+  caption: Transformer correspondence
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.74

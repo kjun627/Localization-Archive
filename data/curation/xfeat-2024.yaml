@@ -1,0 +1,43 @@
+paper_id: paper:xfeat-2024
+title: 'XFeat: Accelerated Features for Lightweight Image Matching'
+year: 2024
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Lightweight local features paper focused on 3D visual localization archives.
+summary: Uses a fast feature architecture for sparse and semi-dense matching.
+problem: Make local feature matching fast enough for constrained hardware while keeping useful geometry
+  accuracy.
+prior_gap: Modern learned features and matchers improved accuracy but increased compute cost.
+stage: Lightweight local features
+advance: Uses a fast feature architecture for sparse and semi-dense matching.
+metric:
+- relative pose AUC
+- matching runtime
+- localization recall
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- MegaDepth-1500
+- ScanNet
+- Aachen Day-Night
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Efficiency focus can trade off against strongest dense or foundation matchers.
+- Extreme viewpoint change remains challenging.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2024/html/Potje_XFeat_Accelerated_Features_for_Lightweight_Image_Matching_CVPR_2024_paper.html
+- label: Code
+  url: https://github.com/verlab/accelerated_features
+- label: Project
+  url: https://www.verlab.dcc.ufmg.br/descriptors/xfeat_cvpr24/
+figure:
+  alt: 'XFeat: Accelerated Features for Lightweight Image Matching representative figure'
+  caption: Lightweight local features
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

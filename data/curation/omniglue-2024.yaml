@@ -1,0 +1,44 @@
+paper_id: paper:omniglue-2024
+title: 'OmniGlue: Generalizable Feature Matching with Foundation Model Guidance'
+year: 2024
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Foundation-guided sparse matching paper focused on 3D visual localization archives.
+summary: Uses DINOv2-style foundation guidance with SuperGlue and LightGlue-style matching.
+problem: Improve cross-domain generalization of learnable feature matching.
+prior_gap: Learned matchers often overfit to common geometry datasets and fail under domain shift.
+stage: Foundation-guided sparse matching
+advance: Uses DINOv2-style foundation guidance with SuperGlue and LightGlue-style matching.
+metric:
+- relative pose AUC
+- matching accuracy
+- domain generalization score
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- MegaDepth
+- ScanNet
+- Google Urban
+- synthetic matching datasets
+- aerial matching datasets
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Foundation guidance adds complexity and compute.
+- Gains depend on base local feature quality.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2024/html/Jiang_OmniGlue_Generalizable_Feature_Matching_with_Foundation_Model_Guidance_CVPR_2024_paper.html
+- label: Code
+  url: https://github.com/google-research/omniglue
+- label: Project
+  url: https://hwjiang1510.github.io/OmniGlue/
+figure:
+  alt: 'OmniGlue: Generalizable Feature Matching with Foundation Model Guidance representative figure'
+  caption: Foundation-guided sparse matching
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

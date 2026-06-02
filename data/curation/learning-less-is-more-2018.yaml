@@ -1,0 +1,41 @@
+paper_id: paper:learning-less-is-more-2018
+title: Learning Less Is More - 6D Camera Localization via 3D Surface Regression
+year: 2018
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Scene coordinate regression paper focused on 3D visual localization archives.
+summary: Learns 3D surface coordinates with a differentiable localization objective.
+problem: Train CNN-based scene coordinate regression without manually engineered random forests.
+prior_gap: Earlier SCR relied on forest models or complex end-to-end choices and was hard to scale across
+  scenes.
+stage: Scene coordinate regression
+advance: Learns 3D surface coordinates with a differentiable localization objective.
+metric:
+- median translation error
+- median rotation error
+- pose recall
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- 7-Scenes
+- 12-Scenes
+- Cambridge Landmarks
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Requires scene-specific training.
+- Later DSAC* and ACE improve training and scalability.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_cvpr_2018/html/Brachmann_Learning_Less_Is_CVPR_2018_paper.html
+- label: Code
+  url: https://github.com/vislearn/LessMore
+figure:
+  alt: Learning Less Is More - 6D Camera Localization via 3D Surface Regression representative figure
+  caption: Scene coordinate regression
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.76

@@ -1,0 +1,41 @@
+paper_id: paper:sosnet-2019
+title: 'SOSNet: Second Order Similarity Regularization for Local Descriptor Learning'
+year: 2019
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Learned local descriptor paper focused on 3D visual localization archives.
+summary: Adds second-order similarity regularization and descriptor-space distribution analysis.
+problem: Learn descriptors that preserve matchability beyond pairwise positive and negative distance constraints.
+prior_gap: Triplet and contrastive losses optimized first-order distances but did not enforce neighborhood-structure
+  consistency.
+stage: Learned local descriptor
+advance: Adds second-order similarity regularization and descriptor-space distribution analysis.
+metric:
+- FPR95
+- mean average precision
+- matching score
+- reconstruction performance
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- HPatches
+- Brown patch dataset
+- local feature reconstruction benchmarks
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Descriptor-only contribution.
+- Needs an external detector and matcher.
+- Not optimized end-to-end for localization.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_CVPR_2019/html/Tian_SOSNet_Second_Order_Similarity_Regularization_for_Local_Descriptor_Learning_CVPR_2019_paper.html
+figure:
+  alt: 'SOSNet: Second Order Similarity Regularization for Local Descriptor Learning representative figure'
+  caption: Learned local descriptor
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.76

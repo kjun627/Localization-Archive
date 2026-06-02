@@ -1,0 +1,36 @@
+paper_id: paper:sanet-2019
+title: 'SANet: Scene Agnostic Network for Camera Localization'
+year: 2019
+venue: IEEE/CVF International Conference on Computer Vision
+venue_type: conference
+venue_tier: A*
+abstract: Scene-agnostic coordinate regression paper focused on 3D visual localization archives.
+summary: Uses reference images and points to predict coordinates for unseen scenes.
+problem: Localize in scenes without training a separate scene-specific coordinate regressor from scratch.
+prior_gap: SCR methods were accurate but usually required per-scene training and dense supervision.
+stage: Scene-agnostic coordinate regression
+advance: Uses reference images and points to predict coordinates for unseen scenes.
+metric:
+- median translation error
+- median rotation error
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- 7-Scenes
+- Cambridge Landmarks
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Depends on reference scene representation.
+- Less simple than per-scene SCR.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_ICCV_2019/html/Yang_SANet_Scene_Agnostic_Network_for_Camera_Localization_ICCV_2019_paper.html
+figure:
+  alt: 'SANet: Scene Agnostic Network for Camera Localization representative figure'
+  caption: Scene-agnostic coordinate regression
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.76

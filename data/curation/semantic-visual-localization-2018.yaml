@@ -1,0 +1,37 @@
+paper_id: paper:semantic-visual-localization-2018
+title: Semantic Visual Localization
+year: 2018
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Semantic structure-based localization paper focused on 3D visual localization archives.
+summary: Learns 3D descriptors with semantic scene completion as an auxiliary task.
+problem: Improve visual localization under extreme viewpoint, illumination, and geometry changes.
+prior_gap: Pure feature matching failed when visual overlap was weak or appearance changed dramatically.
+stage: Semantic structure-based localization
+advance: Learns 3D descriptors with semantic scene completion as an auxiliary task.
+metric:
+- localization recall
+- pose accuracy at thresholds
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Aachen Day-Night
+- RobotCar Seasons
+- CMU Seasons
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Requires semantic or geometric 3D scene representations.
+- Semantic ambiguity can still cause incorrect localization.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_cvpr_2018/html/Schonberger_Semantic_Visual_Localization_CVPR_2018_paper.html
+figure:
+  alt: Semantic Visual Localization representative figure
+  caption: Semantic structure-based localization
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.76

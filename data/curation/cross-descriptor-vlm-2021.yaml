@@ -1,0 +1,40 @@
+paper_id: paper:cross-descriptor-vlm-2021
+title: Cross-Descriptor Visual Localization and Mapping
+year: 2021
+venue: IEEE/CVF International Conference on Computer Vision
+venue_type: conference
+venue_tier: A*
+abstract: Cross-descriptor localization and mapping paper focused on 3D visual localization archives.
+summary: Learns descriptor-agnostic mappings for matching across handcrafted and learned feature types.
+problem: Enable localization and map maintenance when descriptor type changes over time or across devices.
+prior_gap: Traditional localization assumes the same local feature representation for map construction
+  and query localization.
+stage: Cross-descriptor localization and mapping
+advance: Learns descriptor-agnostic mappings for matching across handcrafted and learned feature types.
+metric:
+- localization recall
+- matching AUC
+- multiview AUC
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Aachen Day-Night
+- InLoc
+- HPatches
+- Image Matching Workshop benchmark
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Adds descriptor translation machinery.
+- Evaluation still assumes compatible geometric pipelines.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/ICCV2021/html/Dusmanu_Cross-Descriptor_Visual_Localization_and_Mapping_ICCV_2021_paper.html
+figure:
+  alt: Cross-Descriptor Visual Localization and Mapping representative figure
+  caption: Cross-descriptor localization and mapping
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

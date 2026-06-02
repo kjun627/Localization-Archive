@@ -1,0 +1,40 @@
+paper_id: paper:delf-2017
+title: Large-Scale Image Retrieval with Attentive Deep Local Features
+year: 2017
+venue: IEEE/CVF International Conference on Computer Vision
+venue_type: conference
+venue_tier: A*
+abstract: Image retrieval with local features paper focused on 3D visual localization archives.
+summary: Learns local descriptors and an attention mechanism that selects discriminative regions for scalable
+  retrieval.
+problem: Scale instance-level image retrieval while retaining local discriminativeness.
+prior_gap: Global CNN descriptors were compact but weak for some instance-level matches, while dense local
+  matching was expensive.
+stage: Image retrieval with local features
+advance: Learns local descriptors and an attention mechanism that selects discriminative regions for scalable
+  retrieval.
+metric:
+- mean average precision
+- top-K retrieval accuracy
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Google Landmarks
+- Oxford5k
+- Paris6k
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Primarily evaluated for landmark retrieval.
+- Local feature indexing adds complexity compared with single-vector descriptors.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_ICCV_2017/html/Noh_Large-Scale_Image_Retrieval_ICCV_2017_paper.html
+figure:
+  alt: Large-Scale Image Retrieval with Attentive Deep Local Features representative figure
+  caption: Image retrieval with local features
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.76

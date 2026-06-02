@@ -1,36 +1,37 @@
-paper_id: "paper:aachen-day-night-2018"
-title: "Benchmarking 6DOF Outdoor Visual Localization in Changing Conditions"
+paper_id: paper:aachen-day-night-2018
+title: Benchmarking 6DOF Outdoor Visual Localization in Changing Conditions
 year: 2018
 venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
 venue_tier: A*
 abstract: A benchmark for outdoor 6-DoF localization under day-night and changing-condition challenges.
-summary: Establishes a harder outdoor visual localization benchmark and evaluation protocol for long-term localization.
+summary: Establishes a harder outdoor visual localization benchmark and evaluation protocol for long-term
+  localization.
 problem: Evaluate 6-DoF outdoor visual localization under illumination and appearance changes.
-prior_gap: Many localization benchmarks were captured under limited conditions and did not sufficiently stress long-term robustness.
+prior_gap: Many localization benchmarks were captured under limited conditions and did not sufficiently
+  stress long-term robustness.
 stage: Long-term benchmark
-advance: Introduces day-night and changing-condition evaluation to expose failures hidden by easier relocalization benchmarks.
+advance: Introduces day-night and changing-condition evaluation to expose failures hidden by easier relocalization
+  benchmarks.
 metric:
-  - Pose accuracy at multiple translation and rotation thresholds
-why_this_metric: Outdoor localization quality is application-dependent, so multiple thresholds reveal whether methods are useful for coarse retrieval, AR alignment, or precise navigation.
+- Pose accuracy at multiple translation and rotation thresholds
+why_this_metric: Outdoor localization quality is application-dependent, so multiple thresholds reveal
+  whether methods are useful for coarse retrieval, AR alignment, or precise navigation.
 dataset:
-  - Aachen Day-Night
+- Aachen Day-Night
 dataset_limitations:
-  - Benchmarking focuses on one urban environment and does not cover all weather, seasonal, or geographic variation.
+- Benchmarking focuses on one urban environment and does not cover all weather, seasonal, or geographic
+  variation.
 limitations:
-  - Dataset-centric evaluation can rank methods without explaining which pipeline component caused failure.
+- Dataset-centric evaluation can rank methods without explaining which pipeline component caused failure.
 source_links:
-  - label: DOI
-    url: https://doi.org/10.1109/CVPR.2018.00897
-  - label: PDF
-    url: https://openaccess.thecvf.com/content_cvpr_2018/papers_backup/Sattler_Benchmarking_6DOF_Outdoor_CVPR_2018_paper.pdf
-  - label: arXiv
-    url: https://arxiv.org/abs/1707.09092
+- label: Paper
+  url: https://doi.org/10.1109/CVPR.2018.00897
 figure:
   url: figures/aachen-day-night-2018.svg
   alt: Day-night outdoor localization benchmark schematic
   caption: Day-night outdoor localization benchmark placeholder
 provenance:
-  - openalex_title_check
-  - manual_curation
+- openalex_title_check
+- manual_curation
 confidence: 0.78

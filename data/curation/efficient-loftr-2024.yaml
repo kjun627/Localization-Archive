@@ -1,0 +1,44 @@
+paper_id: paper:efficient-loftr-2024
+title: 'Efficient LoFTR: Semi-Dense Local Feature Matching with Sparse-Like Speed'
+year: 2024
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Efficient detector-free matching paper focused on 3D visual localization archives.
+summary: Uses sparse-like speed optimizations in a semi-dense local feature matching pipeline.
+problem: Make detector-free semi-dense matching much faster while preserving accuracy.
+prior_gap: LoFTR-style full feature-map transformer attention was expensive for deployment.
+stage: Efficient detector-free matching
+advance: Uses sparse-like speed optimizations in a semi-dense local feature matching pipeline.
+metric:
+- relative pose AUC
+- matching runtime
+- localization recall
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- ScanNet
+- MegaDepth
+- HPatches
+- Aachen Day-Night
+- InLoc
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Still inherits detector-free assumptions.
+- May be domain-sensitive compared with foundation-guided methods.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2024/html/Wang_Efficient_LoFTR_Semi-Dense_Local_Feature_Matching_with_Sparse-Like_Speed_CVPR_2024_paper.html
+- label: Code
+  url: https://github.com/zju3dv/EfficientLoFTR
+- label: Project
+  url: https://zju3dv.github.io/efficientloftr/
+figure:
+  alt: 'Efficient LoFTR: Semi-Dense Local Feature Matching with Sparse-Like Speed representative figure'
+  caption: Efficient detector-free matching
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.8

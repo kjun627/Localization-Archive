@@ -1,0 +1,42 @@
+paper_id: paper:pdc-net-2021
+title: Learning Accurate Dense Correspondences and When To Trust Them
+year: 2021
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Dense correspondence with uncertainty paper focused on 3D visual localization archives.
+summary: Models probabilistic correspondence confidence for dense matching.
+problem: Predict dense image correspondences and estimate when they should be trusted.
+prior_gap: Dense correspondence networks produced matches but often lacked calibrated uncertainty for
+  robust geometry.
+stage: Dense correspondence with uncertainty
+advance: Models probabilistic correspondence confidence for dense matching.
+metric:
+- PCK
+- relative pose AUC
+- uncertainty calibration
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- HPatches
+- ETH3D
+- KITTI
+- MegaDepth
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- More expensive than sparse matchers.
+- Dense confidence can still fail under unseen domains or extreme ambiguity.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2021/html/Truong_Learning_Accurate_Dense_Correspondences_and_When_To_Trust_Them_CVPR_2021_paper.html
+- label: Code
+  url: https://github.com/PruneTruong/PDCNet
+figure:
+  alt: Learning Accurate Dense Correspondences and When To Trust Them representative figure
+  caption: Dense correspondence with uncertainty
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.76

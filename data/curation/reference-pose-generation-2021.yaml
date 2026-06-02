@@ -1,0 +1,42 @@
+paper_id: paper:reference-pose-generation-2021
+title: Reference Pose Generation for Long-term Visual Localization via Learned Features and View Synthesis
+year: 2021
+venue: International Journal of Computer Vision
+venue_type: journal
+venue_tier: Q1
+abstract: Benchmark ground-truth refinement paper focused on 3D visual localization archives.
+summary: Iteratively matches real images against synthesized model renderings to refine query poses and
+  uncertainty.
+problem: Generate accurate reference poses for long-term visual localization benchmarks.
+prior_gap: SfM-based pose generation can fail under day-night changes, while manual annotation is not
+  scalable.
+stage: Benchmark ground-truth refinement
+advance: Iteratively matches real images against synthesized model renderings to refine query poses and
+  uncertainty.
+metric:
+- pose uncertainty
+- translation error
+- rotation error
+- localization accuracy
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Aachen Day-Night
+- Extended Aachen Day-Night
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Requires an initial pose estimate and renderable 3D model.
+- Targets benchmark curation rather than runtime localization.
+source_links:
+- label: Paper
+  url: https://link.springer.com/article/10.1007/s11263-020-01399-8
+figure:
+  alt: Reference Pose Generation for Long-term Visual Localization via Learned Features and View Synthesis
+    representative figure
+  caption: Benchmark ground-truth refinement
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

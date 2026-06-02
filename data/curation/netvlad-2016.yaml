@@ -1,40 +1,43 @@
-paper_id: "paper:netvlad-2016"
-title: "NetVLAD: CNN Architecture for Weakly Supervised Place Recognition"
+paper_id: paper:netvlad-2016
+title: 'NetVLAD: CNN Architecture for Weakly Supervised Place Recognition'
 year: 2016
 venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
 venue_tier: A*
 abstract: A trainable VLAD layer learns image retrieval descriptors for place recognition from weak supervision.
-summary: Provides a retrieval backbone that became a common first stage for large-scale visual localization systems.
+summary: Provides a retrieval backbone that became a common first stage for large-scale visual localization
+  systems.
 problem: Retrieve visually corresponding places under large viewpoint and appearance changes.
-prior_gap: Handcrafted global descriptors and non-trainable aggregation often lacked robustness for city-scale image retrieval.
+prior_gap: Handcrafted global descriptors and non-trainable aggregation often lacked robustness for city-scale
+  image retrieval.
 stage: Place recognition
-advance: Makes image retrieval trainable end-to-end with a VLAD-style aggregation layer for localization candidate generation.
+advance: Makes image retrieval trainable end-to-end with a VLAD-style aggregation layer for localization
+  candidate generation.
 metric:
-  - Recall at K
-  - Localization retrieval recall
-why_this_metric: Retrieval is a candidate-generation stage, so recall at small K directly measures whether the downstream geometric localizer receives useful database images.
+- Recall at K
+- Localization retrieval recall
+why_this_metric: Retrieval is a candidate-generation stage, so recall at small K directly measures whether
+  the downstream geometric localizer receives useful database images.
 dataset:
-  - Pittsburgh 250k
-  - Tokyo 24/7
+- Pittsburgh 250k
+- Tokyo 24/7
 dataset_limitations:
-  - Place recognition datasets do not fully measure final 6-DoF pose quality without a downstream geometric localization step.
+- Place recognition datasets do not fully measure final 6-DoF pose quality without a downstream geometric
+  localization step.
 limitations:
-  - Retrieval alone cannot estimate metric pose and may fail under severe perceptual aliasing.
+- Retrieval alone cannot estimate metric pose and may fail under severe perceptual aliasing.
 source_links:
-  - label: CVF
-    url: https://openaccess.thecvf.com/content_cvpr_2016/html/Arandjelovic_NetVLAD_CNN_Architecture_CVPR_2016_paper.html
-  - label: PDF
-    url: https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Arandjelovic_NetVLAD_CNN_Architecture_CVPR_2016_paper.pdf
-  - label: Code
-    url: https://github.com/Relja/netvlad
-  - label: Project
-    url: http://www.di.ens.fr/willow/research/netvlad/
+- label: Paper
+  url: https://openaccess.thecvf.com/content_cvpr_2016/html/Arandjelovic_NetVLAD_CNN_Architecture_CVPR_2016_paper.html
+- label: Code
+  url: https://github.com/Relja/netvlad
+- label: Project
+  url: http://www.di.ens.fr/willow/research/netvlad/
 figure:
   url: figures/netvlad-2016.svg
   alt: NetVLAD retrieval pipeline schematic
   caption: Learned image retrieval descriptor placeholder
 provenance:
-  - openalex_title_check
-  - manual_curation
+- openalex_title_check
+- manual_curation
 confidence: 0.76

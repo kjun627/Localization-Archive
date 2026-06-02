@@ -1,45 +1,49 @@
-paper_id: "paper:dcl-2026"
-title: "Revisiting Geometric Obfuscation with Dual Convergent Lines for Privacy-Preserving Image Queries in Visual Localization"
+paper_id: paper:dcl-2026
+title: Revisiting Geometric Obfuscation with Dual Convergent Lines for Privacy-Preserving Image Queries
+  in Visual Localization
 year: 2026
 venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
 venue_tier: A*
-abstract: Introduces Dual Convergent Lines for query-side PPIQ, using two fixed anchors to make neighborhood-based keypoint recovery collapse to anchors or become unstable near a partition.
-summary: A query-side geometric obfuscation successor designed specifically against neighborhood-recovery attacks while staying compatible with line-based pose solvers.
-problem: Defend privacy-preserving image queries against neighborhood-based point recovery without abandoning line-based localization.
-prior_gap: Random Lines and Coordinate Permutation preserve neighboring-line distributions that still surround the original keypoint location.
+abstract: Introduces Dual Convergent Lines for query-side PPIQ, using two fixed anchors to make neighborhood-based
+  keypoint recovery collapse to anchors or become unstable near a partition.
+summary: A query-side geometric obfuscation successor designed specifically against neighborhood-recovery
+  attacks while staying compatible with line-based pose solvers.
+problem: Defend privacy-preserving image queries against neighborhood-based point recovery without abandoning
+  line-based localization.
+prior_gap: Random Lines and Coordinate Permutation preserve neighboring-line distributions that still
+  surround the original keypoint location.
 stage: Query-side DCL defense
-advance: Uses dual-anchor line lifting, analyzes ill-posed recovery, and adds non-degenerate sampling for l6P/RANSAC deployment.
+advance: Uses dual-anchor line lifting, analyzes ill-posed recovery, and adds non-degenerate sampling
+  for l6P/RANSAC deployment.
 metric:
-  - Recovered keypoint error
-  - PSNR
-  - SSIM
-  - LPIPS
-  - Object detections on reconstructed images
-  - Median rotation error
-  - Median translation error
-  - Runtime
+- Recovered keypoint error
+- PSNR
+- SSIM
+- LPIPS
+- Object detections on reconstructed images
+- Median rotation error
+- Median translation error
+- Runtime
 why_this_metric: DCL must quantify both attack resistance and practical pose-estimation accuracy.
 dataset:
-  - 7Scenes
-  - Cambridge Landmarks
-  - Aachen Day-Night
+- 7Scenes
+- Cambridge Landmarks
+- Aachen Day-Night
 dataset_limitations:
-  - Latest public code was not confirmed as of 2026-06-02.
+- Latest public code was not confirmed as of 2026-06-02.
 limitations:
-  - Degenerate cases can occur when all query keypoints fall in one partition.
-  - Accuracy can remain below non-private HLoc and Random Lines on Aachen, especially night queries.
-  - Official code link is not confirmed.
+- Degenerate cases can occur when all query keypoints fall in one partition.
+- Accuracy can remain below non-private HLoc and Random Lines on Aachen, especially night queries.
+- Official code link is not confirmed.
 source_links:
-  - label: arXiv
-    url: https://arxiv.org/abs/2604.22310
-  - label: Lab news
-    url: https://sail.hanyang.ac.kr/news
+- label: Paper
+  url: https://arxiv.org/abs/2604.22310
 figure:
   alt: Dual convergent lines for privacy-preserving image queries
   caption: Dual convergent line obfuscation
 provenance:
-  - subagent_research
-  - arxiv_link
-  - current_date_checked_2026_06_02
+- subagent_research
+- arxiv_link
+- current_date_checked_2026_06_02
 confidence: 0.7

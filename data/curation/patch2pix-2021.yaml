@@ -1,0 +1,43 @@
+paper_id: paper:patch2pix-2021
+title: 'Patch2Pix: Epipolar-Guided Pixel-Level Correspondences'
+year: 2021
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Pixel-level match refinement paper focused on 3D visual localization archives.
+summary: Uses weak epipolar supervision to refine patch proposals and reject outliers.
+problem: Improve correspondence accuracy for pose estimation without dense ground-truth correspondence
+  labels.
+prior_gap: End-to-end correspondence networks were limited by low-resolution matching and memory bottlenecks.
+stage: Pixel-level match refinement
+advance: Uses weak epipolar supervision to refine patch proposals and reject outliers.
+metric:
+- matching accuracy
+- homography estimation
+- relative pose AUC
+- visual localization recall
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- MegaDepth
+- HPatches
+- Aachen Day-Night
+- InLoc
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Depends on initial match proposals.
+- Refinement quality can inherit upstream failures.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2021/html/Zhou_Patch2Pix_Epipolar-Guided_Pixel-Level_Correspondences_CVPR_2021_paper.html
+- label: Code
+  url: https://github.com/GrumpyZhou/patch2pix
+figure:
+  alt: 'Patch2Pix: Epipolar-Guided Pixel-Level Correspondences representative figure'
+  caption: Pixel-level match refinement
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.78

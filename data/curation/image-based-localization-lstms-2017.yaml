@@ -1,0 +1,40 @@
+paper_id: paper:image-based-localization-lstms-2017
+title: Image-Based Localization Using LSTMs for Structured Feature Correlation
+year: 2017
+venue: IEEE/CVF International Conference on Computer Vision
+venue_type: conference
+venue_tier: A*
+abstract: Structured APR paper focused on 3D visual localization archives.
+summary: Applies LSTM units to CNN feature maps so pose prediction can use structured correlations.
+problem: Use spatial feature structure more effectively for camera pose regression.
+prior_gap: Early APR methods treated the image mostly as a global feature vector and overfit scene-specific
+  appearance.
+stage: Structured APR
+advance: Applies LSTM units to CNN feature maps so pose prediction can use structured correlations.
+metric:
+- median translation error
+- median rotation error
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- 7-Scenes
+- Cambridge Landmarks
+- TUM LSI
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Still scene-specific APR.
+- Behavior remains closer to retrieval than explicit 3D matching.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_ICCV_2017/html/Walch_Image-Based_Localization_Using_ICCV_2017_paper.html
+- label: Project
+  url: https://research.nvidia.com/labs/dvl/publication/walchiccv2017/
+figure:
+  alt: Image-Based Localization Using LSTMs for Structured Feature Correlation representative figure
+  caption: Structured APR
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.76

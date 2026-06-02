@@ -1,5 +1,5 @@
-paper_id: "paper:dsac-star-2021"
-title: "DSAC*: Differentiable RANSAC for Camera Localization"
+paper_id: paper:dsac-star-2021
+title: 'DSAC*: Differentiable RANSAC for Camera Localization'
 year: 2021
 venue: IEEE Transactions on Pattern Analysis and Machine Intelligence
 venue_type: journal
@@ -7,32 +7,35 @@ venue_tier: Q1
 abstract: End-to-end camera localization with differentiable hypothesis selection.
 summary: Neural-guided scene coordinate regression with differentiable RANSAC for robust camera pose estimation.
 problem: Robust absolute pose estimation in scenes with ambiguous or noisy correspondences.
-prior_gap: Classical RANSAC pipelines were not end-to-end trainable and struggled to learn localization-specific scoring behavior.
+prior_gap: Classical RANSAC pipelines were not end-to-end trainable and struggled to learn localization-specific
+  scoring behavior.
 stage: Scene-coordinate relocalization
-advance: Stabilizes and improves the DSAC line of scene-coordinate regression with neural guidance and robust camera pose scoring.
+advance: Stabilizes and improves the DSAC line of scene-coordinate regression with neural guidance and
+  robust camera pose scoring.
 metric:
-  - Pose accuracy at 5cm / 5deg
-  - Median translation and rotation error
-why_this_metric: Absolute camera localization is deployment-oriented, so thresholded pose accuracy and median pose error directly measure recoverable camera pose quality.
+- Pose accuracy at 5cm / 5deg
+- Median translation and rotation error
+why_this_metric: Absolute camera localization is deployment-oriented, so thresholded pose accuracy and
+  median pose error directly measure recoverable camera pose quality.
 dataset:
-  - Cambridge Landmarks
-  - 7Scenes
+- Cambridge Landmarks
+- 7Scenes
 dataset_limitations:
-  - Indoor and landmark datasets can underrepresent larger viewpoint shifts and seasonal changes.
+- Indoor and landmark datasets can underrepresent larger viewpoint shifts and seasonal changes.
 limitations:
-  - Regression quality can still degrade under severe appearance changes.
+- Regression quality can still degrade under severe appearance changes.
 source_links:
-  - label: Paper
-    url: https://ieeexplore.ieee.org/document/9250416
-  - label: Project
-    url: https://niessnerlab.org/projects/brachmann2017dsacpp.html
-  - label: Code
-    url: https://github.com/vislearn/dsacstar
+- label: Paper
+  url: https://ieeexplore.ieee.org/document/9250416
+- label: Code
+  url: https://github.com/vislearn/dsacstar
+- label: Project
+  url: https://niessnerlab.org/projects/brachmann2017dsacpp.html
 figure:
   url: figures/dsac-star-2021.svg
   alt: DSAC star robust localization schematic
   caption: End-to-end differentiable RANSAC localization placeholder
 provenance:
-  - manual_link
-  - user_note
+- manual_link
+- user_note
 confidence: 0.82

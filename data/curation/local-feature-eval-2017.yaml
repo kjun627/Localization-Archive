@@ -1,0 +1,44 @@
+paper_id: paper:local-feature-eval-2017
+title: Comparative Evaluation of Hand-Crafted and Learned Local Features
+year: 2017
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Local feature evaluation paper focused on 3D visual localization archives.
+summary: Benchmarks descriptors inside an image-based reconstruction pipeline with public evaluation code.
+problem: Evaluate local descriptors by downstream reconstruction utility instead of fragmented patch-level
+  metrics.
+prior_gap: Descriptor papers used metrics that did not reliably predict SfM or localization usefulness.
+stage: Local feature evaluation
+advance: Benchmarks descriptors inside an image-based reconstruction pipeline with public evaluation code.
+metric:
+- registered images
+- sparse points
+- track length
+- reprojection error
+why_this_metric: The archive tracks downstream localization, matching, retrieval, privacy, or benchmark
+  behavior rather than isolated model scores.
+dataset:
+- Fountain
+- Herz-Jesu
+- South Building
+- Madrid Metropolis
+- Gendarmenmarkt
+dataset_limitations:
+- Dataset coverage and protocol differences can affect how directly results transfer to new localization
+  deployments.
+limitations:
+- Descriptor-focused rather than full detector-matcher pipelines.
+- Predates transformer and dense matchers.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content_cvpr_2017/html/Schonberger_Comparative_Evaluation_of_CVPR_2017_paper.html
+- label: Code
+  url: https://github.com/ahojnnes/local-feature-evaluation
+figure:
+  alt: Comparative Evaluation of Hand-Crafted and Learned Local Features representative figure
+  caption: Local feature evaluation
+provenance:
+- subagent_research
+- manual_curation
+confidence: 0.8
