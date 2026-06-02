@@ -107,13 +107,6 @@ function hasCode(paper: GraphNode) {
   return (paper.metadata?.sourceLinks ?? []).some((link) => link.label.toLowerCase().includes("code"));
 }
 
-function figureUrl(url: string | undefined) {
-  if (!url) return undefined;
-  if (url.toLowerCase().endsWith(".svg")) return undefined;
-  if (url.startsWith("http") || url.startsWith("/")) return url;
-  return `${import.meta.env.BASE_URL}${url}`;
-}
-
 type SourceLink = NonNullable<NonNullable<GraphNode["metadata"]>["sourceLinks"]>[number];
 type LinkSlot = {
   label: "Paper" | "Code" | "Project";
@@ -361,8 +354,6 @@ function DetailPanel({
     .map((edge) => ({ edge, paper: papersByKey.get(edge.source) }))
     .filter((item): item is { edge: GraphEdge; paper: GraphNode } => Boolean(item.paper));
   const sourceLinks = normalizeSourceLinks(paper.metadata?.sourceLinks);
-  const figure = paper.metadata?.figure;
-  const representativeImage = figureUrl(figure?.url);
   const inCompare = compareKeys.includes(paper.key);
   const compareFull = compareKeys.length >= MAX_COMPARE && !inCompare;
 
@@ -393,15 +384,7 @@ function DetailPanel({
         </span>
       </div>
 
-      <div className={`fig ${representativeImage ? "has-image" : ""}`}>
-        {representativeImage ? (
-          <img
-            alt={figure?.alt ?? paper.label}
-            className="fig-img"
-            loading="lazy"
-            src={representativeImage}
-          />
-        ) : null}
+      <div className="fig">
         <span className="fig-caption">{paper.metadata?.figure?.caption ?? paper.metadata?.stage ?? "Representative figure slot"}</span>
       </div>
 

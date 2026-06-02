@@ -620,7 +620,7 @@ a {
 }
 
 .detail .fig::before {
-  content: "FIG.";
+  content: "NOTE";
   position: absolute;
   top: 8px;
   left: 10px;
@@ -634,15 +634,6 @@ a {
   letter-spacing: 0.14em;
 }
 
-.detail .fig .fig-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-}
-
 .detail .fig .fig-caption {
   position: absolute;
   left: 0;
@@ -650,16 +641,10 @@ a {
   bottom: 0;
   display: block;
   z-index: 2;
-  padding: 8px 12px 10px;
-  background: linear-gradient(to top, rgba(25, 31, 40, 0.68), rgba(25, 31, 40, 0));
-  color: #fdf6dd;
-  pointer-events: none;
-}
-
-.detail .fig:not(.has-image) .fig-caption {
   padding: 10px 12px;
   background: transparent;
   color: var(--ink-soft);
+  pointer-events: none;
 }
 
 .detail .content {

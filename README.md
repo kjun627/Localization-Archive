@@ -144,5 +144,5 @@ If the workflow cannot write the Pages deployment, set `Settings -> Actions -> G
 - The default UI language is English.
 - Google Scholar is intentionally excluded from the data pipeline.
 - Source links are normalized to exactly `Paper`, `Code`, and `Project`.
-- Representative paper images are shown only when a verified image URL or local asset is available; otherwise the card keeps a caption-only figure slot.
+- Paper cards use a caption-only visual slot by default, avoiding unverified representative figures in the public build.
 - Conference event homepages are not required for the paper link slot. Stable archive and proceedings links are preferred.
