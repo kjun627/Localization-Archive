@@ -1,0 +1,246 @@
+:root {
+  color-scheme: dark;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(37, 156, 255, 0.22), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(28, 214, 132, 0.18), transparent 32%),
+    #060816;
+  color: #f1fbff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at top left, rgba(36, 144, 255, 0.18), transparent 28%),
+    #040712;
+  background-size: 36px 36px, 36px 36px, auto;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 28px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.topbar h1,
+.panel h2,
+.panel h3 {
+  margin: 0;
+}
+
+.topbar-eyebrow,
+.panel-eyebrow,
+.metric-label,
+.control-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #7df9ff;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.topbar-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 6px;
+  color: #a8c8d8;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr) 360px;
+  gap: 18px;
+}
+
+.panel {
+  border: 1px solid rgba(125, 249, 255, 0.12);
+  background: rgba(6, 13, 29, 0.72);
+  backdrop-filter: blur(18px);
+  border-radius: 22px;
+  box-shadow: 0 16px 70px rgba(0, 0, 0, 0.35);
+}
+
+.sidebar,
+.details {
+  padding: 20px;
+}
+
+.graph-panel {
+  padding: 18px;
+  min-height: 75vh;
+}
+
+.panel-header {
+  margin-bottom: 18px;
+}
+
+.graph-surface {
+  height: calc(75vh - 80px);
+  min-height: 560px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at center, rgba(125, 249, 255, 0.08), transparent 36%),
+    rgba(4, 9, 20, 0.9);
+  overflow: hidden;
+}
+
+.graph-loading {
+  display: grid;
+  place-items: center;
+  min-height: 560px;
+  color: #99bfcb;
+}
+
+.control,
+.control-group {
+  display: block;
+  margin-bottom: 22px;
+}
+
+.control span {
+  display: block;
+  margin-bottom: 8px;
+  color: #d9eff5;
+}
+
+.control input[type="search"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(125, 249, 255, 0.16);
+  background: rgba(4, 9, 20, 0.92);
+  color: #f1fbff;
+}
+
+.type-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.type-chip {
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(125, 249, 255, 0.14);
+  background: rgba(8, 16, 34, 0.9);
+  color: #b8d9e4;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.type-chip.active {
+  border-color: rgba(125, 249, 255, 0.46);
+  color: #04111d;
+  background: linear-gradient(135deg, #7df9ff, #48e7a8);
+}
+
+.range-row {
+  display: grid;
+  gap: 12px;
+}
+
+.range-values {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: #9ebdca;
+}
+
+.metric-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.metric-strip > div,
+.metadata-grid > div {
+  border-radius: 16px;
+  padding: 14px;
+  background: rgba(5, 10, 22, 0.84);
+  border: 1px solid rgba(125, 249, 255, 0.1);
+}
+
+.metadata-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.metadata-grid dt {
+  color: #89aebb;
+  font-size: 0.84rem;
+}
+
+.metadata-grid dd {
+  margin: 6px 0 0;
+}
+
+.details section {
+  margin-top: 18px;
+}
+
+.details p,
+.details li,
+.muted {
+  color: #cfe6ef;
+  line-height: 1.6;
+}
+
+.details ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.link-list a {
+  color: #09111e;
+  text-decoration: none;
+  background: linear-gradient(135deg, #7df9ff, #48e7a8);
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+@media (max-width: 1280px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .graph-surface {
+    min-height: 460px;
+  }
+}
+
