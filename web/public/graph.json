@@ -633,7 +633,7 @@
             "url": "https://openaccess.thecvf.com/content_CVPR_2019/html/Sattler_Understanding_the_Limitations_of_CNN-Based_Absolute_Camera_Pose_Regression_CVPR_2019_paper.html"
           },
           {
-            "label": "Code/Data",
+            "label": "Code",
             "url": "https://github.com/tsattler/understanding_apr"
           }
         ],
@@ -1159,10 +1159,6 @@
           {
             "label": "Paper",
             "url": "https://arxiv.org/abs/2604.22310"
-          },
-          {
-            "label": "Lab news",
-            "url": "https://sail.hanyang.ac.kr/news"
           }
         ],
         "figure": {
@@ -1546,12 +1542,12 @@
             "url": "https://ieeexplore.ieee.org/document/9250416"
           },
           {
-            "label": "Project",
-            "url": "https://niessnerlab.org/projects/brachmann2017dsacpp.html"
-          },
-          {
             "label": "Code",
             "url": "https://github.com/vislearn/dsacstar"
+          },
+          {
+            "label": "Project",
+            "url": "https://niessnerlab.org/projects/brachmann2017dsacpp.html"
           }
         ],
         "figure": {
@@ -2154,10 +2150,6 @@
           {
             "label": "Code",
             "url": "https://github.com/ethz-asl/hfnet"
-          },
-          {
-            "label": "HLoc toolbox",
-            "url": "https://github.com/cvg/Hierarchical-Localization"
           }
         ],
         "figure": {
@@ -3494,10 +3486,6 @@
             "url": "https://arxiv.org/abs/2409.11536"
           },
           {
-            "label": "OpenReview",
-            "url": "https://openreview.net/forum?id=YKvWJBKEbH"
-          },
-          {
             "label": "Code",
             "url": "https://github.com/kunalchelani/RecoverPointsNeighborhood"
           }
@@ -3883,10 +3871,6 @@
           {
             "label": "Code",
             "url": "https://github.com/Fusroda-h/ppl"
-          },
-          {
-            "label": "Poster",
-            "url": "https://cvpr.thecvf.com/virtual/2023/poster/22539"
           }
         ],
         "figure": {
@@ -4835,10 +4819,6 @@
           {
             "label": "Code",
             "url": "https://github.com/PHANTOM0122/Ray-cloud"
-          },
-          {
-            "label": "Poster",
-            "url": "https://cvpr.thecvf.com/virtual/2024/poster/29921"
           }
         ],
         "figure": {

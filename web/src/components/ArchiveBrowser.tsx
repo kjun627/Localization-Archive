@@ -85,6 +85,10 @@ function figureUrl(url: string | undefined) {
 }
 
 type SourceLink = NonNullable<NonNullable<GraphNode["metadata"]>["sourceLinks"]>[number];
+type LinkSlot = {
+  label: "Paper" | "Code" | "Project";
+  url?: string;
+};
 
 const PAPER_LINK_LABELS = new Set(["arxiv", "cvf", "doi", "html", "paper", "pdf"]);
 
@@ -107,11 +111,25 @@ function paperLinkPriority(link: SourceLink) {
   return 8;
 }
 
-function normalizeSourceLinks(links: SourceLink[] | undefined) {
+function isCodeLink(link: SourceLink) {
+  const label = link.label.toLowerCase();
+  return label.includes("code");
+}
+
+function isProjectLink(link: SourceLink) {
+  const label = link.label.toLowerCase();
+  return label.includes("project");
+}
+
+function normalizeSourceLinks(links: SourceLink[] | undefined): LinkSlot[] {
   const paperLinks = (links ?? []).filter(isPaperLink).sort((left, right) => paperLinkPriority(left) - paperLinkPriority(right));
-  const selectedPaperLink = paperLinks[0] ? [{ ...paperLinks[0], label: "Paper" }] : [];
-  const nonPaperLinks = (links ?? []).filter((link) => !isPaperLink(link));
-  return [...selectedPaperLink, ...nonPaperLinks];
+  const codeLink = (links ?? []).find(isCodeLink);
+  const projectLink = (links ?? []).find(isProjectLink);
+  return [
+    { label: "Paper", url: paperLinks[0]?.url },
+    { label: "Code", url: codeLink?.url },
+    { label: "Project", url: projectLink?.url },
+  ];
 }
 
 function groupByYear(papers: GraphNode[]) {
@@ -408,9 +426,15 @@ function DetailPanel({ paper, open, pinned, edges, papersByKey, onClose, onOpenG
 
         <div className="links">
           {sourceLinks.map((link) => (
-            <a href={link.url} key={link.url} rel="noopener noreferrer" target="_blank">
-              {link.label} <span className="arr">open</span>
-            </a>
+            link.url ? (
+              <a href={link.url} key={link.label} rel="noopener noreferrer" target="_blank">
+                {link.label} <span className="arr">open</span>
+              </a>
+            ) : (
+              <span className="missing-link" key={link.label}>
+                {link.label} <span className="arr">missing</span>
+              </span>
+            )
           ))}
         </div>
       </div>

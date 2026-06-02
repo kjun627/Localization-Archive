@@ -121,11 +121,26 @@ def paper_link_priority(link: dict[str, str]) -> int:
     return 8
 
 
+def is_code_link(link: dict[str, str]) -> bool:
+    return "code" in link.get("label", "").lower()
+
+
+def is_project_link(link: dict[str, str]) -> bool:
+    return "project" in link.get("label", "").lower()
+
+
 def normalize_source_links(links: list[dict[str, str]]) -> list[dict[str, str]]:
     paper_links = sorted((link for link in links if is_paper_link(link)), key=paper_link_priority)
-    selected_paper = [{**paper_links[0], "label": "Paper"}] if paper_links else []
-    non_paper_links = [link for link in links if not is_paper_link(link)]
-    return selected_paper + non_paper_links
+    normalized: list[dict[str, str]] = []
+    if paper_links:
+        normalized.append({**paper_links[0], "label": "Paper"})
+    code_link = next((link for link in links if is_code_link(link)), None)
+    if code_link:
+        normalized.append({**code_link, "label": "Code"})
+    project_link = next((link for link in links if is_project_link(link)), None)
+    if project_link:
+        normalized.append({**project_link, "label": "Project"})
+    return normalized
 
 
 def node_payload(
