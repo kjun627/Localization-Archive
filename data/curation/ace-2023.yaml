@@ -1,0 +1,31 @@
+paper_id: "paper:ace-2023"
+title: "ACE: Absolute Camera Estimation for Efficient 3D Visual Localization"
+year: 2023
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Fast and compact training for scene-specific camera relocalization.
+summary: Efficient map learning pipeline that reduces training cost while preserving relocalization quality.
+problem: Practical scene-specific visual localization with much lower training and update cost.
+prior_gap: Prior scene coordinate regression methods achieved good accuracy but were too expensive to retrain or refresh in dynamic deployment settings.
+metric:
+  - Pose accuracy at 5cm / 5deg
+  - Training time
+why_this_metric: The paper targets deployment efficiency, so pose quality alone is insufficient without measuring map training cost and refresh speed.
+dataset:
+  - Cambridge Landmarks
+  - 7Scenes
+  - Wayspots
+dataset_limitations:
+  - Benchmark datasets do not fully expose long-term map drift or large-scale city relocalization under seasonal change.
+limitations:
+  - Scene-specific training remains necessary for each environment.
+source_links:
+  - label: Paper
+    url: https://openaccess.thecvf.com/content/CVPR2023/html/Brachmann_ACE_Absolute_Camera_Estimation_for_Efficient_3D_Visual_Localization_CVPR_2023_paper.html
+  - label: Project
+    url: https://nianticlabs.github.io/ace
+provenance:
+  - manual_link
+  - abstract_inference
+confidence: 0.75

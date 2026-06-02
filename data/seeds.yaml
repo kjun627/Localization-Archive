@@ -1,0 +1,31 @@
+domain: 3D Visual Localization
+selection_rules:
+  conferences:
+    allowed_core_ranks: ["A*", "A"]
+  journals:
+    allowed_sjr_quartiles: ["Q1", "Q2"]
+papers:
+  - id: "paper:dsac-star-2021"
+    title: "DSAC*: Differentiable RANSAC for Camera Localization"
+    year: 2021
+    venue: IEEE Transactions on Pattern Analysis and Machine Intelligence
+    venue_type: journal
+    venue_tier: Q1
+    included: true
+    citations: ["paper:ace-2023"]
+  - id: "paper:ace-2023"
+    title: "ACE: Absolute Camera Estimation for Efficient 3D Visual Localization"
+    year: 2023
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:marepo-2024"]
+  - id: "paper:marepo-2024"
+    title: "MARePo: Mapping-agnostic Regression for Efficient Pose Estimation"
+    year: 2024
+    venue: European Conference on Computer Vision
+    venue_type: conference
+    venue_tier: A
+    included: true
+    citations: []

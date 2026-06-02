@@ -1,0 +1,637 @@
+{
+  "meta": {
+    "domain": "3D Visual Localization",
+    "paperCount": 3,
+    "generatedBy": "pipeline/build_graph.py",
+    "nodeTypes": [
+      "paper",
+      "problem",
+      "metric",
+      "dataset",
+      "limitation"
+    ]
+  },
+  "nodes": [
+    {
+      "key": "paper:ace-2023",
+      "label": "ACE: Absolute Camera Estimation for Efficient 3D Visual Localization",
+      "type": "paper",
+      "x": 0.0,
+      "y": 0.0,
+      "size": 18,
+      "color": "#7df9ff",
+      "paperRefs": [
+        "paper:ace-2023"
+      ],
+      "confidence": 0.75,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ],
+      "metadata": {
+        "title": "ACE: Absolute Camera Estimation for Efficient 3D Visual Localization",
+        "year": 2023,
+        "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+        "venueType": "conference",
+        "venueTier": "A*",
+        "summary": "Efficient map learning pipeline that reduces training cost while preserving relocalization quality.",
+        "abstract": "Fast and compact training for scene-specific camera relocalization.",
+        "problem": "Practical scene-specific visual localization with much lower training and update cost.",
+        "priorGap": "Prior scene coordinate regression methods achieved good accuracy but were too expensive to retrain or refresh in dynamic deployment settings.",
+        "whyThisMetric": "The paper targets deployment efficiency, so pose quality alone is insufficient without measuring map training cost and refresh speed.",
+        "datasetLimitations": [
+          "Benchmark datasets do not fully expose long-term map drift or large-scale city relocalization under seasonal change."
+        ],
+        "limitations": [
+          "Scene-specific training remains necessary for each environment."
+        ],
+        "sourceLinks": [
+          {
+            "label": "Paper",
+            "url": "https://openaccess.thecvf.com/content/CVPR2023/html/Brachmann_ACE_Absolute_Camera_Estimation_for_Efficient_3D_Visual_Localization_CVPR_2023_paper.html"
+          },
+          {
+            "label": "Project",
+            "url": "https://nianticlabs.github.io/ace"
+          }
+        ]
+      }
+    },
+    {
+      "key": "problem:practical-scene-specific-visual-localization-with-much-lower-training-and-update-cost",
+      "label": "Practical scene-specific visual localization with much lower training and update cost.",
+      "type": "problem",
+      "x": 5.4,
+      "y": -3.0,
+      "size": 10,
+      "color": "#59d0ff",
+      "paperRefs": [
+        "paper:ace-2023"
+      ],
+      "confidence": 0.75,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ]
+    },
+    {
+      "key": "limitation:prior-scene-coordinate-regression-methods-achieved-good-accuracy-but-were-too-expensive-to-retrain-or-refresh-in-dynamic-deployment-settings",
+      "label": "Prior scene coordinate regression methods achieved good accuracy but were too expensive to retrain or refresh in dynamic deployment settings.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": -12.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:ace-2023"
+      ],
+      "confidence": 0.75,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ]
+    },
+    {
+      "key": "metric:pose-accuracy-at-5cm-5deg",
+      "label": "Pose accuracy at 5cm / 5deg",
+      "type": "metric",
+      "x": 10.8,
+      "y": -6.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:ace-2023"
+      ],
+      "confidence": 0.75,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ]
+    },
+    {
+      "key": "metric:training-time",
+      "label": "Training time",
+      "type": "metric",
+      "x": 10.8,
+      "y": -3.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:ace-2023"
+      ],
+      "confidence": 0.75,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ]
+    },
+    {
+      "key": "dataset:cambridge-landmarks",
+      "label": "Cambridge Landmarks",
+      "type": "dataset",
+      "x": 16.200000000000003,
+      "y": -9.0,
+      "size": 10,
+      "color": "#b6ff4d",
+      "paperRefs": [
+        "paper:ace-2023"
+      ],
+      "confidence": 0.75,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ]
+    },
+    {
+      "key": "dataset:7scenes",
+      "label": "7Scenes",
+      "type": "dataset",
+      "x": 16.200000000000003,
+      "y": -6.0,
+      "size": 10,
+      "color": "#b6ff4d",
+      "paperRefs": [
+        "paper:ace-2023"
+      ],
+      "confidence": 0.75,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ]
+    },
+    {
+      "key": "dataset:wayspots",
+      "label": "Wayspots",
+      "type": "dataset",
+      "x": 16.200000000000003,
+      "y": -3.0,
+      "size": 10,
+      "color": "#b6ff4d",
+      "paperRefs": [
+        "paper:ace-2023"
+      ],
+      "confidence": 0.75,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ]
+    },
+    {
+      "key": "limitation:scene-specific-training-remains-necessary-for-each-environment",
+      "label": "Scene-specific training remains necessary for each environment.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": -9.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:ace-2023"
+      ],
+      "confidence": 0.75,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ]
+    },
+    {
+      "key": "paper:dsac-star-2021",
+      "label": "DSAC*: Differentiable RANSAC for Camera Localization",
+      "type": "paper",
+      "x": 0.0,
+      "y": 3.0,
+      "size": 18,
+      "color": "#7df9ff",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ],
+      "confidence": 0.82,
+      "provenance": [
+        "manual_link",
+        "user_note"
+      ],
+      "metadata": {
+        "title": "DSAC*: Differentiable RANSAC for Camera Localization",
+        "year": 2021,
+        "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+        "venueType": "journal",
+        "venueTier": "Q1",
+        "summary": "Neural-guided scene coordinate regression with differentiable RANSAC for robust camera pose estimation.",
+        "abstract": "End-to-end camera localization with differentiable hypothesis selection.",
+        "problem": "Robust absolute pose estimation in scenes with ambiguous or noisy correspondences.",
+        "priorGap": "Classical RANSAC pipelines were not end-to-end trainable and struggled to learn localization-specific scoring behavior.",
+        "whyThisMetric": "Absolute camera localization is deployment-oriented, so thresholded pose accuracy and median pose error directly measure recoverable camera pose quality.",
+        "datasetLimitations": [
+          "Indoor and landmark datasets can underrepresent larger viewpoint shifts and seasonal changes."
+        ],
+        "limitations": [
+          "Regression quality can still degrade under severe appearance changes."
+        ],
+        "sourceLinks": [
+          {
+            "label": "Paper",
+            "url": "https://ieeexplore.ieee.org/document/9250416"
+          },
+          {
+            "label": "Project",
+            "url": "https://niessnerlab.org/projects/brachmann2017dsacpp.html"
+          }
+        ]
+      }
+    },
+    {
+      "key": "problem:robust-absolute-pose-estimation-in-scenes-with-ambiguous-or-noisy-correspondences",
+      "label": "Robust absolute pose estimation in scenes with ambiguous or noisy correspondences.",
+      "type": "problem",
+      "x": 5.4,
+      "y": 0.0,
+      "size": 10,
+      "color": "#59d0ff",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ],
+      "confidence": 0.82,
+      "provenance": [
+        "manual_link",
+        "user_note"
+      ]
+    },
+    {
+      "key": "limitation:classical-ransac-pipelines-were-not-end-to-end-trainable-and-struggled-to-learn-localization-specific-scoring-behavior",
+      "label": "Classical RANSAC pipelines were not end-to-end trainable and struggled to learn localization-specific scoring behavior.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": -6.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ],
+      "confidence": 0.82,
+      "provenance": [
+        "manual_link",
+        "user_note"
+      ]
+    },
+    {
+      "key": "metric:median-translation-and-rotation-error",
+      "label": "Median translation and rotation error",
+      "type": "metric",
+      "x": 10.8,
+      "y": 0.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ],
+      "confidence": 0.82,
+      "provenance": [
+        "manual_link",
+        "user_note"
+      ]
+    },
+    {
+      "key": "limitation:regression-quality-can-still-degrade-under-severe-appearance-changes",
+      "label": "Regression quality can still degrade under severe appearance changes.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": -3.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ],
+      "confidence": 0.82,
+      "provenance": [
+        "manual_link",
+        "user_note"
+      ]
+    },
+    {
+      "key": "paper:marepo-2024",
+      "label": "MARePo: Mapping-agnostic Regression for Efficient Pose Estimation",
+      "type": "paper",
+      "x": 0.0,
+      "y": 6.0,
+      "size": 18,
+      "color": "#7df9ff",
+      "paperRefs": [
+        "paper:marepo-2024"
+      ],
+      "confidence": 0.68,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ],
+      "metadata": {
+        "title": "MARePo: Mapping-agnostic Regression for Efficient Pose Estimation",
+        "year": 2024,
+        "venue": "European Conference on Computer Vision",
+        "venueType": "conference",
+        "venueTier": "A",
+        "summary": "Decouples some map-specific assumptions to reduce retraining dependence for pose regression.",
+        "abstract": "Regression-based localization with stronger generalization across maps and scenes.",
+        "problem": "Reduce scene-specific dependence in regression-based localization pipelines.",
+        "priorGap": "Efficient localization models such as ACE still required per-scene optimization and limited cross-scene reuse.",
+        "whyThisMetric": "The contribution claims better transferability, so evaluation must include both pose precision and performance beyond the original training scene.",
+        "datasetLimitations": [
+          "Existing benchmarks remain modest in scale compared with open-world city localization."
+        ],
+        "limitations": [
+          "Generalization gains may still depend on scene overlap and representation bias."
+        ],
+        "sourceLinks": [
+          {
+            "label": "Paper",
+            "url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/11787_ECCV_2024_paper.php"
+          }
+        ]
+      }
+    },
+    {
+      "key": "problem:reduce-scene-specific-dependence-in-regression-based-localization-pipelines",
+      "label": "Reduce scene-specific dependence in regression-based localization pipelines.",
+      "type": "problem",
+      "x": 5.4,
+      "y": 3.0,
+      "size": 10,
+      "color": "#59d0ff",
+      "paperRefs": [
+        "paper:marepo-2024"
+      ],
+      "confidence": 0.68,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ]
+    },
+    {
+      "key": "limitation:efficient-localization-models-such-as-ace-still-required-per-scene-optimization-and-limited-cross-scene-reuse",
+      "label": "Efficient localization models such as ACE still required per-scene optimization and limited cross-scene reuse.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 0.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:marepo-2024"
+      ],
+      "confidence": 0.68,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ]
+    },
+    {
+      "key": "metric:cross-scene-generalization",
+      "label": "Cross-scene generalization",
+      "type": "metric",
+      "x": 10.8,
+      "y": 3.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:marepo-2024"
+      ],
+      "confidence": 0.68,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ]
+    },
+    {
+      "key": "limitation:generalization-gains-may-still-depend-on-scene-overlap-and-representation-bias",
+      "label": "Generalization gains may still depend on scene overlap and representation bias.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 3.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:marepo-2024"
+      ],
+      "confidence": 0.68,
+      "provenance": [
+        "manual_link",
+        "abstract_inference"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "key": "paper:ace-2023->problem:practical-scene-specific-visual-localization-with-much-lower-training-and-update-cost:addresses",
+      "source": "paper:ace-2023",
+      "target": "problem:practical-scene-specific-visual-localization-with-much-lower-training-and-update-cost",
+      "type": "addresses",
+      "paperRefs": [
+        "paper:ace-2023"
+      ]
+    },
+    {
+      "key": "paper:ace-2023->limitation:prior-scene-coordinate-regression-methods-achieved-good-accuracy-but-were-too-expensive-to-retrain-or-refresh-in-dynamic-deployment-settings:motivated_by",
+      "source": "paper:ace-2023",
+      "target": "limitation:prior-scene-coordinate-regression-methods-achieved-good-accuracy-but-were-too-expensive-to-retrain-or-refresh-in-dynamic-deployment-settings",
+      "type": "motivated_by",
+      "paperRefs": [
+        "paper:ace-2023"
+      ]
+    },
+    {
+      "key": "paper:ace-2023->metric:pose-accuracy-at-5cm-5deg:measured_by",
+      "source": "paper:ace-2023",
+      "target": "metric:pose-accuracy-at-5cm-5deg",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:ace-2023"
+      ]
+    },
+    {
+      "key": "paper:ace-2023->metric:training-time:measured_by",
+      "source": "paper:ace-2023",
+      "target": "metric:training-time",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:ace-2023"
+      ]
+    },
+    {
+      "key": "paper:ace-2023->dataset:cambridge-landmarks:evaluated_on",
+      "source": "paper:ace-2023",
+      "target": "dataset:cambridge-landmarks",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:ace-2023"
+      ]
+    },
+    {
+      "key": "paper:ace-2023->dataset:7scenes:evaluated_on",
+      "source": "paper:ace-2023",
+      "target": "dataset:7scenes",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:ace-2023"
+      ]
+    },
+    {
+      "key": "paper:ace-2023->dataset:wayspots:evaluated_on",
+      "source": "paper:ace-2023",
+      "target": "dataset:wayspots",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:ace-2023"
+      ]
+    },
+    {
+      "key": "paper:ace-2023->limitation:scene-specific-training-remains-necessary-for-each-environment:has_limitation",
+      "source": "paper:ace-2023",
+      "target": "limitation:scene-specific-training-remains-necessary-for-each-environment",
+      "type": "has_limitation",
+      "paperRefs": [
+        "paper:ace-2023"
+      ]
+    },
+    {
+      "key": "paper:ace-2023->paper:marepo-2024:cites",
+      "source": "paper:ace-2023",
+      "target": "paper:marepo-2024",
+      "type": "cites",
+      "paperRefs": [
+        "paper:ace-2023"
+      ]
+    },
+    {
+      "key": "paper:dsac-star-2021->problem:robust-absolute-pose-estimation-in-scenes-with-ambiguous-or-noisy-correspondences:addresses",
+      "source": "paper:dsac-star-2021",
+      "target": "problem:robust-absolute-pose-estimation-in-scenes-with-ambiguous-or-noisy-correspondences",
+      "type": "addresses",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ]
+    },
+    {
+      "key": "paper:dsac-star-2021->limitation:classical-ransac-pipelines-were-not-end-to-end-trainable-and-struggled-to-learn-localization-specific-scoring-behavior:motivated_by",
+      "source": "paper:dsac-star-2021",
+      "target": "limitation:classical-ransac-pipelines-were-not-end-to-end-trainable-and-struggled-to-learn-localization-specific-scoring-behavior",
+      "type": "motivated_by",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ]
+    },
+    {
+      "key": "paper:dsac-star-2021->metric:pose-accuracy-at-5cm-5deg:measured_by",
+      "source": "paper:dsac-star-2021",
+      "target": "metric:pose-accuracy-at-5cm-5deg",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ]
+    },
+    {
+      "key": "paper:dsac-star-2021->metric:median-translation-and-rotation-error:measured_by",
+      "source": "paper:dsac-star-2021",
+      "target": "metric:median-translation-and-rotation-error",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ]
+    },
+    {
+      "key": "paper:dsac-star-2021->dataset:cambridge-landmarks:evaluated_on",
+      "source": "paper:dsac-star-2021",
+      "target": "dataset:cambridge-landmarks",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ]
+    },
+    {
+      "key": "paper:dsac-star-2021->dataset:7scenes:evaluated_on",
+      "source": "paper:dsac-star-2021",
+      "target": "dataset:7scenes",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ]
+    },
+    {
+      "key": "paper:dsac-star-2021->limitation:regression-quality-can-still-degrade-under-severe-appearance-changes:has_limitation",
+      "source": "paper:dsac-star-2021",
+      "target": "limitation:regression-quality-can-still-degrade-under-severe-appearance-changes",
+      "type": "has_limitation",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ]
+    },
+    {
+      "key": "paper:dsac-star-2021->paper:ace-2023:cites",
+      "source": "paper:dsac-star-2021",
+      "target": "paper:ace-2023",
+      "type": "cites",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ]
+    },
+    {
+      "key": "paper:marepo-2024->problem:reduce-scene-specific-dependence-in-regression-based-localization-pipelines:addresses",
+      "source": "paper:marepo-2024",
+      "target": "problem:reduce-scene-specific-dependence-in-regression-based-localization-pipelines",
+      "type": "addresses",
+      "paperRefs": [
+        "paper:marepo-2024"
+      ]
+    },
+    {
+      "key": "paper:marepo-2024->limitation:efficient-localization-models-such-as-ace-still-required-per-scene-optimization-and-limited-cross-scene-reuse:motivated_by",
+      "source": "paper:marepo-2024",
+      "target": "limitation:efficient-localization-models-such-as-ace-still-required-per-scene-optimization-and-limited-cross-scene-reuse",
+      "type": "motivated_by",
+      "paperRefs": [
+        "paper:marepo-2024"
+      ]
+    },
+    {
+      "key": "paper:marepo-2024->metric:pose-accuracy-at-5cm-5deg:measured_by",
+      "source": "paper:marepo-2024",
+      "target": "metric:pose-accuracy-at-5cm-5deg",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:marepo-2024"
+      ]
+    },
+    {
+      "key": "paper:marepo-2024->metric:cross-scene-generalization:measured_by",
+      "source": "paper:marepo-2024",
+      "target": "metric:cross-scene-generalization",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:marepo-2024"
+      ]
+    },
+    {
+      "key": "paper:marepo-2024->dataset:cambridge-landmarks:evaluated_on",
+      "source": "paper:marepo-2024",
+      "target": "dataset:cambridge-landmarks",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:marepo-2024"
+      ]
+    },
+    {
+      "key": "paper:marepo-2024->dataset:7scenes:evaluated_on",
+      "source": "paper:marepo-2024",
+      "target": "dataset:7scenes",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:marepo-2024"
+      ]
+    },
+    {
+      "key": "paper:marepo-2024->limitation:generalization-gains-may-still-depend-on-scene-overlap-and-representation-bias:has_limitation",
+      "source": "paper:marepo-2024",
+      "target": "limitation:generalization-gains-may-still-depend-on-scene-overlap-and-representation-bias",
+      "type": "has_limitation",
+      "paperRefs": [
+        "paper:marepo-2024"
+      ]
+    }
+  ]
+}
