@@ -299,7 +299,8 @@ function DetailPanel({ paper, open, pinned, edges, papersByKey, onClose, onOpenG
     .map((edge) => ({ edge, paper: papersByKey.get(edge.source) }))
     .filter((item): item is { edge: GraphEdge; paper: GraphNode } => Boolean(item.paper));
   const sourceLinks = normalizeSourceLinks(paper.metadata?.sourceLinks);
-  const representativeImage = figureUrl(paper.metadata?.figure?.url);
+  const figure = paper.metadata?.figure;
+  const representativeImage = figureUrl(figure?.url);
 
   return (
     <aside
@@ -331,7 +332,7 @@ function DetailPanel({ paper, open, pinned, edges, papersByKey, onClose, onOpenG
       <div className={`fig ${representativeImage ? "has-image" : ""}`}>
         {representativeImage ? (
           <img
-            alt={paper.metadata.figure.alt ?? paper.label}
+            alt={figure?.alt ?? paper.label}
             className="fig-img"
             loading="lazy"
             src={representativeImage}
