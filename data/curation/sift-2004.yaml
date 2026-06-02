@@ -30,9 +30,7 @@ limitations:
 - Not learned from data.
 - Provides only partial affine and viewpoint invariance.
 - Can fail under severe appearance change or texture-poor scenes.
-source_links:
-- label: Paper
-  url: https://link.springer.com/article/10.1023/B:VISI.0000029664.99615.94
+source_links: []
 figure:
   alt: Distinctive Image Features from Scale-Invariant Keypoints representative figure
   caption: Hand-crafted local features

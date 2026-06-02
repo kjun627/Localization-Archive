@@ -32,7 +32,7 @@ limitations:
 - Official page availability may vary.
 source_links:
 - label: Paper
-  url: https://europe.naverlabs.com/research/publications/benchmarking-image-retrieval-for-visual-localization/
+  url: https://arxiv.org/abs/2011.11946
 - label: Code
   url: https://github.com/naver/kapture-localization
 figure:

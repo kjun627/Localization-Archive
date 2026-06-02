@@ -29,7 +29,7 @@ limitations:
 - SfM-mined training can inherit landmark-photo biases.
 source_links:
 - label: Paper
-  url: https://doi.org/10.1109/TPAMI.2018.2846566
+  url: https://arxiv.org/abs/1711.02512
 - label: Code
   url: https://github.com/filipradenovic/cnnimageretrieval-pytorch
 figure:

@@ -30,7 +30,7 @@ limitations:
 - Scene-specific coordinate learning and sampling complexity can limit scaling across many environments.
 source_links:
 - label: Paper
-  url: https://doi.org/10.1109/CVPR.2017.267
+  url: https://arxiv.org/abs/1611.05705
 - label: Code
   url: https://github.com/cvlab-dresden/DSAC
 figure:

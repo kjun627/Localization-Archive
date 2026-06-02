@@ -28,8 +28,6 @@ limitations:
 - Benchmark rankings conflate retrieval, matching, mapping, and pose-estimation components.
 - Environments remain limited relative to global deployment.
 source_links:
-- label: Paper
-  url: https://doi.org/10.1109/TPAMI.2020.3032010
 - label: Project
   url: https://www.visuallocalization.net/
 figure:

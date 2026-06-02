@@ -28,9 +28,7 @@ dataset_limitations:
 limitations:
 - Designed around sparse descriptors and SfM visibility.
 - Less directly applicable to dense or learned end-to-end matchers.
-source_links:
-- label: Paper
-  url: https://doi.org/10.1109/TPAMI.2016.2611662
+source_links: []
 figure:
   alt: Efficient and Effective Prioritized Matching for Large-Scale Image-Based Localization representative
     figure

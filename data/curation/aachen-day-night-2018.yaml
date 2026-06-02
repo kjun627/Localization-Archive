@@ -26,7 +26,7 @@ limitations:
 - Dataset-centric evaluation can rank methods without explaining which pipeline component caused failure.
 source_links:
 - label: Paper
-  url: https://doi.org/10.1109/CVPR.2018.00897
+  url: https://openaccess.thecvf.com/content_cvpr_2018/papers_backup/Sattler_Benchmarking_6DOF_Outdoor_CVPR_2018_paper.pdf
 figure:
   url: figures/aachen-day-night-2018.svg
   alt: Day-night outdoor localization benchmark schematic

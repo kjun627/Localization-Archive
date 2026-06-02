@@ -26,7 +26,7 @@ limitations:
 - Regression quality can still degrade under severe appearance changes.
 source_links:
 - label: Paper
-  url: https://ieeexplore.ieee.org/document/9250416
+  url: https://arxiv.org/abs/2002.12324
 - label: Code
   url: https://github.com/vislearn/dsacstar
 - label: Project

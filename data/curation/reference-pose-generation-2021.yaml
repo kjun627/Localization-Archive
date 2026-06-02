@@ -31,7 +31,7 @@ limitations:
 - Targets benchmark curation rather than runtime localization.
 source_links:
 - label: Paper
-  url: https://link.springer.com/article/10.1007/s11263-020-01399-8
+  url: https://arxiv.org/abs/2005.05179
 figure:
   alt: Reference Pose Generation for Long-term Visual Localization via Learned Features and View Synthesis
     representative figure

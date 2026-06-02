@@ -29,7 +29,7 @@ limitations:
 - Scene-specific training remains necessary for each environment.
 source_links:
 - label: Paper
-  url: https://nianticlabs.github.io/ace/
+  url: https://openaccess.thecvf.com/content/CVPR2023/papers/Brachmann_Accelerated_Coordinate_Encoding_Learning_to_Relocalize_in_Minutes_Using_RGB_CVPR_2023_paper.pdf
 - label: Code
   url: https://github.com/nianticlabs/ace
 - label: Project

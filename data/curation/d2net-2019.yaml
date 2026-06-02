@@ -27,7 +27,7 @@ limitations:
 - Dense feature extraction can be computationally heavier than lightweight sparse pipelines.
 source_links:
 - label: Paper
-  url: https://doi.org/10.1109/CVPR.2019.00828
+  url: https://openaccess.thecvf.com/content_CVPR_2019/html/Dusmanu_D2-Net_A_Trainable_CNN_for_Joint_Description_and_Detection_CVPR_2019_paper.html
 - label: Code
   url: https://github.com/mihaidusmanu/d2-net
 figure:

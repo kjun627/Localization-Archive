@@ -26,9 +26,7 @@ dataset_limitations:
   retrieval cases.
 limitations:
 - Requires scene-specific training and RGB-D style scene supervision.
-source_links:
-- label: Paper
-  url: https://doi.org/10.1109/CVPR.2013.377
+source_links: []
 figure:
   url: figures/score-forest-2013.svg
   alt: Scene coordinate regression forest pipeline schematic

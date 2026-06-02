@@ -234,7 +234,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://doi.org/10.1109/CVPR.2018.00897"
+            "url": "https://openaccess.thecvf.com/content_cvpr_2018/papers_backup/Sattler_Benchmarking_6DOF_Outdoor_CVPR_2018_paper.pdf"
           }
         ],
         "figure": {
@@ -376,7 +376,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://nianticlabs.github.io/ace/"
+            "url": "https://openaccess.thecvf.com/content/CVPR2023/papers/Brachmann_Accelerated_Coordinate_Encoding_Learning_to_Relocalize_in_Minutes_Using_RGB_CVPR_2023_paper.pdf"
           },
           {
             "label": "Code",
@@ -1567,7 +1567,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://europe.naverlabs.com/research/publications/benchmarking-image-retrieval-for-visual-localization/"
+            "url": "https://arxiv.org/abs/2011.11946"
           },
           {
             "label": "Code",
@@ -2732,7 +2732,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://doi.org/10.1109/CVPR.2019.00828"
+            "url": "https://openaccess.thecvf.com/content_CVPR_2019/html/Dusmanu_D2-Net_A_Trainable_CNN_for_Joint_Description_and_Detection_CVPR_2019_paper.html"
           },
           {
             "label": "Code",
@@ -3678,7 +3678,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://doi.org/10.1109/CVPR.2017.267"
+            "url": "https://arxiv.org/abs/1611.05705"
           },
           {
             "label": "Code",
@@ -3806,7 +3806,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://ieeexplore.ieee.org/document/9250416"
+            "url": "https://arxiv.org/abs/2002.12324"
           },
           {
             "label": "Code",
@@ -4330,7 +4330,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://doi.org/10.1109/TPAMI.2018.2846566"
+            "url": "https://arxiv.org/abs/1711.02512"
           },
           {
             "label": "Code",
@@ -7272,7 +7272,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://doi.org/10.1109/CVPR46437.2021.00881"
+            "url": "https://openaccess.thecvf.com/content/CVPR2021/papers/Sun_LoFTR_Detector-Free_Local_Feature_Matching_With_Transformers_CVPR_2021_paper.pdf"
           },
           {
             "label": "Code",
@@ -7405,10 +7405,6 @@
           "Environments remain limited relative to global deployment."
         ],
         "sourceLinks": [
-          {
-            "label": "Paper",
-            "url": "https://doi.org/10.1109/TPAMI.2020.3032010"
-          },
           {
             "label": "Project",
             "url": "https://www.visuallocalization.net/"
@@ -9505,7 +9501,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://doi.org/10.1109/CVPR46437.2021.00326"
+            "url": "https://openaccess.thecvf.com/content/CVPR2021/papers/Sarlin_Back_to_the_Feature_Learning_Robust_Camera_Localization_From_Pixels_CVPR_2021_paper.pdf"
           },
           {
             "label": "Code",
@@ -9635,7 +9631,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://doi.org/10.1109/ICCV.2015.336"
+            "url": "https://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Kendall_PoseNet_A_Convolutional_ICCV_2015_paper.pdf"
           },
           {
             "label": "Project",
@@ -9982,12 +9978,7 @@
           "Designed around sparse descriptors and SfM visibility.",
           "Less directly applicable to dense or learned end-to-end matchers."
         ],
-        "sourceLinks": [
-          {
-            "label": "Paper",
-            "url": "https://doi.org/10.1109/TPAMI.2016.2611662"
-          }
-        ],
+        "sourceLinks": [],
         "figure": {
           "alt": "Efficient and Effective Prioritized Matching for Large-Scale Image-Based Localization representative figure",
           "caption": "Efficient 2D-3D matching"
@@ -11534,7 +11525,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://link.springer.com/article/10.1007/s11263-020-01399-8"
+            "url": "https://arxiv.org/abs/2005.05179"
           }
         ],
         "figure": {
@@ -11998,12 +11989,7 @@
         "limitations": [
           "Requires scene-specific training and RGB-D style scene supervision."
         ],
-        "sourceLinks": [
-          {
-            "label": "Paper",
-            "url": "https://doi.org/10.1109/CVPR.2013.377"
-          }
-        ],
+        "sourceLinks": [],
         "figure": {
           "url": "figures/score-forest-2013.svg",
           "alt": "Scene coordinate regression forest pipeline schematic",
@@ -12715,12 +12701,7 @@
           "Provides only partial affine and viewpoint invariance.",
           "Can fail under severe appearance change or texture-poor scenes."
         ],
-        "sourceLinks": [
-          {
-            "label": "Paper",
-            "url": "https://link.springer.com/article/10.1023/B:VISI.0000029664.99615.94"
-          }
-        ],
+        "sourceLinks": [],
         "figure": {
           "alt": "Distinctive Image Features from Scale-Invariant Keypoints representative figure",
           "caption": "Hand-crafted local features"
@@ -13146,7 +13127,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://bmvc2024.org/proceedings/267/"
+            "url": "https://bmva-archive.org.uk/bmvc/2024/papers/Paper_267/paper.pdf"
           },
           {
             "label": "Code",
@@ -13326,7 +13307,7 @@
         "sourceLinks": [
           {
             "label": "Paper",
-            "url": "https://doi.org/10.1109/CVPR42600.2020.00499"
+            "url": "https://openaccess.thecvf.com/content_CVPR_2020/papers/Sarlin_SuperGlue_Learning_Feature_Matching_With_Graph_Neural_Networks_CVPR_2020_paper.pdf"
           },
           {
             "label": "Code",

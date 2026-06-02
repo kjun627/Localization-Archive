@@ -30,7 +30,7 @@ limitations:
 - Transformer matching can increase memory and runtime cost for high-resolution or large-scale deployments.
 source_links:
 - label: Paper
-  url: https://doi.org/10.1109/CVPR46437.2021.00881
+  url: https://openaccess.thecvf.com/content/CVPR2021/papers/Sun_LoFTR_Detector-Free_Local_Feature_Matching_With_Transformers_CVPR_2021_paper.pdf
 - label: Code
   url: https://github.com/zju3dv/LoFTR
 - label: Project
