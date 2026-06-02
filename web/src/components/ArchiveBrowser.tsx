@@ -119,6 +119,18 @@ function downloadText(filename: string, body: string) {
   URL.revokeObjectURL(url);
 }
 
+function getCitationStats(paperKey: string, edges: GraphEdge[]) {
+  return edges.reduce(
+    (stats, edge) => {
+      if (edge.type !== "cites") return stats;
+      if (edge.source === paperKey) stats.cites += 1;
+      if (edge.target === paperKey) stats.citedBy += 1;
+      return stats;
+    },
+    { citedBy: 0, cites: 0 },
+  );
+}
+
 export function ArchiveBrowser({
   edges,
   papers,
@@ -150,10 +162,24 @@ export function ArchiveBrowser({
   });
 
   const years = groupByYear(filteredPapers);
+  const paperByKey = new Map(papers.map((paper) => [paper.key, paper]));
+  const citationEdges = edges.filter((edge) => edge.type === "cites");
   const selectedVenue = selectedPaper ? venueCode(selectedPaper) : "FILE";
   const selectedTheme = venueTheme(selectedVenue);
   const selectedLinks = selectedPaper?.metadata?.sourceLinks ?? [];
   const selectedFigure = selectedPaper?.metadata?.figure;
+  const selectedCites = selectedPaper
+    ? citationEdges
+        .filter((edge) => edge.source === selectedPaper.key)
+        .map((edge) => paperByKey.get(edge.target))
+        .filter((paper): paper is GraphNode => Boolean(paper))
+    : [];
+  const selectedCitedBy = selectedPaper
+    ? citationEdges
+        .filter((edge) => edge.target === selectedPaper.key)
+        .map((edge) => paperByKey.get(edge.source))
+        .filter((paper): paper is GraphNode => Boolean(paper))
+    : [];
   const exportCitationArchive = () => {
     downloadText("localization-citation-archive.md", buildCitationExport(filteredPapers, edges));
   };
@@ -245,6 +271,42 @@ export function ArchiveBrowser({
                   <span>{selectedPaper.metadata?.venueType}</span>
                   <span>{selectedPaper.provenance.join(", ")}</span>
                 </div>
+                <section className="citation-panel">
+                  <div className="citation-head">
+                    <strong>Citation ledger</strong>
+                    <span>
+                      {selectedCites.length} cites · {selectedCitedBy.length} cited by
+                    </span>
+                  </div>
+                  <div className="citation-columns">
+                    <div>
+                      <h3>Cites</h3>
+                      {selectedCites.length ? (
+                        selectedCites.map((paper) => (
+                          <button key={paper.key} onClick={() => onSelectPaper(paper)} type="button">
+                            <span>{paper.metadata?.year}</span>
+                            {paper.label}
+                          </button>
+                        ))
+                      ) : (
+                        <p>No outgoing citation in archive.</p>
+                      )}
+                    </div>
+                    <div>
+                      <h3>Cited by</h3>
+                      {selectedCitedBy.length ? (
+                        selectedCitedBy.map((paper) => (
+                          <button key={paper.key} onClick={() => onSelectPaper(paper)} type="button">
+                            <span>{paper.metadata?.year}</span>
+                            {paper.label}
+                          </button>
+                        ))
+                      ) : (
+                        <p>No incoming citation in archive.</p>
+                      )}
+                    </div>
+                  </div>
+                </section>
                 <div className="file-links">
                   {selectedLinks.map((link) => (
                     <a href={link.url} key={link.url} rel="noreferrer" target="_blank">
@@ -277,6 +339,7 @@ export function ArchiveBrowser({
                     const venue = venueCode(paper);
                     const theme = venueTheme(venue);
                     const selected = selectedPaper?.key === paper.key;
+                    const citationStats = getCitationStats(paper.key, edges);
                     return (
                       <button
                         className={selected ? "file-card selected" : "file-card"}
@@ -297,7 +360,8 @@ export function ArchiveBrowser({
                           </span>
                           <span className="file-meta">
                             <span>{paper.metadata?.venueTier}</span>
-                            <span>{paper.metadata?.sourceLinks?.length ? "LINK" : "NO LINK"}</span>
+                            <span>CITES {citationStats.cites}</span>
+                            <span>BY {citationStats.citedBy}</span>
                           </span>
                         </span>
                       </button>
