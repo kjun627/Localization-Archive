@@ -3,6 +3,8 @@ import { loadGraph } from "./data";
 import { DetailsDrawer } from "./components/DetailsDrawer";
 import { FiltersPanel } from "./components/FiltersPanel";
 import { GraphCanvas } from "./components/GraphCanvas";
+import { PaperRail } from "./components/PaperRail";
+import { StatusDeck } from "./components/StatusDeck";
 import type { GraphNode, GraphPayload, NodeType } from "./types";
 
 const defaultTypes: Record<NodeType, boolean> = {
@@ -23,6 +25,8 @@ function App() {
   useEffect(() => {
     void loadGraph().then((payload) => {
       setGraph(payload);
+      const firstPaper = payload.nodes.find((node) => node.type === "paper");
+      if (firstPaper) setSelectedNode(firstPaper);
       const years = payload.nodes
         .map((node) => node.metadata?.year)
         .filter((year): year is number => typeof year === "number");
@@ -65,6 +69,13 @@ function App() {
     );
   }, [filteredNodeKeys, graph]);
 
+  const paperNodes = useMemo(() => {
+    if (!graph) return [];
+    return graph.nodes
+      .filter((node) => node.type === "paper")
+      .sort((left, right) => (right.metadata?.year ?? 0) - (left.metadata?.year ?? 0));
+  }, [graph]);
+
   return (
     <div className="app-shell">
       <header className="topbar">
@@ -73,10 +84,12 @@ function App() {
           <h1>3D Visual Localization Archive</h1>
         </div>
         <div className="topbar-meta">
-          <span>Graph-first research interface</span>
-          <strong>{graph?.meta.paperCount ?? 0} curated papers</strong>
+          <span>OpenAlex first, Google Scholar excluded</span>
+          <strong>CORE A*/A + SJR Q1/Q2</strong>
         </div>
       </header>
+
+      <StatusDeck graph={graph} visibleCount={filteredNodes.length} />
 
       <main className="layout">
         <FiltersPanel
@@ -91,8 +104,8 @@ function App() {
 
         <section className="graph-panel panel">
           <div className="panel-header">
-            <span className="panel-eyebrow">Network</span>
-            <h2>Hypergraph View</h2>
+            <span className="panel-eyebrow">Research map</span>
+            <h2>Hypernetwork Workspace</h2>
           </div>
           {graph ? (
             <GraphCanvas
@@ -106,11 +119,17 @@ function App() {
           )}
         </section>
 
-        <DetailsDrawer node={selectedNode} />
+        <div className="right-stack">
+          <PaperRail
+            papers={paperNodes}
+            selectedNodeKey={selectedNode?.key ?? null}
+            onSelectPaper={setSelectedNode}
+          />
+          <DetailsDrawer node={selectedNode} />
+        </div>
       </main>
     </div>
   );
 }
 
 export default App;
-
