@@ -118,7 +118,7 @@ export function ArchiveBrowser({
               className={activeVenues[venue] === false ? "venue-toggle off" : "venue-toggle"}
               key={venue}
               onClick={() => onToggleVenue(venue)}
-              style={{ "--tone": venue === selectedVenue ? "var(--lego-blue)" : "var(--lego-black)" } as CSSProperties}
+              style={{ "--tone": venue === selectedVenue ? "var(--lego-blue)" : "var(--space-chip)" } as CSSProperties}
               type="button"
             >
               <span />

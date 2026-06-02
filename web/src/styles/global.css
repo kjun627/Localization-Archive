@@ -1,20 +1,30 @@
 :root {
   color-scheme: light;
   --lego-red: #e3000b;
-  --lego-blue: #0055bf;
+  --lego-blue: #1b5cff;
   --lego-yellow: #ffd500;
   --lego-green: #237841;
-  --lego-black: #111111;
+  --lego-black: #05070d;
   --lego-white: #fffdf3;
-  --lego-paper: #f5ebc8;
-  --lego-grid: #dfd3a5;
-  --lego-shadow: rgba(17, 17, 17, 0.28);
+  --lego-paper: #eef3fb;
+  --lego-grid: #a6b4cc;
+  --lego-shadow: rgba(7, 13, 29, 0.28);
+  --space-bg: #dfe7f3;
+  --space-deck: #c5d1e2;
+  --space-panel: #f8fbff;
+  --space-panel-light: #ffffff;
+  --space-chip: #40516d;
+  --space-ink: #111827;
+  --space-muted: #5b6474;
+  --space-navy: #13223d;
   --pixel: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   --sans: "Arial Narrow", "Inter Tight", system-ui, sans-serif;
   --card-h: 42px;
   --tab-w: 116px;
+  --module-gap: 12px;
+  --module-pad: 10px;
   --outline: 3px solid var(--lego-black);
-  background: var(--lego-yellow);
+  background: var(--space-bg);
   color: var(--lego-black);
   font-family: var(--sans);
 }
@@ -34,10 +44,12 @@ body,
 body {
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(17, 17, 17, 0.08) 1px, transparent 1px),
-    linear-gradient(rgba(17, 17, 17, 0.08) 1px, transparent 1px),
-    var(--lego-yellow);
-  background-size: 18px 18px;
+    radial-gradient(circle at 12% 18%, rgba(255, 213, 0, 0.72) 0 2px, transparent 3px),
+    radial-gradient(circle at 72% 28%, rgba(27, 92, 255, 0.34) 0 2px, transparent 3px),
+    linear-gradient(90deg, rgba(19, 34, 61, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(19, 34, 61, 0.08) 1px, transparent 1px),
+    linear-gradient(135deg, #f6f8fc, var(--space-bg));
+  background-size: 150px 150px, 190px 190px, 24px 24px, 24px 24px, auto;
 }
 
 button,
@@ -67,10 +79,12 @@ a {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   background:
-    radial-gradient(circle at 24px 24px, rgba(255, 255, 255, 0.38) 0 7px, transparent 8px),
-    var(--lego-yellow);
-  background-size: 48px 48px;
-  border: 6px solid var(--lego-black);
+    radial-gradient(circle at 30px 30px, rgba(255, 255, 255, 0.72) 0 8px, rgba(8, 18, 38, 0.16) 9px, transparent 10px),
+    linear-gradient(90deg, rgba(17, 24, 39, 0.1) 1px, transparent 1px),
+    linear-gradient(rgba(17, 24, 39, 0.1) 1px, transparent 1px),
+    linear-gradient(145deg, #f7f9ff, #dce5f3 58%, #c6d2e4);
+  background-size: 60px 60px, 30px 30px, 30px 30px, auto;
+  border: 6px solid #000000;
   overflow: hidden;
 }
 
@@ -81,7 +95,11 @@ a {
   align-items: center;
   padding: 14px 20px;
   border-bottom: var(--outline);
-  background: var(--lego-red);
+  background:
+    radial-gradient(circle at 18px 18px, rgba(255, 255, 255, 0.24) 0 5px, rgba(0, 0, 0, 0.18) 6px, transparent 7px),
+    linear-gradient(135deg, #17233d, #2d4167);
+  background-size: 36px 36px;
+  border-bottom-color: #000000;
   color: var(--lego-white);
   text-transform: uppercase;
 }
@@ -111,10 +129,14 @@ a {
 .archive-tools {
   display: grid;
   grid-template-columns: 340px 1fr;
-  gap: 14px;
+  gap: var(--module-gap);
   padding: 12px 20px;
   border-bottom: 3px dashed var(--lego-black);
-  background: var(--lego-paper);
+  background:
+    radial-gradient(circle at 18px 18px, rgba(255, 255, 255, 0.76) 0 5px, rgba(8, 18, 38, 0.14) 6px, transparent 7px),
+    var(--space-deck);
+  background-size: 32px 32px;
+  color: var(--space-ink);
 }
 
 .archive-search {
@@ -124,8 +146,12 @@ a {
   gap: 9px;
   padding: 0 12px;
   border: var(--outline);
-  background: var(--lego-white);
-  box-shadow: 4px 4px 0 var(--lego-shadow);
+  background: var(--space-panel-light);
+  color: var(--space-ink);
+  box-shadow:
+    inset 3px 3px 0 rgba(255, 255, 255, 0.96),
+    inset -4px -4px 0 rgba(17, 24, 39, 0.16),
+    5px 6px 0 var(--lego-shadow);
 }
 
 .archive-search input {
@@ -134,14 +160,18 @@ a {
   border: 0;
   outline: 0;
   background: transparent;
-  color: var(--lego-black);
+  color: var(--space-ink);
   font-family: var(--pixel);
   font-size: 12px;
 }
 
+.archive-search input::placeholder {
+  color: var(--space-muted);
+}
+
 .venue-toggles {
   display: flex;
-  gap: 8px;
+  gap: var(--module-gap);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -160,7 +190,10 @@ a {
   border: var(--outline);
   background: var(--tone);
   color: var(--lego-white);
-  box-shadow: 4px 4px 0 var(--lego-shadow);
+  box-shadow:
+    inset 3px 3px 0 rgba(255, 255, 255, 0.28),
+    inset -4px -4px 0 rgba(0, 0, 0, 0.24),
+    5px 6px 0 var(--lego-shadow);
   cursor: pointer;
   font-family: var(--pixel);
   font-size: 11px;
@@ -200,19 +233,22 @@ a {
 }
 
 .archive-scroller::-webkit-scrollbar-track {
-  background: var(--lego-paper);
+  background: #bac7d8;
   border-top: var(--outline);
 }
 
 .archive-scroller::-webkit-scrollbar-thumb {
-  background: var(--lego-blue);
+  background:
+    radial-gradient(circle at 18px 18px, rgba(255, 255, 255, 0.32) 0 5px, rgba(0, 0, 0, 0.2) 6px, transparent 7px),
+    linear-gradient(135deg, var(--lego-blue), #123b9e);
+  background-size: 36px 36px;
   border: 3px solid var(--lego-black);
 }
 
 .timeline {
   min-height: 100%;
   display: flex;
-  gap: 46px;
+  gap: 42px;
   align-items: stretch;
   padding-right: 260px;
 }
@@ -239,7 +275,7 @@ a {
   font-weight: 900;
   line-height: 0.9;
   letter-spacing: -0.08em;
-  color: var(--lego-black);
+  color: var(--space-navy);
   text-shadow: 4px 4px 0 var(--lego-white);
 }
 
@@ -249,6 +285,7 @@ a {
   line-height: 1.4;
   text-align: right;
   text-transform: uppercase;
+  color: var(--space-muted);
 }
 
 .file-stack {
@@ -256,7 +293,7 @@ a {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--module-gap);
   overflow-y: auto;
   overflow-x: visible;
   padding: 0 10px 4px 0;
@@ -267,7 +304,8 @@ a {
 }
 
 .file-stack::-webkit-scrollbar-thumb {
-  background: var(--lego-black);
+  background: var(--space-chip);
+  border: 2px solid var(--lego-black);
 }
 
 .file-card {
@@ -315,21 +353,47 @@ a {
 }
 
 .file-body {
+  position: relative;
   min-width: 0;
   flex: 1 1 auto;
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr) auto;
   align-items: center;
   gap: 10px;
-  padding-right: 10px;
+  padding-right: 44px;
   border: var(--outline);
-  background: var(--lego-white);
-  box-shadow: 5px 5px 0 var(--lego-shadow);
+  background: var(--space-panel);
+  color: var(--space-ink);
+  box-shadow:
+    inset 3px 3px 0 rgba(255, 255, 255, 1),
+    inset -5px -5px 0 rgba(17, 24, 39, 0.15),
+    7px 8px 0 var(--lego-shadow);
+}
+
+.file-body::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(5, 7, 13, 0.22);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.95) 0 3px, transparent 4px),
+    var(--lego-paper);
+  box-shadow:
+    inset -3px -3px 0 rgba(17, 24, 39, 0.16),
+    2px 2px 0 rgba(5, 7, 13, 0.18);
 }
 
 .file-card.selected .file-body {
-  background: var(--lego-black);
-  color: var(--lego-white);
+  background: #fff7cf;
+  color: var(--space-ink);
+  box-shadow:
+    inset 3px 3px 0 rgba(255, 255, 255, 0.96),
+    inset -5px -5px 0 rgba(145, 103, 0, 0.18),
+    7px 8px 0 var(--lego-shadow);
 }
 
 .file-index {
@@ -391,8 +455,15 @@ a {
   flex-direction: column;
   overflow: hidden;
   border: var(--outline);
-  background: var(--lego-white);
-  box-shadow: 8px 8px 0 var(--lego-shadow);
+  background:
+    radial-gradient(circle at 22px 22px, rgba(255, 255, 255, 0.78) 0 6px, rgba(8, 18, 38, 0.13) 7px, transparent 8px),
+    var(--space-panel);
+  background-size: 44px 44px;
+  color: var(--space-ink);
+  box-shadow:
+    inset 4px 4px 0 rgba(255, 255, 255, 1),
+    inset -8px -8px 0 rgba(17, 24, 39, 0.14),
+    12px 12px 0 var(--lego-shadow);
 }
 
 .file-tag {
@@ -402,7 +473,10 @@ a {
   align-items: center;
   justify-content: space-between;
   border-bottom: var(--outline);
-  background: var(--tone);
+  background:
+    radial-gradient(circle at 18px 18px, rgba(255, 255, 255, 0.26) 0 5px, rgba(0, 0, 0, 0.18) 6px, transparent 7px),
+    linear-gradient(135deg, var(--lego-blue), #123b9e);
+  background-size: 36px 36px;
   color: var(--lego-white);
   font-family: var(--pixel);
   font-size: 11px;
@@ -419,10 +493,10 @@ a {
   gap: 10px;
   border-bottom: var(--outline);
   background:
-    linear-gradient(90deg, rgba(17, 17, 17, 0.12) 1px, transparent 1px),
-    linear-gradient(rgba(17, 17, 17, 0.12) 1px, transparent 1px),
-    var(--lego-paper);
-  background-size: 14px 14px;
+    radial-gradient(circle at 22px 22px, rgba(255, 255, 255, 0.82) 0 7px, rgba(8, 18, 38, 0.17) 8px, transparent 9px),
+    linear-gradient(135deg, #edf3ff, #cbd7e8);
+  background-size: 44px 44px;
+  color: var(--space-ink);
 }
 
 .file-figure span {
@@ -431,6 +505,9 @@ a {
   border: var(--outline);
   background: var(--lego-red);
   color: var(--lego-white);
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.32),
+    inset -3px -3px 0 rgba(0, 0, 0, 0.22);
   font-family: var(--pixel);
   font-size: 11px;
   font-weight: 900;
@@ -457,6 +534,7 @@ a {
   font-size: 22px;
   line-height: 1.08;
   font-weight: 900;
+  color: var(--space-ink);
 }
 
 .file-facts {
@@ -469,6 +547,7 @@ a {
   border-bottom: 3px solid var(--lego-black);
   font-family: var(--pixel);
   font-size: 10px;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .file-facts dt {
@@ -485,6 +564,7 @@ a {
   font-size: 14px;
   font-weight: 700;
   line-height: 1.35;
+  color: #253044;
 }
 
 .file-tags {
@@ -498,6 +578,10 @@ a {
   padding: 3px 7px;
   border: 2px solid var(--lego-black);
   background: var(--lego-yellow);
+  color: #05070d;
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.5),
+    inset -3px -3px 0 rgba(0, 0, 0, 0.18);
   font-family: var(--pixel);
   font-size: 10px;
 }
@@ -516,6 +600,9 @@ a {
   border: var(--outline);
   background: var(--lego-blue);
   color: var(--lego-white);
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.28),
+    inset -4px -4px 0 rgba(0, 0, 0, 0.24);
   font-family: var(--pixel);
   font-size: 11px;
   font-weight: 900;
@@ -534,7 +621,10 @@ a {
   display: grid;
   place-items: center;
   border-top: var(--outline);
-  background: var(--lego-green);
+  background:
+    radial-gradient(circle at 15px 15px, rgba(255, 255, 255, 0.34) 0 4px, rgba(0, 0, 0, 0.16) 5px, transparent 6px),
+    linear-gradient(135deg, #273b62, #17233d);
+  background-size: 30px 30px;
   color: var(--lego-white);
   font-family: var(--pixel);
   font-size: 11px;
