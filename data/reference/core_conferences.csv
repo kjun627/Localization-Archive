@@ -1,0 +1,8 @@
+venue_key,venue_name,acronym,core_rank,source_year
+cvpr,IEEE/CVF Conference on Computer Vision and Pattern Recognition,CVPR,A*,2023
+iccv,IEEE/CVF International Conference on Computer Vision,ICCV,A*,2023
+eccv,European Conference on Computer Vision,ECCV,A,2023
+3dv,International Conference on 3D Vision,3DV,A,2023
+icra,IEEE International Conference on Robotics and Automation,ICRA,A*,2023
+iros,IEEE/RSJ International Conference on Intelligent Robots and Systems,IROS,A,2023
+

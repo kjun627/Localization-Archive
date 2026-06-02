@@ -1,0 +1,20 @@
+[project]
+name = "localization-archive-pipeline"
+version = "0.1.0"
+description = "ETL and graph builder for 3D Visual Localization citation hypernetwork."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "pyyaml>=6.0.1,<7.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "pipeline/src"}
+
+[tool.setuptools.packages.find]
+where = ["pipeline/src"]
+
