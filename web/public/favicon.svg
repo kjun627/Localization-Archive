@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Camera icon">
+  <rect width="64" height="64" fill="#191f28"/>
+  <path d="M19 23h5l3.3-5h9.4l3.3 5h5c4.4 0 8 3.6 8 8v13c0 4.4-3.6 8-8 8H19c-4.4 0-8-3.6-8-8V31c0-4.4 3.6-8 8-8Z" fill="#ffffff"/>
+  <circle cx="32" cy="37" r="10" fill="#3182f6"/>
+  <circle cx="32" cy="37" r="5" fill="#ffffff"/>
+  <rect x="16" y="27" width="8" height="4" fill="#6b7684"/>
+</svg>
