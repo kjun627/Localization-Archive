@@ -1,0 +1,28 @@
+paper_id: "paper:posenet-2015"
+title: "PoseNet: A Convolutional Network for Real-Time 6-DOF Camera Relocalization"
+year: 2015
+venue: IEEE/CVF International Conference on Computer Vision
+venue_type: conference
+venue_tier: A*
+abstract: A convolutional network directly regresses camera pose from a single RGB image.
+summary: Introduces end-to-end learned absolute pose regression as an alternative to handcrafted structure-based localization.
+problem: Predict 6-DoF camera pose from a single image in real time for large outdoor scenes.
+prior_gap: Structure-based pipelines required explicit feature matching, 3D maps, and robust geometric verification that could be heavy for real-time deployment.
+metric:
+  - Median translation and rotation error
+why_this_metric: Direct pose regression optimizes continuous camera pose, so median translation and rotation error summarize typical relocalization quality while reducing outlier dominance.
+dataset:
+  - Cambridge Landmarks
+dataset_limitations:
+  - Outdoor landmark sequences are limited in geographic diversity and can overrepresent scene-specific appearance.
+limitations:
+  - Direct regression can be less accurate than geometry-based localization and can struggle with scene generalization.
+source_links:
+  - label: DOI
+    url: https://doi.org/10.1109/ICCV.2015.336
+figure:
+  caption: Direct CNN pose regression placeholder
+provenance:
+  - openalex_title_check
+  - manual_curation
+confidence: 0.8

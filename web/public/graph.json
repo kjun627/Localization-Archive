@@ -1,7 +1,7 @@
 {
   "meta": {
     "domain": "3D Visual Localization",
-    "paperCount": 3,
+    "paperCount": 12,
     "generatedBy": "pipeline/build_graph.py",
     "nodeTypes": [
       "paper",
@@ -13,11 +13,140 @@
   },
   "nodes": [
     {
+      "key": "paper:aachen-day-night-2018",
+      "label": "Benchmarking 6DOF Outdoor Visual Localization in Changing Conditions",
+      "type": "paper",
+      "x": 0.0,
+      "y": 0.0,
+      "size": 18,
+      "color": "#7df9ff",
+      "paperRefs": [
+        "paper:aachen-day-night-2018"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ],
+      "metadata": {
+        "title": "Benchmarking 6DOF Outdoor Visual Localization in Changing Conditions",
+        "year": 2018,
+        "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+        "venueType": "conference",
+        "venueTier": "A*",
+        "summary": "Establishes a harder outdoor visual localization benchmark and evaluation protocol for long-term localization.",
+        "abstract": "A benchmark for outdoor 6-DoF localization under day-night and changing-condition challenges.",
+        "problem": "Evaluate 6-DoF outdoor visual localization under illumination and appearance changes.",
+        "priorGap": "Many localization benchmarks were captured under limited conditions and did not sufficiently stress long-term robustness.",
+        "whyThisMetric": "Outdoor localization quality is application-dependent, so multiple thresholds reveal whether methods are useful for coarse retrieval, AR alignment, or precise navigation.",
+        "datasetLimitations": [
+          "Benchmarking focuses on one urban environment and does not cover all weather, seasonal, or geographic variation."
+        ],
+        "limitations": [
+          "Dataset-centric evaluation can rank methods without explaining which pipeline component caused failure."
+        ],
+        "sourceLinks": [
+          {
+            "label": "DOI",
+            "url": "https://doi.org/10.1109/CVPR.2018.00897"
+          }
+        ],
+        "figure": {
+          "caption": "Day-night outdoor localization benchmark placeholder"
+        }
+      }
+    },
+    {
+      "key": "problem:evaluate-6-dof-outdoor-visual-localization-under-illumination-and-appearance-changes",
+      "label": "Evaluate 6-DoF outdoor visual localization under illumination and appearance changes.",
+      "type": "problem",
+      "x": 5.4,
+      "y": -3.0,
+      "size": 10,
+      "color": "#59d0ff",
+      "paperRefs": [
+        "paper:aachen-day-night-2018"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:many-localization-benchmarks-were-captured-under-limited-conditions-and-did-not-sufficiently-stress-long-term-robustness",
+      "label": "Many localization benchmarks were captured under limited conditions and did not sufficiently stress long-term robustness.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": -12.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:aachen-day-night-2018"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "metric:pose-accuracy-at-multiple-translation-and-rotation-thresholds",
+      "label": "Pose accuracy at multiple translation and rotation thresholds",
+      "type": "metric",
+      "x": 10.8,
+      "y": -6.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:aachen-day-night-2018"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "dataset:aachen-day-night",
+      "label": "Aachen Day-Night",
+      "type": "dataset",
+      "x": 16.200000000000003,
+      "y": -9.0,
+      "size": 10,
+      "color": "#b6ff4d",
+      "paperRefs": [
+        "paper:aachen-day-night-2018"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:dataset-centric-evaluation-can-rank-methods-without-explaining-which-pipeline-component-caused-failure",
+      "label": "Dataset-centric evaluation can rank methods without explaining which pipeline component caused failure.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": -9.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:aachen-day-night-2018"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
       "key": "paper:ace-2023",
       "label": "ACE: Absolute Camera Estimation for Efficient 3D Visual Localization",
       "type": "paper",
       "x": 0.0,
-      "y": 0.0,
+      "y": 3.0,
       "size": 18,
       "color": "#7df9ff",
       "paperRefs": [
@@ -54,7 +183,10 @@
             "label": "Project",
             "url": "https://nianticlabs.github.io/ace"
           }
-        ]
+        ],
+        "figure": {
+          "caption": "Efficient scene-coordinate map training placeholder"
+        }
       }
     },
     {
@@ -62,7 +194,7 @@
       "label": "Practical scene-specific visual localization with much lower training and update cost.",
       "type": "problem",
       "x": 5.4,
-      "y": -3.0,
+      "y": 0.0,
       "size": 10,
       "color": "#59d0ff",
       "paperRefs": [
@@ -79,7 +211,7 @@
       "label": "Prior scene coordinate regression methods achieved good accuracy but were too expensive to retrain or refresh in dynamic deployment settings.",
       "type": "limitation",
       "x": 21.6,
-      "y": -12.0,
+      "y": -6.0,
       "size": 10,
       "color": "#ff8a65",
       "paperRefs": [
@@ -96,7 +228,7 @@
       "label": "Pose accuracy at 5cm / 5deg",
       "type": "metric",
       "x": 10.8,
-      "y": -6.0,
+      "y": -3.0,
       "size": 10,
       "color": "#48e7a8",
       "paperRefs": [
@@ -113,7 +245,7 @@
       "label": "Training time",
       "type": "metric",
       "x": 10.8,
-      "y": -3.0,
+      "y": 0.0,
       "size": 10,
       "color": "#48e7a8",
       "paperRefs": [
@@ -130,7 +262,7 @@
       "label": "Cambridge Landmarks",
       "type": "dataset",
       "x": 16.200000000000003,
-      "y": -9.0,
+      "y": -6.0,
       "size": 10,
       "color": "#b6ff4d",
       "paperRefs": [
@@ -147,7 +279,7 @@
       "label": "7Scenes",
       "type": "dataset",
       "x": 16.200000000000003,
-      "y": -6.0,
+      "y": -3.0,
       "size": 10,
       "color": "#b6ff4d",
       "paperRefs": [
@@ -164,7 +296,7 @@
       "label": "Wayspots",
       "type": "dataset",
       "x": 16.200000000000003,
-      "y": -3.0,
+      "y": 0.0,
       "size": 10,
       "color": "#b6ff4d",
       "paperRefs": [
@@ -181,7 +313,7 @@
       "label": "Scene-specific training remains necessary for each environment.",
       "type": "limitation",
       "x": 21.6,
-      "y": -9.0,
+      "y": -3.0,
       "size": 10,
       "color": "#ff8a65",
       "paperRefs": [
@@ -194,11 +326,269 @@
       ]
     },
     {
+      "key": "paper:d2net-2019",
+      "label": "D2-Net: A Trainable CNN for Joint Description and Detection of Local Features",
+      "type": "paper",
+      "x": 0.0,
+      "y": 6.0,
+      "size": 18,
+      "color": "#7df9ff",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ],
+      "metadata": {
+        "title": "D2-Net: A Trainable CNN for Joint Description and Detection of Local Features",
+        "year": 2019,
+        "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+        "venueType": "conference",
+        "venueTier": "A*",
+        "summary": "Improves local matching robustness by learning feature detection and description jointly for image matching and localization.",
+        "abstract": "Dense CNN features are used for joint local feature detection and description.",
+        "problem": "Produce local features that remain matchable under viewpoint and illumination changes.",
+        "priorGap": "Separate handcrafted detectors and descriptors could be brittle, and learned descriptors often still depended on fixed keypoint detectors.",
+        "whyThisMetric": "Local feature quality matters only if it improves geometric verification and final camera pose, so matching and pose metrics are both required.",
+        "datasetLimitations": [
+          "Patch and localization benchmarks do not fully capture all domain shifts in large-scale mapping pipelines."
+        ],
+        "limitations": [
+          "Dense feature extraction can be computationally heavier than lightweight sparse pipelines."
+        ],
+        "sourceLinks": [
+          {
+            "label": "DOI",
+            "url": "https://doi.org/10.1109/CVPR.2019.00828"
+          }
+        ],
+        "figure": {
+          "caption": "Joint detection-description feature pipeline placeholder"
+        }
+      }
+    },
+    {
+      "key": "problem:produce-local-features-that-remain-matchable-under-viewpoint-and-illumination-changes",
+      "label": "Produce local features that remain matchable under viewpoint and illumination changes.",
+      "type": "problem",
+      "x": 5.4,
+      "y": 3.0,
+      "size": 10,
+      "color": "#59d0ff",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:separate-handcrafted-detectors-and-descriptors-could-be-brittle-and-learned-descriptors-often-still-depended-on-fixed-keypoint-detectors",
+      "label": "Separate handcrafted detectors and descriptors could be brittle, and learned descriptors often still depended on fixed keypoint detectors.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 0.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "metric:matching-score",
+      "label": "Matching score",
+      "type": "metric",
+      "x": 10.8,
+      "y": 3.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "metric:pose-accuracy-at-localization-thresholds",
+      "label": "Pose accuracy at localization thresholds",
+      "type": "metric",
+      "x": 10.8,
+      "y": 6.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "dataset:hpatches",
+      "label": "HPatches",
+      "type": "dataset",
+      "x": 16.200000000000003,
+      "y": 3.0,
+      "size": 10,
+      "color": "#b6ff4d",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:dense-feature-extraction-can-be-computationally-heavier-than-lightweight-sparse-pipelines",
+      "label": "Dense feature extraction can be computationally heavier than lightweight sparse pipelines.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 3.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "paper:dsac-2017",
+      "label": "DSAC: Differentiable RANSAC for Camera Localization",
+      "type": "paper",
+      "x": 0.0,
+      "y": 9.0,
+      "size": 18,
+      "color": "#7df9ff",
+      "paperRefs": [
+        "paper:dsac-2017"
+      ],
+      "confidence": 0.8,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ],
+      "metadata": {
+        "title": "DSAC: Differentiable RANSAC for Camera Localization",
+        "year": 2017,
+        "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+        "venueType": "conference",
+        "venueTier": "A*",
+        "summary": "Connects learned scene coordinate regression with robust geometric pose estimation through differentiable hypothesis sampling.",
+        "abstract": "Differentiable RANSAC enables end-to-end training of camera localization pipelines with hypothesis selection.",
+        "problem": "Train a camera localization system end-to-end while retaining RANSAC-style robustness to correspondence outliers.",
+        "priorGap": "RANSAC was effective but non-differentiable, blocking direct optimization of the full pose-estimation pipeline.",
+        "whyThisMetric": "Robust localization must be evaluated on final camera pose because intermediate correspondence quality does not guarantee a usable pose estimate.",
+        "datasetLimitations": [
+          "Standard relocalization benchmarks may not expose map-update cost or large-scale outdoor deployment constraints."
+        ],
+        "limitations": [
+          "Scene-specific coordinate learning and sampling complexity can limit scaling across many environments."
+        ],
+        "sourceLinks": [
+          {
+            "label": "DOI",
+            "url": "https://doi.org/10.1109/CVPR.2017.267"
+          }
+        ],
+        "figure": {
+          "caption": "Differentiable RANSAC hypothesis selection placeholder"
+        }
+      }
+    },
+    {
+      "key": "problem:train-a-camera-localization-system-end-to-end-while-retaining-ransac-style-robustness-to-correspondence-outliers",
+      "label": "Train a camera localization system end-to-end while retaining RANSAC-style robustness to correspondence outliers.",
+      "type": "problem",
+      "x": 5.4,
+      "y": 6.0,
+      "size": 10,
+      "color": "#59d0ff",
+      "paperRefs": [
+        "paper:dsac-2017"
+      ],
+      "confidence": 0.8,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:ransac-was-effective-but-non-differentiable-blocking-direct-optimization-of-the-full-pose-estimation-pipeline",
+      "label": "RANSAC was effective but non-differentiable, blocking direct optimization of the full pose-estimation pipeline.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 6.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:dsac-2017"
+      ],
+      "confidence": 0.8,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "metric:median-translation-and-rotation-error",
+      "label": "Median translation and rotation error",
+      "type": "metric",
+      "x": 10.8,
+      "y": 9.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:dsac-2017"
+      ],
+      "confidence": 0.8,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:scene-specific-coordinate-learning-and-sampling-complexity-can-limit-scaling-across-many-environments",
+      "label": "Scene-specific coordinate learning and sampling complexity can limit scaling across many environments.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 9.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:dsac-2017"
+      ],
+      "confidence": 0.8,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
       "key": "paper:dsac-star-2021",
       "label": "DSAC*: Differentiable RANSAC for Camera Localization",
       "type": "paper",
       "x": 0.0,
-      "y": 3.0,
+      "y": 12.0,
       "size": 18,
       "color": "#7df9ff",
       "paperRefs": [
@@ -235,7 +625,10 @@
             "label": "Project",
             "url": "https://niessnerlab.org/projects/brachmann2017dsacpp.html"
           }
-        ]
+        ],
+        "figure": {
+          "caption": "End-to-end differentiable RANSAC localization placeholder"
+        }
       }
     },
     {
@@ -243,7 +636,7 @@
       "label": "Robust absolute pose estimation in scenes with ambiguous or noisy correspondences.",
       "type": "problem",
       "x": 5.4,
-      "y": 0.0,
+      "y": 9.0,
       "size": 10,
       "color": "#59d0ff",
       "paperRefs": [
@@ -260,26 +653,9 @@
       "label": "Classical RANSAC pipelines were not end-to-end trainable and struggled to learn localization-specific scoring behavior.",
       "type": "limitation",
       "x": 21.6,
-      "y": -6.0,
+      "y": 12.0,
       "size": 10,
       "color": "#ff8a65",
-      "paperRefs": [
-        "paper:dsac-star-2021"
-      ],
-      "confidence": 0.82,
-      "provenance": [
-        "manual_link",
-        "user_note"
-      ]
-    },
-    {
-      "key": "metric:median-translation-and-rotation-error",
-      "label": "Median translation and rotation error",
-      "type": "metric",
-      "x": 10.8,
-      "y": 0.0,
-      "size": 10,
-      "color": "#48e7a8",
       "paperRefs": [
         "paper:dsac-star-2021"
       ],
@@ -294,7 +670,7 @@
       "label": "Regression quality can still degrade under severe appearance changes.",
       "type": "limitation",
       "x": 21.6,
-      "y": -3.0,
+      "y": 15.0,
       "size": 10,
       "color": "#ff8a65",
       "paperRefs": [
@@ -307,11 +683,174 @@
       ]
     },
     {
+      "key": "paper:loftr-2021",
+      "label": "LoFTR: Detector-Free Local Feature Matching With Transformers",
+      "type": "paper",
+      "x": 0.0,
+      "y": 15.0,
+      "size": 18,
+      "color": "#7df9ff",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ],
+      "metadata": {
+        "title": "LoFTR: Detector-Free Local Feature Matching With Transformers",
+        "year": 2021,
+        "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+        "venueType": "conference",
+        "venueTier": "A*",
+        "summary": "Removes dependence on sparse keypoint detection and improves matching in low-texture or repetitive regions.",
+        "abstract": "A detector-free transformer matcher directly establishes dense-to-coarse local correspondences.",
+        "problem": "Establish robust image correspondences when keypoint detectors fail or produce too few stable points.",
+        "priorGap": "Keypoint-based pipelines could collapse in low-texture scenes because feature detection happened before global matching context was considered.",
+        "whyThisMetric": "Detector-free matching is valuable only if stronger correspondences improve geometry, so relative pose and localization metrics measure the intended downstream effect.",
+        "datasetLimitations": [
+          "Pairwise matching datasets can underrepresent retrieval-stage failures and large-scale map maintenance constraints."
+        ],
+        "limitations": [
+          "Transformer matching can increase memory and runtime cost for high-resolution or large-scale deployments."
+        ],
+        "sourceLinks": [
+          {
+            "label": "DOI",
+            "url": "https://doi.org/10.1109/CVPR46437.2021.00881"
+          }
+        ],
+        "figure": {
+          "caption": "Detector-free transformer matching placeholder"
+        }
+      }
+    },
+    {
+      "key": "problem:establish-robust-image-correspondences-when-keypoint-detectors-fail-or-produce-too-few-stable-points",
+      "label": "Establish robust image correspondences when keypoint detectors fail or produce too few stable points.",
+      "type": "problem",
+      "x": 5.4,
+      "y": 12.0,
+      "size": 10,
+      "color": "#59d0ff",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:keypoint-based-pipelines-could-collapse-in-low-texture-scenes-because-feature-detection-happened-before-global-matching-context-was-considered",
+      "label": "Keypoint-based pipelines could collapse in low-texture scenes because feature detection happened before global matching context was considered.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 18.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "metric:relative-pose-auc",
+      "label": "Relative pose AUC",
+      "type": "metric",
+      "x": 10.8,
+      "y": 12.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "metric:visual-localization-accuracy",
+      "label": "Visual localization accuracy",
+      "type": "metric",
+      "x": 10.8,
+      "y": 15.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "dataset:scannet",
+      "label": "ScanNet",
+      "type": "dataset",
+      "x": 16.200000000000003,
+      "y": 6.0,
+      "size": 10,
+      "color": "#b6ff4d",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "dataset:megadepth",
+      "label": "MegaDepth",
+      "type": "dataset",
+      "x": 16.200000000000003,
+      "y": 9.0,
+      "size": 10,
+      "color": "#b6ff4d",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:transformer-matching-can-increase-memory-and-runtime-cost-for-high-resolution-or-large-scale-deployments",
+      "label": "Transformer matching can increase memory and runtime cost for high-resolution or large-scale deployments.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 21.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
       "key": "paper:marepo-2024",
       "label": "MARePo: Mapping-agnostic Regression for Efficient Pose Estimation",
       "type": "paper",
       "x": 0.0,
-      "y": 6.0,
+      "y": 18.0,
       "size": 18,
       "color": "#7df9ff",
       "paperRefs": [
@@ -344,7 +883,10 @@
             "label": "Paper",
             "url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/11787_ECCV_2024_paper.php"
           }
-        ]
+        ],
+        "figure": {
+          "caption": "Mapping-agnostic pose regression placeholder"
+        }
       }
     },
     {
@@ -352,7 +894,7 @@
       "label": "Reduce scene-specific dependence in regression-based localization pipelines.",
       "type": "problem",
       "x": 5.4,
-      "y": 3.0,
+      "y": 15.0,
       "size": 10,
       "color": "#59d0ff",
       "paperRefs": [
@@ -369,7 +911,7 @@
       "label": "Efficient localization models such as ACE still required per-scene optimization and limited cross-scene reuse.",
       "type": "limitation",
       "x": 21.6,
-      "y": 0.0,
+      "y": 24.0,
       "size": 10,
       "color": "#ff8a65",
       "paperRefs": [
@@ -386,7 +928,7 @@
       "label": "Cross-scene generalization",
       "type": "metric",
       "x": 10.8,
-      "y": 3.0,
+      "y": 18.0,
       "size": 10,
       "color": "#48e7a8",
       "paperRefs": [
@@ -403,7 +945,7 @@
       "label": "Generalization gains may still depend on scene overlap and representation bias.",
       "type": "limitation",
       "x": 21.6,
-      "y": 3.0,
+      "y": 27.0,
       "size": 10,
       "color": "#ff8a65",
       "paperRefs": [
@@ -414,9 +956,657 @@
         "manual_link",
         "abstract_inference"
       ]
+    },
+    {
+      "key": "paper:netvlad-2016",
+      "label": "NetVLAD: CNN Architecture for Weakly Supervised Place Recognition",
+      "type": "paper",
+      "x": 0.0,
+      "y": 21.0,
+      "size": 18,
+      "color": "#7df9ff",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ],
+      "metadata": {
+        "title": "NetVLAD: CNN Architecture for Weakly Supervised Place Recognition",
+        "year": 2016,
+        "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+        "venueType": "conference",
+        "venueTier": "A*",
+        "summary": "Provides a retrieval backbone that became a common first stage for large-scale visual localization systems.",
+        "abstract": "A trainable VLAD layer learns image retrieval descriptors for place recognition from weak supervision.",
+        "problem": "Retrieve visually corresponding places under large viewpoint and appearance changes.",
+        "priorGap": "Handcrafted global descriptors and non-trainable aggregation often lacked robustness for city-scale image retrieval.",
+        "whyThisMetric": "Retrieval is a candidate-generation stage, so recall at small K directly measures whether the downstream geometric localizer receives useful database images.",
+        "datasetLimitations": [
+          "Place recognition datasets do not fully measure final 6-DoF pose quality without a downstream geometric localization step."
+        ],
+        "limitations": [
+          "Retrieval alone cannot estimate metric pose and may fail under severe perceptual aliasing."
+        ],
+        "sourceLinks": [
+          {
+            "label": "CVF",
+            "url": "https://openaccess.thecvf.com/content_cvpr_2016/html/Arandjelovic_NetVLAD_CNN_Architecture_CVPR_2016_paper.html"
+          }
+        ],
+        "figure": {
+          "caption": "Learned image retrieval descriptor placeholder"
+        }
+      }
+    },
+    {
+      "key": "problem:retrieve-visually-corresponding-places-under-large-viewpoint-and-appearance-changes",
+      "label": "Retrieve visually corresponding places under large viewpoint and appearance changes.",
+      "type": "problem",
+      "x": 5.4,
+      "y": 18.0,
+      "size": 10,
+      "color": "#59d0ff",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:handcrafted-global-descriptors-and-non-trainable-aggregation-often-lacked-robustness-for-city-scale-image-retrieval",
+      "label": "Handcrafted global descriptors and non-trainable aggregation often lacked robustness for city-scale image retrieval.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 30.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "metric:recall-at-k",
+      "label": "Recall at K",
+      "type": "metric",
+      "x": 10.8,
+      "y": 21.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "metric:localization-retrieval-recall",
+      "label": "Localization retrieval recall",
+      "type": "metric",
+      "x": 10.8,
+      "y": 24.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "dataset:pittsburgh-250k",
+      "label": "Pittsburgh 250k",
+      "type": "dataset",
+      "x": 16.200000000000003,
+      "y": 12.0,
+      "size": 10,
+      "color": "#b6ff4d",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "dataset:tokyo-24-7",
+      "label": "Tokyo 24/7",
+      "type": "dataset",
+      "x": 16.200000000000003,
+      "y": 15.0,
+      "size": 10,
+      "color": "#b6ff4d",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:retrieval-alone-cannot-estimate-metric-pose-and-may-fail-under-severe-perceptual-aliasing",
+      "label": "Retrieval alone cannot estimate metric pose and may fail under severe perceptual aliasing.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 33.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "paper:pixloc-2021",
+      "label": "Back to the Feature: Learning Robust Camera Localization From Pixels to Pose",
+      "type": "paper",
+      "x": 0.0,
+      "y": 24.0,
+      "size": 18,
+      "color": "#7df9ff",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ],
+      "metadata": {
+        "title": "Back to the Feature: Learning Robust Camera Localization From Pixels to Pose",
+        "year": 2021,
+        "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+        "venueType": "conference",
+        "venueTier": "A*",
+        "summary": "Reintroduces geometric pose refinement around learned features to improve RGB camera localization robustness.",
+        "abstract": "Pixel-wise feature alignment refines camera pose through learned dense matching and geometric optimization.",
+        "problem": "Refine camera poses from image evidence without depending only on sparse correspondences or direct pose regression.",
+        "priorGap": "Retrieval and sparse matching pipelines could produce rough poses, while direct regression often lacked geometric precision.",
+        "whyThisMetric": "Pose refinement should be judged by final metric pose precision at strict and relaxed thresholds, not only by feature similarity.",
+        "datasetLimitations": [
+          "Common benchmarks do not fully represent real-time map updates or broad open-world appearance changes."
+        ],
+        "limitations": [
+          "Requires a good initialization and can inherit failure modes from retrieval or coarse pose estimation."
+        ],
+        "sourceLinks": [
+          {
+            "label": "DOI",
+            "url": "https://doi.org/10.1109/CVPR46437.2021.00326"
+          }
+        ],
+        "figure": {
+          "caption": "Pixel-wise pose refinement placeholder"
+        }
+      }
+    },
+    {
+      "key": "problem:refine-camera-poses-from-image-evidence-without-depending-only-on-sparse-correspondences-or-direct-pose-regression",
+      "label": "Refine camera poses from image evidence without depending only on sparse correspondences or direct pose regression.",
+      "type": "problem",
+      "x": 5.4,
+      "y": 21.0,
+      "size": 10,
+      "color": "#59d0ff",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:retrieval-and-sparse-matching-pipelines-could-produce-rough-poses-while-direct-regression-often-lacked-geometric-precision",
+      "label": "Retrieval and sparse matching pipelines could produce rough poses, while direct regression often lacked geometric precision.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 36.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "metric:pose-accuracy-at-multiple-thresholds",
+      "label": "Pose accuracy at multiple thresholds",
+      "type": "metric",
+      "x": 10.8,
+      "y": 27.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:requires-a-good-initialization-and-can-inherit-failure-modes-from-retrieval-or-coarse-pose-estimation",
+      "label": "Requires a good initialization and can inherit failure modes from retrieval or coarse pose estimation.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 39.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ],
+      "confidence": 0.76,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "paper:posenet-2015",
+      "label": "PoseNet: A Convolutional Network for Real-Time 6-DOF Camera Relocalization",
+      "type": "paper",
+      "x": 0.0,
+      "y": 27.0,
+      "size": 18,
+      "color": "#7df9ff",
+      "paperRefs": [
+        "paper:posenet-2015"
+      ],
+      "confidence": 0.8,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ],
+      "metadata": {
+        "title": "PoseNet: A Convolutional Network for Real-Time 6-DOF Camera Relocalization",
+        "year": 2015,
+        "venue": "IEEE/CVF International Conference on Computer Vision",
+        "venueType": "conference",
+        "venueTier": "A*",
+        "summary": "Introduces end-to-end learned absolute pose regression as an alternative to handcrafted structure-based localization.",
+        "abstract": "A convolutional network directly regresses camera pose from a single RGB image.",
+        "problem": "Predict 6-DoF camera pose from a single image in real time for large outdoor scenes.",
+        "priorGap": "Structure-based pipelines required explicit feature matching, 3D maps, and robust geometric verification that could be heavy for real-time deployment.",
+        "whyThisMetric": "Direct pose regression optimizes continuous camera pose, so median translation and rotation error summarize typical relocalization quality while reducing outlier dominance.",
+        "datasetLimitations": [
+          "Outdoor landmark sequences are limited in geographic diversity and can overrepresent scene-specific appearance."
+        ],
+        "limitations": [
+          "Direct regression can be less accurate than geometry-based localization and can struggle with scene generalization."
+        ],
+        "sourceLinks": [
+          {
+            "label": "DOI",
+            "url": "https://doi.org/10.1109/ICCV.2015.336"
+          }
+        ],
+        "figure": {
+          "caption": "Direct CNN pose regression placeholder"
+        }
+      }
+    },
+    {
+      "key": "problem:predict-6-dof-camera-pose-from-a-single-image-in-real-time-for-large-outdoor-scenes",
+      "label": "Predict 6-DoF camera pose from a single image in real time for large outdoor scenes.",
+      "type": "problem",
+      "x": 5.4,
+      "y": 24.0,
+      "size": 10,
+      "color": "#59d0ff",
+      "paperRefs": [
+        "paper:posenet-2015"
+      ],
+      "confidence": 0.8,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:structure-based-pipelines-required-explicit-feature-matching-3d-maps-and-robust-geometric-verification-that-could-be-heavy-for-real-time-deployment",
+      "label": "Structure-based pipelines required explicit feature matching, 3D maps, and robust geometric verification that could be heavy for real-time deployment.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 42.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:posenet-2015"
+      ],
+      "confidence": 0.8,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:direct-regression-can-be-less-accurate-than-geometry-based-localization-and-can-struggle-with-scene-generalization",
+      "label": "Direct regression can be less accurate than geometry-based localization and can struggle with scene generalization.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 45.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:posenet-2015"
+      ],
+      "confidence": 0.8,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "paper:score-forest-2013",
+      "label": "Scene Coordinate Regression Forests for Camera Relocalization in RGB-D Images",
+      "type": "paper",
+      "x": 0.0,
+      "y": 30.0,
+      "size": 18,
+      "color": "#7df9ff",
+      "paperRefs": [
+        "paper:score-forest-2013"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ],
+      "metadata": {
+        "title": "Scene Coordinate Regression Forests for Camera Relocalization in RGB-D Images",
+        "year": 2013,
+        "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+        "venueType": "conference",
+        "venueTier": "A*",
+        "summary": "Establishes scene coordinate regression as a practical camera relocalization formulation using RGB-D inputs.",
+        "abstract": "Randomized forests predict scene coordinates from RGB-D image patches for camera relocalization.",
+        "problem": "Recover camera pose in a known indoor scene from RGB-D observations without relying on sparse hand-crafted matches.",
+        "priorGap": "Classical feature matching and structure-based localization could be brittle for texture-poor indoor RGB-D scenes.",
+        "whyThisMetric": "Scene relocalization needs both thresholded success rates and pose-error statistics because downstream AR or robotics use cases fail sharply beyond small pose tolerances.",
+        "datasetLimitations": [
+          "Indoor RGB-D benchmarks underrepresent outdoor scale, long-term appearance change, and low-overlap image retrieval cases."
+        ],
+        "limitations": [
+          "Requires scene-specific training and RGB-D style scene supervision."
+        ],
+        "sourceLinks": [
+          {
+            "label": "DOI",
+            "url": "https://doi.org/10.1109/CVPR.2013.377"
+          }
+        ],
+        "figure": {
+          "caption": "Scene coordinate regression forest pipeline placeholder"
+        }
+      }
+    },
+    {
+      "key": "problem:recover-camera-pose-in-a-known-indoor-scene-from-rgb-d-observations-without-relying-on-sparse-hand-crafted-matches",
+      "label": "Recover camera pose in a known indoor scene from RGB-D observations without relying on sparse hand-crafted matches.",
+      "type": "problem",
+      "x": 5.4,
+      "y": 27.0,
+      "size": 10,
+      "color": "#59d0ff",
+      "paperRefs": [
+        "paper:score-forest-2013"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:classical-feature-matching-and-structure-based-localization-could-be-brittle-for-texture-poor-indoor-rgb-d-scenes",
+      "label": "Classical feature matching and structure-based localization could be brittle for texture-poor indoor RGB-D scenes.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 48.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:score-forest-2013"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:requires-scene-specific-training-and-rgb-d-style-scene-supervision",
+      "label": "Requires scene-specific training and RGB-D style scene supervision.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 51.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:score-forest-2013"
+      ],
+      "confidence": 0.78,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "paper:superglue-2020",
+      "label": "SuperGlue: Learning Feature Matching With Graph Neural Networks",
+      "type": "paper",
+      "x": 0.0,
+      "y": 33.0,
+      "size": 18,
+      "color": "#7df9ff",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ],
+      "confidence": 0.79,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ],
+      "metadata": {
+        "title": "SuperGlue: Learning Feature Matching With Graph Neural Networks",
+        "year": 2020,
+        "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+        "venueType": "conference",
+        "venueTier": "A*",
+        "summary": "Makes local feature matching more robust by reasoning over keypoint relationships before geometric verification.",
+        "abstract": "A graph neural network performs context-aware feature matching between local features.",
+        "problem": "Match local features reliably when descriptors alone are ambiguous or outlier-prone.",
+        "priorGap": "Nearest-neighbor descriptor matching ignored global assignment structure and could produce many inconsistent correspondences.",
+        "whyThisMetric": "The matcher must improve both correspondence correctness and downstream camera pose estimation, so assignment and pose metrics are both necessary.",
+        "datasetLimitations": [
+          "Matching benchmarks may favor pairwise correspondence quality while full localization also depends on retrieval and mapping quality."
+        ],
+        "limitations": [
+          "Graph matching accuracy comes with additional inference cost and dependency on upstream keypoint quality."
+        ],
+        "sourceLinks": [
+          {
+            "label": "DOI",
+            "url": "https://doi.org/10.1109/CVPR42600.2020.00499"
+          }
+        ],
+        "figure": {
+          "caption": "Graph neural local feature matcher placeholder"
+        }
+      }
+    },
+    {
+      "key": "problem:match-local-features-reliably-when-descriptors-alone-are-ambiguous-or-outlier-prone",
+      "label": "Match local features reliably when descriptors alone are ambiguous or outlier-prone.",
+      "type": "problem",
+      "x": 5.4,
+      "y": 30.0,
+      "size": 10,
+      "color": "#59d0ff",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ],
+      "confidence": 0.79,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:nearest-neighbor-descriptor-matching-ignored-global-assignment-structure-and-could-produce-many-inconsistent-correspondences",
+      "label": "Nearest-neighbor descriptor matching ignored global assignment structure and could produce many inconsistent correspondences.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 54.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ],
+      "confidence": 0.79,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "metric:matching-precision",
+      "label": "Matching precision",
+      "type": "metric",
+      "x": 10.8,
+      "y": 30.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ],
+      "confidence": 0.79,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "metric:pose-estimation-auc",
+      "label": "Pose estimation AUC",
+      "type": "metric",
+      "x": 10.8,
+      "y": 33.0,
+      "size": 10,
+      "color": "#48e7a8",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ],
+      "confidence": 0.79,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
+    },
+    {
+      "key": "limitation:graph-matching-accuracy-comes-with-additional-inference-cost-and-dependency-on-upstream-keypoint-quality",
+      "label": "Graph matching accuracy comes with additional inference cost and dependency on upstream keypoint quality.",
+      "type": "limitation",
+      "x": 21.6,
+      "y": 57.0,
+      "size": 10,
+      "color": "#ff8a65",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ],
+      "confidence": 0.79,
+      "provenance": [
+        "openalex_title_check",
+        "manual_curation"
+      ]
     }
   ],
   "edges": [
+    {
+      "key": "paper:aachen-day-night-2018->problem:evaluate-6-dof-outdoor-visual-localization-under-illumination-and-appearance-changes:addresses",
+      "source": "paper:aachen-day-night-2018",
+      "target": "problem:evaluate-6-dof-outdoor-visual-localization-under-illumination-and-appearance-changes",
+      "type": "addresses",
+      "paperRefs": [
+        "paper:aachen-day-night-2018"
+      ]
+    },
+    {
+      "key": "paper:aachen-day-night-2018->limitation:many-localization-benchmarks-were-captured-under-limited-conditions-and-did-not-sufficiently-stress-long-term-robustness:motivated_by",
+      "source": "paper:aachen-day-night-2018",
+      "target": "limitation:many-localization-benchmarks-were-captured-under-limited-conditions-and-did-not-sufficiently-stress-long-term-robustness",
+      "type": "motivated_by",
+      "paperRefs": [
+        "paper:aachen-day-night-2018"
+      ]
+    },
+    {
+      "key": "paper:aachen-day-night-2018->metric:pose-accuracy-at-multiple-translation-and-rotation-thresholds:measured_by",
+      "source": "paper:aachen-day-night-2018",
+      "target": "metric:pose-accuracy-at-multiple-translation-and-rotation-thresholds",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:aachen-day-night-2018"
+      ]
+    },
+    {
+      "key": "paper:aachen-day-night-2018->dataset:aachen-day-night:evaluated_on",
+      "source": "paper:aachen-day-night-2018",
+      "target": "dataset:aachen-day-night",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:aachen-day-night-2018"
+      ]
+    },
+    {
+      "key": "paper:aachen-day-night-2018->limitation:dataset-centric-evaluation-can-rank-methods-without-explaining-which-pipeline-component-caused-failure:has_limitation",
+      "source": "paper:aachen-day-night-2018",
+      "target": "limitation:dataset-centric-evaluation-can-rank-methods-without-explaining-which-pipeline-component-caused-failure",
+      "type": "has_limitation",
+      "paperRefs": [
+        "paper:aachen-day-night-2018"
+      ]
+    },
+    {
+      "key": "paper:aachen-day-night-2018->paper:netvlad-2016:cites",
+      "source": "paper:aachen-day-night-2018",
+      "target": "paper:netvlad-2016",
+      "type": "cites",
+      "paperRefs": [
+        "paper:aachen-day-night-2018"
+      ]
+    },
     {
       "key": "paper:ace-2023->problem:practical-scene-specific-visual-localization-with-much-lower-training-and-update-cost:addresses",
       "source": "paper:ace-2023",
@@ -490,12 +1680,183 @@
       ]
     },
     {
-      "key": "paper:ace-2023->paper:marepo-2024:cites",
+      "key": "paper:ace-2023->paper:dsac-star-2021:cites",
       "source": "paper:ace-2023",
-      "target": "paper:marepo-2024",
+      "target": "paper:dsac-star-2021",
       "type": "cites",
       "paperRefs": [
         "paper:ace-2023"
+      ]
+    },
+    {
+      "key": "paper:ace-2023->paper:dsac-2017:cites",
+      "source": "paper:ace-2023",
+      "target": "paper:dsac-2017",
+      "type": "cites",
+      "paperRefs": [
+        "paper:ace-2023"
+      ]
+    },
+    {
+      "key": "paper:ace-2023->paper:score-forest-2013:cites",
+      "source": "paper:ace-2023",
+      "target": "paper:score-forest-2013",
+      "type": "cites",
+      "paperRefs": [
+        "paper:ace-2023"
+      ]
+    },
+    {
+      "key": "paper:d2net-2019->problem:produce-local-features-that-remain-matchable-under-viewpoint-and-illumination-changes:addresses",
+      "source": "paper:d2net-2019",
+      "target": "problem:produce-local-features-that-remain-matchable-under-viewpoint-and-illumination-changes",
+      "type": "addresses",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ]
+    },
+    {
+      "key": "paper:d2net-2019->limitation:separate-handcrafted-detectors-and-descriptors-could-be-brittle-and-learned-descriptors-often-still-depended-on-fixed-keypoint-detectors:motivated_by",
+      "source": "paper:d2net-2019",
+      "target": "limitation:separate-handcrafted-detectors-and-descriptors-could-be-brittle-and-learned-descriptors-often-still-depended-on-fixed-keypoint-detectors",
+      "type": "motivated_by",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ]
+    },
+    {
+      "key": "paper:d2net-2019->metric:matching-score:measured_by",
+      "source": "paper:d2net-2019",
+      "target": "metric:matching-score",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ]
+    },
+    {
+      "key": "paper:d2net-2019->metric:pose-accuracy-at-localization-thresholds:measured_by",
+      "source": "paper:d2net-2019",
+      "target": "metric:pose-accuracy-at-localization-thresholds",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ]
+    },
+    {
+      "key": "paper:d2net-2019->dataset:hpatches:evaluated_on",
+      "source": "paper:d2net-2019",
+      "target": "dataset:hpatches",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ]
+    },
+    {
+      "key": "paper:d2net-2019->dataset:aachen-day-night:evaluated_on",
+      "source": "paper:d2net-2019",
+      "target": "dataset:aachen-day-night",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ]
+    },
+    {
+      "key": "paper:d2net-2019->limitation:dense-feature-extraction-can-be-computationally-heavier-than-lightweight-sparse-pipelines:has_limitation",
+      "source": "paper:d2net-2019",
+      "target": "limitation:dense-feature-extraction-can-be-computationally-heavier-than-lightweight-sparse-pipelines",
+      "type": "has_limitation",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ]
+    },
+    {
+      "key": "paper:d2net-2019->paper:aachen-day-night-2018:cites",
+      "source": "paper:d2net-2019",
+      "target": "paper:aachen-day-night-2018",
+      "type": "cites",
+      "paperRefs": [
+        "paper:d2net-2019"
+      ]
+    },
+    {
+      "key": "paper:dsac-2017->problem:train-a-camera-localization-system-end-to-end-while-retaining-ransac-style-robustness-to-correspondence-outliers:addresses",
+      "source": "paper:dsac-2017",
+      "target": "problem:train-a-camera-localization-system-end-to-end-while-retaining-ransac-style-robustness-to-correspondence-outliers",
+      "type": "addresses",
+      "paperRefs": [
+        "paper:dsac-2017"
+      ]
+    },
+    {
+      "key": "paper:dsac-2017->limitation:ransac-was-effective-but-non-differentiable-blocking-direct-optimization-of-the-full-pose-estimation-pipeline:motivated_by",
+      "source": "paper:dsac-2017",
+      "target": "limitation:ransac-was-effective-but-non-differentiable-blocking-direct-optimization-of-the-full-pose-estimation-pipeline",
+      "type": "motivated_by",
+      "paperRefs": [
+        "paper:dsac-2017"
+      ]
+    },
+    {
+      "key": "paper:dsac-2017->metric:pose-accuracy-at-5cm-5deg:measured_by",
+      "source": "paper:dsac-2017",
+      "target": "metric:pose-accuracy-at-5cm-5deg",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:dsac-2017"
+      ]
+    },
+    {
+      "key": "paper:dsac-2017->metric:median-translation-and-rotation-error:measured_by",
+      "source": "paper:dsac-2017",
+      "target": "metric:median-translation-and-rotation-error",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:dsac-2017"
+      ]
+    },
+    {
+      "key": "paper:dsac-2017->dataset:7scenes:evaluated_on",
+      "source": "paper:dsac-2017",
+      "target": "dataset:7scenes",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:dsac-2017"
+      ]
+    },
+    {
+      "key": "paper:dsac-2017->dataset:cambridge-landmarks:evaluated_on",
+      "source": "paper:dsac-2017",
+      "target": "dataset:cambridge-landmarks",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:dsac-2017"
+      ]
+    },
+    {
+      "key": "paper:dsac-2017->limitation:scene-specific-coordinate-learning-and-sampling-complexity-can-limit-scaling-across-many-environments:has_limitation",
+      "source": "paper:dsac-2017",
+      "target": "limitation:scene-specific-coordinate-learning-and-sampling-complexity-can-limit-scaling-across-many-environments",
+      "type": "has_limitation",
+      "paperRefs": [
+        "paper:dsac-2017"
+      ]
+    },
+    {
+      "key": "paper:dsac-2017->paper:score-forest-2013:cites",
+      "source": "paper:dsac-2017",
+      "target": "paper:score-forest-2013",
+      "type": "cites",
+      "paperRefs": [
+        "paper:dsac-2017"
+      ]
+    },
+    {
+      "key": "paper:dsac-2017->paper:posenet-2015:cites",
+      "source": "paper:dsac-2017",
+      "target": "paper:posenet-2015",
+      "type": "cites",
+      "paperRefs": [
+        "paper:dsac-2017"
       ]
     },
     {
@@ -562,12 +1923,120 @@
       ]
     },
     {
-      "key": "paper:dsac-star-2021->paper:ace-2023:cites",
+      "key": "paper:dsac-star-2021->paper:dsac-2017:cites",
       "source": "paper:dsac-star-2021",
-      "target": "paper:ace-2023",
+      "target": "paper:dsac-2017",
       "type": "cites",
       "paperRefs": [
         "paper:dsac-star-2021"
+      ]
+    },
+    {
+      "key": "paper:dsac-star-2021->paper:score-forest-2013:cites",
+      "source": "paper:dsac-star-2021",
+      "target": "paper:score-forest-2013",
+      "type": "cites",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ]
+    },
+    {
+      "key": "paper:dsac-star-2021->paper:posenet-2015:cites",
+      "source": "paper:dsac-star-2021",
+      "target": "paper:posenet-2015",
+      "type": "cites",
+      "paperRefs": [
+        "paper:dsac-star-2021"
+      ]
+    },
+    {
+      "key": "paper:loftr-2021->problem:establish-robust-image-correspondences-when-keypoint-detectors-fail-or-produce-too-few-stable-points:addresses",
+      "source": "paper:loftr-2021",
+      "target": "problem:establish-robust-image-correspondences-when-keypoint-detectors-fail-or-produce-too-few-stable-points",
+      "type": "addresses",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ]
+    },
+    {
+      "key": "paper:loftr-2021->limitation:keypoint-based-pipelines-could-collapse-in-low-texture-scenes-because-feature-detection-happened-before-global-matching-context-was-considered:motivated_by",
+      "source": "paper:loftr-2021",
+      "target": "limitation:keypoint-based-pipelines-could-collapse-in-low-texture-scenes-because-feature-detection-happened-before-global-matching-context-was-considered",
+      "type": "motivated_by",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ]
+    },
+    {
+      "key": "paper:loftr-2021->metric:relative-pose-auc:measured_by",
+      "source": "paper:loftr-2021",
+      "target": "metric:relative-pose-auc",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ]
+    },
+    {
+      "key": "paper:loftr-2021->metric:visual-localization-accuracy:measured_by",
+      "source": "paper:loftr-2021",
+      "target": "metric:visual-localization-accuracy",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ]
+    },
+    {
+      "key": "paper:loftr-2021->dataset:scannet:evaluated_on",
+      "source": "paper:loftr-2021",
+      "target": "dataset:scannet",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ]
+    },
+    {
+      "key": "paper:loftr-2021->dataset:megadepth:evaluated_on",
+      "source": "paper:loftr-2021",
+      "target": "dataset:megadepth",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ]
+    },
+    {
+      "key": "paper:loftr-2021->dataset:aachen-day-night:evaluated_on",
+      "source": "paper:loftr-2021",
+      "target": "dataset:aachen-day-night",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ]
+    },
+    {
+      "key": "paper:loftr-2021->limitation:transformer-matching-can-increase-memory-and-runtime-cost-for-high-resolution-or-large-scale-deployments:has_limitation",
+      "source": "paper:loftr-2021",
+      "target": "limitation:transformer-matching-can-increase-memory-and-runtime-cost-for-high-resolution-or-large-scale-deployments",
+      "type": "has_limitation",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ]
+    },
+    {
+      "key": "paper:loftr-2021->paper:superglue-2020:cites",
+      "source": "paper:loftr-2021",
+      "target": "paper:superglue-2020",
+      "type": "cites",
+      "paperRefs": [
+        "paper:loftr-2021"
+      ]
+    },
+    {
+      "key": "paper:loftr-2021->paper:d2net-2019:cites",
+      "source": "paper:loftr-2021",
+      "target": "paper:d2net-2019",
+      "type": "cites",
+      "paperRefs": [
+        "paper:loftr-2021"
       ]
     },
     {
@@ -631,6 +2100,375 @@
       "type": "has_limitation",
       "paperRefs": [
         "paper:marepo-2024"
+      ]
+    },
+    {
+      "key": "paper:marepo-2024->paper:ace-2023:cites",
+      "source": "paper:marepo-2024",
+      "target": "paper:ace-2023",
+      "type": "cites",
+      "paperRefs": [
+        "paper:marepo-2024"
+      ]
+    },
+    {
+      "key": "paper:netvlad-2016->problem:retrieve-visually-corresponding-places-under-large-viewpoint-and-appearance-changes:addresses",
+      "source": "paper:netvlad-2016",
+      "target": "problem:retrieve-visually-corresponding-places-under-large-viewpoint-and-appearance-changes",
+      "type": "addresses",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ]
+    },
+    {
+      "key": "paper:netvlad-2016->limitation:handcrafted-global-descriptors-and-non-trainable-aggregation-often-lacked-robustness-for-city-scale-image-retrieval:motivated_by",
+      "source": "paper:netvlad-2016",
+      "target": "limitation:handcrafted-global-descriptors-and-non-trainable-aggregation-often-lacked-robustness-for-city-scale-image-retrieval",
+      "type": "motivated_by",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ]
+    },
+    {
+      "key": "paper:netvlad-2016->metric:recall-at-k:measured_by",
+      "source": "paper:netvlad-2016",
+      "target": "metric:recall-at-k",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ]
+    },
+    {
+      "key": "paper:netvlad-2016->metric:localization-retrieval-recall:measured_by",
+      "source": "paper:netvlad-2016",
+      "target": "metric:localization-retrieval-recall",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ]
+    },
+    {
+      "key": "paper:netvlad-2016->dataset:pittsburgh-250k:evaluated_on",
+      "source": "paper:netvlad-2016",
+      "target": "dataset:pittsburgh-250k",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ]
+    },
+    {
+      "key": "paper:netvlad-2016->dataset:tokyo-24-7:evaluated_on",
+      "source": "paper:netvlad-2016",
+      "target": "dataset:tokyo-24-7",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ]
+    },
+    {
+      "key": "paper:netvlad-2016->limitation:retrieval-alone-cannot-estimate-metric-pose-and-may-fail-under-severe-perceptual-aliasing:has_limitation",
+      "source": "paper:netvlad-2016",
+      "target": "limitation:retrieval-alone-cannot-estimate-metric-pose-and-may-fail-under-severe-perceptual-aliasing",
+      "type": "has_limitation",
+      "paperRefs": [
+        "paper:netvlad-2016"
+      ]
+    },
+    {
+      "key": "paper:pixloc-2021->problem:refine-camera-poses-from-image-evidence-without-depending-only-on-sparse-correspondences-or-direct-pose-regression:addresses",
+      "source": "paper:pixloc-2021",
+      "target": "problem:refine-camera-poses-from-image-evidence-without-depending-only-on-sparse-correspondences-or-direct-pose-regression",
+      "type": "addresses",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ]
+    },
+    {
+      "key": "paper:pixloc-2021->limitation:retrieval-and-sparse-matching-pipelines-could-produce-rough-poses-while-direct-regression-often-lacked-geometric-precision:motivated_by",
+      "source": "paper:pixloc-2021",
+      "target": "limitation:retrieval-and-sparse-matching-pipelines-could-produce-rough-poses-while-direct-regression-often-lacked-geometric-precision",
+      "type": "motivated_by",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ]
+    },
+    {
+      "key": "paper:pixloc-2021->metric:pose-accuracy-at-multiple-thresholds:measured_by",
+      "source": "paper:pixloc-2021",
+      "target": "metric:pose-accuracy-at-multiple-thresholds",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ]
+    },
+    {
+      "key": "paper:pixloc-2021->metric:median-translation-and-rotation-error:measured_by",
+      "source": "paper:pixloc-2021",
+      "target": "metric:median-translation-and-rotation-error",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ]
+    },
+    {
+      "key": "paper:pixloc-2021->dataset:7scenes:evaluated_on",
+      "source": "paper:pixloc-2021",
+      "target": "dataset:7scenes",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ]
+    },
+    {
+      "key": "paper:pixloc-2021->dataset:cambridge-landmarks:evaluated_on",
+      "source": "paper:pixloc-2021",
+      "target": "dataset:cambridge-landmarks",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ]
+    },
+    {
+      "key": "paper:pixloc-2021->dataset:aachen-day-night:evaluated_on",
+      "source": "paper:pixloc-2021",
+      "target": "dataset:aachen-day-night",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ]
+    },
+    {
+      "key": "paper:pixloc-2021->limitation:requires-a-good-initialization-and-can-inherit-failure-modes-from-retrieval-or-coarse-pose-estimation:has_limitation",
+      "source": "paper:pixloc-2021",
+      "target": "limitation:requires-a-good-initialization-and-can-inherit-failure-modes-from-retrieval-or-coarse-pose-estimation",
+      "type": "has_limitation",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ]
+    },
+    {
+      "key": "paper:pixloc-2021->paper:superglue-2020:cites",
+      "source": "paper:pixloc-2021",
+      "target": "paper:superglue-2020",
+      "type": "cites",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ]
+    },
+    {
+      "key": "paper:pixloc-2021->paper:aachen-day-night-2018:cites",
+      "source": "paper:pixloc-2021",
+      "target": "paper:aachen-day-night-2018",
+      "type": "cites",
+      "paperRefs": [
+        "paper:pixloc-2021"
+      ]
+    },
+    {
+      "key": "paper:posenet-2015->problem:predict-6-dof-camera-pose-from-a-single-image-in-real-time-for-large-outdoor-scenes:addresses",
+      "source": "paper:posenet-2015",
+      "target": "problem:predict-6-dof-camera-pose-from-a-single-image-in-real-time-for-large-outdoor-scenes",
+      "type": "addresses",
+      "paperRefs": [
+        "paper:posenet-2015"
+      ]
+    },
+    {
+      "key": "paper:posenet-2015->limitation:structure-based-pipelines-required-explicit-feature-matching-3d-maps-and-robust-geometric-verification-that-could-be-heavy-for-real-time-deployment:motivated_by",
+      "source": "paper:posenet-2015",
+      "target": "limitation:structure-based-pipelines-required-explicit-feature-matching-3d-maps-and-robust-geometric-verification-that-could-be-heavy-for-real-time-deployment",
+      "type": "motivated_by",
+      "paperRefs": [
+        "paper:posenet-2015"
+      ]
+    },
+    {
+      "key": "paper:posenet-2015->metric:median-translation-and-rotation-error:measured_by",
+      "source": "paper:posenet-2015",
+      "target": "metric:median-translation-and-rotation-error",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:posenet-2015"
+      ]
+    },
+    {
+      "key": "paper:posenet-2015->dataset:cambridge-landmarks:evaluated_on",
+      "source": "paper:posenet-2015",
+      "target": "dataset:cambridge-landmarks",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:posenet-2015"
+      ]
+    },
+    {
+      "key": "paper:posenet-2015->limitation:direct-regression-can-be-less-accurate-than-geometry-based-localization-and-can-struggle-with-scene-generalization:has_limitation",
+      "source": "paper:posenet-2015",
+      "target": "limitation:direct-regression-can-be-less-accurate-than-geometry-based-localization-and-can-struggle-with-scene-generalization",
+      "type": "has_limitation",
+      "paperRefs": [
+        "paper:posenet-2015"
+      ]
+    },
+    {
+      "key": "paper:posenet-2015->paper:score-forest-2013:cites",
+      "source": "paper:posenet-2015",
+      "target": "paper:score-forest-2013",
+      "type": "cites",
+      "paperRefs": [
+        "paper:posenet-2015"
+      ]
+    },
+    {
+      "key": "paper:score-forest-2013->problem:recover-camera-pose-in-a-known-indoor-scene-from-rgb-d-observations-without-relying-on-sparse-hand-crafted-matches:addresses",
+      "source": "paper:score-forest-2013",
+      "target": "problem:recover-camera-pose-in-a-known-indoor-scene-from-rgb-d-observations-without-relying-on-sparse-hand-crafted-matches",
+      "type": "addresses",
+      "paperRefs": [
+        "paper:score-forest-2013"
+      ]
+    },
+    {
+      "key": "paper:score-forest-2013->limitation:classical-feature-matching-and-structure-based-localization-could-be-brittle-for-texture-poor-indoor-rgb-d-scenes:motivated_by",
+      "source": "paper:score-forest-2013",
+      "target": "limitation:classical-feature-matching-and-structure-based-localization-could-be-brittle-for-texture-poor-indoor-rgb-d-scenes",
+      "type": "motivated_by",
+      "paperRefs": [
+        "paper:score-forest-2013"
+      ]
+    },
+    {
+      "key": "paper:score-forest-2013->metric:pose-accuracy-at-5cm-5deg:measured_by",
+      "source": "paper:score-forest-2013",
+      "target": "metric:pose-accuracy-at-5cm-5deg",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:score-forest-2013"
+      ]
+    },
+    {
+      "key": "paper:score-forest-2013->metric:median-translation-and-rotation-error:measured_by",
+      "source": "paper:score-forest-2013",
+      "target": "metric:median-translation-and-rotation-error",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:score-forest-2013"
+      ]
+    },
+    {
+      "key": "paper:score-forest-2013->dataset:7scenes:evaluated_on",
+      "source": "paper:score-forest-2013",
+      "target": "dataset:7scenes",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:score-forest-2013"
+      ]
+    },
+    {
+      "key": "paper:score-forest-2013->limitation:requires-scene-specific-training-and-rgb-d-style-scene-supervision:has_limitation",
+      "source": "paper:score-forest-2013",
+      "target": "limitation:requires-scene-specific-training-and-rgb-d-style-scene-supervision",
+      "type": "has_limitation",
+      "paperRefs": [
+        "paper:score-forest-2013"
+      ]
+    },
+    {
+      "key": "paper:superglue-2020->problem:match-local-features-reliably-when-descriptors-alone-are-ambiguous-or-outlier-prone:addresses",
+      "source": "paper:superglue-2020",
+      "target": "problem:match-local-features-reliably-when-descriptors-alone-are-ambiguous-or-outlier-prone",
+      "type": "addresses",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ]
+    },
+    {
+      "key": "paper:superglue-2020->limitation:nearest-neighbor-descriptor-matching-ignored-global-assignment-structure-and-could-produce-many-inconsistent-correspondences:motivated_by",
+      "source": "paper:superglue-2020",
+      "target": "limitation:nearest-neighbor-descriptor-matching-ignored-global-assignment-structure-and-could-produce-many-inconsistent-correspondences",
+      "type": "motivated_by",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ]
+    },
+    {
+      "key": "paper:superglue-2020->metric:matching-precision:measured_by",
+      "source": "paper:superglue-2020",
+      "target": "metric:matching-precision",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ]
+    },
+    {
+      "key": "paper:superglue-2020->metric:pose-estimation-auc:measured_by",
+      "source": "paper:superglue-2020",
+      "target": "metric:pose-estimation-auc",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ]
+    },
+    {
+      "key": "paper:superglue-2020->metric:visual-localization-accuracy:measured_by",
+      "source": "paper:superglue-2020",
+      "target": "metric:visual-localization-accuracy",
+      "type": "measured_by",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ]
+    },
+    {
+      "key": "paper:superglue-2020->dataset:scannet:evaluated_on",
+      "source": "paper:superglue-2020",
+      "target": "dataset:scannet",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ]
+    },
+    {
+      "key": "paper:superglue-2020->dataset:megadepth:evaluated_on",
+      "source": "paper:superglue-2020",
+      "target": "dataset:megadepth",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ]
+    },
+    {
+      "key": "paper:superglue-2020->dataset:aachen-day-night:evaluated_on",
+      "source": "paper:superglue-2020",
+      "target": "dataset:aachen-day-night",
+      "type": "evaluated_on",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ]
+    },
+    {
+      "key": "paper:superglue-2020->limitation:graph-matching-accuracy-comes-with-additional-inference-cost-and-dependency-on-upstream-keypoint-quality:has_limitation",
+      "source": "paper:superglue-2020",
+      "target": "limitation:graph-matching-accuracy-comes-with-additional-inference-cost-and-dependency-on-upstream-keypoint-quality",
+      "type": "has_limitation",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ]
+    },
+    {
+      "key": "paper:superglue-2020->paper:d2net-2019:cites",
+      "source": "paper:superglue-2020",
+      "target": "paper:d2net-2019",
+      "type": "cites",
+      "paperRefs": [
+        "paper:superglue-2020"
+      ]
+    },
+    {
+      "key": "paper:superglue-2020->paper:aachen-day-night-2018:cites",
+      "source": "paper:superglue-2020",
+      "target": "paper:aachen-day-night-2018",
+      "type": "cites",
+      "paperRefs": [
+        "paper:superglue-2020"
       ]
     }
   ]

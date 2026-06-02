@@ -5,6 +5,78 @@ selection_rules:
   journals:
     allowed_sjr_quartiles: ["Q1", "Q2"]
 papers:
+  - id: "paper:score-forest-2013"
+    title: "Scene Coordinate Regression Forests for Camera Relocalization in RGB-D Images"
+    year: 2013
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: []
+  - id: "paper:posenet-2015"
+    title: "PoseNet: A Convolutional Network for Real-Time 6-DOF Camera Relocalization"
+    year: 2015
+    venue: IEEE/CVF International Conference on Computer Vision
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:score-forest-2013"]
+  - id: "paper:netvlad-2016"
+    title: "NetVLAD: CNN Architecture for Weakly Supervised Place Recognition"
+    year: 2016
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: []
+  - id: "paper:dsac-2017"
+    title: "DSAC: Differentiable RANSAC for Camera Localization"
+    year: 2017
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:score-forest-2013", "paper:posenet-2015"]
+  - id: "paper:aachen-day-night-2018"
+    title: "Benchmarking 6DOF Outdoor Visual Localization in Changing Conditions"
+    year: 2018
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:netvlad-2016"]
+  - id: "paper:d2net-2019"
+    title: "D2-Net: A Trainable CNN for Joint Description and Detection of Local Features"
+    year: 2019
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:aachen-day-night-2018"]
+  - id: "paper:superglue-2020"
+    title: "SuperGlue: Learning Feature Matching With Graph Neural Networks"
+    year: 2020
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:d2net-2019", "paper:aachen-day-night-2018"]
+  - id: "paper:loftr-2021"
+    title: "LoFTR: Detector-Free Local Feature Matching With Transformers"
+    year: 2021
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:superglue-2020", "paper:d2net-2019"]
+  - id: "paper:pixloc-2021"
+    title: "Back to the Feature: Learning Robust Camera Localization From Pixels to Pose"
+    year: 2021
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:superglue-2020", "paper:aachen-day-night-2018"]
   - id: "paper:dsac-star-2021"
     title: "DSAC*: Differentiable RANSAC for Camera Localization"
     year: 2021
@@ -12,7 +84,7 @@ papers:
     venue_type: journal
     venue_tier: Q1
     included: true
-    citations: ["paper:ace-2023"]
+    citations: ["paper:dsac-2017", "paper:score-forest-2013", "paper:posenet-2015"]
   - id: "paper:ace-2023"
     title: "ACE: Absolute Camera Estimation for Efficient 3D Visual Localization"
     year: 2023
@@ -20,7 +92,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:marepo-2024"]
+    citations: ["paper:dsac-star-2021", "paper:dsac-2017", "paper:score-forest-2013"]
   - id: "paper:marepo-2024"
     title: "MARePo: Mapping-agnostic Regression for Efficient Pose Estimation"
     year: 2024
@@ -28,4 +100,4 @@ papers:
     venue_type: conference
     venue_tier: A
     included: true
-    citations: []
+    citations: ["paper:ace-2023"]

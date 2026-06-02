@@ -1,0 +1,31 @@
+paper_id: "paper:loftr-2021"
+title: "LoFTR: Detector-Free Local Feature Matching With Transformers"
+year: 2021
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: A detector-free transformer matcher directly establishes dense-to-coarse local correspondences.
+summary: Removes dependence on sparse keypoint detection and improves matching in low-texture or repetitive regions.
+problem: Establish robust image correspondences when keypoint detectors fail or produce too few stable points.
+prior_gap: Keypoint-based pipelines could collapse in low-texture scenes because feature detection happened before global matching context was considered.
+metric:
+  - Relative pose AUC
+  - Visual localization accuracy
+why_this_metric: Detector-free matching is valuable only if stronger correspondences improve geometry, so relative pose and localization metrics measure the intended downstream effect.
+dataset:
+  - ScanNet
+  - MegaDepth
+  - Aachen Day-Night
+dataset_limitations:
+  - Pairwise matching datasets can underrepresent retrieval-stage failures and large-scale map maintenance constraints.
+limitations:
+  - Transformer matching can increase memory and runtime cost for high-resolution or large-scale deployments.
+source_links:
+  - label: DOI
+    url: https://doi.org/10.1109/CVPR46437.2021.00881
+figure:
+  caption: Detector-free transformer matching placeholder
+provenance:
+  - openalex_title_check
+  - manual_curation
+confidence: 0.78

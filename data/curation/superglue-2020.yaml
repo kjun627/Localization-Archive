@@ -1,0 +1,32 @@
+paper_id: "paper:superglue-2020"
+title: "SuperGlue: Learning Feature Matching With Graph Neural Networks"
+year: 2020
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: A graph neural network performs context-aware feature matching between local features.
+summary: Makes local feature matching more robust by reasoning over keypoint relationships before geometric verification.
+problem: Match local features reliably when descriptors alone are ambiguous or outlier-prone.
+prior_gap: Nearest-neighbor descriptor matching ignored global assignment structure and could produce many inconsistent correspondences.
+metric:
+  - Matching precision
+  - Pose estimation AUC
+  - Visual localization accuracy
+why_this_metric: The matcher must improve both correspondence correctness and downstream camera pose estimation, so assignment and pose metrics are both necessary.
+dataset:
+  - ScanNet
+  - MegaDepth
+  - Aachen Day-Night
+dataset_limitations:
+  - Matching benchmarks may favor pairwise correspondence quality while full localization also depends on retrieval and mapping quality.
+limitations:
+  - Graph matching accuracy comes with additional inference cost and dependency on upstream keypoint quality.
+source_links:
+  - label: DOI
+    url: https://doi.org/10.1109/CVPR42600.2020.00499
+figure:
+  caption: Graph neural local feature matcher placeholder
+provenance:
+  - openalex_title_check
+  - manual_curation
+confidence: 0.79

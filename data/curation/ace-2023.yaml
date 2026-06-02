@@ -25,6 +25,8 @@ source_links:
     url: https://openaccess.thecvf.com/content/CVPR2023/html/Brachmann_ACE_Absolute_Camera_Estimation_for_Efficient_3D_Visual_Localization_CVPR_2023_paper.html
   - label: Project
     url: https://nianticlabs.github.io/ace
+figure:
+  caption: Efficient scene-coordinate map training placeholder
 provenance:
   - manual_link
   - abstract_inference

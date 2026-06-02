@@ -2,50 +2,69 @@
 
 Date: 2026-06-02
 
-## Seed Candidate Fetch
+## Scope
 
-- Source: OpenAlex only
-- Query: `3D visual localization absolute camera pose estimation`
-- Limit: 25
-- Output: `data/generated/seed_candidates.json`
-- Semantic Scholar: not used by this fetch path; `SEMANTIC_SCHOLAR_API_KEY` is optional and not required.
-- Google Scholar: excluded.
+- Domain: 3D Visual Localization
+- Google Scholar: excluded
+- OpenAlex: used for candidate discovery and exact-title sanity checks
+- Semantic Scholar: attempted without an API key, but search calls returned HTTP 429 in this session
+- Venue rule: top-tier conferences or journals down to Q2
+
+## Automated Candidate Fetch
 
 Command:
 
 ```bash
-python3 pipeline/fetch_seed_candidates.py --query "3D visual localization absolute camera pose estimation" --limit 25
+python3 pipeline/fetch_seed_candidates.py --query "3D visual localization absolute camera pose estimation" --limit 50
 ```
 
-Initial sandbox run failed before reaching OpenAlex due DNS/network blocking:
+Result:
 
-```text
-urllib.error.URLError: <urlopen error [Errno -3] Temporary failure in name resolution>
-```
+- Output: `data/generated/seed_candidates.json`
+- Total candidates: 50
+- Included by local venue filters: 7
+- Included candidates were mostly broad/off-topic recall noise such as surveys, face analysis, tracking, and monocular depth.
 
-The same command passed after network access was approved and wrote 25 candidates.
+Interpretation:
 
-## Venue-Tier Summary
+- The broad OpenAlex query is useful for recall, but not precise enough to directly populate the archive.
+- Several relevant CVPR/ICCV/ECCV papers expose DOI metadata but not a normalized OpenAlex venue source, so exact-title manual curation is still required.
 
-- Total candidates: 25
-- Included by current local venue filters: 4
-- Excluded by current local venue filters: 21
-- Included tiers: SJR Q1 = 3, SJR Q2 = 1
-- Exclusion reasons: no SJR quartile match = 14, no CORE rank match = 7
+## Exact-Title Checks
 
-Included candidates by current filter:
+OpenAlex exact-title checks confirmed titles, years, DOI availability, and citation counts for the manually curated expansion set:
 
-| Year | Title | Venue | Tier | Citations |
-| --- | --- | --- | --- | --- |
-| 2020 | Event-Based Vision: A Survey | IEEE Transactions on Pattern Analysis and Machine Intelligence | SJR Q1 | 1996 |
-| 2014 | Visual Tracking: An Experimental Survey | IEEE Transactions on Pattern Analysis and Machine Intelligence | SJR Q1 | 1557 |
-| 1998 | Example-based learning for view-based human face detection | IEEE Transactions on Pattern Analysis and Machine Intelligence | SJR Q1 | 1777 |
-| 2016 | 300 Faces In-The-Wild Challenge: database and results | Image and Vision Computing | SJR Q2 | 749 |
+| Year | Paper | Venue | Link basis |
+| --- | --- | --- | --- |
+| 2013 | Scene Coordinate Regression Forests for Camera Relocalization in RGB-D Images | CVPR | DOI |
+| 2015 | PoseNet: A Convolutional Network for Real-Time 6-DOF Camera Relocalization | ICCV | DOI |
+| 2016 | NetVLAD: CNN Architecture for Weakly Supervised Place Recognition | CVPR | CVF page |
+| 2017 | DSAC: Differentiable RANSAC for Camera Localization | CVPR | DOI |
+| 2018 | Benchmarking 6DOF Outdoor Visual Localization in Changing Conditions | CVPR | DOI |
+| 2019 | D2-Net: A Trainable CNN for Joint Description and Detection of Local Features | CVPR | DOI |
+| 2020 | SuperGlue: Learning Feature Matching With Graph Neural Networks | CVPR | DOI |
+| 2021 | LoFTR: Detector-Free Local Feature Matching With Transformers | CVPR | DOI |
+| 2021 | Back to the Feature: Learning Robust Camera Localization From Pixels to Pose | CVPR | DOI |
 
-## Manual Review Notes
+## Reflected Archive Data
 
-- Review likely relevant conference papers that OpenAlex returned with `Unknown venue`; several DOI strings indicate CVPR, ICRA, or IROS, but the current saved OpenAlex fields did not expose a source name for automatic CORE matching.
-- Prioritize manual checks for `Benchmarking 6DOF Outdoor Visual Localization in Changing Conditions`, `Real-time onboard 6DoF localization of an indoor MAV in degraded visual environments using a RGB-D camera`, `A robust and modular multi-sensor fusion approach applied to MAV navigation`, and `Robust localization for planar moving robot in changing environment`.
-- Review high-citation relevant journal candidates currently excluded because the local SJR reference table is narrow, especially `ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial, and Multimap SLAM`.
-- Treat broad surveys and off-topic high-citation results as recall noise unless they are needed for background or citation-neighborhood expansion.
-- Next pass should either enrich OpenAlex venue extraction for conference papers or add a manual venue correction step before applying CORE/SJR filters.
+- Curated papers: 12
+- Graph nodes: 71
+- Graph edges: 102
+- Citation edges: 18
+- Added coverage:
+  - Scene coordinate regression foundation
+  - Direct pose regression
+  - Retrieval-based place recognition
+  - Differentiable RANSAC lineage
+  - Outdoor long-term benchmark
+  - Learned local features and matchers
+  - Pixel-wise pose refinement
+  - Efficient and mapping-agnostic regression methods
+
+## Known Data Caveats
+
+- Some citation edges are curated from known methodological lineage and should be verified against paper bibliographies in a later pass.
+- Representative figure slots currently use captions/placeholders unless a `figure.url` is added to the paper curation YAML.
+- OpenAlex venue normalization misses some conference sources, so the local venue filter should gain DOI-prefix or manual venue correction support.
+- Semantic Scholar should be retried with throttling or a key if bulk reference extraction becomes necessary.

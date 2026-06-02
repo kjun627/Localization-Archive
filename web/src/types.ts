@@ -26,7 +26,7 @@ export type GraphNode = {
     limitations?: string[];
     sourceLinks?: Array<{ label: string; url: string }>;
     figure?: {
-      url: string;
+      url?: string;
       alt?: string;
       caption?: string;
     };

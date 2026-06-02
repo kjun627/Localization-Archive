@@ -1,0 +1,30 @@
+paper_id: "paper:d2net-2019"
+title: "D2-Net: A Trainable CNN for Joint Description and Detection of Local Features"
+year: 2019
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Dense CNN features are used for joint local feature detection and description.
+summary: Improves local matching robustness by learning feature detection and description jointly for image matching and localization.
+problem: Produce local features that remain matchable under viewpoint and illumination changes.
+prior_gap: Separate handcrafted detectors and descriptors could be brittle, and learned descriptors often still depended on fixed keypoint detectors.
+metric:
+  - Matching score
+  - Pose accuracy at localization thresholds
+why_this_metric: Local feature quality matters only if it improves geometric verification and final camera pose, so matching and pose metrics are both required.
+dataset:
+  - HPatches
+  - Aachen Day-Night
+dataset_limitations:
+  - Patch and localization benchmarks do not fully capture all domain shifts in large-scale mapping pipelines.
+limitations:
+  - Dense feature extraction can be computationally heavier than lightweight sparse pipelines.
+source_links:
+  - label: DOI
+    url: https://doi.org/10.1109/CVPR.2019.00828
+figure:
+  caption: Joint detection-description feature pipeline placeholder
+provenance:
+  - openalex_title_check
+  - manual_curation
+confidence: 0.76

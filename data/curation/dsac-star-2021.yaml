@@ -24,6 +24,8 @@ source_links:
     url: https://ieeexplore.ieee.org/document/9250416
   - label: Project
     url: https://niessnerlab.org/projects/brachmann2017dsacpp.html
+figure:
+  caption: End-to-end differentiable RANSAC localization placeholder
 provenance:
   - manual_link
   - user_note

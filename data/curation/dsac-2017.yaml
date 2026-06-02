@@ -1,0 +1,30 @@
+paper_id: "paper:dsac-2017"
+title: "DSAC: Differentiable RANSAC for Camera Localization"
+year: 2017
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Differentiable RANSAC enables end-to-end training of camera localization pipelines with hypothesis selection.
+summary: Connects learned scene coordinate regression with robust geometric pose estimation through differentiable hypothesis sampling.
+problem: Train a camera localization system end-to-end while retaining RANSAC-style robustness to correspondence outliers.
+prior_gap: RANSAC was effective but non-differentiable, blocking direct optimization of the full pose-estimation pipeline.
+metric:
+  - Pose accuracy at 5cm / 5deg
+  - Median translation and rotation error
+why_this_metric: Robust localization must be evaluated on final camera pose because intermediate correspondence quality does not guarantee a usable pose estimate.
+dataset:
+  - 7Scenes
+  - Cambridge Landmarks
+dataset_limitations:
+  - Standard relocalization benchmarks may not expose map-update cost or large-scale outdoor deployment constraints.
+limitations:
+  - Scene-specific coordinate learning and sampling complexity can limit scaling across many environments.
+source_links:
+  - label: DOI
+    url: https://doi.org/10.1109/CVPR.2017.267
+figure:
+  caption: Differentiable RANSAC hypothesis selection placeholder
+provenance:
+  - openalex_title_check
+  - manual_curation
+confidence: 0.8
