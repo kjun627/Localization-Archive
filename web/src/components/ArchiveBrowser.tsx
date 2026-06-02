@@ -44,6 +44,12 @@ function shortTitle(title: string) {
   return first;
 }
 
+function figureUrl(url: string | undefined) {
+  if (!url) return undefined;
+  if (url.startsWith("http") || url.startsWith("/")) return url;
+  return `${import.meta.env.BASE_URL}${url}`;
+}
+
 function groupByYear(papers: GraphNode[]) {
   const grouped = new Map<number, GraphNode[]>();
   papers.forEach((paper) => {
@@ -168,6 +174,7 @@ export function ArchiveBrowser({
   const selectedTheme = venueTheme(selectedVenue);
   const selectedLinks = selectedPaper?.metadata?.sourceLinks ?? [];
   const selectedFigure = selectedPaper?.metadata?.figure;
+  const selectedFigureUrl = figureUrl(selectedFigure?.url);
   const selectedCites = selectedPaper
     ? citationEdges
         .filter((edge) => edge.source === selectedPaper.key)
@@ -245,8 +252,8 @@ export function ArchiveBrowser({
                 <span>'{String(selectedPaper.metadata?.year ?? "").slice(-2)}</span>
               </div>
               <div className="file-figure">
-                {selectedFigure?.url ? (
-                  <img src={selectedFigure.url} alt={selectedFigure.alt ?? selectedPaper.label} />
+                {selectedFigureUrl ? (
+                  <img src={selectedFigureUrl} alt={selectedFigure?.alt ?? selectedPaper.label} />
                 ) : (
                   <div className="figure-placeholder" aria-label="Paper representative figure placeholder">
                     <span>{selectedPaper.metadata?.venueTier ?? "tier"}</span>
@@ -340,6 +347,7 @@ export function ArchiveBrowser({
                     const theme = venueTheme(venue);
                     const selected = selectedPaper?.key === paper.key;
                     const citationStats = getCitationStats(paper.key, edges);
+                    const cardFigureUrl = figureUrl(paper.metadata?.figure?.url);
                     return (
                       <button
                         className={selected ? "file-card selected" : "file-card"}
@@ -353,6 +361,16 @@ export function ArchiveBrowser({
                           <small>'{String(paper.metadata?.year ?? "").slice(-2)}</small>
                         </span>
                         <span className="file-body">
+                          <span className="card-figure">
+                            {cardFigureUrl ? (
+                              <img src={cardFigureUrl} alt={paper.metadata?.figure?.alt ?? paper.label} />
+                            ) : (
+                              <span className="card-figure-fallback">
+                                {venue}
+                                <small>{paper.metadata?.year}</small>
+                              </span>
+                            )}
+                          </span>
                           <span className="file-index">{String(index + 1).padStart(3, "0")}</span>
                           <span className="file-title">
                             <b>{shortTitle(paper.label)}</b>

@@ -37,12 +37,13 @@ html,
 body,
 #root {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   margin: 0;
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background:
     radial-gradient(circle at 12% 18%, rgba(255, 213, 0, 0.72) 0 2px, transparent 3px),
     radial-gradient(circle at 72% 28%, rgba(27, 92, 255, 0.34) 0 2px, transparent 3px),
@@ -75,7 +76,7 @@ a {
   position: relative;
   z-index: 1;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   background:
@@ -85,7 +86,7 @@ a {
     linear-gradient(145deg, #f7f9ff, #dce5f3 58%, #c6d2e4);
   background-size: 60px 60px, 30px 30px, 30px 30px, auto;
   border: 6px solid #000000;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .ledger {
@@ -239,18 +240,19 @@ a {
   position: relative;
   min-height: 0;
   display: grid;
-  grid-template-columns: 360px minmax(0, 1fr);
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 22px;
   padding: 24px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .archive-scroller {
   position: relative;
   min-height: 0;
+  width: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
-  padding: 2px 20px 44px 0;
+  overflow-y: visible;
+  padding: 2px 0 44px;
   scroll-behavior: smooth;
 }
 
@@ -276,7 +278,7 @@ a {
   min-height: 100%;
   display: grid;
   gap: 34px;
-  padding: 0 12px 80px 0;
+  padding: 0 0 80px;
 }
 
 .year-column {
@@ -343,7 +345,7 @@ a {
 
 .file-card {
   position: relative;
-  height: var(--card-h);
+  min-height: 282px;
   width: 100%;
   padding: 0;
   display: grid;
@@ -399,10 +401,10 @@ a {
   min-width: 0;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-rows: 112px auto minmax(0, 1fr) auto;
   align-items: stretch;
   gap: 8px;
-  padding: 10px 42px 10px 10px;
+  padding: 10px;
   border: var(--outline);
   background: var(--space-panel);
   color: var(--space-ink);
@@ -415,7 +417,7 @@ a {
 .file-body::after {
   content: "";
   position: absolute;
-  top: 12px;
+  top: 124px;
   right: 12px;
   width: 18px;
   height: 18px;
@@ -427,6 +429,43 @@ a {
   box-shadow:
     inset -3px -3px 0 rgba(17, 24, 39, 0.16),
     2px 2px 0 rgba(5, 7, 13, 0.18);
+}
+
+.card-figure {
+  min-width: 0;
+  height: 112px;
+  display: block;
+  overflow: hidden;
+  border: 2px solid var(--lego-black);
+  background:
+    radial-gradient(circle at 18px 18px, rgba(255, 255, 255, 0.78) 0 5px, rgba(8, 18, 38, 0.16) 6px, transparent 7px),
+    color-mix(in srgb, var(--tone), #ffffff 72%);
+  background-size: 36px 36px, auto;
+}
+
+.card-figure img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.card-figure-fallback {
+  height: 100%;
+  padding: 10px;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  color: var(--tone-ink);
+  background: var(--tone);
+  font-family: var(--pixel);
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.card-figure-fallback small {
+  font-size: 10px;
 }
 
 .file-card.selected .file-body {
@@ -504,8 +543,9 @@ a {
   bottom: auto;
   width: 100%;
   min-height: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
   overflow: hidden;
   border: var(--outline);
   background:
@@ -520,6 +560,7 @@ a {
 }
 
 .file-tag {
+  grid-column: 1 / -1;
   min-height: 38px;
   padding: 0 12px;
   display: flex;
@@ -539,12 +580,15 @@ a {
 }
 
 .file-figure {
+  grid-column: 1;
+  grid-row: 2;
   min-height: 168px;
   padding: 12px;
   display: grid;
   align-content: stretch;
   gap: 10px;
-  border-bottom: var(--outline);
+  border-right: var(--outline);
+  border-bottom: 0;
   background:
     radial-gradient(circle at 22px 22px, rgba(255, 255, 255, 0.82) 0 7px, rgba(8, 18, 38, 0.17) 8px, transparent 9px),
     linear-gradient(135deg, #edf3ff, #cbd7e8);
@@ -613,10 +657,12 @@ a {
 }
 
 .file-content {
+  grid-column: 2;
+  grid-row: 2;
   flex: 1;
   min-height: 0;
   padding: 14px 16px 18px;
-  overflow-y: auto;
+  overflow: visible;
 }
 
 .file-content h2 {
@@ -836,6 +882,20 @@ a {
     bottom: auto;
     width: auto;
     margin: 16px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .file-tag,
+  .file-figure,
+  .file-content {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .file-figure {
+    border-right: 0;
+    border-bottom: var(--outline);
   }
 
   .archive-scroller {
