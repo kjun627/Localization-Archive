@@ -1,54 +1,117 @@
-# Localization Archive
+# 3D Localization Archive
 
-Citation hypernetwork for `3D Visual Localization` papers.
+![3D Localization Archive interface](assets/img/main.png)
 
-## What This Repository Contains
+An interactive archive for reading 3D visual localization papers as a connected research lineage, not as a flat bibliography.
 
-- `pipeline/`: Python ETL and graph builder
-- `data/`: seed papers, venue ranking references, curated annotations, generated graph data
-- `web/`: GitHub Pages frontend
-- `docs/`: operating notes for curation and updates
+The archive focuses on what each paper tried to solve, which previous limitation motivated it, where it was evaluated, and how it connects to later work. It is designed for quickly answering questions such as:
 
-## Scope
+- Which papers moved localization from retrieval to metric pose estimation?
+- Which methods improved local matching, scene coordinate regression, or privacy-preserving localization?
+- Which datasets and benchmarks repeatedly shape the field?
+- Which papers cite, extend, or expose limitations of earlier methods?
 
-The v1 graph includes only:
+## Current Snapshot
 
-- conferences ranked `CORE A*` or `CORE A`
-- journals ranked `SJR Q1` or `SJR Q2`
+- 80 curated papers
+- 605 graph nodes across papers, problems, metrics, datasets, and limitations
+- 982 graph edges, including citation and evidence relationships
+- Paper, code, and project links are normalized into three consistent slots
 
-The data APIs are:
+## Main Features
 
-- `OpenAlex`
-- `Semantic Scholar`
+### Archive Timeline
 
-`Google Scholar` is intentionally excluded.
+The main view follows a year-based archive structure. Papers are grouped by publication year, with the newest years placed first. Venue filters and search are built for scanning large paper sets without leaving the archive view.
 
-## Quick Start
+### Paper Detail Cards
 
-1. Copy `.env.example` to `.env` and set:
-   - `OPENALEX_API_KEY`
-   - `SEMANTIC_SCHOLAR_API_KEY` if you want authenticated Semantic Scholar requests
-2. Create a Python environment and install pipeline dependencies.
-3. Install frontend dependencies in `web/`.
-4. Build graph data with:
+Selecting a paper opens a movable detail card with:
 
-```bash
-python3 pipeline/build_graph.py
+- the problem the paper addressed
+- the prior limitation or research gap
+- the technical advance
+- datasets and evaluation metrics
+- known limitations
+- upstream papers it builds on and downstream papers that cite it
+- `Paper`, `Code`, and `Project` links
+
+Missing links stay visible as disabled slots so every paper card has the same structure.
+
+### Citation Graph Viewer
+
+Each detail card can open a Three.js-based citation graph. The graph shows paper-to-paper influence, not just metadata similarity. Node size and graph position make it easier to inspect which works are central, which papers are predecessors, and which papers branch into newer lines of work.
+
+### Paper Comparison
+
+Papers can be added to a comparison panel from their detail card. The comparison view places papers side by side across problem, prior gap, advance, datasets, limitations, citation counts, and source links.
+
+### Curated Research Metadata
+
+Every curated paper has a YAML file in `data/curation/`. The archive stores more than title and venue: each entry records the research motivation, technical contribution, datasets, metrics, limitations, links, and curation confidence.
+
+## Research Scope
+
+The core topic is 3D visual localization, including:
+
+- image retrieval and visual place recognition for localization
+- structure-based localization and hierarchical localization
+- local features, dense matching, and foundation-guided matching
+- absolute pose regression and scene coordinate regression
+- long-term localization benchmarks
+- privacy-preserving localization, map/query obfuscation, and inversion attacks
+
+The current venue policy includes high-quality computer vision, robotics, machine learning, and AI venues:
+
+- CORE-ranked conferences: `CVPR`, `ICCV`, `ECCV`, `3DV`, `ICRA`, `IROS`, `BMVC`, `NeurIPS`, `AAAI`, `WACV`
+- SJR-ranked journals: `TPAMI`, `IJCV`, `RA-L`, `Pattern Recognition`, `Image and Vision Computing`
+
+Paper links prefer stable archive or proceedings pages such as CVF Open Access, ECVA, BMVC archive, NeurIPS proceedings, AAAI proceedings, journal pages, DOI pages, or arXiv when no better archive link is available.
+
+## Repository Structure
+
+```text
+.
+├── assets/img/main.png              # README hero image
+├── data/
+│   ├── curation/                    # one YAML annotation per paper
+│   ├── reference/                   # venue filters
+│   └── seeds.yaml                   # included papers and citation edges
+├── pipeline/                        # Python graph builder and validators
+├── web/                             # Vite/React frontend
+└── .github/workflows/deploy.yml     # GitHub Pages deployment
 ```
 
-5. Validate seed and curation consistency:
+## Data Flow
+
+1. Add or update a paper entry in `data/seeds.yaml`.
+2. Add the paper annotation in `data/curation/`.
+3. Validate venue and seed consistency.
+4. Rebuild `web/public/graph.json`.
+5. Build the frontend.
+6. Commit the curation files and regenerated graph.
+
+## Local Development
+
+Install Python dependencies:
+
+```bash
+pip install .
+```
+
+Validate curated data:
 
 ```bash
 python3 pipeline/validate_data.py
 ```
 
-6. Fetch candidate papers once your OpenAlex key is available:
+Regenerate the graph payload:
 
 ```bash
-python3 pipeline/fetch_seed_candidates.py --limit 20
+python3 pipeline/build_graph.py
 ```
 
-7. Start the frontend:
+Run the frontend:
 
 ```bash
 cd web
@@ -56,19 +119,30 @@ npm install
 npm run dev
 ```
 
-## Data Flow
+Build the frontend:
 
-1. Curate seed papers in `data/seeds.yaml`
-2. Maintain venue filters in `data/reference/`
-3. Add or review paper annotations in `data/curation/`
-4. Run `pipeline/build_graph.py`
-5. Commit the updated `web/public/graph.json`
+```bash
+cd web
+npm run build
+```
 
 ## Deployment
 
-The repository includes a GitHub Pages workflow in `.github/workflows/deploy.yml`.
+The repository is configured for GitHub Pages through `.github/workflows/deploy.yml`.
 
-## API Notes
+Before the first successful deploy, enable Pages manually in GitHub:
 
-- `OpenAlex` is currently treated as authenticated in this repository.
-- `Semantic Scholar` can be used without an API key. If `SEMANTIC_SCHOLAR_API_KEY` is unset, the client falls back to unauthenticated requests.
+1. Open repository `Settings`.
+2. Go to `Pages`.
+3. Set `Build and deployment` source to `GitHub Actions`.
+4. Re-run the workflow.
+
+If the workflow cannot write the Pages deployment, set `Settings -> Actions -> General -> Workflow permissions` to `Read and write permissions`.
+
+## Curation Notes
+
+- The default UI language is English.
+- Google Scholar is intentionally excluded from the data pipeline.
+- Source links are normalized to exactly `Paper`, `Code`, and `Project`.
+- Representative paper images are shown only when a verified image URL or local asset is available; otherwise the card keeps a caption-only figure slot.
+- Conference event homepages are not required for the paper link slot. Stable archive and proceedings links are preferred.
