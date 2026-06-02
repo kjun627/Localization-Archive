@@ -25,6 +25,8 @@ source_links:
   - label: Project
     url: https://niessnerlab.org/projects/brachmann2017dsacpp.html
 figure:
+  url: figures/dsac-star-2021.svg
+  alt: DSAC star robust localization schematic
   caption: End-to-end differentiable RANSAC localization placeholder
 provenance:
   - manual_link

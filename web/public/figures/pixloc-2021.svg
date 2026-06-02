@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">PixLoc representative image</title>
+  <desc id="desc">Pixel features refine an initial pose through geometric alignment.</desc>
+  <rect width="640" height="360" fill="#dfe7f3"/>
+  <rect x="28" y="28" width="584" height="304" fill="#f8fbff" stroke="#05070d" stroke-width="8"/>
+  <rect x="64" y="82" width="142" height="112" fill="#1b5cff" stroke="#05070d" stroke-width="6"/>
+  <g fill="#fffdf3">
+    <rect x="84" y="102" width="18" height="18"/><rect x="118" y="136" width="18" height="18"/><rect x="162" y="112" width="18" height="18"/>
+  </g>
+  <path d="M310 82c64 32 64 104 0 136c-64 -32 -64 -104 0 -136z" fill="#ffd500" stroke="#05070d" stroke-width="6"/>
+  <rect x="500" y="98" width="82" height="82" fill="#237841" stroke="#05070d" stroke-width="6"/>
+  <path d="M220 140h48M386 140h52" stroke="#05070d" stroke-width="10"/>
+  <text x="72" y="252" font-family="monospace" font-size="24" font-weight="900" fill="#05070d">PIXELS</text>
+  <text x="244" y="252" font-family="monospace" font-size="24" font-weight="900" fill="#05070d">REFINE</text>
+  <text x="494" y="252" font-family="monospace" font-size="24" font-weight="900" fill="#05070d">POSE</text>
+  <text x="64" y="310" font-family="monospace" font-size="18" font-weight="900" fill="#40516d">CVPR 2021 / PIXEL-TO-POSE ALIGNMENT</text>
+</svg>

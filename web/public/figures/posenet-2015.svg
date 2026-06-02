@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">PoseNet representative image</title>
+  <desc id="desc">A single image passes through a CNN to regress a 6-DoF camera pose.</desc>
+  <rect width="640" height="360" fill="#dfe7f3"/>
+  <rect x="28" y="28" width="584" height="304" fill="#fffdf3" stroke="#05070d" stroke-width="8"/>
+  <rect x="64" y="86" width="140" height="100" fill="#1b5cff" stroke="#05070d" stroke-width="6"/>
+  <polygon points="86,166 124,116 158,150 178,130 196,166" fill="#fffdf3" stroke="#05070d" stroke-width="5"/>
+  <g stroke="#05070d" stroke-width="6">
+    <rect x="282" y="70" width="54" height="140" fill="#e3000b"/>
+    <rect x="352" y="88" width="54" height="104" fill="#ffd500"/>
+    <rect x="422" y="104" width="54" height="72" fill="#237841"/>
+  </g>
+  <rect x="526" y="96" width="70" height="70" fill="#111827" stroke="#05070d" stroke-width="6"/>
+  <path d="M216 136h54M486 136h34" stroke="#05070d" stroke-width="10"/>
+  <text x="64" y="242" font-family="monospace" font-size="25" font-weight="900" fill="#05070d">IMAGE</text>
+  <text x="294" y="242" font-family="monospace" font-size="25" font-weight="900" fill="#05070d">CNN</text>
+  <text x="518" y="242" font-family="monospace" font-size="25" font-weight="900" fill="#05070d">6DOF</text>
+  <text x="64" y="292" font-family="monospace" font-size="18" font-weight="900" fill="#40516d">ICCV 2015 / DIRECT POSE REGRESSION</text>
+</svg>

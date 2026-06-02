@@ -23,6 +23,8 @@ source_links:
   - label: CVF
     url: https://openaccess.thecvf.com/content_cvpr_2016/html/Arandjelovic_NetVLAD_CNN_Architecture_CVPR_2016_paper.html
 figure:
+  url: figures/netvlad-2016.svg
+  alt: NetVLAD retrieval pipeline schematic
   caption: Learned image retrieval descriptor placeholder
 provenance:
   - openalex_title_check

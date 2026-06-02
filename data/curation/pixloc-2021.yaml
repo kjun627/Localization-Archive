@@ -24,6 +24,8 @@ source_links:
   - label: DOI
     url: https://doi.org/10.1109/CVPR46437.2021.00326
 figure:
+  url: figures/pixloc-2021.svg
+  alt: PixLoc pixel-to-pose refinement schematic
   caption: Pixel-wise pose refinement placeholder
 provenance:
   - openalex_title_check

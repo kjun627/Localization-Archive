@@ -25,6 +25,8 @@ source_links:
   - label: DOI
     url: https://doi.org/10.1109/CVPR42600.2020.00499
 figure:
+  url: figures/superglue-2020.svg
+  alt: SuperGlue graph matching schematic
   caption: Graph neural local feature matcher placeholder
 provenance:
   - openalex_title_check

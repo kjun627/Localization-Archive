@@ -23,6 +23,8 @@ source_links:
   - label: DOI
     url: https://doi.org/10.1109/CVPR.2017.267
 figure:
+  url: figures/dsac-2017.svg
+  alt: Differentiable RANSAC localization schematic
   caption: Differentiable RANSAC hypothesis selection placeholder
 provenance:
   - openalex_title_check

@@ -23,6 +23,8 @@ source_links:
   - label: Paper
     url: https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/11787_ECCV_2024_paper.php
 figure:
+  url: figures/marepo-2024.svg
+  alt: MARePo mapping-agnostic regression schematic
   caption: Mapping-agnostic pose regression placeholder
 provenance:
   - manual_link

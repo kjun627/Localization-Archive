@@ -21,6 +21,8 @@ source_links:
   - label: DOI
     url: https://doi.org/10.1109/ICCV.2015.336
 figure:
+  url: figures/posenet-2015.svg
+  alt: PoseNet direct camera pose regression schematic
   caption: Direct CNN pose regression placeholder
 provenance:
   - openalex_title_check

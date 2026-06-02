@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Scene Coordinate Regression Forests representative image</title>
+  <desc id="desc">RGB-D input is routed through regression forest blocks to produce camera pose.</desc>
+  <rect width="640" height="360" fill="#dfe7f3"/>
+  <rect x="28" y="28" width="584" height="304" rx="0" fill="#f8fbff" stroke="#05070d" stroke-width="8"/>
+  <g fill="#e3000b" stroke="#05070d" stroke-width="6">
+    <rect x="64" y="92" width="128" height="86"/>
+    <circle cx="96" cy="92" r="12"/><circle cx="160" cy="92" r="12"/>
+  </g>
+  <g fill="#237841" stroke="#05070d" stroke-width="6">
+    <rect x="268" y="76" width="96" height="124"/>
+    <rect x="388" y="76" width="96" height="124"/>
+  </g>
+  <g fill="#1b5cff" stroke="#05070d" stroke-width="6">
+    <rect x="516" y="106" width="76" height="76"/>
+    <circle cx="554" cy="106" r="11"/>
+  </g>
+  <path d="M202 136h54M494 144h42" stroke="#05070d" stroke-width="10"/>
+  <text x="64" y="238" font-family="monospace" font-size="25" font-weight="900" fill="#05070d">RGB-D</text>
+  <text x="268" y="238" font-family="monospace" font-size="25" font-weight="900" fill="#05070d">FOREST</text>
+  <text x="516" y="238" font-family="monospace" font-size="25" font-weight="900" fill="#05070d">POSE</text>
+  <text x="64" y="292" font-family="monospace" font-size="18" font-weight="900" fill="#40516d">CVPR 2013 / SCENE COORDINATES</text>
+</svg>

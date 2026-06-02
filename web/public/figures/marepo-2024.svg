@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">MARePo representative image</title>
+  <desc id="desc">Mapping-agnostic regression transfers pose estimation across map contexts.</desc>
+  <rect width="640" height="360" fill="#dfe7f3"/>
+  <rect x="28" y="28" width="584" height="304" fill="#fffdf3" stroke="#05070d" stroke-width="8"/>
+  <rect x="70" y="86" width="112" height="102" fill="#1b5cff" stroke="#05070d" stroke-width="6"/>
+  <rect x="286" y="70" width="126" height="132" fill="#237841" stroke="#05070d" stroke-width="6"/>
+  <path d="M308 104h82M308 138h82M308 172h82" stroke="#fffdf3" stroke-width="8"/>
+  <rect x="516" y="104" width="74" height="74" fill="#ffd500" stroke="#05070d" stroke-width="6"/>
+  <path d="M198 138h58M426 138h54" stroke="#05070d" stroke-width="10"/>
+  <text x="68" y="250" font-family="monospace" font-size="23" font-weight="900" fill="#05070d">MAP?</text>
+  <text x="252" y="250" font-family="monospace" font-size="23" font-weight="900" fill="#05070d">REGRESSION</text>
+  <text x="510" y="250" font-family="monospace" font-size="23" font-weight="900" fill="#05070d">POSE</text>
+  <text x="64" y="312" font-family="monospace" font-size="18" font-weight="900" fill="#40516d">ECCV 2024 / MAPPING-AGNOSTIC POSE</text>
+</svg>

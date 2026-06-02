@@ -21,6 +21,8 @@ source_links:
   - label: DOI
     url: https://doi.org/10.1109/CVPR.2018.00897
 figure:
+  url: figures/aachen-day-night-2018.svg
+  alt: Day-night outdoor localization benchmark schematic
   caption: Day-night outdoor localization benchmark placeholder
 provenance:
   - openalex_title_check

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Aachen Day-Night benchmark representative image</title>
+  <desc id="desc">Day and night city blocks are evaluated for 6-DoF localization.</desc>
+  <rect width="640" height="360" fill="#dfe7f3"/>
+  <rect x="28" y="28" width="584" height="304" fill="#f8fbff" stroke="#05070d" stroke-width="8"/>
+  <rect x="64" y="76" width="196" height="150" fill="#ffd500" stroke="#05070d" stroke-width="6"/>
+  <rect x="340" y="76" width="196" height="150" fill="#111827" stroke="#05070d" stroke-width="6"/>
+  <g fill="#fffdf3" stroke="#05070d" stroke-width="4">
+    <rect x="92" y="142" width="34" height="84"/><rect x="144" y="116" width="38" height="110"/><rect x="202" y="154" width="34" height="72"/>
+  </g>
+  <g fill="#1b5cff" stroke="#fffdf3" stroke-width="4">
+    <rect x="368" y="142" width="34" height="84"/><rect x="420" y="116" width="38" height="110"/><rect x="478" y="154" width="34" height="72"/>
+  </g>
+  <text x="106" y="266" font-family="monospace" font-size="26" font-weight="900" fill="#05070d">DAY</text>
+  <text x="402" y="266" font-family="monospace" font-size="26" font-weight="900" fill="#05070d">NIGHT</text>
+  <text x="64" y="312" font-family="monospace" font-size="18" font-weight="900" fill="#40516d">CVPR 2018 / LONG-TERM BENCHMARK</text>
+</svg>

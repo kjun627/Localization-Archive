@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">DSAC Star representative image</title>
+  <desc id="desc">Improved differentiable RANSAC estimates robust camera pose from scene coordinates.</desc>
+  <rect width="640" height="360" fill="#dfe7f3"/>
+  <rect x="28" y="28" width="584" height="304" fill="#fffdf3" stroke="#05070d" stroke-width="8"/>
+  <rect x="64" y="76" width="126" height="126" fill="#237841" stroke="#05070d" stroke-width="6"/>
+  <path d="M92 108h72M92 140h72M92 172h72" stroke="#fffdf3" stroke-width="9"/>
+  <rect x="280" y="76" width="118" height="126" fill="#111827" stroke="#05070d" stroke-width="6"/>
+  <text x="304" y="154" font-family="monospace" font-size="42" font-weight="900" fill="#fffdf3">*</text>
+  <rect x="510" y="102" width="72" height="72" fill="#1b5cff" stroke="#05070d" stroke-width="6"/>
+  <path d="M204 140h56M410 140h58" stroke="#05070d" stroke-width="10"/>
+  <text x="64" y="254" font-family="monospace" font-size="23" font-weight="900" fill="#05070d">SCENE COORDS</text>
+  <text x="276" y="254" font-family="monospace" font-size="23" font-weight="900" fill="#05070d">DSAC*</text>
+  <text x="500" y="254" font-family="monospace" font-size="23" font-weight="900" fill="#05070d">POSE</text>
+  <text x="64" y="312" font-family="monospace" font-size="18" font-weight="900" fill="#40516d">TPAMI 2021 / ROBUST LOCALIZATION</text>
+</svg>

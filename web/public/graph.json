@@ -52,6 +52,8 @@
           }
         ],
         "figure": {
+          "url": "figures/aachen-day-night-2018.svg",
+          "alt": "Day-night outdoor localization benchmark schematic",
           "caption": "Day-night outdoor localization benchmark placeholder"
         }
       }
@@ -185,6 +187,8 @@
           }
         ],
         "figure": {
+          "url": "figures/ace-2023.svg",
+          "alt": "ACE efficient scene-coordinate training schematic",
           "caption": "Efficient scene-coordinate map training placeholder"
         }
       }
@@ -365,6 +369,8 @@
           }
         ],
         "figure": {
+          "url": "figures/d2net-2019.svg",
+          "alt": "D2-Net detection and description schematic",
           "caption": "Joint detection-description feature pipeline placeholder"
         }
       }
@@ -511,6 +517,8 @@
           }
         ],
         "figure": {
+          "url": "figures/dsac-2017.svg",
+          "alt": "Differentiable RANSAC localization schematic",
           "caption": "Differentiable RANSAC hypothesis selection placeholder"
         }
       }
@@ -627,6 +635,8 @@
           }
         ],
         "figure": {
+          "url": "figures/dsac-star-2021.svg",
+          "alt": "DSAC star robust localization schematic",
           "caption": "End-to-end differentiable RANSAC localization placeholder"
         }
       }
@@ -722,6 +732,8 @@
           }
         ],
         "figure": {
+          "url": "figures/loftr-2021.svg",
+          "alt": "LoFTR detector-free transformer matching schematic",
           "caption": "Detector-free transformer matching placeholder"
         }
       }
@@ -885,6 +897,8 @@
           }
         ],
         "figure": {
+          "url": "figures/marepo-2024.svg",
+          "alt": "MARePo mapping-agnostic regression schematic",
           "caption": "Mapping-agnostic pose regression placeholder"
         }
       }
@@ -997,6 +1011,8 @@
           }
         ],
         "figure": {
+          "url": "figures/netvlad-2016.svg",
+          "alt": "NetVLAD retrieval pipeline schematic",
           "caption": "Learned image retrieval descriptor placeholder"
         }
       }
@@ -1160,6 +1176,8 @@
           }
         ],
         "figure": {
+          "url": "figures/pixloc-2021.svg",
+          "alt": "PixLoc pixel-to-pose refinement schematic",
           "caption": "Pixel-wise pose refinement placeholder"
         }
       }
@@ -1272,6 +1290,8 @@
           }
         ],
         "figure": {
+          "url": "figures/posenet-2015.svg",
+          "alt": "PoseNet direct camera pose regression schematic",
           "caption": "Direct CNN pose regression placeholder"
         }
       }
@@ -1367,6 +1387,8 @@
           }
         ],
         "figure": {
+          "url": "figures/score-forest-2013.svg",
+          "alt": "Scene coordinate regression forest pipeline schematic",
           "caption": "Scene coordinate regression forest pipeline placeholder"
         }
       }
@@ -1462,6 +1484,8 @@
           }
         ],
         "figure": {
+          "url": "figures/superglue-2020.svg",
+          "alt": "SuperGlue graph matching schematic",
           "caption": "Graph neural local feature matcher placeholder"
         }
       }

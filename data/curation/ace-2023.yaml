@@ -26,6 +26,8 @@ source_links:
   - label: Project
     url: https://nianticlabs.github.io/ace
 figure:
+  url: figures/ace-2023.svg
+  alt: ACE efficient scene-coordinate training schematic
   caption: Efficient scene-coordinate map training placeholder
 provenance:
   - manual_link

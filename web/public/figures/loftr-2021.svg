@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">LoFTR representative image</title>
+  <desc id="desc">Dense image tokens pass through transformer blocks to create detector-free matches.</desc>
+  <rect width="640" height="360" fill="#dfe7f3"/>
+  <rect x="28" y="28" width="584" height="304" fill="#fffdf3" stroke="#05070d" stroke-width="8"/>
+  <g fill="#1b5cff" stroke="#05070d" stroke-width="4">
+    <rect x="70" y="84" width="34" height="34"/><rect x="112" y="84" width="34" height="34"/><rect x="154" y="84" width="34" height="34"/>
+    <rect x="70" y="126" width="34" height="34"/><rect x="112" y="126" width="34" height="34"/><rect x="154" y="126" width="34" height="34"/>
+  </g>
+  <rect x="282" y="76" width="128" height="112" fill="#ffd500" stroke="#05070d" stroke-width="6"/>
+  <path d="M304 106h86M304 138h86M304 170h86" stroke="#05070d" stroke-width="8"/>
+  <g fill="#237841" stroke="#05070d" stroke-width="4">
+    <rect x="500" y="84" width="34" height="34"/><rect x="542" y="84" width="34" height="34"/>
+    <rect x="500" y="126" width="34" height="34"/><rect x="542" y="126" width="34" height="34"/>
+  </g>
+  <path d="M206 130h56M424 130h56" stroke="#05070d" stroke-width="10"/>
+  <text x="72" y="248" font-family="monospace" font-size="24" font-weight="900" fill="#05070d">DENSE</text>
+  <text x="258" y="248" font-family="monospace" font-size="24" font-weight="900" fill="#05070d">TRANSFORMER</text>
+  <text x="494" y="248" font-family="monospace" font-size="24" font-weight="900" fill="#05070d">MATCH</text>
+  <text x="64" y="310" font-family="monospace" font-size="18" font-weight="900" fill="#40516d">CVPR 2021 / DETECTOR-FREE MATCHING</text>
+</svg>

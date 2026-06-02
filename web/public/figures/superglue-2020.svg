@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">SuperGlue representative image</title>
+  <desc id="desc">Keypoints are connected through graph matching to produce correspondences.</desc>
+  <rect width="640" height="360" fill="#dfe7f3"/>
+  <rect x="28" y="28" width="584" height="304" fill="#f8fbff" stroke="#05070d" stroke-width="8"/>
+  <g fill="#e3000b" stroke="#05070d" stroke-width="5">
+    <circle cx="104" cy="104" r="14"/><circle cx="156" cy="154" r="14"/><circle cx="96" cy="206" r="14"/>
+  </g>
+  <g fill="#1b5cff" stroke="#05070d" stroke-width="5">
+    <circle cx="500" cy="104" r="14"/><circle cx="552" cy="154" r="14"/><circle cx="492" cy="206" r="14"/>
+  </g>
+  <g stroke="#05070d" stroke-width="5">
+    <path d="M118 104h382M170 154h382M110 206h382"/>
+    <path d="M156 154 500 104M104 104 492 206"/>
+  </g>
+  <rect x="270" y="104" width="100" height="90" fill="#ffd500" stroke="#05070d" stroke-width="6"/>
+  <text x="288" y="160" font-family="monospace" font-size="28" font-weight="900" fill="#05070d">GNN</text>
+  <text x="64" y="294" font-family="monospace" font-size="18" font-weight="900" fill="#40516d">CVPR 2020 / GRAPH FEATURE MATCHING</text>
+</svg>

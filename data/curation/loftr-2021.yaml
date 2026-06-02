@@ -24,6 +24,8 @@ source_links:
   - label: DOI
     url: https://doi.org/10.1109/CVPR46437.2021.00881
 figure:
+  url: figures/loftr-2021.svg
+  alt: LoFTR detector-free transformer matching schematic
   caption: Detector-free transformer matching placeholder
 provenance:
   - openalex_title_check

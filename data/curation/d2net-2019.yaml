@@ -23,6 +23,8 @@ source_links:
   - label: DOI
     url: https://doi.org/10.1109/CVPR.2019.00828
 figure:
+  url: figures/d2net-2019.svg
+  alt: D2-Net detection and description schematic
   caption: Joint detection-description feature pipeline placeholder
 provenance:
   - openalex_title_check

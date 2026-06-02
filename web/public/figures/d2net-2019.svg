@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">D2-Net representative image</title>
+  <desc id="desc">A CNN jointly detects and describes local features for matching.</desc>
+  <rect width="640" height="360" fill="#dfe7f3"/>
+  <rect x="28" y="28" width="584" height="304" fill="#fffdf3" stroke="#05070d" stroke-width="8"/>
+  <rect x="62" y="80" width="138" height="112" fill="#1b5cff" stroke="#05070d" stroke-width="6"/>
+  <g fill="#ffd500" stroke="#05070d" stroke-width="4">
+    <circle cx="94" cy="112" r="10"/><circle cx="132" cy="152" r="10"/><circle cx="170" cy="118" r="10"/>
+  </g>
+  <rect x="282" y="78" width="128" height="116" fill="#e3000b" stroke="#05070d" stroke-width="6"/>
+  <path d="M312 112h68M312 146h68" stroke="#fffdf3" stroke-width="10"/>
+  <rect x="504" y="80" width="74" height="112" fill="#237841" stroke="#05070d" stroke-width="6"/>
+  <path d="M214 136h54M424 136h54" stroke="#05070d" stroke-width="10"/>
+  <text x="62" y="250" font-family="monospace" font-size="23" font-weight="900" fill="#05070d">DETECT</text>
+  <text x="282" y="250" font-family="monospace" font-size="23" font-weight="900" fill="#05070d">DESCRIBE</text>
+  <text x="492" y="250" font-family="monospace" font-size="23" font-weight="900" fill="#05070d">MATCH</text>
+  <text x="64" y="310" font-family="monospace" font-size="18" font-weight="900" fill="#40516d">CVPR 2019 / LOCAL FEATURES</text>
+</svg>

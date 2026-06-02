@@ -22,6 +22,8 @@ source_links:
   - label: DOI
     url: https://doi.org/10.1109/CVPR.2013.377
 figure:
+  url: figures/score-forest-2013.svg
+  alt: Scene coordinate regression forest pipeline schematic
   caption: Scene coordinate regression forest pipeline placeholder
 provenance:
   - openalex_title_check
