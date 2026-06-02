@@ -1,0 +1,37 @@
+paper_id: "paper:coordinate-permutation-2023"
+title: "Privacy Preserving Localization via Coordinate Permutations"
+year: 2023
+venue: IEEE/CVF International Conference on Computer Vision
+venue_type: conference
+venue_tier: A*
+abstract: Obfuscates geometry by permuting coordinates between points so pose estimation can recover usable constraints while hiding original point positions.
+summary: A geometric obfuscation successor that aims to reduce the accuracy loss of random-line lifting for query-side and map-side localization.
+problem: Preserve localization constraints while hiding original 2D or 3D point positions.
+prior_gap: Random line methods drop one geometric constraint and remain vulnerable to neighborhood or density-based recovery.
+stage: Coordinate permutation obfuscation
+advance: Swaps coordinate components between points, allowing pose estimation to recover full point-like constraints from obfuscated data.
+metric:
+  - Localization accuracy
+  - Privacy against density-based attacks
+  - Query-side and map-side evaluation
+why_this_metric: The method claims a better utility/privacy trade-off than random-line obfuscation.
+dataset:
+  - Visual localization benchmarks
+dataset_limitations:
+  - Dataset details should be expanded from the paper tables in a future curation pass.
+limitations:
+  - Later DCL and neighborhood-recovery work report vulnerability to neighborhood-based point recovery.
+source_links:
+  - label: Paper
+    url: https://openaccess.thecvf.com/content/ICCV2023/html/Pan_Privacy_Preserving_Localization_via_Coordinate_Permutations_ICCV_2023_paper.html
+  - label: PDF
+    url: https://openaccess.thecvf.com/content/ICCV2023/papers/Pan_Privacy_Preserving_Localization_via_Coordinate_Permutations_ICCV_2023_paper.pdf
+  - label: Project
+    url: https://lpanaf.github.io/iccv23_privacy_permute/
+figure:
+  alt: Coordinate permutation for privacy-preserving localization
+  caption: Coordinate permutation obfuscation
+provenance:
+  - subagent_research
+  - cvf_link
+confidence: 0.76

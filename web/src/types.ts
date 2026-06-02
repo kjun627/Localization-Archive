@@ -21,6 +21,10 @@ export type GraphNode = {
     abstract?: string;
     problem?: string;
     priorGap?: string;
+    stage?: string;
+    advance?: string;
+    metrics?: string[];
+    datasets?: string[];
     whyThisMetric?: string;
     datasetLimitations?: string[];
     limitations?: string[];
@@ -39,6 +43,14 @@ export type GraphEdge = {
   target: string;
   type: string;
   paperRefs: string[];
+  metadata?: {
+    sourceProblem?: string;
+    sourceAdvance?: string;
+    sourcePriorGap?: string;
+    targetProblem?: string;
+    targetLimitation?: string;
+    targetAdvance?: string;
+  };
 };
 
 export type GraphPayload = {

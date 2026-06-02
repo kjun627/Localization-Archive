@@ -1,0 +1,44 @@
+paper_id: "paper:line2point-2021"
+title: "How Privacy-Preserving Are Line Clouds? Recovering Scene Details From 3D Lines"
+year: 2021
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Shows that random 3D line clouds preserve enough local neighborhood geometry to recover approximate 3D points and recognizable scene content.
+summary: Breaks the original line-cloud privacy assumption by reconstructing hidden scene geometry from line neighborhoods.
+problem: Audit whether line-cloud maps actually protect private scene geometry.
+prior_gap: Line-cloud privacy was argued mainly from human unintelligibility and incompatibility with direct point-cloud inversion.
+stage: Map-side geometry recovery attack
+advance: Uses nearest-line neighborhoods and closest points between 3D lines to reconstruct approximate point clouds from uniform line clouds.
+metric:
+  - 3D point recovery error
+  - Recovery error CDF
+  - InvSfM image recovery quality
+  - Line-cloud sparsity ablation
+why_this_metric: The core claim is privacy failure, so geometric recovery and downstream image inversion directly measure attack success.
+dataset:
+  - Cambridge Landmarks
+  - 12 Scenes
+  - Strecha Fountain
+  - Castle Dagstuhl
+dataset_limitations:
+  - Sparse maps and low-density regions can weaken recovery or move recovered points toward denser regions.
+limitations:
+  - Attack performance drops on very sparse line clouds.
+  - The attack assumes useful neighborhood statistics and does not fully exploit descriptors.
+source_links:
+  - label: Paper
+    url: https://openaccess.thecvf.com/content/CVPR2021/html/Chelani_How_Privacy-Preserving_Are_Line_Clouds_Recovering_Scene_Details_From_3D_CVPR_2021_paper.html
+  - label: PDF
+    url: https://openaccess.thecvf.com/content/CVPR2021/papers/Chelani_How_Privacy-Preserving_Are_Line_Clouds_Recovering_Scene_Details_From_3D_CVPR_2021_paper.pdf
+  - label: arXiv
+    url: https://arxiv.org/abs/2103.05086
+  - label: Code
+    url: https://github.com/kunalchelani/Line2Point
+figure:
+  alt: Density-based line cloud recovery attack
+  caption: Line2Point recovery from line neighborhoods
+provenance:
+  - subagent_research
+  - cvf_link
+confidence: 0.86

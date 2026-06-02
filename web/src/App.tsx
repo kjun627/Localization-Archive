@@ -12,10 +12,6 @@ function App() {
   useEffect(() => {
     void loadGraph().then((payload) => {
       setGraph(payload);
-      const latestPaper = payload.nodes
-        .filter((node) => node.type === "paper")
-        .sort((left, right) => (right.metadata?.year ?? 0) - (left.metadata?.year ?? 0))[0];
-      if (latestPaper) setSelectedPaper(latestPaper);
     });
   }, []);
 

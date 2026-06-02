@@ -27,6 +27,8 @@ TYPE_LAYERS = {
     "limitation": 4,
 }
 
+PAPER_LINK_LABELS = {"arxiv", "cvf", "doi", "html", "paper", "pdf"}
+
 
 def load_yaml(path: Path) -> Any:
     with path.open("r", encoding="utf-8") as handle:
@@ -69,6 +71,8 @@ def load_curated_papers() -> list[PaperRecord]:
                 summary=payload.get("summary", ""),
                 problem=payload["problem"],
                 prior_gap=payload["prior_gap"],
+                stage=payload.get("stage", ""),
+                advance=payload.get("advance", ""),
                 metric=payload.get("metric", []),
                 why_this_metric=payload.get("why_this_metric", ""),
                 dataset=payload.get("dataset", []),
@@ -83,6 +87,45 @@ def load_curated_papers() -> list[PaperRecord]:
         )
 
     return records
+
+
+def is_paper_link(link: dict[str, str]) -> bool:
+    label = link.get("label", "").lower()
+    return (
+        label in PAPER_LINK_LABELS
+        or "paper" in label
+        or "arxiv" in label
+        or "doi" in label
+    )
+
+
+def paper_link_priority(link: dict[str, str]) -> int:
+    label = link.get("label", "").lower()
+    url = link.get("url", "").lower()
+    if "openaccess.thecvf.com" in url and not url.endswith(".pdf"):
+        return 0
+    if "ecva.net" in url and not url.endswith(".pdf"):
+        return 1
+    if "bmvc" in url and not url.endswith(".pdf"):
+        return 2
+    if "microsoft.com" in url and not url.endswith(".pdf"):
+        return 3
+    if label == "paper":
+        return 4
+    if label == "doi":
+        return 5
+    if label == "arxiv":
+        return 6
+    if label == "pdf":
+        return 7
+    return 8
+
+
+def normalize_source_links(links: list[dict[str, str]]) -> list[dict[str, str]]:
+    paper_links = sorted((link for link in links if is_paper_link(link)), key=paper_link_priority)
+    selected_paper = [{**paper_links[0], "label": "Paper"}] if paper_links else []
+    non_paper_links = [link for link in links if not is_paper_link(link)]
+    return selected_paper + non_paper_links
 
 
 def node_payload(
@@ -122,6 +165,7 @@ def build_graph(records: list[PaperRecord]) -> dict[str, Any]:
     edges: list[dict[str, Any]] = []
     layer_counts = defaultdict(int)
     created_nodes: set[str] = set()
+    records_by_id = {record.paper_id: record for record in records}
 
     def add_node(
         node_id: str,
@@ -169,10 +213,14 @@ def build_graph(records: list[PaperRecord]) -> dict[str, Any]:
                 "abstract": record.abstract,
                 "problem": record.problem,
                 "priorGap": record.prior_gap,
+                "stage": record.stage,
+                "advance": record.advance,
+                "metrics": record.metric,
+                "datasets": record.dataset,
                 "whyThisMetric": record.why_this_metric,
                 "datasetLimitations": record.dataset_limitations,
                 "limitations": record.limitations,
-                "sourceLinks": record.source_links,
+                "sourceLinks": normalize_source_links(record.source_links),
                 "figure": record.figure,
             },
         )
@@ -236,8 +284,26 @@ def build_graph(records: list[PaperRecord]) -> dict[str, Any]:
             edges.append(edge_payload(record.paper_id, limitation_id, "has_limitation", record.paper_id))
 
         for cited_paper_id in record.citations:
-            if cited_paper_id in {item.paper_id for item in records}:
-                edges.append(edge_payload(record.paper_id, cited_paper_id, "cites", record.paper_id))
+            cited_record = records_by_id.get(cited_paper_id)
+            if cited_record is not None:
+                edges.append(
+                    edge_payload(
+                        record.paper_id,
+                        cited_paper_id,
+                        "cites",
+                        record.paper_id,
+                        metadata={
+                            "sourceProblem": record.problem,
+                            "sourceAdvance": record.advance or record.summary,
+                            "sourcePriorGap": record.prior_gap,
+                            "targetProblem": cited_record.problem,
+                            "targetLimitation": cited_record.limitations[0]
+                            if cited_record.limitations
+                            else cited_record.prior_gap,
+                            "targetAdvance": cited_record.advance or cited_record.summary,
+                        },
+                    )
+                )
 
     return {
         "meta": {
@@ -251,14 +317,23 @@ def build_graph(records: list[PaperRecord]) -> dict[str, Any]:
     }
 
 
-def edge_payload(source: str, target: str, edge_type: str, paper_id: str) -> dict[str, Any]:
-    return {
+def edge_payload(
+    source: str,
+    target: str,
+    edge_type: str,
+    paper_id: str,
+    metadata: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    payload = {
         "key": f"{source}->{target}:{edge_type}",
         "source": source,
         "target": target,
         "type": edge_type,
         "paperRefs": [paper_id],
     }
+    if metadata:
+        payload["metadata"] = metadata
+    return payload
 
 
 def write_graph(graph: dict[str, Any]) -> None:

@@ -109,7 +109,7 @@ export function DetailsDrawer({ node }: DetailsDrawerProps) {
           <h3>Links</h3>
           <div className="link-list">
             {metadata.sourceLinks.map((link) => (
-              <a key={link.url} href={link.url} target="_blank" rel="noreferrer">
+              <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">
                 {link.label}
               </a>
             ))}
@@ -119,4 +119,3 @@ export function DetailsDrawer({ node }: DetailsDrawerProps) {
     </aside>
   );
 }
-

@@ -8,6 +8,8 @@ abstract: End-to-end camera localization with differentiable hypothesis selectio
 summary: Neural-guided scene coordinate regression with differentiable RANSAC for robust camera pose estimation.
 problem: Robust absolute pose estimation in scenes with ambiguous or noisy correspondences.
 prior_gap: Classical RANSAC pipelines were not end-to-end trainable and struggled to learn localization-specific scoring behavior.
+stage: Scene-coordinate relocalization
+advance: Stabilizes and improves the DSAC line of scene-coordinate regression with neural guidance and robust camera pose scoring.
 metric:
   - Pose accuracy at 5cm / 5deg
   - Median translation and rotation error
@@ -24,6 +26,8 @@ source_links:
     url: https://ieeexplore.ieee.org/document/9250416
   - label: Project
     url: https://niessnerlab.org/projects/brachmann2017dsacpp.html
+  - label: Code
+    url: https://github.com/vislearn/dsacstar
 figure:
   url: figures/dsac-star-2021.svg
   alt: DSAC star robust localization schematic

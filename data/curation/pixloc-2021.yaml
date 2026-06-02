@@ -8,6 +8,8 @@ abstract: Pixel-wise feature alignment refines camera pose through learned dense
 summary: Reintroduces geometric pose refinement around learned features to improve RGB camera localization robustness.
 problem: Refine camera poses from image evidence without depending only on sparse correspondences or direct pose regression.
 prior_gap: Retrieval and sparse matching pipelines could produce rough poses, while direct regression often lacked geometric precision.
+stage: Feature-alignment pose refinement
+advance: Separates scene-agnostic feature learning from geometric pose optimization through direct 2D-3D feature alignment.
 metric:
   - Pose accuracy at multiple thresholds
   - Median translation and rotation error
@@ -23,6 +25,12 @@ limitations:
 source_links:
   - label: DOI
     url: https://doi.org/10.1109/CVPR46437.2021.00326
+  - label: PDF
+    url: https://openaccess.thecvf.com/content/CVPR2021/papers/Sarlin_Back_to_the_Feature_Learning_Robust_Camera_Localization_From_Pixels_CVPR_2021_paper.pdf
+  - label: Code
+    url: https://github.com/cvg/pixloc
+  - label: Project
+    url: https://psarlin.com/pixloc/
 figure:
   url: figures/pixloc-2021.svg
   alt: PixLoc pixel-to-pose refinement schematic

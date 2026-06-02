@@ -8,6 +8,8 @@ abstract: Dense CNN features are used for joint local feature detection and desc
 summary: Improves local matching robustness by learning feature detection and description jointly for image matching and localization.
 problem: Produce local features that remain matchable under viewpoint and illumination changes.
 prior_gap: Separate handcrafted detectors and descriptors could be brittle, and learned descriptors often still depended on fixed keypoint detectors.
+stage: Learned local features
+advance: Uses one dense CNN representation as both detector and descriptor so detection adapts to descriptor strength.
 metric:
   - Matching score
   - Pose accuracy at localization thresholds
@@ -22,6 +24,10 @@ limitations:
 source_links:
   - label: DOI
     url: https://doi.org/10.1109/CVPR.2019.00828
+  - label: arXiv
+    url: https://arxiv.org/abs/1905.03561
+  - label: Code
+    url: https://github.com/mihaidusmanu/d2-net
 figure:
   url: figures/d2net-2019.svg
   alt: D2-Net detection and description schematic

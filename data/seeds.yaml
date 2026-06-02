@@ -53,6 +53,46 @@ papers:
     venue_tier: A*
     included: true
     citations: ["paper:aachen-day-night-2018"]
+  - id: "paper:invsfm-2019"
+    title: "Revealing Scenes by Inverting Structure From Motion Reconstructions"
+    year: 2019
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: []
+  - id: "paper:privacy-preserving-image-based-localization-2019"
+    title: "Privacy Preserving Image-Based Localization"
+    year: 2019
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:invsfm-2019", "paper:netvlad-2016", "paper:dsac-2017"]
+  - id: "paper:hf-net-2019"
+    title: "From Coarse to Fine: Robust Hierarchical Localization at Large Scale"
+    year: 2019
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:netvlad-2016", "paper:aachen-day-night-2018"]
+  - id: "paper:apr-limitations-2019"
+    title: "Understanding the Limitations of CNN-Based Absolute Camera Pose Regression"
+    year: 2019
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:posenet-2015"]
+  - id: "paper:ppiq-2019"
+    title: "Privacy Preserving Image Queries for Camera Localization"
+    year: 2019
+    venue: IEEE/CVF International Conference on Computer Vision
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:privacy-preserving-image-based-localization-2019", "paper:invsfm-2019"]
   - id: "paper:superglue-2020"
     title: "SuperGlue: Learning Feature Matching With Graph Neural Networks"
     year: 2020
@@ -77,6 +117,14 @@ papers:
     venue_tier: A*
     included: true
     citations: ["paper:superglue-2020", "paper:aachen-day-night-2018"]
+  - id: "paper:line2point-2021"
+    title: "How Privacy-Preserving Are Line Clouds? Recovering Scene Details From 3D Lines"
+    year: 2021
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:privacy-preserving-image-based-localization-2019", "paper:invsfm-2019", "paper:netvlad-2016", "paper:d2net-2019"]
   - id: "paper:dsac-star-2021"
     title: "DSAC*: Differentiable RANSAC for Camera Localization"
     year: 2021
@@ -86,18 +134,106 @@ papers:
     included: true
     citations: ["paper:dsac-2017", "paper:score-forest-2013", "paper:posenet-2015"]
   - id: "paper:ace-2023"
-    title: "ACE: Absolute Camera Estimation for Efficient 3D Visual Localization"
+    title: "Accelerated Coordinate Encoding: Learning to Relocalize in Minutes using RGB and Poses"
     year: 2023
     venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
     venue_type: conference
     venue_tier: A*
     included: true
     citations: ["paper:dsac-star-2021", "paper:dsac-2017", "paper:score-forest-2013"]
+  - id: "paper:paired-point-lifting-2023"
+    title: "Paired-Point Lifting for Enhanced Privacy-Preserving Visual Localization"
+    year: 2023
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:privacy-preserving-image-based-localization-2019", "paper:line2point-2021", "paper:posenet-2015"]
+  - id: "paper:coordinate-permutation-2023"
+    title: "Privacy Preserving Localization via Coordinate Permutations"
+    year: 2023
+    venue: IEEE/CVF International Conference on Computer Vision
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:ppiq-2019", "paper:line2point-2021", "paper:paired-point-lifting-2023"]
+  - id: "paper:lightglue-2023"
+    title: "LightGlue: Local Feature Matching at Light Speed"
+    year: 2023
+    venue: IEEE/CVF International Conference on Computer Vision
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:superglue-2020", "paper:loftr-2021"]
   - id: "paper:marepo-2024"
-    title: "MARePo: Mapping-agnostic Regression for Efficient Pose Estimation"
+    title: "Map-Relative Pose Regression for Visual Re-Localization"
+    year: 2024
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:ace-2023"]
+  - id: "paper:glace-2024"
+    title: "GLACE: Global Local Accelerated Coordinate Encoding"
+    year: 2024
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:ace-2023", "paper:dsac-star-2021"]
+  - id: "paper:dust3r-2024"
+    title: "DUSt3R: Geometric 3D Vision Made Easy"
+    year: 2024
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:loftr-2021", "paper:superglue-2020"]
+  - id: "paper:ray-cloud-2024"
+    title: "Efficient Privacy-Preserving Visual Localization Using 3D Ray Clouds"
+    year: 2024
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:line2point-2021", "paper:paired-point-lifting-2023", "paper:privacy-preserving-image-based-localization-2019"]
+  - id: "paper:sphere-cloud-2024"
+    title: "Depth-Guided Privacy-Preserving Visual Localization Using 3D Sphere Clouds"
+    year: 2024
+    venue: British Machine Vision Conference
+    venue_type: conference
+    venue_tier: A
+    included: true
+    citations: ["paper:ray-cloud-2024", "paper:line2point-2021", "paper:paired-point-lifting-2023", "paper:score-forest-2013", "paper:dsac-star-2021"]
+  - id: "paper:mast3r-2024"
+    title: "Grounding Image Matching in 3D with MASt3R"
     year: 2024
     venue: European Conference on Computer Vision
     venue_type: conference
     venue_tier: A
     included: true
-    citations: ["paper:ace-2023"]
+    citations: ["paper:dust3r-2024", "paper:loftr-2021"]
+  - id: "paper:neighborhood-recovery-2025"
+    title: "Obfuscation Based Privacy Preserving Representations are Recoverable Using Neighborhood Information"
+    year: 2025
+    venue: International Conference on 3D Vision
+    venue_type: conference
+    venue_tier: A
+    included: true
+    citations: ["paper:ppiq-2019", "paper:coordinate-permutation-2023", "paper:line2point-2021"]
+  - id: "paper:air-hloc-2025"
+    title: "AIR-HLoc: Adaptive Retrieved Images Selection for Efficient Visual Localisation"
+    year: 2025
+    venue: IEEE International Conference on Robotics and Automation
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:hf-net-2019", "paper:netvlad-2016", "paper:superglue-2020"]
+  - id: "paper:dcl-2026"
+    title: "Revisiting Geometric Obfuscation with Dual Convergent Lines for Privacy-Preserving Image Queries in Visual Localization"
+    year: 2026
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:ppiq-2019", "paper:coordinate-permutation-2023", "paper:neighborhood-recovery-2025", "paper:invsfm-2019", "paper:netvlad-2016", "paper:ace-2023"]

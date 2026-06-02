@@ -1,13 +1,15 @@
 paper_id: "paper:ace-2023"
-title: "ACE: Absolute Camera Estimation for Efficient 3D Visual Localization"
+title: "Accelerated Coordinate Encoding: Learning to Relocalize in Minutes using RGB and Poses"
 year: 2023
 venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
 venue_tier: A*
 abstract: Fast and compact training for scene-specific camera relocalization.
-summary: Efficient map learning pipeline that reduces training cost while preserving relocalization quality.
+summary: Efficient scene-coordinate map learning pipeline that reduces per-scene training cost while preserving relocalization quality.
 problem: Practical scene-specific visual localization with much lower training and update cost.
 prior_gap: Prior scene coordinate regression methods achieved good accuracy but were too expensive to retrain or refresh in dynamic deployment settings.
+stage: Efficient scene-coordinate mapping
+advance: Splits a relocalizer into a pre-trained feature backbone and fast scene-specific MLP head, reducing mapping from hours or days to minutes.
 metric:
   - Pose accuracy at 5cm / 5deg
   - Training time
@@ -22,9 +24,13 @@ limitations:
   - Scene-specific training remains necessary for each environment.
 source_links:
   - label: Paper
-    url: https://openaccess.thecvf.com/content/CVPR2023/html/Brachmann_ACE_Absolute_Camera_Estimation_for_Efficient_3D_Visual_Localization_CVPR_2023_paper.html
+    url: https://nianticlabs.github.io/ace/
+  - label: arXiv
+    url: https://arxiv.org/abs/2305.14059
+  - label: Code
+    url: https://github.com/nianticlabs/ace
   - label: Project
-    url: https://nianticlabs.github.io/ace
+    url: https://nianticlabs.github.io/ace/
 figure:
   url: figures/ace-2023.svg
   alt: ACE efficient scene-coordinate training schematic

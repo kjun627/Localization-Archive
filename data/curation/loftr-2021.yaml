@@ -8,6 +8,8 @@ abstract: A detector-free transformer matcher directly establishes dense-to-coar
 summary: Removes dependence on sparse keypoint detection and improves matching in low-texture or repetitive regions.
 problem: Establish robust image correspondences when keypoint detectors fail or produce too few stable points.
 prior_gap: Keypoint-based pipelines could collapse in low-texture scenes because feature detection happened before global matching context was considered.
+stage: Detector-free matching
+advance: Establishes coarse-to-fine semi-dense correspondences with self/cross-attention before committing to keypoints.
 metric:
   - Relative pose AUC
   - Visual localization accuracy
@@ -23,6 +25,12 @@ limitations:
 source_links:
   - label: DOI
     url: https://doi.org/10.1109/CVPR46437.2021.00881
+  - label: PDF
+    url: https://openaccess.thecvf.com/content/CVPR2021/papers/Sun_LoFTR_Detector-Free_Local_Feature_Matching_With_Transformers_CVPR_2021_paper.pdf
+  - label: Code
+    url: https://github.com/zju3dv/LoFTR
+  - label: Project
+    url: https://zju3dv.github.io/loftr/
 figure:
   url: figures/loftr-2021.svg
   alt: LoFTR detector-free transformer matching schematic

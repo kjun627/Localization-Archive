@@ -1,0 +1,44 @@
+paper_id: "paper:paired-point-lifting-2023"
+title: "Paired-Point Lifting for Enhanced Privacy-Preserving Visual Localization"
+year: 2023
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Pairs sparse 3D points and lifts each pair into a single line, reducing line density and adding descriptor ambiguity against Line2Point-style recovery.
+summary: A map-side successor to uniform line clouds that changes line construction to resist density-based inversion while keeping localization viable.
+problem: Make line-cloud maps more resistant to recovery attacks without losing relocalization accuracy.
+prior_gap: Uniform line clouds were vulnerable to density-based point recovery, and simple sparsification traded off localization constraints.
+stage: Map-side PPVL defense successor
+advance: Conceals two points per line, introduces paired descriptor ambiguity, and adds PPL+ rejection sampling for planar corner cases.
+metric:
+  - Median 3D point recovery error
+  - PSNR
+  - SSIM
+  - Rotation error
+  - Translation error
+why_this_metric: PPL must improve privacy against recovery while preserving camera pose quality.
+dataset:
+  - Cambridge Landmarks
+  - Energy Landscape
+dataset_limitations:
+  - Street and TrinityGreatCourt were excluded in reported experiments due to geometric outliers.
+limitations:
+  - PPL+ threshold selection can create quasi-parallel lines and degrade pose accuracy.
+  - P6L-based line-cloud localization remains slower than point-cloud P3P.
+  - Privacy is empirically attack-tested rather than formally guaranteed.
+source_links:
+  - label: Paper
+    url: https://openaccess.thecvf.com/content/CVPR2023/html/Lee_Paired-Point_Lifting_for_Enhanced_Privacy-Preserving_Visual_Localization_CVPR_2023_paper.html
+  - label: PDF
+    url: https://openaccess.thecvf.com/content/CVPR2023/papers/Lee_Paired-Point_Lifting_for_Enhanced_Privacy-Preserving_Visual_Localization_CVPR_2023_paper.pdf
+  - label: Code
+    url: https://github.com/Fusroda-h/ppl
+  - label: Poster
+    url: https://cvpr.thecvf.com/virtual/2023/poster/22539
+figure:
+  alt: Paired-point lifting line construction
+  caption: Paired-point lifting for stronger map privacy
+provenance:
+  - subagent_research
+  - cvf_link
+confidence: 0.85

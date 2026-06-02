@@ -8,6 +8,8 @@ abstract: A trainable VLAD layer learns image retrieval descriptors for place re
 summary: Provides a retrieval backbone that became a common first stage for large-scale visual localization systems.
 problem: Retrieve visually corresponding places under large viewpoint and appearance changes.
 prior_gap: Handcrafted global descriptors and non-trainable aggregation often lacked robustness for city-scale image retrieval.
+stage: Place recognition
+advance: Makes image retrieval trainable end-to-end with a VLAD-style aggregation layer for localization candidate generation.
 metric:
   - Recall at K
   - Localization retrieval recall
@@ -22,6 +24,12 @@ limitations:
 source_links:
   - label: CVF
     url: https://openaccess.thecvf.com/content_cvpr_2016/html/Arandjelovic_NetVLAD_CNN_Architecture_CVPR_2016_paper.html
+  - label: PDF
+    url: https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Arandjelovic_NetVLAD_CNN_Architecture_CVPR_2016_paper.pdf
+  - label: Code
+    url: https://github.com/Relja/netvlad
+  - label: Project
+    url: http://www.di.ens.fr/willow/research/netvlad/
 figure:
   url: figures/netvlad-2016.svg
   alt: NetVLAD retrieval pipeline schematic

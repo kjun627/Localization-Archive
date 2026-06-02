@@ -15,6 +15,8 @@ class PaperRecord:
     summary: str
     problem: str
     prior_gap: str
+    stage: str = ""
+    advance: str = ""
     metric: list[str] = field(default_factory=list)
     why_this_metric: str = ""
     dataset: list[str] = field(default_factory=list)

@@ -8,6 +8,8 @@ abstract: Differentiable RANSAC enables end-to-end training of camera localizati
 summary: Connects learned scene coordinate regression with robust geometric pose estimation through differentiable hypothesis sampling.
 problem: Train a camera localization system end-to-end while retaining RANSAC-style robustness to correspondence outliers.
 prior_gap: RANSAC was effective but non-differentiable, blocking direct optimization of the full pose-estimation pipeline.
+stage: Differentiable robust pose solving
+advance: Keeps RANSAC-style outlier rejection while making hypothesis selection trainable for scene-coordinate localization.
 metric:
   - Pose accuracy at 5cm / 5deg
   - Median translation and rotation error
@@ -22,6 +24,10 @@ limitations:
 source_links:
   - label: DOI
     url: https://doi.org/10.1109/CVPR.2017.267
+  - label: arXiv
+    url: https://arxiv.org/abs/1611.05705
+  - label: Code
+    url: https://github.com/cvlab-dresden/DSAC
 figure:
   url: figures/dsac-2017.svg
   alt: Differentiable RANSAC localization schematic

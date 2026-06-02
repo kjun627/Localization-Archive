@@ -1,0 +1,38 @@
+paper_id: "paper:neighborhood-recovery-2025"
+title: "Obfuscation Based Privacy Preserving Representations are Recoverable Using Neighborhood Information"
+year: 2025
+venue: International Conference on 3D Vision
+venue_type: conference
+venue_tier: A
+abstract: Shows that line, plane, and coordinate-permutation obfuscations can be approximately inverted when neighborhoods are known or learned from descriptor co-occurrence.
+summary: Generalizes recovery attacks across multiple geometric obfuscation schemes, motivating DCL-style defenses.
+problem: Test whether geometric obfuscation methods remain private under neighborhood-based recovery.
+prior_gap: Earlier attacks were representation-specific and did not expose a common weakness across obfuscation families.
+stage: Cross-scheme obfuscation attack
+advance: Uses known or learned neighborhoods to recover approximate original point/keypoint locations across line, plane, and coordinate-permutation schemes.
+metric:
+  - Point recovery error
+  - Image inversion quality
+  - Cross-scheme attack success
+why_this_metric: The paper claims a shared privacy failure, so recovery quality across multiple schemes is the central measure.
+dataset:
+  - Geometry obfuscation benchmarks
+dataset_limitations:
+  - Dataset details should be expanded from the 3DV/arXiv tables in a future curation pass.
+limitations:
+  - Attack strength depends on neighborhood estimation quality.
+  - Public code availability was not confirmed during curation.
+source_links:
+  - label: arXiv
+    url: https://arxiv.org/abs/2409.11536
+  - label: OpenReview
+    url: https://openreview.net/forum?id=YKvWJBKEbH
+  - label: Code
+    url: https://github.com/kunalchelani/RecoverPointsNeighborhood
+figure:
+  alt: Neighborhood-based recovery from obfuscated representations
+  caption: Neighborhood recovery attack across obfuscations
+provenance:
+  - subagent_research
+  - arxiv_link
+confidence: 0.72

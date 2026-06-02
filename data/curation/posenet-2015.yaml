@@ -8,6 +8,8 @@ abstract: A convolutional network directly regresses camera pose from a single R
 summary: Introduces end-to-end learned absolute pose regression as an alternative to handcrafted structure-based localization.
 problem: Predict 6-DoF camera pose from a single image in real time for large outdoor scenes.
 prior_gap: Structure-based pipelines required explicit feature matching, 3D maps, and robust geometric verification that could be heavy for real-time deployment.
+stage: Absolute pose regression
+advance: Tests whether a single CNN can replace explicit matching and map-based pose solving for real-time relocalization.
 metric:
   - Median translation and rotation error
 why_this_metric: Direct pose regression optimizes continuous camera pose, so median translation and rotation error summarize typical relocalization quality while reducing outlier dominance.
@@ -20,6 +22,12 @@ limitations:
 source_links:
   - label: DOI
     url: https://doi.org/10.1109/ICCV.2015.336
+  - label: PDF
+    url: https://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Kendall_PoseNet_A_Convolutional_ICCV_2015_paper.pdf
+  - label: arXiv
+    url: https://arxiv.org/abs/1505.07427
+  - label: Project
+    url: http://mi.eng.cam.ac.uk/projects/relocalisation/
 figure:
   url: figures/posenet-2015.svg
   alt: PoseNet direct camera pose regression schematic

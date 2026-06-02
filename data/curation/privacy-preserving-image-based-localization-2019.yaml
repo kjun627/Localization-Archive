@@ -1,0 +1,44 @@
+paper_id: "paper:privacy-preserving-image-based-localization-2019"
+title: "Privacy Preserving Image-Based Localization"
+year: 2019
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Introduces map-side privacy-preserving localization by lifting SfM 3D points into randomly oriented 3D lines while retaining geometric constraints for camera pose estimation.
+summary: Replaces sensitive sparse 3D point maps with line clouds, creating the first major map-side PPVL baseline for structure-based localization.
+problem: Hide private scene geometry in persistent localization maps without abandoning feature matching and geometric pose estimation.
+prior_gap: Structure-based localization stored sparse point clouds and descriptors that could reveal scene layout or support inversion attacks.
+stage: Map-side PPVL origin
+advance: Lifts each 3D point to a 3D line and formulates point-to-line pose estimation through generalized camera solvers.
+metric:
+  - Rotation error
+  - Translation error
+  - Point-to-line reprojection error
+  - RANSAC runtime
+why_this_metric: The defense must preserve localization utility while changing the geometry available to the server.
+dataset:
+  - 15 custom indoor/outdoor datasets
+  - Mobile phone and Microsoft HoloLens query captures
+dataset_limitations:
+  - Custom datasets make direct comparison to later public benchmarks difficult.
+limitations:
+  - Successful localization can reveal inlier 3D points visible in the query.
+  - Multiple independently lifted copies can expose hidden points through line intersections.
+  - Density analysis can recover scene structure, which later became the Line2Point attack.
+  - Feature descriptors remain an exposed privacy surface.
+source_links:
+  - label: Paper
+    url: https://openaccess.thecvf.com/content_CVPR_2019/html/Speciale_Privacy_Preserving_Image-Based_Localization_CVPR_2019_paper.html
+  - label: PDF
+    url: https://openaccess.thecvf.com/content_CVPR_2019/papers/Speciale_Privacy_Preserving_Image-Based_Localization_CVPR_2019_paper.pdf
+  - label: arXiv
+    url: https://arxiv.org/abs/1903.05572
+  - label: Project
+    url: https://speciale.ar/publication/secureloc/
+figure:
+  alt: 3D point map lifted into a line cloud for privacy-preserving localization
+  caption: Uniform line-cloud map representation
+provenance:
+  - subagent_research
+  - cvf_link
+confidence: 0.84

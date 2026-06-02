@@ -8,6 +8,8 @@ abstract: Randomized forests predict scene coordinates from RGB-D image patches 
 summary: Establishes scene coordinate regression as a practical camera relocalization formulation using RGB-D inputs.
 problem: Recover camera pose in a known indoor scene from RGB-D observations without relying on sparse hand-crafted matches.
 prior_gap: Classical feature matching and structure-based localization could be brittle for texture-poor indoor RGB-D scenes.
+stage: Scene coordinate regression
+advance: Recasts relocalization as dense pixel-to-scene-coordinate prediction followed by robust pose optimization.
 metric:
   - Pose accuracy at 5cm / 5deg
   - Median translation and rotation error
@@ -21,6 +23,8 @@ limitations:
 source_links:
   - label: DOI
     url: https://doi.org/10.1109/CVPR.2013.377
+  - label: Paper
+    url: https://www.microsoft.com/en-us/research/publication/scene-coordinate-regression-forests-for-camera-relocalization-in-rgb-d-images-2/
 figure:
   url: figures/score-forest-2013.svg
   alt: Scene coordinate regression forest pipeline schematic

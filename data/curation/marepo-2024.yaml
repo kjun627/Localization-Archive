@@ -1,13 +1,15 @@
 paper_id: "paper:marepo-2024"
-title: "MARePo: Mapping-agnostic Regression for Efficient Pose Estimation"
+title: "Map-Relative Pose Regression for Visual Re-Localization"
 year: 2024
-venue: European Conference on Computer Vision
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
 venue_type: conference
-venue_tier: A
+venue_tier: A*
 abstract: Regression-based localization with stronger generalization across maps and scenes.
-summary: Decouples some map-specific assumptions to reduce retraining dependence for pose regression.
-problem: Reduce scene-specific dependence in regression-based localization pipelines.
-prior_gap: Efficient localization models such as ACE still required per-scene optimization and limited cross-scene reuse.
+summary: Conditions pose regression on scene-specific map representations so a regressor can transfer across scenes and adapt quickly.
+problem: Reduce scene-specific data hunger in regression-based visual relocalization.
+prior_gap: ACE made scene-coordinate mapping fast, but pose regression still needed scene-specific training or large synthetic data to become accurate.
+stage: Map-relative pose regression
+advance: Learns a scene-agnostic pose regressor conditioned on a scene map, moving from per-scene absolute regression toward reusable map-relative inference.
 metric:
   - Pose accuracy at 5cm / 5deg
   - Cross-scene generalization
@@ -21,12 +23,18 @@ limitations:
   - Generalization gains may still depend on scene overlap and representation bias.
 source_links:
   - label: Paper
-    url: https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/11787_ECCV_2024_paper.php
+    url: https://openaccess.thecvf.com/content/CVPR2024/html/Chen_Map-Relative_Pose_Regression_for_Visual_Re-Localization_CVPR_2024_paper.html
+  - label: PDF
+    url: https://openaccess.thecvf.com/content/CVPR2024/papers/Chen_Map-Relative_Pose_Regression_for_Visual_Re-Localization_CVPR_2024_paper.pdf
+  - label: Code
+    url: https://github.com/nianticlabs/marepo
+  - label: Project
+    url: https://nianticlabs.github.io/marepo/
 figure:
   url: figures/marepo-2024.svg
   alt: MARePo mapping-agnostic regression schematic
   caption: Mapping-agnostic pose regression placeholder
 provenance:
-  - manual_link
-  - abstract_inference
-confidence: 0.68
+  - official_project_page
+  - cvf_title_check
+confidence: 0.82

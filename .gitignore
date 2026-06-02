@@ -18,3 +18,4 @@ data/generated/
 *.log
 *.tsbuildinfo
 tmp/
+design.md
