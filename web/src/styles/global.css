@@ -128,7 +128,7 @@ a {
 
 .archive-tools {
   display: grid;
-  grid-template-columns: 340px 1fr;
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr) auto;
   gap: var(--module-gap);
   padding: 12px 20px;
   border-bottom: 3px dashed var(--lego-black);
@@ -189,7 +189,7 @@ a {
   gap: 8px;
   border: var(--outline);
   background: var(--tone);
-  color: var(--lego-white);
+  color: var(--tone-ink);
   box-shadow:
     inset 3px 3px 0 rgba(255, 255, 255, 0.28),
     inset -4px -4px 0 rgba(0, 0, 0, 0.24),
@@ -205,7 +205,7 @@ a {
   width: 9px;
   height: 9px;
   border: 2px solid var(--lego-white);
-  background: var(--lego-yellow);
+  background: var(--tone-ring);
 }
 
 .venue-toggle.off {
@@ -213,28 +213,54 @@ a {
   filter: grayscale(1);
 }
 
+.export-button {
+  height: 38px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: var(--outline);
+  background: var(--lego-yellow);
+  color: var(--lego-black);
+  box-shadow:
+    inset 3px 3px 0 rgba(255, 255, 255, 0.6),
+    inset -4px -4px 0 rgba(0, 0, 0, 0.18),
+    5px 6px 0 var(--lego-shadow);
+  cursor: pointer;
+  font-family: var(--pixel);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .archive-stage {
   position: relative;
   min-height: 0;
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 24px;
+  padding: 24px;
   overflow: hidden;
 }
 
 .archive-scroller {
-  position: absolute;
-  inset: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 26px 64px 40px 396px;
+  position: relative;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 2px 20px 44px 0;
   scroll-behavior: smooth;
 }
 
 .archive-scroller::-webkit-scrollbar {
-  height: 18px;
+  width: 18px;
 }
 
 .archive-scroller::-webkit-scrollbar-track {
   background: #bac7d8;
-  border-top: var(--outline);
+  border-left: var(--outline);
 }
 
 .archive-scroller::-webkit-scrollbar-thumb {
@@ -246,27 +272,35 @@ a {
 }
 
 .timeline {
+  width: min(100%, 1120px);
   min-height: 100%;
-  display: flex;
-  gap: 42px;
-  align-items: stretch;
-  padding-right: 260px;
+  display: grid;
+  gap: 34px;
+  padding: 0 12px 80px 0;
 }
 
 .year-column {
-  min-width: 380px;
-  display: flex;
-  flex-direction: column;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
 }
 
 .year-head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 16px;
-  padding-bottom: 10px;
-  margin-bottom: 14px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  margin-bottom: 0;
   border-bottom: var(--outline);
+  background:
+    radial-gradient(circle at 17px 17px, rgba(255, 255, 255, 0.76) 0 5px, rgba(8, 18, 38, 0.12) 6px, transparent 7px),
+    var(--space-deck);
+  background-size: 34px 34px;
+  box-shadow: 7px 8px 0 var(--lego-shadow);
 }
 
 .year-number {
@@ -283,18 +317,17 @@ a {
   font-family: var(--pixel);
   font-size: 10px;
   line-height: 1.4;
-  text-align: right;
+  text-align: left;
   text-transform: uppercase;
   color: var(--space-muted);
 }
 
 .file-stack {
   min-height: 0;
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: var(--module-gap);
-  overflow-y: auto;
+  overflow-y: visible;
   overflow-x: visible;
   padding: 0 10px 4px 0;
 }
@@ -319,13 +352,22 @@ a {
   background: transparent;
   cursor: pointer;
   text-align: left;
-  transition: transform 130ms ease;
+  transition: filter 130ms ease;
 }
 
 .file-card:hover,
 .file-card.selected {
-  transform: translateX(-18px);
   z-index: 4;
+}
+
+.file-card:hover .file-body,
+.file-card.selected .file-body {
+  outline: 4px solid var(--lego-yellow);
+  outline-offset: -6px;
+}
+
+.file-card.selected .file-tab {
+  filter: saturate(1.18) contrast(1.06);
 }
 
 .file-tab {
@@ -339,8 +381,8 @@ a {
   clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%);
   border: 3px solid var(--lego-black);
   border-right: 0;
-  background: var(--lego-blue);
-  color: var(--lego-white);
+  background: var(--tone);
+  color: var(--tone-ink);
   font-family: var(--pixel);
   font-size: 10px;
   font-weight: 900;
@@ -445,12 +487,13 @@ a {
 }
 
 .file-panel {
-  position: absolute;
+  position: relative;
   z-index: 7;
-  left: 24px;
-  top: 24px;
-  bottom: 24px;
-  width: 336px;
+  left: auto;
+  top: auto;
+  bottom: auto;
+  width: 100%;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -475,9 +518,9 @@ a {
   border-bottom: var(--outline);
   background:
     radial-gradient(circle at 18px 18px, rgba(255, 255, 255, 0.26) 0 5px, rgba(0, 0, 0, 0.18) 6px, transparent 7px),
-    linear-gradient(135deg, var(--lego-blue), #123b9e);
+    linear-gradient(135deg, var(--tone), color-mix(in srgb, var(--tone), #000 32%));
   background-size: 36px 36px;
-  color: var(--lego-white);
+  color: var(--tone-ink);
   font-family: var(--pixel);
   font-size: 11px;
   font-weight: 900;
@@ -487,9 +530,9 @@ a {
 
 .file-figure {
   min-height: 168px;
-  padding: 18px;
+  padding: 12px;
   display: grid;
-  align-content: center;
+  align-content: stretch;
   gap: 10px;
   border-bottom: var(--outline);
   background:
@@ -499,12 +542,50 @@ a {
   color: var(--space-ink);
 }
 
-.file-figure span {
+.file-figure img {
+  width: 100%;
+  min-height: 154px;
+  max-height: 220px;
+  object-fit: cover;
+  border: var(--outline);
+  background: var(--lego-white);
+  box-shadow:
+    inset 3px 3px 0 rgba(255, 255, 255, 0.8),
+    inset -5px -5px 0 rgba(17, 24, 39, 0.14),
+    5px 6px 0 var(--lego-shadow);
+}
+
+.file-figure small {
+  font-family: var(--pixel);
+  font-size: 10px;
+  color: var(--space-muted);
+  text-transform: uppercase;
+}
+
+.figure-placeholder {
+  min-height: 154px;
+  padding: 14px;
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  border: var(--outline);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.6), transparent 38%),
+    radial-gradient(circle at 24px 24px, rgba(255, 255, 255, 0.9) 0 7px, rgba(8, 18, 38, 0.18) 8px, transparent 9px),
+    color-mix(in srgb, var(--tone), #ffffff 72%);
+  background-size: auto, 48px 48px, auto;
+  box-shadow:
+    inset 4px 4px 0 rgba(255, 255, 255, 0.86),
+    inset -7px -7px 0 rgba(17, 24, 39, 0.16),
+    5px 6px 0 var(--lego-shadow);
+}
+
+.figure-placeholder span {
   width: max-content;
   padding: 4px 8px;
   border: var(--outline);
-  background: var(--lego-red);
-  color: var(--lego-white);
+  background: var(--tone);
+  color: var(--tone-ink);
   box-shadow:
     inset 2px 2px 0 rgba(255, 255, 255, 0.32),
     inset -3px -3px 0 rgba(0, 0, 0, 0.22);
@@ -513,7 +594,7 @@ a {
   font-weight: 900;
 }
 
-.file-figure strong {
+.figure-placeholder strong {
   font-family: var(--pixel);
   font-size: 26px;
   line-height: 1.05;
@@ -658,8 +739,10 @@ a {
   }
 
   .archive-stage {
+    display: block;
     min-height: 760px;
     overflow: visible;
+    padding: 16px;
   }
 
   .file-panel {
@@ -674,11 +757,21 @@ a {
   .archive-scroller {
     position: relative;
     inset: auto;
-    padding: 16px;
-    overflow-x: auto;
+    padding: 16px 0 40px;
+    overflow: visible;
   }
 
   .timeline {
-    padding-right: 80px;
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .year-column {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .year-head {
+    position: relative;
   }
 }

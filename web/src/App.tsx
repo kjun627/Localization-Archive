@@ -31,6 +31,7 @@ function App() {
 
   return (
     <ArchiveBrowser
+      edges={graph?.edges ?? []}
       papers={papers}
       selectedPaper={selectedPaper}
       activeVenues={activeVenues}

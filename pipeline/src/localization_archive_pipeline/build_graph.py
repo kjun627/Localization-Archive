@@ -75,6 +75,7 @@ def load_curated_papers() -> list[PaperRecord]:
                 dataset_limitations=payload.get("dataset_limitations", []),
                 limitations=payload.get("limitations", []),
                 source_links=payload.get("source_links", []),
+                figure=payload.get("figure", {}),
                 citations=seed.get("citations", []),
                 confidence=float(payload.get("confidence", 0.6)),
                 provenance=payload.get("provenance", ["user_note"]),
@@ -172,6 +173,7 @@ def build_graph(records: list[PaperRecord]) -> dict[str, Any]:
                 "datasetLimitations": record.dataset_limitations,
                 "limitations": record.limitations,
                 "sourceLinks": record.source_links,
+                "figure": record.figure,
             },
         )
 
@@ -273,4 +275,3 @@ def main() -> int:
     write_graph(graph)
     print(f"Wrote {len(graph['nodes'])} nodes and {len(graph['edges'])} edges to web/public/graph.json")
     return 0
-

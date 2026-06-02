@@ -25,6 +25,11 @@ export type GraphNode = {
     datasetLimitations?: string[];
     limitations?: string[];
     sourceLinks?: Array<{ label: string; url: string }>;
+    figure?: {
+      url: string;
+      alt?: string;
+      caption?: string;
+    };
   };
 };
 
@@ -46,4 +51,3 @@ export type GraphPayload = {
   nodes: GraphNode[];
   edges: GraphEdge[];
 };
-

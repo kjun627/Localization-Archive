@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
-import { ExternalLink, Search } from "lucide-react";
-import type { GraphNode } from "../types";
+import { Download, ExternalLink, Search } from "lucide-react";
+import type { GraphEdge, GraphNode } from "../types";
 
 type ArchiveBrowserProps = {
+  edges: GraphEdge[];
   papers: GraphNode[];
   selectedPaper: GraphNode | null;
   activeVenues: Record<string, boolean>;
@@ -11,6 +11,16 @@ type ArchiveBrowserProps = {
   onSearchChange: (value: string) => void;
   onSelectPaper: (paper: GraphNode) => void;
   onToggleVenue: (venue: string) => void;
+};
+
+const VENUE_THEMES: Record<string, { color: string; ink: string }> = {
+  CVPR: { color: "#e3000b", ink: "#fffdf3" },
+  ICCV: { color: "#111827", ink: "#fffdf3" },
+  ECCV: { color: "#1b5cff", ink: "#fffdf3" },
+  TPAMI: { color: "#237841", ink: "#fffdf3" },
+  "3DV": { color: "#ff8a00", ink: "#05070d" },
+  IVC: { color: "#7b2cff", ink: "#fffdf3" },
+  FILE: { color: "#40516d", ink: "#fffdf3" },
 };
 
 function venueCode(paper: GraphNode) {
@@ -22,6 +32,10 @@ function venueCode(paper: GraphNode) {
   if (venue.includes("Pattern Analysis and Machine Intelligence")) return "TPAMI";
   if (venue.includes("Image and Vision Computing")) return "IVC";
   return paper.metadata?.venueTier ?? "FILE";
+}
+
+function venueTheme(venue: string) {
+  return VENUE_THEMES[venue] ?? VENUE_THEMES.FILE;
 }
 
 function shortTitle(title: string) {
@@ -39,7 +53,74 @@ function groupByYear(papers: GraphNode[]) {
   return Array.from(grouped.entries()).sort(([left], [right]) => left - right);
 }
 
+function buildCitationExport(papers: GraphNode[], edges: GraphEdge[]) {
+  const paperByKey = new Map(papers.map((paper) => [paper.key, paper]));
+  const citationEdges = edges.filter(
+    (edge) => edge.type === "cites" && paperByKey.has(edge.source) && paperByKey.has(edge.target),
+  );
+  const years = groupByYear(papers);
+  const now = new Date().toISOString();
+  const lines = [
+    "# 3D Visual Localization Citation Archive",
+    "",
+    `Generated: ${now}`,
+    `Paper count: ${papers.length}`,
+    `Citation edge count: ${citationEdges.length}`,
+    "",
+    "## Year Index",
+    "",
+  ];
+
+  years.forEach(([year, yearPapers]) => {
+    lines.push(`### ${year}`, "");
+    yearPapers.forEach((paper) => {
+      lines.push(`- ${paper.label} (${venueCode(paper)}, ${paper.metadata?.venueTier ?? "tier_unknown"})`);
+    });
+    lines.push("");
+  });
+
+  lines.push("## Citation List", "");
+  if (citationEdges.length === 0) {
+    lines.push("- No citation edges are available in the current filtered graph.", "");
+  } else {
+    citationEdges.forEach((edge) => {
+      const source = paperByKey.get(edge.source);
+      const target = paperByKey.get(edge.target);
+      lines.push(`- ${source?.label ?? edge.source} -> ${target?.label ?? edge.target}`);
+    });
+    lines.push("");
+  }
+
+  lines.push("## Citation Tree", "");
+  papers.forEach((paper) => {
+    const outgoing = citationEdges.filter((edge) => edge.source === paper.key);
+    lines.push(`- ${paper.label}`);
+    if (outgoing.length === 0) {
+      lines.push("  - cites: none recorded");
+    } else {
+      outgoing.forEach((edge) => {
+        lines.push(`  - cites: ${paperByKey.get(edge.target)?.label ?? edge.target}`);
+      });
+    }
+  });
+
+  return lines.join("\n");
+}
+
+function downloadText(filename: string, body: string) {
+  const blob = new Blob([body], { type: "text/markdown;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  document.body.append(anchor);
+  anchor.click();
+  anchor.remove();
+  URL.revokeObjectURL(url);
+}
+
 export function ArchiveBrowser({
+  edges,
   papers,
   selectedPaper,
   activeVenues,
@@ -48,23 +129,6 @@ export function ArchiveBrowser({
   onSelectPaper,
   onToggleVenue,
 }: ArchiveBrowserProps) {
-  const scrollerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const scroller = scrollerRef.current;
-    if (!scroller) return;
-
-    const onWheel = (event: WheelEvent) => {
-      if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
-        scroller.scrollLeft += event.deltaY;
-        event.preventDefault();
-      }
-    };
-
-    scroller.addEventListener("wheel", onWheel, { passive: false });
-    return () => scroller.removeEventListener("wheel", onWheel);
-  }, []);
-
   const venueCounts = papers.reduce<Record<string, number>>((counts, paper) => {
     const venue = venueCode(paper);
     counts[venue] = (counts[venue] ?? 0) + 1;
@@ -87,7 +151,12 @@ export function ArchiveBrowser({
 
   const years = groupByYear(filteredPapers);
   const selectedVenue = selectedPaper ? venueCode(selectedPaper) : "FILE";
+  const selectedTheme = venueTheme(selectedVenue);
   const selectedLinks = selectedPaper?.metadata?.sourceLinks ?? [];
+  const selectedFigure = selectedPaper?.metadata?.figure;
+  const exportCitationArchive = () => {
+    downloadText("localization-citation-archive.md", buildCitationExport(filteredPapers, edges));
+  };
 
   return (
     <div className="archive-app">
@@ -118,7 +187,13 @@ export function ArchiveBrowser({
               className={activeVenues[venue] === false ? "venue-toggle off" : "venue-toggle"}
               key={venue}
               onClick={() => onToggleVenue(venue)}
-              style={{ "--tone": venue === selectedVenue ? "var(--lego-blue)" : "var(--space-chip)" } as CSSProperties}
+              style={
+                {
+                  "--tone": venueTheme(venue).color,
+                  "--tone-ink": venueTheme(venue).ink,
+                  "--tone-ring": venue === selectedVenue ? "var(--lego-yellow)" : "rgba(255, 255, 255, 0.38)",
+                } as CSSProperties
+              }
               type="button"
             >
               <span />
@@ -126,10 +201,17 @@ export function ArchiveBrowser({
             </button>
           ))}
         </div>
+        <button className="export-button" onClick={exportCitationArchive} type="button">
+          <Download size={14} />
+          Export citation tree
+        </button>
       </section>
 
       <main className="archive-stage">
-        <aside className="file-panel" style={{ "--tone": "var(--lego-blue)" } as CSSProperties}>
+        <aside
+          className="file-panel"
+          style={{ "--tone": selectedTheme.color, "--tone-ink": selectedTheme.ink } as CSSProperties}
+        >
           {selectedPaper ? (
             <>
               <div className="file-tag">
@@ -137,8 +219,15 @@ export function ArchiveBrowser({
                 <span>'{String(selectedPaper.metadata?.year ?? "").slice(-2)}</span>
               </div>
               <div className="file-figure">
-                <span>{selectedPaper.metadata?.venueTier ?? "tier"}</span>
-                <strong>{shortTitle(selectedPaper.label)}</strong>
+                {selectedFigure?.url ? (
+                  <img src={selectedFigure.url} alt={selectedFigure.alt ?? selectedPaper.label} />
+                ) : (
+                  <div className="figure-placeholder" aria-label="Paper representative figure placeholder">
+                    <span>{selectedPaper.metadata?.venueTier ?? "tier"}</span>
+                    <strong>{shortTitle(selectedPaper.label)}</strong>
+                  </div>
+                )}
+                <small>{selectedFigure?.caption ?? "Representative figure slot"}</small>
               </div>
               <div className="file-content">
                 <h2>{selectedPaper.label}</h2>
@@ -171,7 +260,7 @@ export function ArchiveBrowser({
           )}
         </aside>
 
-        <div className="archive-scroller" ref={scrollerRef}>
+        <div className="archive-scroller">
           <div className="timeline">
             {years.map(([year, yearPapers]) => (
               <section className="year-column" key={year}>
@@ -186,12 +275,14 @@ export function ArchiveBrowser({
                 <div className="file-stack">
                   {yearPapers.map((paper, index) => {
                     const venue = venueCode(paper);
+                    const theme = venueTheme(venue);
                     const selected = selectedPaper?.key === paper.key;
                     return (
                       <button
                         className={selected ? "file-card selected" : "file-card"}
                         key={paper.key}
                         onClick={() => onSelectPaper(paper)}
+                        style={{ "--tone": theme.color, "--tone-ink": theme.ink } as CSSProperties}
                         type="button"
                       >
                         <span className="file-tab">

@@ -21,7 +21,7 @@ class PaperRecord:
     dataset_limitations: list[str] = field(default_factory=list)
     limitations: list[str] = field(default_factory=list)
     source_links: list[dict[str, str]] = field(default_factory=list)
+    figure: dict[str, str] = field(default_factory=dict)
     citations: list[str] = field(default_factory=list)
     confidence: float = 0.6
     provenance: list[str] = field(default_factory=list)
-
