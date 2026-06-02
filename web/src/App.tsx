@@ -1,132 +1,155 @@
 import { useEffect, useMemo, useState } from "react";
 import { loadGraph } from "./data";
 import { DetailsDrawer } from "./components/DetailsDrawer";
-import { FiltersPanel } from "./components/FiltersPanel";
-import { GraphCanvas } from "./components/GraphCanvas";
-import { PaperRail } from "./components/PaperRail";
-import { StatusDeck } from "./components/StatusDeck";
-import type { GraphNode, GraphPayload, NodeType } from "./types";
+import { YearArchive } from "./components/YearArchive";
+import type { GraphNode, GraphPayload } from "./types";
 
-const defaultTypes: Record<NodeType, boolean> = {
-  paper: true,
-  problem: true,
-  metric: true,
-  dataset: true,
-  limitation: true,
-};
+type TierFilter = "all" | "A*" | "A" | "Q1" | "Q2";
+
+const tierFilters: TierFilter[] = ["all", "A*", "A", "Q1", "Q2"];
 
 function App() {
   const [graph, setGraph] = useState<GraphPayload | null>(null);
   const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
   const [search, setSearch] = useState("");
-  const [activeTypes, setActiveTypes] = useState(defaultTypes);
-  const [yearRange, setYearRange] = useState<[number, number]>([2010, 2026]);
+  const [tierFilter, setTierFilter] = useState<TierFilter>("all");
 
   useEffect(() => {
     void loadGraph().then((payload) => {
       setGraph(payload);
-      const firstPaper = payload.nodes.find((node) => node.type === "paper");
-      if (firstPaper) setSelectedNode(firstPaper);
-      const years = payload.nodes
-        .map((node) => node.metadata?.year)
-        .filter((year): year is number => typeof year === "number");
-      if (years.length) {
-        setYearRange([Math.min(...years), Math.max(...years)]);
-      }
+      const latestPaper = payload.nodes
+        .filter((node) => node.type === "paper")
+        .sort((left, right) => (right.metadata?.year ?? 0) - (left.metadata?.year ?? 0))[0];
+      if (latestPaper) setSelectedNode(latestPaper);
     });
   }, []);
 
-  const availableYears = useMemo<[number, number]>(() => {
-    if (!graph) return [2010, 2026];
-    const years = graph.nodes
-      .map((node) => node.metadata?.year)
-      .filter((year): year is number => typeof year === "number");
-    if (!years.length) return [2010, 2026];
-    return [Math.min(...years), Math.max(...years)];
-  }, [graph]);
-
-  const filteredNodes = useMemo(() => {
-    if (!graph) return [];
-    return graph.nodes.filter((node) => {
-      const isTypeEnabled = activeTypes[node.type];
-      const matchesSearch =
-        search.trim().length === 0 ||
-        node.label.toLowerCase().includes(search.toLowerCase()) ||
-        node.metadata?.summary?.toLowerCase().includes(search.toLowerCase());
-      const year = node.metadata?.year;
-      const matchesYear =
-        typeof year !== "number" || (year >= yearRange[0] && year <= yearRange[1]);
-      return isTypeEnabled && matchesSearch && matchesYear;
-    });
-  }, [activeTypes, graph, search, yearRange]);
-
-  const filteredNodeKeys = useMemo(() => new Set(filteredNodes.map((node) => node.key)), [filteredNodes]);
-
-  const filteredEdges = useMemo(() => {
-    if (!graph) return [];
-    return graph.edges.filter(
-      (edge) => filteredNodeKeys.has(edge.source) && filteredNodeKeys.has(edge.target),
-    );
-  }, [filteredNodeKeys, graph]);
-
-  const paperNodes = useMemo(() => {
+  const papers = useMemo(() => {
     if (!graph) return [];
     return graph.nodes
       .filter((node) => node.type === "paper")
-      .sort((left, right) => (right.metadata?.year ?? 0) - (left.metadata?.year ?? 0));
+      .filter((paper) => {
+        const metadata = paper.metadata;
+        const query = search.trim().toLowerCase();
+        const matchesSearch =
+          query.length === 0 ||
+          paper.label.toLowerCase().includes(query) ||
+          metadata?.summary?.toLowerCase().includes(query) ||
+          metadata?.venue?.toLowerCase().includes(query) ||
+          metadata?.problem?.toLowerCase().includes(query);
+        const matchesTier = tierFilter === "all" || metadata?.venueTier === tierFilter;
+        return matchesSearch && matchesTier;
+      })
+      .sort((left, right) => {
+        const yearDiff = (right.metadata?.year ?? 0) - (left.metadata?.year ?? 0);
+        return yearDiff || left.label.localeCompare(right.label);
+      });
+  }, [graph, search, tierFilter]);
+
+  const papersByYear = useMemo(() => {
+    const grouped = new Map<number, GraphNode[]>();
+    papers.forEach((paper) => {
+      const year = paper.metadata?.year ?? 0;
+      grouped.set(year, [...(grouped.get(year) ?? []), paper]);
+    });
+    return Array.from(grouped.entries()).sort(([left], [right]) => right - left);
+  }, [papers]);
+
+  const datasets = useMemo(() => {
+    if (!graph) return 0;
+    return graph.nodes.filter((node) => node.type === "dataset").length;
+  }, [graph]);
+
+  const metrics = useMemo(() => {
+    if (!graph) return 0;
+    return graph.nodes.filter((node) => node.type === "metric").length;
   }, [graph]);
 
   return (
     <div className="app-shell">
-      <header className="topbar">
-        <div>
-          <span className="topbar-eyebrow">Citation Hypernetwork</span>
-          <h1>3D Visual Localization Archive</h1>
-        </div>
-        <div className="topbar-meta">
-          <span>OpenAlex first, Google Scholar excluded</span>
-          <strong>CORE A*/A + SJR Q1/Q2</strong>
-        </div>
+      <header className="global-nav">
+        <h1>Localization Archive</h1>
+        <nav aria-label="Archive metadata">
+          <span>OpenAlex</span>
+          <span>CORE A*/A</span>
+          <span>SJR Q1/Q2</span>
+        </nav>
       </header>
 
-      <StatusDeck graph={graph} visibleCount={filteredNodes.length} />
+      <div className="sub-nav">
+        <strong>3D Visual Localization</strong>
+        <a href="https://github.com/kjun627/Localization-Archive" target="_blank" rel="noreferrer">
+          GitHub
+        </a>
+      </div>
 
-      <main className="layout">
-        <FiltersPanel
-          activeTypes={activeTypes}
-          yearRange={yearRange}
-          availableYears={availableYears}
-          search={search}
-          onSearchChange={setSearch}
-          onYearRangeChange={setYearRange}
-          onToggleType={(type) => setActiveTypes((current) => ({ ...current, [type]: !current[type] }))}
-        />
-
-        <section className="graph-panel panel">
-          <div className="panel-header">
-            <span className="panel-eyebrow">Research map</span>
-            <h2>Hypernetwork Workspace</h2>
+      <main>
+        <section className="archive-hero">
+          <div className="hero-copy">
+            <span>Paper Archive</span>
+            <h2>Research lineage, sorted by year.</h2>
+            <p>
+              A curated archive of 3D visual localization papers, filtered by top-tier venues and
+              annotated with problems, metrics, datasets, and remaining limits.
+            </p>
+            <div className="hero-actions">
+              <a href="#archive">Browse papers</a>
+              <a href="#details" className="secondary-link">
+                View details
+              </a>
+            </div>
           </div>
-          {graph ? (
-            <GraphCanvas
-              nodes={filteredNodes}
-              edges={filteredEdges}
-              selectedNodeKey={selectedNode?.key ?? null}
-              onSelectNode={setSelectedNode}
-            />
-          ) : (
-            <div className="graph-loading">Loading graph data...</div>
-          )}
+          <div className="hero-stat-strip" aria-label="Archive counts">
+            <div>
+              <strong>{graph?.meta.paperCount ?? 0}</strong>
+              <span>Papers</span>
+            </div>
+            <div>
+              <strong>{datasets}</strong>
+              <span>Datasets</span>
+            </div>
+            <div>
+              <strong>{metrics}</strong>
+              <span>Metrics</span>
+            </div>
+          </div>
         </section>
 
-        <div className="right-stack">
-          <PaperRail
-            papers={paperNodes}
+        <section className="archive-controls" aria-label="Archive filters">
+          <label>
+            <span>Search</span>
+            <input
+              type="search"
+              value={search}
+              placeholder="ACE, Cambridge, pose accuracy..."
+              onChange={(event) => setSearch(event.target.value)}
+            />
+          </label>
+          <div className="tier-tabs" role="tablist" aria-label="Venue tier">
+            {tierFilters.map((tier) => (
+              <button
+                aria-selected={tierFilter === tier}
+                className={tierFilter === tier ? "active" : ""}
+                key={tier}
+                onClick={() => setTierFilter(tier)}
+                type="button"
+              >
+                {tier === "all" ? "All tiers" : tier}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="archive-layout" id="archive">
+          <YearArchive
+            papersByYear={papersByYear}
             selectedNodeKey={selectedNode?.key ?? null}
             onSelectPaper={setSelectedNode}
           />
-          <DetailsDrawer node={selectedNode} />
-        </div>
+          <div id="details" className="details-column">
+            <DetailsDrawer node={selectedNode} />
+          </div>
+        </section>
       </main>
     </div>
   );
