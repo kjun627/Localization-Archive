@@ -220,7 +220,7 @@ papers:
     venue_type: conference
     venue_tier: A
     included: true
-    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:aachen-day-night-2018", "paper:apr-limitations-2019", "paper:hf-net-2019", "paper:invsfm-2019", "paper:ppiq-2019", "paper:privacy-preserving-image-based-localization-2019", "paper:aslfeat-2020", "paper:privacy-preserving-structure-from-motion-2020", "paper:privacy-preserving-visual-slam-2020", "paper:superglue-2020", "paper:dsac-star-2021", "paper:line2point-2021", "paper:loftr-2021", "paper:privacy-preserving-image-features-2021", "paper:lamar-2022", "paper:privacy-preserving-partial-localization-2022", "paper:ace-2023", "paper:coordinate-permutation-2023", "paper:lightglue-2023", "paper:paired-point-lifting-2023", "paper:segloc-2023", "paper:ray-cloud-2024"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:aachen-day-night-2018", "paper:apr-limitations-2019", "paper:hf-net-2019", "paper:invsfm-2019", "paper:ppiq-2019", "paper:privacy-preserving-image-based-localization-2019", "paper:aslfeat-2020", "paper:privacy-preserving-structure-from-motion-2020", "paper:privacy-preserving-visual-slam-2020", "paper:superglue-2020", "paper:dsac-star-2021", "paper:line2point-2021", "paper:loftr-2021", "paper:privacy-preserving-image-features-2021", "paper:privacy-preserving-localization-mapping-uncalibrated-2021", "paper:lamar-2022", "paper:privacy-preserving-partial-localization-2022", "paper:ace-2023", "paper:coordinate-permutation-2023", "paper:lightglue-2023", "paper:paired-point-lifting-2023", "paper:segloc-2023", "paper:ray-cloud-2024"]
   - id: "paper:air-hloc-2025"
     title: "AIR-HLoc: Adaptive Retrieved Images Selection for Efficient Visual Localisation"
     year: 2025
@@ -236,7 +236,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:sift-2004", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:aachen-day-night-2018", "paper:hf-net-2019", "paper:invsfm-2019", "paper:ppiq-2019", "paper:privacy-preserving-image-based-localization-2019", "paper:superglue-2020", "paper:dsac-star-2021", "paper:privacy-preserving-image-features-2021", "paper:privacy-preserving-partial-localization-2022", "paper:ace-2023", "paper:coordinate-permutation-2023", "paper:paired-point-lifting-2023", "paper:segloc-2023", "paper:glace-2024", "paper:ray-cloud-2024", "paper:gsff-privacy-preserving-visual-localization-2025", "paper:neighborhood-recovery-2025"]
+    citations: ["paper:sift-2004", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:aachen-day-night-2018", "paper:hf-net-2019", "paper:invsfm-2019", "paper:ppiq-2019", "paper:privacy-preserving-image-based-localization-2019", "paper:superglue-2020", "paper:dsac-star-2021", "paper:privacy-preserving-image-features-2021", "paper:privacy-preserving-localization-mapping-uncalibrated-2021", "paper:privacy-preserving-partial-localization-2022", "paper:ace-2023", "paper:coordinate-permutation-2023", "paper:paired-point-lifting-2023", "paper:segloc-2023", "paper:glace-2024", "paper:ray-cloud-2024", "paper:gsff-privacy-preserving-visual-localization-2025", "paper:neighborhood-recovery-2025"]
   - id: "paper:sift-2004"
     title: "Distinctive Image Features from Scale-Invariant Keypoints"
     year: 2004
@@ -356,7 +356,7 @@ papers:
     venue_type: conference
     venue_tier: A
     included: true
-    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:247-place-recognition-2015", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:aachen-day-night-2018", "paper:semantic-visual-localization-2018"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:247-place-recognition-2015", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:aachen-day-night-2018"]
   - id: "paper:r2d2-2019"
     title: "R2D2: Reliable and Repeatable Detector and Descriptor"
     year: 2019
@@ -380,7 +380,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:sift-2004", "paper:local-feature-eval-2017", "paper:aachen-day-night-2018"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:local-feature-eval-2017", "paper:aachen-day-night-2018"]
   - id: "paper:sanet-2019"
     title: "SANet: Scene Agnostic Network for Camera Localization"
     year: 2019
@@ -428,7 +428,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:local-feature-eval-2017", "paper:contextdesc-2019", "paper:d2net-2019"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:local-feature-eval-2017", "paper:contextdesc-2019", "paper:d2net-2019", "paper:sosnet-2019"]
   - id: "paper:benchmarking-image-retrieval-2020"
     title: "Benchmarking Image Retrieval for Visual Localization"
     year: 2020
@@ -604,7 +604,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:aachen-day-night-2018", "paper:hf-net-2019", "paper:aslfeat-2020", "paper:disk-2020", "paper:superglue-2020", "paper:loftr-2021", "paper:patch2pix-2021", "paper:aspanformer-2022", "paper:dkm-2023", "paper:lightglue-2023"]
+    citations: ["paper:sift-2004", "paper:sfm-revisited-2016", "paper:delf-2017", "paper:aachen-day-night-2018", "paper:hf-net-2019", "paper:aslfeat-2020", "paper:disk-2020", "paper:superglue-2020", "paper:loftr-2021", "paper:patch2pix-2021", "paper:aspanformer-2022", "paper:dkm-2023", "paper:lightglue-2023"]
   - id: "paper:efficient-loftr-2024"
     title: "Efficient LoFTR: Semi-Dense Local Feature Matching with Sparse-Like Speed"
     year: 2024

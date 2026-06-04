@@ -30,7 +30,7 @@ The archive focuses on 3D visual localization and closely related work:
 
 - 80 curated papers
 - 605 graph nodes
-- 1625 graph edges
+- 1629 graph edges
 - normalized `Paper`, `Code`, and `Project` links
 
 Paper links prioritize stable public archives such as CVF Open Access, ECVA, BMVA archive, NeurIPS proceedings, AAAI proceedings, and arXiv. Paper-to-paper citation edges are aligned against OpenAlex references when the reference list is available.

@@ -28,6 +28,7 @@ from localization_archive_pipeline.suggest_citations import (
     load_cached_semantic_resolutions,
     normalize_title,
     save_provider_cache,
+    ResolvedSemanticPaper,
     SemanticReferences,
     semantic_scholar_identifiers,
 )
@@ -354,6 +355,66 @@ class CitationSuggestionTests(unittest.TestCase):
         self.assertEqual(semantic["paper:a"].semantic_scholar_id, "S2A")
         self.assertEqual(openalex["paper:b"].openalex_id, "https://openalex.org/W2")
         self.assertEqual(openalex["paper:b"].referenced_works, {"https://openalex.org/W1"})
+
+    def test_full_mode_reuses_cached_semantic_resolution(self) -> None:
+        records = [
+            paper("paper:a", "Alpha Localization", 2021),
+            paper("paper:b", "Beta Features", 2020),
+        ]
+        semantic_client = FakeSemanticClient(
+            papers_by_title={},
+            references_by_paper_id={
+                "S2A": [
+                    {
+                        "citedPaper": {
+                            "paperId": "S2B",
+                            "title": "Beta Features",
+                            "year": 2020,
+                        }
+                    }
+                ]
+            },
+        )
+        cached = {
+            "paper:a": ResolvedSemanticPaper(
+                paper_id="paper:a",
+                title="Alpha Localization",
+                year=2021,
+                semantic_scholar_id="S2A",
+                semantic_scholar_title="Alpha Localization",
+                semantic_scholar_year=2021,
+                title_score=1.0,
+                resolve_method="cache",
+                identifier=None,
+                external_ids={},
+            ),
+            "paper:b": ResolvedSemanticPaper(
+                paper_id="paper:b",
+                title="Beta Features",
+                year=2020,
+                semantic_scholar_id="S2B",
+                semantic_scholar_title="Beta Features",
+                semantic_scholar_year=2020,
+                title_score=1.0,
+                resolve_method="cache",
+                identifier=None,
+                external_ids={},
+            ),
+        }
+
+        payload = generate_citation_candidates(
+            records=records,
+            semantic_client=semantic_client,
+            min_title_score=0.92,
+            openalex_client=None,
+            cached_semantic_resolved=cached,
+            resolve_all_missing_semantic=True,
+        )
+
+        self.assertEqual(payload["resolvedCount"], 2)
+        self.assertEqual(payload["missingArchiveCitationCount"], 1)
+        self.assertEqual(payload["missingArchiveCitations"][0]["source"], "paper:a")
+        self.assertEqual(payload["missingArchiveCitations"][0]["target"], "paper:b")
 
     def test_semantic_client_paginates_references(self) -> None:
         requested_urls: list[str] = []

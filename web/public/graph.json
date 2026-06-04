@@ -15697,6 +15697,23 @@
       }
     },
     {
+      "key": "paper:aslfeat-2020->paper:sosnet-2019:cites",
+      "source": "paper:aslfeat-2020",
+      "target": "paper:sosnet-2019",
+      "type": "cites",
+      "paperRefs": [
+        "paper:aslfeat-2020"
+      ],
+      "metadata": {
+        "sourceProblem": "Improve the geometric accuracy of learned local features for pose estimation and localization.",
+        "sourceAdvance": "Learns accurate local shapes and positions for sparse feature matching.",
+        "sourcePriorGap": "Learned features often improved distinctiveness but could have inaccurate support shape or localization.",
+        "targetProblem": "Learn descriptors that preserve matchability beyond pairwise positive and negative distance constraints.",
+        "targetLimitation": "Descriptor-only contribution.",
+        "targetAdvance": "Adds second-order similarity regularization and descriptor-space distribution analysis."
+      }
+    },
+    {
       "key": "paper:aspanformer-2022->problem:produce-robust-detector-free-correspondences-under-large-viewpoint-changes-and-texture-poor-regions:addresses",
       "source": "paper:aspanformer-2022",
       "target": "problem:produce-robust-detector-free-correspondences-under-large-viewpoint-changes-and-texture-poor-regions",
@@ -18398,6 +18415,23 @@
         "targetProblem": "Prevent inversion of local image descriptors while retaining feature matching.",
         "targetLimitation": "Protection is empirical rather than cryptographic.",
         "targetAdvance": "Embeds descriptors in affine subspaces trained adversarially against inversion."
+      }
+    },
+    {
+      "key": "paper:dcl-2026->paper:privacy-preserving-localization-mapping-uncalibrated-2021:cites",
+      "source": "paper:dcl-2026",
+      "target": "paper:privacy-preserving-localization-mapping-uncalibrated-2021",
+      "type": "cites",
+      "paperRefs": [
+        "paper:dcl-2026"
+      ],
+      "metadata": {
+        "sourceProblem": "Defend privacy-preserving image queries against neighborhood-based point recovery without abandoning line-based localization.",
+        "sourceAdvance": "Uses dual-anchor line lifting, analyzes ill-posed recovery, and adds non-degenerate sampling for l6P/RANSAC deployment.",
+        "sourcePriorGap": "Random Lines and Coordinate Permutation preserve neighboring-line distributions that still surround the original keypoint location.",
+        "targetProblem": "Support privacy-preserving localization and mapping when camera calibration is unavailable.",
+        "targetLimitation": "Assumes simplified intrinsic models.",
+        "targetAdvance": "Uses constraints that allow localization and mapping from uncalibrated image observations."
       }
     },
     {
@@ -27705,6 +27739,23 @@
       }
     },
     {
+      "key": "paper:neighborhood-recovery-2025->paper:privacy-preserving-localization-mapping-uncalibrated-2021:cites",
+      "source": "paper:neighborhood-recovery-2025",
+      "target": "paper:privacy-preserving-localization-mapping-uncalibrated-2021",
+      "type": "cites",
+      "paperRefs": [
+        "paper:neighborhood-recovery-2025"
+      ],
+      "metadata": {
+        "sourceProblem": "Test whether geometric obfuscation methods remain private under neighborhood-based recovery.",
+        "sourceAdvance": "Uses known or learned neighborhoods to recover approximate original point/keypoint locations across line, plane, and coordinate-permutation schemes.",
+        "sourcePriorGap": "Earlier attacks were representation-specific and did not expose a common weakness across obfuscation families.",
+        "targetProblem": "Support privacy-preserving localization and mapping when camera calibration is unavailable.",
+        "targetLimitation": "Assumes simplified intrinsic models.",
+        "targetAdvance": "Uses constraints that allow localization and mapping from uncalibrated image observations."
+      }
+    },
+    {
       "key": "paper:neighborhood-recovery-2025->paper:lamar-2022:cites",
       "source": "paper:neighborhood-recovery-2025",
       "target": "paper:lamar-2022",
@@ -33677,23 +33728,6 @@
       }
     },
     {
-      "key": "paper:semantic-match-consistency-2018->paper:semantic-visual-localization-2018:cites",
-      "source": "paper:semantic-match-consistency-2018",
-      "target": "paper:semantic-visual-localization-2018",
-      "type": "cites",
-      "paperRefs": [
-        "paper:semantic-match-consistency-2018"
-      ],
-      "metadata": {
-        "sourceProblem": "Reduce outlier-heavy 2D-3D matching in long-term visual localization.",
-        "sourceAdvance": "Adds semantic consistency scores to correspondences before pose estimation.",
-        "sourcePriorGap": "RANSAC-based localization could be overwhelmed by erroneous matches under seasonal and illumination changes.",
-        "targetProblem": "Improve visual localization under extreme viewpoint, illumination, and geometry changes.",
-        "targetLimitation": "Requires semantic or geometric 3D scene representations.",
-        "targetAdvance": "Learns 3D descriptors with semantic scene completion as an auxiliary task."
-      }
-    },
-    {
       "key": "paper:semantic-visual-localization-2018->problem:improve-visual-localization-under-extreme-viewpoint-illumination-and-geometry-changes:addresses",
       "source": "paper:semantic-visual-localization-2018",
       "target": "problem:improve-visual-localization-under-extreme-viewpoint-illumination-and-geometry-changes",
@@ -34273,6 +34307,23 @@
         "targetProblem": "Find image features that remain matchable under scale, rotation, illumination, and moderate viewpoint changes.",
         "targetLimitation": "Not learned from data.",
         "targetAdvance": "Introduced scale-space extrema detection, orientation-normalized descriptors, and nearest-neighbor ratio filtering."
+      }
+    },
+    {
+      "key": "paper:sosnet-2019->paper:sfm-revisited-2016:cites",
+      "source": "paper:sosnet-2019",
+      "target": "paper:sfm-revisited-2016",
+      "type": "cites",
+      "paperRefs": [
+        "paper:sosnet-2019"
+      ],
+      "metadata": {
+        "sourceProblem": "Learn descriptors that preserve matchability beyond pairwise positive and negative distance constraints.",
+        "sourceAdvance": "Adds second-order similarity regularization and descriptor-space distribution analysis.",
+        "sourcePriorGap": "Triplet and contrastive losses optimized first-order distances but did not enforce neighborhood-structure consistency.",
+        "targetProblem": "Make incremental SfM robust, accurate, complete, and scalable for unordered image collections.",
+        "targetLimitation": "Still depends heavily on feature matching quality.",
+        "targetAdvance": "Improved image registration, triangulation, bundle adjustment, filtering, and released COLMAP."
       }
     },
     {
@@ -34953,6 +35004,23 @@
         "targetProblem": "Make incremental SfM robust, accurate, complete, and scalable for unordered image collections.",
         "targetLimitation": "Still depends heavily on feature matching quality.",
         "targetAdvance": "Improved image registration, triangulation, bundle adjustment, filtering, and released COLMAP."
+      }
+    },
+    {
+      "key": "paper:xfeat-2024->paper:delf-2017:cites",
+      "source": "paper:xfeat-2024",
+      "target": "paper:delf-2017",
+      "type": "cites",
+      "paperRefs": [
+        "paper:xfeat-2024"
+      ],
+      "metadata": {
+        "sourceProblem": "Make local feature matching fast enough for constrained hardware while keeping useful geometry accuracy.",
+        "sourceAdvance": "Uses a fast feature architecture for sparse and semi-dense matching.",
+        "sourcePriorGap": "Modern learned features and matchers improved accuracy but increased compute cost.",
+        "targetProblem": "Scale instance-level image retrieval while retaining local discriminativeness.",
+        "targetLimitation": "Primarily evaluated for landmark retrieval.",
+        "targetAdvance": "Learns local descriptors and an attention mechanism that selects discriminative regions for scalable retrieval."
       }
     },
     {

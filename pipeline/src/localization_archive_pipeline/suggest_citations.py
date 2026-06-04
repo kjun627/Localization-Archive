@@ -1060,12 +1060,8 @@ def main() -> int:
     )
     incremental = bool(args.paper_id or args.max_papers is not None)
     cache_path = paths.root / args.cache
-    cached_semantic_resolved = (
-        load_cached_semantic_resolutions(all_records, cache_path) if incremental else {}
-    )
-    cached_openalex_resolved = (
-        load_cached_openalex_resolutions(all_records, cache_path) if incremental else {}
-    )
+    cached_semantic_resolved = load_cached_semantic_resolutions(all_records, cache_path)
+    cached_openalex_resolved = load_cached_openalex_resolutions(all_records, cache_path)
     semantic_client = SemanticScholarClient(
         api_key=get_env("SEMANTIC_SCHOLAR_API_KEY"),
         sleep_seconds=args.sleep,

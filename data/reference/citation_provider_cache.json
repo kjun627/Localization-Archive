@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-04T14:34:34.469123Z",
-  "semanticScholarResolvedCount": 76,
+  "updatedAt": "2026-06-04T15:21:37.649985Z",
+  "semanticScholarResolvedCount": 78,
   "openAlexResolvedCount": 79,
   "semanticScholarResolved": [
     {
@@ -278,6 +278,24 @@
       "externalIds": {
         "ArXiv": "2604.22310",
         "CorpusId": 287773587
+      }
+    },
+    {
+      "paperId": "paper:delf-2017",
+      "title": "Large-Scale Image Retrieval with Attentive Deep Local Features",
+      "year": 2017,
+      "semanticScholarId": "b09c08162667b9453d7f577772cb19a8ba59d08c",
+      "semanticScholarTitle": "Large-Scale Image Retrieval with Attentive Deep Local Features",
+      "semanticScholarYear": 2016,
+      "titleScore": 1.0,
+      "resolveMethod": "title_search",
+      "identifier": null,
+      "externalIds": {
+        "MAG": "2952114495",
+        "ArXiv": "1612.06321",
+        "DBLP": "conf/iccv/NohASWH17",
+        "DOI": "10.1109/ICCV.2017.374",
+        "CorpusId": 18376539
       }
     },
     {
@@ -991,6 +1009,23 @@
         "DBLP": "conf/cvpr/DusmanuSSP21",
         "DOI": "10.1109/CVPR46437.2021.01404",
         "CorpusId": 227247981
+      }
+    },
+    {
+      "paperId": "paper:privacy-preserving-localization-mapping-uncalibrated-2021",
+      "title": "Privacy Preserving Localization and Mapping from Uncalibrated Cameras",
+      "year": 2021,
+      "semanticScholarId": "4a88e707ab68b4ed3f49fac34a999b2575254b03",
+      "semanticScholarTitle": "Privacy Preserving Localization and Mapping from Uncalibrated Cameras",
+      "semanticScholarYear": 2021,
+      "titleScore": 1.0,
+      "resolveMethod": "title_search",
+      "identifier": null,
+      "externalIds": {
+        "DBLP": "conf/cvpr/GeppertLSSP21",
+        "MAG": "3176796575",
+        "DOI": "10.1109/CVPR46437.2021.00185",
+        "CorpusId": 235702837
       }
     },
     {
