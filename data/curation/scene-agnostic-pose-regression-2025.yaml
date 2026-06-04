@@ -1,0 +1,43 @@
+paper_id: paper:scene-agnostic-pose-regression-2025
+title: Scene-agnostic Pose Regression for Visual Localization
+year: 2025
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Scene-agnostic pose regression task and benchmark for localizing without per-scene retraining
+  or a retrieval database.
+summary: Defines SPR and proposes SPR-Mamba to estimate poses in unseen environments, supported by
+  large-scale panoramic training data.
+problem: Avoid the per-scene retraining of APR and the reference-database dependence of RPR.
+prior_gap: Existing regression families trade off scene specificity, database dependence, and odometry
+  drift.
+stage: Scene-agnostic pose regression
+advance: Introduces the SPR task, 360SPR data, and a dual-branch sequence model for general pose
+  regression.
+metric:
+- Median rotation error
+- Median translation error
+- Pose accuracy at thresholds
+why_this_metric: The task is meaningful only if scene-agnostic predictions preserve 6-DoF pose accuracy.
+dataset:
+- 360SPR
+- 360Loc
+dataset_limitations:
+- Synthetic panoramic coverage may not capture all real-world sensor and appearance shifts.
+limitations:
+- New task setup differs from map-based localization, making comparisons protocol-sensitive.
+- Real deployment may still need calibration between synthetic panoramas and physical environments.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2025/html/Zheng_Scene-agnostic_Pose_Regression_for_Visual_Localization_CVPR_2025_paper.html
+- label: arXiv
+  url: https://arxiv.org/abs/2503.19543
+- label: Project
+  url: https://junweizheng93.github.io/publications/SPR/SPR.html
+figure:
+  alt: Scene-agnostic pose regression
+  caption: SPR benchmark and model for unseen scenes
+provenance:
+- awesome_visual_localization
+- cvf_title_check
+confidence: 0.76

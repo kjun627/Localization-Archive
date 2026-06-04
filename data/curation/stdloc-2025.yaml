@@ -1,0 +1,47 @@
+paper_id: paper:stdloc-2025
+title: 'From Sparse to Dense: Camera Relocalization with Scene-Specific Detector from Feature Gaussian Splatting'
+year: 2025
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: STDLoc localization pipeline that uses Feature Gaussian Splatting and a scene-specific detector
+  for sparse-to-dense relocalization.
+summary: Builds a feature Gaussian scene representation, obtains sparse initialization, then densifies
+  correspondences for robust camera relocalization.
+problem: Use 3D Gaussian scene representations for accurate relocalization without requiring an initial
+  pose prior.
+prior_gap: Prior 3DGS localization often focused on pose refinement or dense rendering, while coarse-to-fine
+  feature pipelines still needed retrieval and sparse matching.
+stage: Feature Gaussian relocalization
+advance: Introduces matching-oriented Gaussian sampling and a scene-specific detector to bridge sparse
+  initialization and dense localization.
+metric:
+- Pose accuracy at thresholds
+- Median rotation error
+- Median translation error
+- Runtime
+why_this_metric: Sparse-to-dense relocalization should improve final pose accuracy without making the
+  pipeline impractical.
+dataset:
+- 7Scenes
+- Cambridge Landmarks
+- Aachen Day-Night
+dataset_limitations:
+- Gaussian scene quality depends on reconstruction coverage and training data.
+limitations:
+- Requires a scene-specific Gaussian feature representation.
+- Training and maintaining feature Gaussians can be heavier than sparse map pipelines.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2025/html/Huang_From_Sparse_to_Dense_Camera_Relocalization_with_Scene-Specific_Detector_from_CVPR_2025_paper.html
+- label: arXiv
+  url: https://arxiv.org/abs/2503.19358
+- label: Project
+  url: https://zju3dv.github.io/STDLoc/
+figure:
+  alt: STDLoc sparse-to-dense Gaussian feature relocalization
+  caption: Feature Gaussian sparse-to-dense camera relocalization
+provenance:
+- awesome_visual_localization
+- cvf_title_check
+confidence: 0.76

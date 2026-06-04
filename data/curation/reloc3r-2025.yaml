@@ -1,0 +1,47 @@
+paper_id: paper:reloc3r-2025
+title: 'Reloc3r: Large-Scale Training of Relative Camera Pose Regression for Generalizable, Fast, and Accurate Visual Localization'
+year: 2025
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Relative pose regression model trained at large scale for fast generalizable visual localization.
+summary: Combines a large-scale relative camera pose regressor with motion averaging to estimate absolute
+  query poses from retrieved references.
+problem: Make pose regression generalize to new scenes while keeping inference fast.
+prior_gap: APR is fast but scene-specific, while geometric matching is accurate but slower and more
+  dependent on correspondences.
+stage: Relative pose regression localization
+advance: Trains on millions of posed image pairs and uses relative predictions plus motion averaging
+  for generalizable localization.
+metric:
+- Relative pose AUC
+- Median rotation error
+- Median translation error
+- Runtime
+why_this_metric: The method claims both accuracy and speed, so pose error and latency must be tracked
+  together.
+dataset:
+- ScanNet1500
+- RealEstate10K
+- ACID
+- Co3D
+- 7Scenes
+- Cambridge Landmarks
+- Aachen Day-Night
+dataset_limitations:
+- Retrieval quality and reference coverage still affect absolute localization.
+limitations:
+- Depends on retrieved reference views and motion averaging for absolute pose.
+- Large-scale training data and model size can complicate reproduction.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2025/html/Dong_Reloc3r_Large-Scale_Training_of_Relative_Camera_Pose_Regression_for_Generalizable_CVPR_2025_paper.html
+- label: Code
+  url: https://github.com/ffrivera0/reloc3r
+figure:
+  alt: Reloc3r relative pose regression localization
+  caption: Large-scale relative pose regression with motion averaging
+provenance:
+- awesome_visual_localization
+- cvf_title_check
+confidence: 0.78

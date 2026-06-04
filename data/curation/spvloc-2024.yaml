@@ -1,0 +1,44 @@
+paper_id: paper:spvloc-2024
+title: 'SPVLoc: Semantic Panoramic Viewport Matching for 6D Camera Localization in Unseen Environments'
+year: 2024
+venue: European Conference on Computer Vision
+venue_type: conference
+venue_tier: A
+abstract: Indoor localization method that matches perspective query images to rendered semantic
+  panorama layouts.
+summary: Localizes unseen indoor scenes by matching RGB viewports against semantic panoramas rendered
+  from approximate structural models.
+problem: Estimate 6-DoF indoor camera pose with limited scene-specific visual training data.
+prior_gap: Feature and APR pipelines often require textured maps, per-scene training, or dense visual
+  databases.
+stage: Semantic panorama localization
+advance: Uses layout-level semantic panorama matching to avoid scene-specific appearance training in
+  unseen indoor environments.
+metric:
+- Median rotation error
+- Median translation error
+- Pose accuracy at thresholds
+why_this_metric: The method replaces appearance-based maps, so final 6-DoF pose accuracy is the key
+  comparison.
+dataset:
+- Structured indoor layout benchmarks
+- Synthetic indoor panoramas
+dataset_limitations:
+- Evaluation depends on availability and quality of approximate semantic room models.
+limitations:
+- Designed for indoor environments with structural layout annotations.
+- Less directly applicable to outdoor feature-map localization.
+source_links:
+- label: Paper
+  url: https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/9344_ECCV_2024_paper.php
+- label: Code
+  url: https://github.com/fraunhoferhhi/spvloc
+- label: Project
+  url: https://fraunhoferhhi.github.io/spvloc/
+figure:
+  alt: SPVLoc semantic panorama viewport matching
+  caption: Matching RGB viewports to semantic panoramas
+provenance:
+- awesome_visual_localization
+- ecva_link
+confidence: 0.75

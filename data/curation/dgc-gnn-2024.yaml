@@ -1,0 +1,45 @@
+paper_id: paper:dgc-gnn-2024
+title: 'DGC-GNN: Leveraging Geometry and Color Cues for Visual Descriptor-Free 2D-3D Matching'
+year: 2024
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Descriptor-free 2D-3D matching method that combines geometric and color cues with graph
+  neural networks.
+summary: Matches image keypoints to sparse 3D points without storing visual descriptors, using
+  global-to-local graph reasoning over geometry and color.
+problem: Reduce descriptor storage and maintenance costs in structure-based localization.
+prior_gap: Descriptor-free matchers avoid map descriptors but were less accurate and less robust than
+  descriptor-based localization.
+stage: Descriptor-free 2D-3D matching
+advance: Uses geometry-color graph reasoning to improve descriptor-free correspondence quality for
+  downstream camera pose estimation.
+metric:
+- Reprojection AUC
+- Matching precision
+- Median rotation error
+- Median translation error
+why_this_metric: Descriptor-free matching should be judged by both correspondence quality and final
+  camera-pose accuracy.
+dataset:
+- ScanNet
+- MegaDepth
+- 7Scenes
+- Cambridge Landmarks
+dataset_limitations:
+- Descriptor-free performance depends on the quality and coverage of sparse 3D reconstructions.
+limitations:
+- Still requires keypoints and a known sparse 3D model.
+- Accuracy can depend on the retrieval shortlist used to form candidate 3D points.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2024/html/Wang_DGC-GNN_Leveraging_Geometry_and_Color_Cues_for_Visual_Descriptor-Free_2D-3D_CVPR_2024_paper.html
+- label: arXiv
+  url: https://arxiv.org/abs/2306.12547
+figure:
+  alt: DGC-GNN descriptor-free matching graph
+  caption: Geometry-color graph matching for 2D-3D localization
+provenance:
+- awesome_visual_localization
+- cvf_title_check
+confidence: 0.74

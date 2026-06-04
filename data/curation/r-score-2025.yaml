@@ -1,0 +1,44 @@
+paper_id: paper:r-score-2025
+title: 'R-SCoRe: Revisiting Scene Coordinate Regression for Robust Large-Scale Visual Localization'
+year: 2025
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Robust large-scale scene coordinate regression method with global encoding, augmentation,
+  and adjusted reprojection learning.
+summary: Revisits SCR for challenging large-scale localization by improving global scene encoding,
+  augmentation, loss design, and local features.
+problem: Close the robustness gap between compact scene-coordinate maps and feature-matching localization.
+prior_gap: SCR is compact but less reliable in large scenes with illumination changes and repeated
+  structures.
+stage: Robust scene coordinate regression
+advance: Adds covisibility graph encoding, targeted data augmentation, and depth-adjusted reprojection
+  loss for stronger SCR.
+metric:
+- Pose accuracy at thresholds
+- Median rotation error
+- Median translation error
+- Map size
+why_this_metric: The method claims compact maps with stronger accuracy, so pose quality and map size
+  both matter.
+dataset:
+- Aachen Day-Night
+- 7Scenes
+- Cambridge Landmarks
+dataset_limitations:
+- Large-scale behavior is still judged on standard localization benchmarks with fixed map protocols.
+limitations:
+- SCR remains scene-trained and depends on accurate map supervision.
+- Compact maps can trade off detail in visually ambiguous regions.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2025/html/Jiang_R-SCoRe_Revisiting_Scene_Coordinate_Regression_for_Robust_Large-Scale_Visual_Localization_CVPR_2025_paper.html
+- label: Code
+  url: https://github.com/cvg/scrstudio
+figure:
+  alt: R-SCoRe robust scene coordinate regression
+  caption: Robust compact SCR for large-scale localization
+provenance:
+- awesome_visual_localization
+- cvf_title_check
+confidence: 0.78

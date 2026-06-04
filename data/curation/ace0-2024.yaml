@@ -1,0 +1,45 @@
+paper_id: paper:ace0-2024
+title: 'Scene Coordinate Reconstruction: Posing of Image Collections via Incremental Learning of a Relocalizer'
+year: 2024
+venue: European Conference on Computer Vision
+venue_type: conference
+venue_tier: A
+abstract: ACE0 reframes image-collection pose estimation as incremental learning of a scene-coordinate
+  relocalizer.
+summary: Builds camera poses for image collections by repeatedly training and refining an implicit
+  scene-coordinate relocalizer.
+problem: Estimate camera parameters for image collections without relying entirely on sparse local-feature
+  SfM.
+prior_gap: Classical SfM alternates feature matching, triangulation, and registration, while learning-based
+  relocalizers usually assume known training poses.
+stage: Scene-coordinate reconstruction
+advance: Uses scene coordinate regression as the incremental registration primitive for SfM-like
+  image collection posing.
+metric:
+- Pose accuracy
+- Novel-view synthesis quality
+- Reconstruction completeness
+why_this_metric: The contribution changes the image-collection posing process, so pose and reconstruction
+  quality are both relevant.
+dataset:
+- Image collection reconstruction benchmarks
+- Novel-view synthesis benchmarks
+dataset_limitations:
+- Performance depends on image overlap and depth priors during bootstrap.
+limitations:
+- Reconstruction still requires iterative per-scene optimization.
+- Failure modes can appear when early pose/depth estimates are poor.
+source_links:
+- label: Paper
+  url: https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/7356_ECCV_2024_paper.php
+- label: Code
+  url: https://github.com/nianticlabs/acezero
+- label: Project
+  url: https://nianticlabs.github.io/acezero/
+figure:
+  alt: ACE0 incremental scene coordinate reconstruction
+  caption: Incremental relocalizer learning for image collection posing
+provenance:
+- awesome_visual_localization
+- ecva_link
+confidence: 0.78

@@ -1,0 +1,45 @@
+paper_id: paper:a2-gnn-2025
+title: 'A2-GNN: Angle-Annular GNN for Visual Descriptor-free Camera Relocalization'
+year: 2025
+venue: International Conference on 3D Vision
+venue_type: conference
+venue_tier: A
+abstract: Descriptor-free relocalization method using angle-annular graph neural features for 2D-3D
+  correspondence.
+summary: Learns robust geometric structure descriptors from annular neighborhoods to match 2D image
+  points with 3D map points without visual descriptors.
+problem: Improve descriptor-free camera relocalization while reducing map storage and privacy exposure.
+prior_gap: Existing descriptor-free matching reduces visual map leakage but can lose accuracy or require
+  heavy computation.
+stage: Descriptor-free relocalization
+advance: Uses angle-annular neighborhood aggregation to capture local geometric structure for efficient
+  2D-3D matching.
+metric:
+- Reprojection AUC
+- Median rotation error
+- Median translation error
+- Runtime
+why_this_metric: Descriptor-free relocalization must show both accurate correspondences and practical
+  pose estimates.
+dataset:
+- MegaDepth
+- ScanNet
+- 7Scenes
+- Cambridge Landmarks
+dataset_limitations:
+- Results depend on map geometry density and the availability of reliable query keypoints.
+limitations:
+- Still requires a known 3D point map.
+- May underperform descriptor-rich pipelines when geometry alone is ambiguous.
+source_links:
+- label: Paper
+  url: https://arxiv.org/abs/2502.20036
+- label: Code
+  url: https://github.com/YejunZhang/a2-gnn
+figure:
+  alt: A2-GNN angle-annular descriptor-free matching
+  caption: Angle-annular GNN for descriptor-free relocalization
+provenance:
+- awesome_visual_localization
+- arxiv_link
+confidence: 0.74

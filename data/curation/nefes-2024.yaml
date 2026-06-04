@@ -1,0 +1,42 @@
+paper_id: paper:nefes-2024
+title: Neural Refinement for Absolute Pose Regression with Feature Synthesis
+year: 2024
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Test-time APR refinement method that synthesizes dense feature views from a learned 3D feature
+  field.
+summary: Refines coarse absolute pose regression outputs by aligning query features to synthesized
+  scene features.
+problem: Add 3D geometric constraints to fast absolute pose regression at inference time.
+prior_gap: APR models predict poses with mostly 2D image operations, limiting precision compared with
+  geometry-aware localization.
+stage: APR pose refinement
+advance: Introduces a neural feature synthesizer and feature-field alignment step for test-time pose
+  refinement.
+metric:
+- Median rotation error
+- Median translation error
+- Pose accuracy at thresholds
+why_this_metric: The method targets pose refinement, so improvements must appear in final 6-DoF error.
+dataset:
+- 7Scenes
+- 12Scenes
+- Cambridge Landmarks
+dataset_limitations:
+- Standard APR datasets are smaller than city-scale localization maps.
+limitations:
+- Requires a scene-specific feature field before test-time refinement.
+- Refinement quality depends on the initial APR pose basin.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2024/html/Chen_Neural_Refinement_for_Absolute_Pose_Regression_with_Feature_Synthesis_CVPR_2024_paper.html
+- label: Code
+  url: https://github.com/ActiveVisionLab/NeFeS
+figure:
+  alt: NeFeS feature synthesis refinement
+  caption: APR refinement with synthesized dense scene features
+provenance:
+- awesome_visual_localization
+- cvf_title_check
+confidence: 0.78

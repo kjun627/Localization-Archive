@@ -1,0 +1,45 @@
+paper_id: paper:deviloc-2024
+title: Learning to Produce Semi-dense Correspondences for Visual Localization
+year: 2024
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Semi-dense visual localization method that predicts denser 2D-3D correspondences from sparse
+  references.
+summary: Produces semi-dense query-to-map correspondences so structure-based localization can use more
+  evidence than sparse keypoints alone.
+problem: Improve localization under weather, lighting, and viewpoint changes where sparse matches are
+  unreliable.
+prior_gap: HLoc-style pipelines depend on predefined map keypoints and can miss useful evidence in
+  texture-poor or strongly changed regions.
+stage: Semi-dense correspondence localization
+advance: Learns a semi-dense correspondence module that expands reliable 2D-3D matches before robust
+  pose estimation.
+metric:
+- Pose accuracy at thresholds
+- Localization recall
+- Median rotation error
+- Median translation error
+why_this_metric: The contribution is useful when added correspondences improve final camera pose rather
+  than only pairwise image matching scores.
+dataset:
+- Aachen Day-Night
+- RobotCar Seasons
+- CMU Seasons
+dataset_limitations:
+- Long-term localization benchmarks still emphasize a fixed set of urban routes and reference maps.
+limitations:
+- Depends on a reconstructed reference map and external matching components.
+- Runtime and memory cost can rise with denser correspondence hypotheses.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2024/html/Giang_Learning_to_Produce_Semi-dense_Correspondences_for_Visual_Localization_CVPR_2024_paper.html
+- label: Code
+  url: https://github.com/TruongKhang/DeViLoc
+figure:
+  alt: DeViLoc semi-dense correspondence pipeline
+  caption: Semi-dense 2D-3D correspondence localization
+provenance:
+- awesome_visual_localization
+- cvf_title_check
+confidence: 0.76

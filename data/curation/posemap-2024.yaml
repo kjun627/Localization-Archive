@@ -1,0 +1,43 @@
+paper_id: paper:posemap-2024
+title: Learning Neural Volumetric Pose Features for Camera Localization
+year: 2024
+venue: European Conference on Computer Vision
+venue_type: conference
+venue_tier: A
+abstract: PoseMap method that learns neural volumetric pose features to improve camera localization.
+summary: Combines APR with a neural volumetric pose representation and synthetic view supervision to
+  improve pose features.
+problem: Improve pose-regression accuracy by giving the network more scene geometry and pose context.
+prior_gap: Standard APR features compress appearance but do not explicitly encode the image-pose
+  relationship in a volumetric scene representation.
+stage: Volumetric pose feature learning
+advance: Learns PoseMap features through an augmented neural scene representation and uses them to
+  strengthen camera localization.
+metric:
+- Median rotation error
+- Median translation error
+- Pose accuracy at thresholds
+why_this_metric: PoseMap is useful when volumetric features reduce final absolute pose error.
+dataset:
+- 7Scenes
+- 12Scenes
+- Cambridge Landmarks
+dataset_limitations:
+- APR benchmarks may not cover long-term outdoor appearance change.
+limitations:
+- Requires scene-specific training or scene representation preparation.
+- Neural volumetric representation increases training complexity.
+source_links:
+- label: Paper
+  url: https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/6141_ECCV_2024_paper.php
+- label: arXiv
+  url: https://arxiv.org/abs/2403.12800
+- label: Project
+  url: https://gujiaqivadin.github.io/posemap/
+figure:
+  alt: PoseMap neural volumetric pose features
+  caption: Neural volumetric pose features for APR
+provenance:
+- awesome_visual_localization
+- ecva_link
+confidence: 0.74

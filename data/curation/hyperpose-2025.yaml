@@ -1,0 +1,45 @@
+paper_id: paper:hyperpose-2025
+title: 'HyperPose: Hypernetwork-Infused Camera Pose Localization and an Extended Cambridge Landmarks Dataset'
+year: 2025
+venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+venue_type: conference
+venue_tier: A*
+abstract: Absolute camera pose regression method using hypernetworks, paired with an extended Cambridge
+  Landmarks benchmark.
+summary: Adds hypernetwork-generated regression heads to APR models and introduces Extended Cambridge
+  Landmarks for broader appearance variation.
+problem: Improve APR robustness under lighting, weather, and viewpoint domain shift.
+prior_gap: Fixed APR regression heads can overfit to scene appearance and degrade when test conditions
+  shift.
+stage: Hypernetwork APR
+advance: Uses input-conditioned hypernetwork weights for translation and orientation heads, and evaluates
+  on an expanded landmark dataset.
+metric:
+- Median rotation error
+- Median translation error
+- Pose accuracy at thresholds
+why_this_metric: HyperPose targets APR robustness, so final pose accuracy under changed conditions is
+  the central metric.
+dataset:
+- Cambridge Landmarks
+- Extended Cambridge Landmarks
+- 7Scenes
+dataset_limitations:
+- Landmark extension improves coverage but remains smaller than city-scale long-term localization.
+limitations:
+- APR remains scene-sensitive compared with correspondence-based localization.
+- Hypernetwork capacity can increase model complexity.
+source_links:
+- label: Paper
+  url: https://openaccess.thecvf.com/content/CVPR2025/html/Ferens_HyperPose_Hypernetwork-Infused_Camera_Pose_Localization_and_an_Extended_Cambridge_Landmarks_CVPR_2025_paper.html
+- label: arXiv
+  url: https://arxiv.org/abs/2303.02610
+- label: Project
+  url: https://ronferens.github.io/hyperpose/
+figure:
+  alt: HyperPose hypernetwork APR
+  caption: Hypernetwork-conditioned APR heads
+provenance:
+- awesome_visual_localization
+- cvf_title_check
+confidence: 0.74

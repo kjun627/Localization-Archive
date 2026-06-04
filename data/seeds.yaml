@@ -180,7 +180,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:247-place-recognition-2015", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:prioritized-matching-2017", "paper:aachen-day-night-2018", "paper:inloc-2018", "paper:learning-less-is-more-2018", "paper:mapnet-2018", "paper:semantic-visual-localization-2018", "paper:apr-limitations-2019", "paper:hf-net-2019", "paper:sanet-2019", "paper:hscnet-2020", "paper:superglue-2020", "paper:dsac-star-2021", "paper:pixloc-2021", "paper:long-term-visual-localization-revisited-2022", "paper:ace-2023"]
+    citations: ["paper:247-place-recognition-2015", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:prioritized-matching-2017", "paper:aachen-day-night-2018", "paper:inloc-2018", "paper:learning-less-is-more-2018", "paper:mapnet-2018", "paper:semantic-visual-localization-2018", "paper:apr-limitations-2019", "paper:hf-net-2019", "paper:sanet-2019", "paper:hscnet-2020", "paper:superglue-2020", "paper:dsac-star-2021", "paper:pixloc-2021", "paper:long-term-visual-localization-revisited-2022", "paper:ace-2023", "paper:hscnet-plus-plus-2024"]
   - id: "paper:dust3r-2024"
     title: "DUSt3R: Geometric 3D Vision Made Easy"
     year: 2024
@@ -188,7 +188,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:learning-less-is-more-2018", "paper:d2net-2019", "paper:hf-net-2019", "paper:r2d2-2019", "paper:sanet-2019", "paper:disk-2020", "paper:hscnet-2020", "paper:superglue-2020", "paper:dsac-star-2021", "paper:loftr-2021", "paper:pixloc-2021", "paper:aspanformer-2022", "paper:dkm-2023", "paper:gluestick-2023", "paper:lightglue-2023", "paper:neumap-2023", "paper:roma-2024"]
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:learning-less-is-more-2018", "paper:d2net-2019", "paper:hf-net-2019", "paper:r2d2-2019", "paper:sanet-2019", "paper:disk-2020", "paper:hscnet-2020", "paper:superglue-2020", "paper:dsac-star-2021", "paper:loftr-2021", "paper:pixloc-2021", "paper:aspanformer-2022", "paper:dkm-2023", "paper:gluestick-2023", "paper:lightglue-2023", "paper:neumap-2023", "paper:hscnet-plus-plus-2024", "paper:roma-2024"]
   - id: "paper:ray-cloud-2024"
     title: "Efficient Privacy-Preserving Visual Localization Using 3D Ray Clouds"
     year: 2024
@@ -236,7 +236,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:sift-2004", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:aachen-day-night-2018", "paper:hf-net-2019", "paper:invsfm-2019", "paper:ppiq-2019", "paper:privacy-preserving-image-based-localization-2019", "paper:superglue-2020", "paper:dsac-star-2021", "paper:privacy-preserving-image-features-2021", "paper:privacy-preserving-localization-mapping-uncalibrated-2021", "paper:privacy-preserving-partial-localization-2022", "paper:ace-2023", "paper:coordinate-permutation-2023", "paper:paired-point-lifting-2023", "paper:segloc-2023", "paper:glace-2024", "paper:ray-cloud-2024", "paper:gsff-privacy-preserving-visual-localization-2025", "paper:neighborhood-recovery-2025"]
+    citations: ["paper:sift-2004", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:aachen-day-night-2018", "paper:hf-net-2019", "paper:invsfm-2019", "paper:ppiq-2019", "paper:privacy-preserving-image-based-localization-2019", "paper:superglue-2020", "paper:dsac-star-2021", "paper:privacy-preserving-image-features-2021", "paper:privacy-preserving-localization-mapping-uncalibrated-2021", "paper:privacy-preserving-partial-localization-2022", "paper:ace-2023", "paper:coordinate-permutation-2023", "paper:paired-point-lifting-2023", "paper:segloc-2023", "paper:dgc-gnn-2024", "paper:glace-2024", "paper:ray-cloud-2024", "paper:gsff-privacy-preserving-visual-localization-2025", "paper:neighborhood-recovery-2025"]
   - id: "paper:sift-2004"
     title: "Distinctive Image Features from Scale-Invariant Keypoints"
     year: 2004
@@ -636,7 +636,7 @@ papers:
     venue_type: conference
     venue_tier: A*
     included: true
-    citations: ["paper:score-forest-2013", "paper:posenet-2015", "paper:mapnet-2018", "paper:apr-limitations-2019", "paper:hf-net-2019", "paper:invsfm-2019", "paper:ppiq-2019", "paper:privacy-preserving-image-based-localization-2019", "paper:atloc-2020", "paper:privacy-preserving-visual-slam-2020", "paper:dsac-star-2021", "paper:line2point-2021", "paper:pixloc-2021", "paper:privacy-preserving-image-features-2021", "paper:privacy-preserving-partial-localization-2022", "paper:ace-2023", "paper:coordinate-permutation-2023", "paper:paired-point-lifting-2023", "paper:segloc-2023", "paper:ray-cloud-2024", "paper:neighborhood-recovery-2025"]
+    citations: ["paper:score-forest-2013", "paper:posenet-2015", "paper:mapnet-2018", "paper:apr-limitations-2019", "paper:hf-net-2019", "paper:invsfm-2019", "paper:ppiq-2019", "paper:privacy-preserving-image-based-localization-2019", "paper:atloc-2020", "paper:privacy-preserving-visual-slam-2020", "paper:dsac-star-2021", "paper:line2point-2021", "paper:pixloc-2021", "paper:privacy-preserving-image-features-2021", "paper:privacy-preserving-partial-localization-2022", "paper:ace-2023", "paper:coordinate-permutation-2023", "paper:paired-point-lifting-2023", "paper:segloc-2023", "paper:nefes-2024", "paper:ray-cloud-2024", "paper:neighborhood-recovery-2025"]
   - id: "paper:vpr-cloak-2025"
     title: "VPR-Cloak: A First Look at Privacy Cloak Against Visual Place Recognition"
     year: 2025
@@ -645,3 +645,107 @@ papers:
     venue_tier: A*
     included: true
     citations: ["paper:247-place-recognition-2015"]
+  - id: "paper:deviloc-2024"
+    title: "Learning to Produce Semi-dense Correspondences for Visual Localization"
+    year: 2024
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:prioritized-matching-2017", "paper:aachen-day-night-2018", "paper:learning-less-is-more-2018", "paper:semantic-visual-localization-2018", "paper:hf-net-2019", "paper:r2d2-2019", "paper:sanet-2019", "paper:hscnet-2020", "paper:superglue-2020", "paper:dsac-star-2021", "paper:loftr-2021", "paper:pixloc-2021", "paper:aspanformer-2022", "paper:cosplace-2022", "paper:ace-2023", "paper:neumap-2023"]
+  - id: "paper:dgc-gnn-2024"
+    title: "DGC-GNN: Leveraging Geometry and Color Cues for Visual Descriptor-Free 2D-3D Matching"
+    year: 2024
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:sift-2004", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:prioritized-matching-2017", "paper:aachen-day-night-2018", "paper:d2net-2019", "paper:hf-net-2019", "paper:invsfm-2019", "paper:hscnet-2020", "paper:superglue-2020", "paper:dsac-star-2021", "paper:line2point-2021", "paper:loftr-2021", "paper:coordinate-permutation-2023"]
+  - id: "paper:nefes-2024"
+    title: "Neural Refinement for Absolute Pose Regression with Feature Synthesis"
+    year: 2024
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:prioritized-matching-2017", "paper:vidloc-2017", "paper:learning-less-is-more-2018", "paper:mapnet-2018", "paper:apr-limitations-2019", "paper:hf-net-2019", "paper:atloc-2020", "paper:superglue-2020", "paper:dsac-star-2021", "paper:loftr-2021", "paper:pixloc-2021"]
+  - id: "paper:spvloc-2024"
+    title: "SPVLoc: Semantic Panoramic Viewport Matching for 6D Camera Localization in Unseen Environments"
+    year: 2024
+    venue: European Conference on Computer Vision
+    venue_type: conference
+    venue_tier: A
+    included: true
+    citations: ["paper:posenet-2015", "paper:netvlad-2016", "paper:geometric-posenet-2017", "paper:pixloc-2021"]
+  - id: "paper:posemap-2024"
+    title: "Learning Neural Volumetric Pose Features for Camera Localization"
+    year: 2024
+    venue: European Conference on Computer Vision
+    venue_type: conference
+    venue_tier: A
+    included: true
+    citations: ["paper:score-forest-2013", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:prioritized-matching-2017", "paper:mapnet-2018", "paper:semantic-match-consistency-2018", "paper:apr-limitations-2019", "paper:hf-net-2019"]
+  - id: "paper:ace0-2024"
+    title: "Scene Coordinate Reconstruction: Posing of Image Collections via Incremental Learning of a Relocalizer"
+    year: 2024
+    venue: European Conference on Computer Vision
+    venue_type: conference
+    venue_tier: A
+    included: true
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:prioritized-matching-2017", "paper:learning-less-is-more-2018", "paper:apr-limitations-2019", "paper:d2net-2019", "paper:hf-net-2019", "paper:hscnet-2020", "paper:superglue-2020", "paper:dsac-star-2021", "paper:loftr-2021", "paper:pixloc-2021", "paper:ace-2023", "paper:lightglue-2023", "paper:dust3r-2024", "paper:nefes-2024"]
+  - id: "paper:hscnet-plus-plus-2024"
+    title: "HSCNet++: Hierarchical Scene Coordinate Classification and Regression for Visual Localization with Transformer"
+    year: 2024
+    venue: International Journal of Computer Vision
+    venue_type: journal
+    venue_tier: Q1
+    included: true
+    citations: ["paper:sift-2004", "paper:score-forest-2013", "paper:posenet-2015", "paper:netvlad-2016", "paper:dsac-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:prioritized-matching-2017", "paper:aachen-day-night-2018", "paper:learning-less-is-more-2018", "paper:mapnet-2018", "paper:apr-limitations-2019", "paper:contextdesc-2019", "paper:hf-net-2019", "paper:r2d2-2019", "paper:disk-2020", "paper:hscnet-2020", "paper:superglue-2020", "paper:cotr-2021", "paper:dsac-star-2021", "paper:loftr-2021", "paper:patch2pix-2021", "paper:pixloc-2021"]
+  - id: "paper:reloc3r-2025"
+    title: "Reloc3r: Large-Scale Training of Relative Camera Pose Regression for Generalizable, Fast, and Accurate Visual Localization"
+    year: 2025
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:score-forest-2013", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:prioritized-matching-2017", "paper:aachen-day-night-2018", "paper:learning-less-is-more-2018", "paper:mapnet-2018", "paper:apr-limitations-2019", "paper:d2net-2019", "paper:hf-net-2019", "paper:r2d2-2019", "paper:sanet-2019", "paper:atloc-2020", "paper:hscnet-2020", "paper:superglue-2020", "paper:dsac-star-2021", "paper:loftr-2021", "paper:pixloc-2021", "paper:ace-2023", "paper:lightglue-2023", "paper:deviloc-2024", "paper:dgc-gnn-2024", "paper:dust3r-2024", "paper:efficient-loftr-2024", "paper:hscnet-plus-plus-2024", "paper:marepo-2024", "paper:mast3r-2024", "paper:nefes-2024", "paper:posemap-2024", "paper:roma-2024"]
+  - id: "paper:hyperpose-2025"
+    title: "HyperPose: Hypernetwork-Infused Camera Pose Localization and an Extended Cambridge Landmarks Dataset"
+    year: 2025
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:posenet-2015", "paper:dsac-2017", "paper:geometric-posenet-2017", "paper:image-based-localization-lstms-2017", "paper:prioritized-matching-2017", "paper:learning-less-is-more-2018", "paper:mapnet-2018", "paper:apr-limitations-2019", "paper:hf-net-2019", "paper:atloc-2020", "paper:hscnet-2020", "paper:superglue-2020", "paper:dsac-star-2021", "paper:pixloc-2021", "paper:neumap-2023", "paper:marepo-2024"]
+  - id: "paper:scene-agnostic-pose-regression-2025"
+    title: "Scene-agnostic Pose Regression for Visual Localization"
+    year: 2025
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:score-forest-2013", "paper:posenet-2015", "paper:geometric-posenet-2017", "paper:vidloc-2017", "paper:mapnet-2018", "paper:pixloc-2021", "paper:lamar-2022", "paper:marepo-2024", "paper:nefes-2024", "paper:posemap-2024"]
+  - id: "paper:stdloc-2025"
+    title: "From Sparse to Dense: Camera Relocalization with Scene-Specific Detector from Feature Gaussian Splatting"
+    year: 2025
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:aachen-day-night-2018", "paper:learning-less-is-more-2018", "paper:hf-net-2019", "paper:superglue-2020", "paper:dsac-star-2021", "paper:loftr-2021", "paper:pixloc-2021", "paper:ace-2023", "paper:lightglue-2023", "paper:neumap-2023", "paper:deviloc-2024", "paper:glace-2024", "paper:nefes-2024", "paper:roma-2024", "paper:xfeat-2024"]
+  - id: "paper:r-score-2025"
+    title: "R-SCoRe: Revisiting Scene Coordinate Regression for Robust Large-Scale Visual Localization"
+    year: 2025
+    venue: IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    venue_type: conference
+    venue_tier: A*
+    included: true
+    citations: ["paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:dsac-2017", "paper:geometric-posenet-2017", "paper:prioritized-matching-2017", "paper:aachen-day-night-2018", "paper:learning-less-is-more-2018", "paper:mapnet-2018", "paper:apr-limitations-2019", "paper:fine-tuning-cnn-retrieval-2019", "paper:hf-net-2019", "paper:r2d2-2019", "paper:hscnet-2020", "paper:superglue-2020", "paper:dsac-star-2021", "paper:loftr-2021", "paper:pixloc-2021", "paper:lamar-2022", "paper:ace-2023", "paper:lightglue-2023", "paper:neumap-2023", "paper:ace0-2024", "paper:dgc-gnn-2024", "paper:glace-2024", "paper:hscnet-plus-plus-2024", "paper:nefes-2024"]
+  - id: "paper:a2-gnn-2025"
+    title: "A2-GNN: Angle-Annular GNN for Visual Descriptor-free Camera Relocalization"
+    year: 2025
+    venue: International Conference on 3D Vision
+    venue_type: conference
+    venue_tier: A
+    included: true
+    citations: ["paper:sift-2004", "paper:posenet-2015", "paper:netvlad-2016", "paper:sfm-revisited-2016", "paper:large-scale-3d-models-2017", "paper:prioritized-matching-2017", "paper:d2net-2019", "paper:hf-net-2019", "paper:invsfm-2019", "paper:ppiq-2019", "paper:privacy-preserving-image-based-localization-2019", "paper:r2d2-2019", "paper:disk-2020", "paper:hscnet-2020", "paper:privacy-preserving-visual-slam-2020", "paper:superglue-2020", "paper:cross-descriptor-vlm-2021", "paper:dsac-star-2021", "paper:line2point-2021", "paper:loftr-2021", "paper:aspanformer-2022", "paper:ace-2023", "paper:coordinate-permutation-2023", "paper:lightglue-2023", "paper:segloc-2023", "paper:dgc-gnn-2024", "paper:efficient-loftr-2024", "paper:glace-2024", "paper:hscnet-plus-plus-2024", "paper:omniglue-2024", "paper:ray-cloud-2024"]

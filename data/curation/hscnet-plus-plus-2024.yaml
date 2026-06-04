@@ -1,0 +1,43 @@
+paper_id: paper:hscnet-plus-plus-2024
+title: 'HSCNet++: Hierarchical Scene Coordinate Classification and Regression for Visual Localization with Transformer'
+year: 2024
+venue: International Journal of Computer Vision
+venue_type: journal
+venue_tier: Q1
+abstract: Journal extension of hierarchical scene coordinate classification and regression with transformer
+  components for localization.
+summary: Extends hierarchical scene-coordinate prediction with transformer-based modeling to scale
+  coordinate regression in ambiguous scenes.
+problem: Make scene coordinate regression more robust in large or repetitive environments.
+prior_gap: Direct coordinate regression can struggle when a single network must distinguish visually
+  similar regions across a scene.
+stage: Hierarchical scene coordinate regression
+advance: Combines coarse scene-region classification, coordinate regression, and transformer modeling
+  for stronger localization.
+metric:
+- Pose accuracy at thresholds
+- Median rotation error
+- Median translation error
+why_this_metric: Hierarchical SCR is valuable when it improves the final camera pose in large scenes.
+dataset:
+- 7Scenes
+- 12Scenes
+- Cambridge Landmarks
+- Aachen Day-Night
+dataset_limitations:
+- Dataset protocols mix indoor RGB-D and outdoor SfM maps, which can hide deployment-specific costs.
+limitations:
+- Requires per-scene training and map preparation.
+- Larger models may increase training and inference cost versus compact SCR baselines.
+source_links:
+- label: Paper
+  url: https://link.springer.com/article/10.1007/s11263-023-01982-9
+- label: arXiv
+  url: https://arxiv.org/abs/2305.03595
+figure:
+  alt: HSCNet++ hierarchical scene coordinate localization
+  caption: Hierarchical transformer scene coordinate regression
+provenance:
+- awesome_visual_localization
+- springer_open_access
+confidence: 0.76
