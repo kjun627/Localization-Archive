@@ -19,6 +19,10 @@ SEMANTIC_SCHOLAR_REFERENCE_FIELDS = (
     "citedPaper.paperId,citedPaper.title,citedPaper.year,citedPaper.url,"
     "citedPaper.externalIds"
 )
+SEMANTIC_SCHOLAR_CITATION_FIELDS = (
+    "citingPaper.paperId,citingPaper.title,citingPaper.year,citingPaper.url,"
+    "citingPaper.externalIds"
+)
 SEMANTIC_SCHOLAR_SEARCH_FIELDS = "paperId,title,venue,year,url,externalIds"
 
 
@@ -108,6 +112,36 @@ class SemanticScholarClient:
             url = (
                 "https://api.semanticscholar.org/graph/v1/paper/"
                 f"{quoted_paper_id}/references?{params}"
+            )
+            payload = self._request_json(url)
+            for item in payload.get("data") or []:
+                yield item
+
+            next_offset = payload.get("next")
+            if next_offset is None:
+                break
+            offset = int(next_offset)
+
+    def iter_citations(
+        self,
+        paper_id: str,
+        fields: str = SEMANTIC_SCHOLAR_CITATION_FIELDS,
+        limit: int = 100,
+    ) -> Iterator[dict[str, Any]]:
+        offset = 0
+        quoted_paper_id = urllib.parse.quote(paper_id, safe="")
+
+        while True:
+            params = urllib.parse.urlencode(
+                {
+                    "fields": fields,
+                    "limit": limit,
+                    "offset": offset,
+                }
+            )
+            url = (
+                "https://api.semanticscholar.org/graph/v1/paper/"
+                f"{quoted_paper_id}/citations?{params}"
             )
             payload = self._request_json(url)
             for item in payload.get("data") or []:

@@ -7,16 +7,20 @@ import re
 import time
 import urllib.parse
 from dataclasses import dataclass
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
 from localization_archive_pipeline.audit_citations import (
     OPENALEX_SELECT,
+    ResolvedPaper as ResolvedOpenAlexPaper,
     choose_candidate as choose_openalex_candidate,
     normalize_title,
     title_score,
 )
 from localization_archive_pipeline.build_graph import load_curated_papers
 from localization_archive_pipeline.clients import (
+    SEMANTIC_SCHOLAR_CITATION_FIELDS,
     SEMANTIC_SCHOLAR_PAPER_FIELDS,
     SEMANTIC_SCHOLAR_REFERENCE_FIELDS,
     SEMANTIC_SCHOLAR_SEARCH_FIELDS,
@@ -29,7 +33,11 @@ from localization_archive_pipeline.models import PaperRecord
 
 
 PROVIDER = "Semantic Scholar Academic Graph"
+AUXILIARY_PROVIDER = "OpenAlex"
 DEFAULT_OUTPUT = "data/generated/citation_candidates.json"
+DEFAULT_INCREMENTAL_OUTPUT = "data/generated/citation_candidates_incremental.json"
+DEFAULT_CACHE = "data/reference/citation_provider_cache.json"
+CACHE_SCHEMA_VERSION = 1
 ARXIV_NEW_RE = re.compile(r"\b\d{4}\.\d{4,5}(?:v\d+)?\b", re.IGNORECASE)
 ARXIV_OLD_RE = re.compile(r"\b[a-z][a-z.-]+/\d{7}(?:v\d+)?\b", re.IGNORECASE)
 DOI_RE = re.compile(r"\b10\.\d{4,9}/[^\s\"<>]+", re.IGNORECASE)
@@ -65,12 +73,15 @@ def parser() -> argparse.ArgumentParser:
     argument_parser.add_argument(
         "--paper-id",
         action="append",
-        help="Suggest citations only for the given archive paper id. Can be passed more than once.",
+        help=(
+            "Suggest citations for the given archive paper id against the full archive. "
+            "Can be passed more than once."
+        ),
     )
     argument_parser.add_argument(
         "--max-papers",
         type=int,
-        help="Suggest citations only for the first N selected papers. Useful for smoke tests.",
+        help="Suggest citations only for the first N source papers. Useful for smoke tests.",
     )
     argument_parser.add_argument(
         "--min-title-score",
@@ -90,6 +101,11 @@ def parser() -> argparse.ArgumentParser:
         "--output",
         default=DEFAULT_OUTPUT,
         help="Candidate JSON output path relative to the repository root.",
+    )
+    argument_parser.add_argument(
+        "--cache",
+        default=DEFAULT_CACHE,
+        help="Provider cache JSON used to reuse Semantic Scholar and OpenAlex ids.",
     )
     return argument_parser
 
@@ -318,6 +334,7 @@ def collect_semantic_references(
     records: list[PaperRecord],
     resolved: dict[str, ResolvedSemanticPaper],
     client: SemanticScholarClient,
+    source_records: list[PaperRecord] | None = None,
 ) -> SemanticReferences:
     records_by_id = {record.paper_id: record for record in records}
     archive_by_semantic_id = {
@@ -327,7 +344,7 @@ def collect_semantic_references(
     reference_counts: dict[str, int] = {}
     unavailable: list[dict[str, Any]] = []
 
-    for source in records:
+    for source in source_records or records:
         resolved_source = resolved.get(source.paper_id)
         if not resolved_source:
             continue
@@ -383,6 +400,75 @@ def collect_semantic_references(
     )
 
 
+def collect_incremental_semantic_references(
+    records: list[PaperRecord],
+    source_records: list[PaperRecord],
+    resolved: dict[str, ResolvedSemanticPaper],
+    client: SemanticScholarClient,
+) -> tuple[SemanticReferences, dict[str, set[str]]]:
+    semantic_references = collect_semantic_references(
+        records=records,
+        resolved=resolved,
+        client=client,
+        source_records=source_records,
+    )
+    records_by_id = {record.paper_id: record for record in records}
+    archive_by_semantic_id = {
+        item.semantic_scholar_id: item.paper_id for item in resolved.values()
+    }
+    selected_ids = {record.paper_id for record in source_records}
+    recorded_target_filter: dict[str, set[str]] = {
+        record.paper_id: set(record.citations) for record in source_records
+    }
+
+    for target in source_records:
+        resolved_target = resolved.get(target.paper_id)
+        if not resolved_target:
+            continue
+
+        try:
+            citations = client.iter_citations(
+                resolved_target.semantic_scholar_id,
+                fields=SEMANTIC_SCHOLAR_CITATION_FIELDS,
+                limit=100,
+            )
+            for citation_index, citation in enumerate(citations):
+                citing_paper = citation.get("citingPaper") or {}
+                citing_semantic_id = citing_paper.get("paperId")
+                source_id = archive_by_semantic_id.get(citing_semantic_id)
+                if not source_id or source_id == target.paper_id:
+                    continue
+                source = records_by_id[source_id]
+                if source.year < target.year:
+                    continue
+                semantic_references.by_source.setdefault(source_id, {}).setdefault(
+                    target.paper_id,
+                    semantic_citation_evidence(
+                        source=source,
+                        target=target,
+                        source_resolution=resolved[source_id],
+                        target_resolution=resolved_target,
+                        citing_paper=citing_paper,
+                        citation_index=citation_index,
+                    ),
+                )
+                if source_id not in selected_ids:
+                    recorded_target_filter.setdefault(source_id, set()).add(target.paper_id)
+        except Exception as error:  # noqa: BLE001 - auxiliary report should continue.
+            semantic_references.unavailable.append(
+                {
+                    "source": target.paper_id,
+                    "sourceTitle": target.title,
+                    "semanticScholarId": resolved_target.semantic_scholar_id,
+                    "reason": "semantic_scholar_citations_unavailable",
+                    "error": str(error),
+                    "recordedCitationCount": len(target.citations),
+                }
+            )
+
+    return semantic_references, recorded_target_filter
+
+
 def semantic_reference_evidence(
     source: PaperRecord,
     target: PaperRecord,
@@ -401,6 +487,27 @@ def semantic_reference_evidence(
         "referenceTitle": cited_paper.get("title") or target.title,
         "referenceYear": cited_paper.get("year") or target.year,
         "referenceExternalIds": cited_paper.get("externalIds") or {},
+    }
+
+
+def semantic_citation_evidence(
+    source: PaperRecord,
+    target: PaperRecord,
+    source_resolution: ResolvedSemanticPaper,
+    target_resolution: ResolvedSemanticPaper,
+    citing_paper: dict[str, Any],
+    citation_index: int,
+) -> dict[str, Any]:
+    return {
+        "status": "found_in_citations",
+        "sourceSemanticScholarId": source_resolution.semantic_scholar_id,
+        "targetSemanticScholarId": target_resolution.semantic_scholar_id,
+        "sourceResolveMethod": source_resolution.resolve_method,
+        "targetResolveMethod": target_resolution.resolve_method,
+        "citationIndex": citation_index,
+        "citationTitle": citing_paper.get("title") or source.title,
+        "citationYear": citing_paper.get("year") or source.year,
+        "citationExternalIds": citing_paper.get("externalIds") or {},
     }
 
 
@@ -449,6 +556,175 @@ def resolve_openalex_papers(
     return resolved, unresolved
 
 
+def load_cached_semantic_resolutions(
+    records: list[PaperRecord],
+    cache_path: Path,
+) -> dict[str, ResolvedSemanticPaper]:
+    payload = load_cache_payload(cache_path)
+    if not payload:
+        return {}
+
+    records_by_id = {record.paper_id: record for record in records}
+    resolved: dict[str, ResolvedSemanticPaper] = {}
+    for item in semantic_cache_items(payload):
+        record = records_by_id.get(item.get("paperId"))
+        semantic_id = item.get("semanticScholarId")
+        if not record or not semantic_id:
+            continue
+        resolved[record.paper_id] = ResolvedSemanticPaper(
+            paper_id=record.paper_id,
+            title=record.title,
+            year=record.year,
+            semantic_scholar_id=semantic_id,
+            semantic_scholar_title=item.get("semanticScholarTitle") or record.title,
+            semantic_scholar_year=item.get("semanticScholarYear"),
+            title_score=float(item.get("titleScore") or 1.0),
+            resolve_method=item.get("resolveMethod") or "cache",
+            identifier=item.get("identifier"),
+            external_ids=item.get("externalIds") or {},
+        )
+    return resolved
+
+
+def load_cached_openalex_resolutions(
+    records: list[PaperRecord],
+    cache_path: Path,
+) -> dict[str, ResolvedOpenAlexPaper]:
+    payload = load_cache_payload(cache_path)
+    if not payload:
+        return {}
+
+    records_by_id = {record.paper_id: record for record in records}
+    resolved: dict[str, ResolvedOpenAlexPaper] = {}
+    for item in openalex_cache_items(payload):
+        record = records_by_id.get(item.get("paperId"))
+        openalex_id = item.get("openAlexId")
+        if not record or not openalex_id:
+            continue
+        resolved[record.paper_id] = ResolvedOpenAlexPaper(
+            paper_id=record.paper_id,
+            title=record.title,
+            year=record.year,
+            openalex_id=openalex_id,
+            openalex_title=item.get("openAlexTitle") or record.title,
+            openalex_year=item.get("openAlexYear"),
+            title_score=float(item.get("titleScore") or 1.0),
+            referenced_works=set(item.get("referencedWorks") or []),
+        )
+    return resolved
+
+
+def load_cache_payload(cache_path: Path) -> dict[str, Any] | None:
+    if not cache_path.exists():
+        return None
+    try:
+        return json.loads(cache_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+
+
+def semantic_cache_items(payload: dict[str, Any]) -> list[dict[str, Any]]:
+    items = payload.get("semanticScholarResolved")
+    if isinstance(items, list):
+        return items
+    items = payload.get("resolved")
+    if isinstance(items, list):
+        return items
+    return []
+
+
+def openalex_cache_items(payload: dict[str, Any]) -> list[dict[str, Any]]:
+    items = payload.get("openAlexResolved")
+    if isinstance(items, list):
+        return items
+    return []
+
+
+def save_provider_cache(
+    payload: dict[str, Any],
+    cache_path: Path,
+    merge_existing: bool = True,
+) -> None:
+    existing = load_cache_payload(cache_path) if merge_existing else None
+    semantic_by_id: dict[str, dict[str, Any]] = {}
+    openalex_by_id: dict[str, dict[str, Any]] = {}
+
+    if existing:
+        semantic_by_id.update(
+            {
+                item["paperId"]: item
+                for item in semantic_cache_items(existing)
+                if item.get("paperId")
+            }
+        )
+        openalex_by_id.update(
+            {
+                item["paperId"]: item
+                for item in openalex_cache_items(existing)
+                if item.get("paperId")
+            }
+        )
+
+    semantic_by_id.update(
+        {
+            item["paperId"]: semantic_cache_payload(item)
+            for item in payload.get("resolved", [])
+            if item.get("paperId") and item.get("semanticScholarId")
+        }
+    )
+    openalex_by_id.update(
+        {
+            item["paperId"]: openalex_cache_payload(item)
+            for item in payload.get("openAlexResolved", [])
+            if item.get("paperId") and item.get("openAlexId")
+        }
+    )
+
+    cache_payload = {
+        "schemaVersion": CACHE_SCHEMA_VERSION,
+        "updatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "semanticScholarResolvedCount": len(semantic_by_id),
+        "openAlexResolvedCount": len(openalex_by_id),
+        "semanticScholarResolved": [
+            semantic_by_id[paper_id] for paper_id in sorted(semantic_by_id)
+        ],
+        "openAlexResolved": [
+            openalex_by_id[paper_id] for paper_id in sorted(openalex_by_id)
+        ],
+    }
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    cache_path.write_text(json.dumps(cache_payload, indent=2) + "\n", encoding="utf-8")
+
+
+def semantic_cache_payload(item: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "paperId": item.get("paperId"),
+        "title": item.get("title"),
+        "year": item.get("year"),
+        "semanticScholarId": item.get("semanticScholarId"),
+        "semanticScholarTitle": item.get("semanticScholarTitle"),
+        "semanticScholarYear": item.get("semanticScholarYear"),
+        "titleScore": item.get("titleScore"),
+        "resolveMethod": item.get("resolveMethod"),
+        "identifier": item.get("identifier"),
+        "externalIds": item.get("externalIds") or {},
+    }
+
+
+def openalex_cache_payload(item: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "paperId": item.get("paperId"),
+        "title": item.get("title"),
+        "year": item.get("year"),
+        "openAlexId": item.get("openAlexId"),
+        "openAlexTitle": item.get("openAlexTitle"),
+        "openAlexYear": item.get("openAlexYear"),
+        "titleScore": item.get("titleScore"),
+        "referenceCount": item.get("referenceCount"),
+        "referencedWorks": item.get("referencedWorks") or [],
+    }
+
+
 def build_citation_payload(
     records: list[PaperRecord],
     semantic_resolved: dict[str, ResolvedSemanticPaper],
@@ -456,7 +732,10 @@ def build_citation_payload(
     semantic_references: SemanticReferences,
     openalex_resolved: dict[str, Any],
     openalex_unresolved: list[dict[str, Any]],
-    api_key_used: bool,
+    semantic_api_key_used: bool,
+    openalex_api_key_used: bool,
+    source_records: list[PaperRecord] | None = None,
+    recorded_target_filter: dict[str, set[str]] | None = None,
 ) -> dict[str, Any]:
     records_by_id = {record.paper_id: record for record in records}
     unavailable_sources = {item["source"] for item in semantic_references.unavailable}
@@ -464,7 +743,16 @@ def build_citation_payload(
     confirmed_recorded_citations: list[dict[str, Any]] = []
     unconfirmed_recorded_citations: list[dict[str, Any]] = []
 
-    for source in records:
+    audit_source_ids = {record.paper_id for record in source_records} if source_records else None
+    if audit_source_ids is not None:
+        audit_source_ids.update(semantic_references.by_source)
+    audit_records = [
+        record
+        for record in records
+        if audit_source_ids is None or record.paper_id in audit_source_ids
+    ]
+
+    for source in audit_records:
         recorded_targets = set(source.citations)
         semantic_targets = semantic_references.by_source.get(source.paper_id, {})
 
@@ -482,20 +770,45 @@ def build_citation_payload(
                     )
                 )
 
-        for target_id in sorted(recorded_targets):
+        if recorded_target_filter is None:
+            recorded_targets_to_check = recorded_targets
+        else:
+            recorded_targets_to_check = recorded_targets & recorded_target_filter.get(
+                source.paper_id,
+                set(),
+            )
+
+        for target_id in sorted(recorded_targets_to_check):
             target = records_by_id.get(target_id)
             if target is None:
                 continue
             evidence = semantic_targets.get(target_id)
+            edge_openalex_status = openalex_status(
+                source.paper_id,
+                target.paper_id,
+                openalex_resolved,
+            )
             if evidence:
                 confirmed_recorded_citations.append(
                     edge_payload(
                         source=source,
                         target=target,
                         semantic_scholar_evidence=evidence,
-                        openalex_status=openalex_status(
-                            source.paper_id, target.paper_id, openalex_resolved
+                        openalex_status=edge_openalex_status,
+                    )
+                )
+            elif edge_openalex_status == "confirmed_by_openalex":
+                confirmed_recorded_citations.append(
+                    edge_payload(
+                        source=source,
+                        target=target,
+                        semantic_scholar_evidence=semantic_absence_evidence(
+                            source=source,
+                            target=target,
+                            semantic_resolved=semantic_resolved,
+                            unavailable_sources=unavailable_sources,
                         ),
+                        openalex_status=edge_openalex_status,
                     )
                 )
             else:
@@ -509,19 +822,24 @@ def build_citation_payload(
                             semantic_resolved=semantic_resolved,
                             unavailable_sources=unavailable_sources,
                         ),
-                        openalex_status=openalex_status(
-                            source.paper_id, target.paper_id, openalex_resolved
-                        ),
+                        openalex_status=edge_openalex_status,
                     )
                 )
 
     return {
         "provider": PROVIDER,
-        "apiKeyUsed": api_key_used,
+        "providers": {
+            "primary": PROVIDER,
+            "auxiliary": AUXILIARY_PROVIDER,
+        },
+        "apiKeyUsed": semantic_api_key_used,
+        "semanticScholarApiKeyUsed": semantic_api_key_used,
+        "openAlexApiKeyUsed": openalex_api_key_used,
         "resolvedCount": len(semantic_resolved),
         "unresolvedCount": len(semantic_unresolved),
         "referencesUnavailableCount": len(semantic_references.unavailable),
         "missingArchiveCitationCount": len(missing_archive_citations),
+        "recordedMismatchCount": len(unconfirmed_recorded_citations),
         "unconfirmedRecordedCitationCount": len(unconfirmed_recorded_citations),
         "confirmedRecordedCitationCount": len(confirmed_recorded_citations),
         "openAlexResolvedCount": len(openalex_resolved),
@@ -532,6 +850,10 @@ def build_citation_payload(
                 semantic_references.reference_counts.get(item.paper_id, 0),
             )
             for item in sorted(semantic_resolved.values(), key=lambda paper: paper.paper_id)
+        ],
+        "openAlexResolved": [
+            openalex_resolved_payload(item)
+            for item in sorted(openalex_resolved.values(), key=lambda paper: paper.paper_id)
         ],
         "unresolved": semantic_unresolved,
         "referencesUnavailable": semantic_references.unavailable,
@@ -620,30 +942,80 @@ def resolved_payload(
     }
 
 
+def openalex_resolved_payload(item: Any) -> dict[str, Any]:
+    referenced_works = getattr(item, "referenced_works", set())
+    return {
+        "paperId": item.paper_id,
+        "title": getattr(item, "title", ""),
+        "year": getattr(item, "year", None),
+        "openAlexId": item.openalex_id,
+        "openAlexTitle": getattr(item, "openalex_title", ""),
+        "openAlexYear": getattr(item, "openalex_year", None),
+        "titleScore": round(getattr(item, "title_score", 1.0), 4),
+        "referenceCount": len(referenced_works),
+        "referencedWorks": sorted(referenced_works),
+    }
+
+
 def generate_citation_candidates(
     records: list[PaperRecord],
     semantic_client: SemanticScholarClient,
     min_title_score: float,
     openalex_client: OpenAlexClient | None = None,
+    source_records: list[PaperRecord] | None = None,
+    include_incoming: bool = False,
+    cached_semantic_resolved: dict[str, ResolvedSemanticPaper] | None = None,
+    cached_openalex_resolved: dict[str, ResolvedOpenAlexPaper] | None = None,
+    resolve_all_missing_semantic: bool = True,
+    resolve_all_missing_openalex: bool = True,
 ) -> dict[str, Any]:
-    semantic_resolved, semantic_unresolved = resolve_semantic_papers(
-        records=records,
+    source_records = source_records or records
+    semantic_resolved = dict(cached_semantic_resolved or {})
+    semantic_records_to_resolve = records if resolve_all_missing_semantic else source_records
+    semantic_records_to_resolve = [
+        record
+        for record in semantic_records_to_resolve
+        if record.paper_id not in semantic_resolved
+    ]
+    semantic_new_resolved, semantic_unresolved = resolve_semantic_papers(
+        records=semantic_records_to_resolve,
         client=semantic_client,
         min_title_score=min_title_score,
     )
-    semantic_references = collect_semantic_references(
-        records=records,
-        resolved=semantic_resolved,
-        client=semantic_client,
-    )
-    openalex_resolved: dict[str, Any] = {}
+    semantic_resolved.update(semantic_new_resolved)
+    recorded_target_filter: dict[str, set[str]] | None = None
+    if include_incoming:
+        semantic_references, recorded_target_filter = collect_incremental_semantic_references(
+            records=records,
+            source_records=source_records,
+            resolved=semantic_resolved,
+            client=semantic_client,
+        )
+    else:
+        semantic_references = collect_semantic_references(
+            records=records,
+            resolved=semantic_resolved,
+            client=semantic_client,
+            source_records=source_records,
+        )
+    openalex_resolved: dict[str, Any] = dict(cached_openalex_resolved or {})
     openalex_unresolved: list[dict[str, Any]] = []
     if openalex_client:
+        openalex_records_to_resolve = records if resolve_all_missing_openalex else source_records
+        openalex_records_to_resolve = [
+            record
+            for record in openalex_records_to_resolve
+            if record.paper_id not in openalex_resolved
+        ]
         openalex_resolved, openalex_unresolved = resolve_openalex_papers(
-            records=records,
+            records=openalex_records_to_resolve,
             client=openalex_client,
             min_title_score=min_title_score,
         )
+        openalex_resolved = {
+            **(cached_openalex_resolved or {}),
+            **openalex_resolved,
+        }
 
     return build_citation_payload(
         records=records,
@@ -652,7 +1024,10 @@ def generate_citation_candidates(
         semantic_references=semantic_references,
         openalex_resolved=openalex_resolved,
         openalex_unresolved=openalex_unresolved,
-        api_key_used=bool(semantic_client.api_key),
+        semantic_api_key_used=bool(semantic_client.api_key),
+        openalex_api_key_used=bool(openalex_client and openalex_client.api_key),
+        source_records=source_records,
+        recorded_target_filter=recorded_target_filter,
     )
 
 
@@ -677,13 +1052,22 @@ def main() -> int:
     paths = get_paths()
     load_dotenv(paths.root / ".env")
 
-    records = select_records(
-        records=load_curated_papers(),
+    all_records = load_curated_papers()
+    source_records = select_records(
+        records=all_records,
         paper_ids=args.paper_id,
         max_papers=args.max_papers,
     )
+    incremental = bool(args.paper_id or args.max_papers is not None)
+    cache_path = paths.root / args.cache
+    cached_semantic_resolved = (
+        load_cached_semantic_resolutions(all_records, cache_path) if incremental else {}
+    )
+    cached_openalex_resolved = (
+        load_cached_openalex_resolutions(all_records, cache_path) if incremental else {}
+    )
     semantic_client = SemanticScholarClient(
-        api_key=None,
+        api_key=get_env("SEMANTIC_SCHOLAR_API_KEY"),
         sleep_seconds=args.sleep,
     )
     openalex_client = OpenAlexClient(
@@ -692,25 +1076,40 @@ def main() -> int:
     )
 
     payload = generate_citation_candidates(
-        records=records,
+        records=all_records,
         semantic_client=semantic_client,
         min_title_score=args.min_title_score,
         openalex_client=openalex_client,
+        source_records=source_records,
+        include_incoming=incremental,
+        cached_semantic_resolved=cached_semantic_resolved,
+        cached_openalex_resolved=cached_openalex_resolved,
+        resolve_all_missing_semantic=not incremental,
+        resolve_all_missing_openalex=not incremental or not cached_openalex_resolved,
     )
 
-    output_path = paths.root / args.output
+    output = (
+        DEFAULT_INCREMENTAL_OUTPUT
+        if incremental and args.output == DEFAULT_OUTPUT
+        else args.output
+    )
+    output_path = paths.root / output
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    save_provider_cache(payload, cache_path, merge_existing=True)
 
     print(
         "Citation candidates: "
-        f"{payload['resolvedCount']}/{len(records)} resolved, "
+        f"{len(source_records)} source paper(s), "
+        f"{payload['resolvedCount']}/{len(all_records)} resolved, "
         f"{payload['missingArchiveCitationCount']} missing archive citations, "
         f"{payload['confirmedRecordedCitationCount']} confirmed recorded citations, "
         f"{payload['unconfirmedRecordedCitationCount']} unconfirmed recorded citations, "
+        f"{payload['openAlexResolvedCount']}/{len(all_records)} OpenAlex resolved, "
         f"{payload['referencesUnavailableCount']} unavailable reference lists."
     )
     print(f"Wrote {os.path.relpath(output_path, paths.root)}")
+    print(f"Updated {os.path.relpath(cache_path, paths.root)}")
     return 0
 
 

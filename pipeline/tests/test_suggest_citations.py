@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import json
 import sys
+import tempfile
 import unittest
 import urllib.error
 from pathlib import Path
+from types import SimpleNamespace
 from typing import Any
 
 
@@ -21,7 +23,12 @@ from localization_archive_pipeline.suggest_citations import (
     extract_arxiv_id,
     extract_doi,
     generate_citation_candidates,
+    build_citation_payload,
+    load_cached_openalex_resolutions,
+    load_cached_semantic_resolutions,
     normalize_title,
+    save_provider_cache,
+    SemanticReferences,
     semantic_scholar_identifiers,
 )
 
@@ -56,9 +63,11 @@ class FakeSemanticClient:
         self,
         papers_by_title: dict[str, dict[str, Any]],
         references_by_paper_id: dict[str, list[dict[str, Any]]],
+        citations_by_paper_id: dict[str, list[dict[str, Any]]] | None = None,
     ) -> None:
         self.papers_by_title = papers_by_title
         self.references_by_paper_id = references_by_paper_id
+        self.citations_by_paper_id = citations_by_paper_id or {}
 
     def get_paper(self, identifier: str, fields: str) -> dict[str, Any]:
         raise AssertionError(f"unexpected identifier lookup: {identifier}")
@@ -78,6 +87,14 @@ class FakeSemanticClient:
         limit: int = 100,
     ) -> Any:
         return iter(self.references_by_paper_id.get(paper_id, []))
+
+    def iter_citations(
+        self,
+        paper_id: str,
+        fields: str,
+        limit: int = 100,
+    ) -> Any:
+        return iter(self.citations_by_paper_id.get(paper_id, []))
 
 
 class FakeResponse:
@@ -181,7 +198,12 @@ class CitationSuggestionTests(unittest.TestCase):
         )
 
         self.assertFalse(payload["apiKeyUsed"])
+        self.assertFalse(payload["semanticScholarApiKeyUsed"])
+        self.assertFalse(payload["openAlexApiKeyUsed"])
+        self.assertEqual(payload["providers"]["primary"], "Semantic Scholar Academic Graph")
+        self.assertEqual(payload["providers"]["auxiliary"], "OpenAlex")
         self.assertEqual(payload["missingArchiveCitationCount"], 1)
+        self.assertEqual(payload["recordedMismatchCount"], 1)
         self.assertEqual(payload["missingArchiveCitations"][0]["source"], "paper:a")
         self.assertEqual(payload["missingArchiveCitations"][0]["target"], "paper:c")
         self.assertEqual(payload["confirmedRecordedCitationCount"], 1)
@@ -196,6 +218,142 @@ class CitationSuggestionTests(unittest.TestCase):
             payload["missingArchiveCitations"][0]["openAlexStatus"],
             "openalex_unavailable",
         )
+
+    def test_openalex_confirmation_confirms_recorded_edges(self) -> None:
+        records = [
+            paper("paper:a", "Alpha Localization", 2021, citations=["paper:b"]),
+            paper("paper:b", "Beta Features", 2020),
+        ]
+        semantic_references = SemanticReferences(
+            by_source={"paper:a": {}, "paper:b": {}},
+            reference_counts={"paper:a": 0, "paper:b": 0},
+            unavailable=[],
+        )
+        openalex_resolved = {
+            "paper:a": SimpleNamespace(
+                paper_id="paper:a",
+                openalex_id="https://openalex.org/W1",
+                referenced_works={"https://openalex.org/W2"},
+            ),
+            "paper:b": SimpleNamespace(
+                paper_id="paper:b",
+                openalex_id="https://openalex.org/W2",
+                referenced_works=set(),
+            ),
+        }
+
+        payload = build_citation_payload(
+            records=records,
+            semantic_resolved={},
+            semantic_unresolved=[],
+            semantic_references=semantic_references,
+            openalex_resolved=openalex_resolved,
+            openalex_unresolved=[],
+            semantic_api_key_used=False,
+            openalex_api_key_used=True,
+        )
+
+        self.assertEqual(payload["confirmedRecordedCitationCount"], 1)
+        self.assertEqual(payload["unconfirmedRecordedCitationCount"], 0)
+        self.assertEqual(
+            payload["confirmedRecordedCitations"][0]["openAlexStatus"],
+            "confirmed_by_openalex",
+        )
+        self.assertEqual(payload["confirmedRecordedCitations"][0]["source"], "paper:a")
+
+    def test_incremental_mode_finds_incoming_citations_to_selected_paper(self) -> None:
+        records = [
+            paper("paper:new", "New Older Method", 2019),
+            paper("paper:later", "Later Localization", 2021),
+        ]
+        semantic_client = FakeSemanticClient(
+            papers_by_title={
+                "New Older Method": {
+                    "paperId": "S2NEW",
+                    "title": "New Older Method",
+                    "year": 2019,
+                },
+                "Later Localization": {
+                    "paperId": "S2LATER",
+                    "title": "Later Localization",
+                    "year": 2021,
+                },
+            },
+            references_by_paper_id={"S2NEW": []},
+            citations_by_paper_id={
+                "S2NEW": [
+                    {
+                        "citingPaper": {
+                            "paperId": "S2LATER",
+                            "title": "Later Localization",
+                            "year": 2021,
+                        }
+                    }
+                ]
+            },
+        )
+
+        payload = generate_citation_candidates(
+            records=records,
+            semantic_client=semantic_client,
+            min_title_score=0.92,
+            openalex_client=None,
+            source_records=[records[0]],
+            include_incoming=True,
+        )
+
+        self.assertEqual(payload["missingArchiveCitationCount"], 1)
+        self.assertEqual(payload["missingArchiveCitations"][0]["source"], "paper:later")
+        self.assertEqual(payload["missingArchiveCitations"][0]["target"], "paper:new")
+        self.assertEqual(
+            payload["missingArchiveCitations"][0]["semanticScholarEvidence"]["status"],
+            "found_in_citations",
+        )
+
+    def test_provider_cache_round_trips_resolved_ids(self) -> None:
+        records = [
+            paper("paper:a", "Alpha Localization", 2021),
+            paper("paper:b", "Beta Features", 2020),
+        ]
+        payload = {
+            "resolved": [
+                {
+                    "paperId": "paper:a",
+                    "title": "Alpha Localization",
+                    "year": 2021,
+                    "semanticScholarId": "S2A",
+                    "semanticScholarTitle": "Alpha Localization",
+                    "semanticScholarYear": 2021,
+                    "titleScore": 1.0,
+                    "resolveMethod": "title_search",
+                    "identifier": None,
+                    "externalIds": {"DOI": "10.1/a"},
+                }
+            ],
+            "openAlexResolved": [
+                {
+                    "paperId": "paper:b",
+                    "title": "Beta Features",
+                    "year": 2020,
+                    "openAlexId": "https://openalex.org/W2",
+                    "openAlexTitle": "Beta Features",
+                    "openAlexYear": 2020,
+                    "titleScore": 1.0,
+                    "referenceCount": 1,
+                    "referencedWorks": ["https://openalex.org/W1"],
+                }
+            ],
+        }
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            cache_path = Path(temp_dir) / "citation_provider_cache.json"
+            save_provider_cache(payload, cache_path, merge_existing=True)
+            semantic = load_cached_semantic_resolutions(records, cache_path)
+            openalex = load_cached_openalex_resolutions(records, cache_path)
+
+        self.assertEqual(semantic["paper:a"].semantic_scholar_id, "S2A")
+        self.assertEqual(openalex["paper:b"].openalex_id, "https://openalex.org/W2")
+        self.assertEqual(openalex["paper:b"].referenced_works, {"https://openalex.org/W1"})
 
     def test_semantic_client_paginates_references(self) -> None:
         requested_urls: list[str] = []
@@ -225,6 +383,7 @@ class CitationSuggestionTests(unittest.TestCase):
 
         self.assertEqual(client.search_papers("missing paper"), [])
         self.assertEqual(list(client.iter_references("S2A")), [])
+        self.assertEqual(list(client.iter_citations("S2A")), [])
 
     def test_semantic_client_retries_retryable_http_statuses(self) -> None:
         original_urlopen = clients.urllib.request.urlopen

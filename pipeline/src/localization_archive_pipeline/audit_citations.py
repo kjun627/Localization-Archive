@@ -10,13 +10,16 @@ from pathlib import Path
 from typing import Any
 
 from localization_archive_pipeline.build_graph import load_curated_papers
-from localization_archive_pipeline.clients import OpenAlexClient
+from localization_archive_pipeline.clients import OpenAlexClient, SemanticScholarClient
 from localization_archive_pipeline.config import get_paths
 from localization_archive_pipeline.env import get_env, load_dotenv
 from localization_archive_pipeline.models import PaperRecord
 
 
 OPENALEX_SELECT = "id,display_name,publication_year,referenced_works,doi"
+DEFAULT_AUDIT_OUTPUT = "data/generated/citation_audit.json"
+DEFAULT_INCREMENTAL_AUDIT_OUTPUT = "data/generated/citation_audit_incremental.json"
+DEFAULT_PROVIDER_CACHE = "data/reference/citation_provider_cache.json"
 
 
 @dataclass(frozen=True)
@@ -33,34 +36,47 @@ class ResolvedPaper:
 
 def parser() -> argparse.ArgumentParser:
     argument_parser = argparse.ArgumentParser(
-        description="Audit curated citation edges against OpenAlex references."
+        description=(
+            "Audit curated citation edges against Semantic Scholar references, "
+            "with OpenAlex used as corroborating evidence."
+        )
     )
     argument_parser.add_argument(
         "--paper-id",
         action="append",
-        help="Audit only the given archive paper id. Can be passed more than once.",
+        help=(
+            "Audit the given archive paper id against the full archive. "
+            "Can be passed more than once."
+        ),
     )
     argument_parser.add_argument(
         "--max-papers",
         type=int,
-        help="Audit only the first N selected papers. Useful for smoke tests.",
+        help="Audit only the first N source papers. Useful for smoke tests.",
     )
     argument_parser.add_argument(
         "--min-title-score",
         type=float,
         default=0.92,
-        help="Minimum normalized title similarity required to trust an OpenAlex match.",
+        help="Minimum normalized title similarity required to trust provider matches.",
     )
     argument_parser.add_argument(
         "--sleep",
         type=float,
-        default=0.2,
-        help="Delay between OpenAlex requests in seconds.",
+        help=(
+            "Delay between Semantic Scholar requests. Defaults to 3.5s without an API key "
+            "and 1.1s with one."
+        ),
     )
     argument_parser.add_argument(
         "--output",
-        default="data/generated/citation_audit.json",
+        default=DEFAULT_AUDIT_OUTPUT,
         help="Audit JSON output path relative to the repository root.",
+    )
+    argument_parser.add_argument(
+        "--cache",
+        default=DEFAULT_PROVIDER_CACHE,
+        help="Provider cache JSON used to reuse Semantic Scholar and OpenAlex ids.",
     )
     argument_parser.add_argument(
         "--fail-on",
@@ -257,23 +273,31 @@ def build_audit_payload(
 
 
 def should_fail(payload: dict[str, Any], fail_on: str) -> bool:
+    recorded_issue_count = payload.get(
+        "recordedMismatchCount",
+        payload.get("unconfirmedRecordedCitationCount", 0),
+    )
+    unconfirmed_count = payload.get("unconfirmedRecordedCitationCount", recorded_issue_count)
+    missing_count = payload.get("missingArchiveCitationCount", 0)
+    unresolved_count = payload.get("unresolvedCount", 0)
+    references_unavailable_count = payload.get("referencesUnavailableCount", 0)
+    openalex_unresolved_count = payload.get("openAlexUnresolvedCount", 0)
+
     if fail_on == "none":
         return False
     if fail_on == "recorded":
-        return bool(payload["recordedMismatchCount"])
+        return bool(recorded_issue_count)
     if fail_on == "missing":
-        return bool(payload["missingArchiveCitationCount"])
+        return bool(missing_count)
     if fail_on == "confirmed":
-        return bool(
-            payload["recordedMismatchCount"]
-            or payload["missingArchiveCitationCount"]
-            or payload["unconfirmedRecordedCitationCount"]
-        )
+        return bool(recorded_issue_count or missing_count or unconfirmed_count)
     return bool(
-        payload["recordedMismatchCount"]
-        or payload["missingArchiveCitationCount"]
-        or payload["unresolvedCount"]
-        or payload["referencesUnavailableCount"]
+        recorded_issue_count
+        or unconfirmed_count
+        or missing_count
+        or unresolved_count
+        or references_unavailable_count
+        or openalex_unresolved_count
     )
 
 
@@ -281,43 +305,78 @@ def main() -> int:
     args = parser().parse_args()
     paths = get_paths()
     load_dotenv(paths.root / ".env")
+    from localization_archive_pipeline.suggest_citations import (
+        generate_citation_candidates,
+        load_cached_openalex_resolutions,
+        load_cached_semantic_resolutions,
+        save_provider_cache,
+    )
 
-    records = load_curated_papers()
+    all_records = load_curated_papers()
+    source_records = all_records
     if args.paper_id:
         selected_ids = set(args.paper_id)
-        records = [record for record in records if record.paper_id in selected_ids]
-        missing_ids = sorted(selected_ids - {record.paper_id for record in records})
+        source_records = [
+            record for record in all_records if record.paper_id in selected_ids
+        ]
+        missing_ids = sorted(selected_ids - {record.paper_id for record in source_records})
         if missing_ids:
             raise SystemExit(f"Unknown paper id(s): {', '.join(missing_ids)}")
     if args.max_papers is not None:
-        records = records[: args.max_papers]
+        source_records = source_records[: args.max_papers]
+    incremental = bool(args.paper_id or args.max_papers is not None)
+    cache_path = paths.root / args.cache
+    cached_semantic_resolved = (
+        load_cached_semantic_resolutions(all_records, cache_path) if incremental else {}
+    )
+    cached_openalex_resolved = (
+        load_cached_openalex_resolutions(all_records, cache_path) if incremental else {}
+    )
 
-    client = OpenAlexClient(
+    semantic_client = SemanticScholarClient(
+        api_key=get_env("SEMANTIC_SCHOLAR_API_KEY"),
+        sleep_seconds=args.sleep,
+    )
+    openalex_client = OpenAlexClient(
         api_key=get_env("OPENALEX_API_KEY"),
         mailto=get_env("OPENALEX_MAILTO") or "localization-archive@example.com",
     )
-    resolved, unresolved = resolve_papers(
-        records=records,
-        client=client,
+    payload = generate_citation_candidates(
+        records=all_records,
+        semantic_client=semantic_client,
         min_title_score=args.min_title_score,
-        sleep_seconds=args.sleep,
+        openalex_client=openalex_client,
+        source_records=source_records,
+        include_incoming=incremental,
+        cached_semantic_resolved=cached_semantic_resolved,
+        cached_openalex_resolved=cached_openalex_resolved,
+        resolve_all_missing_semantic=not incremental,
+        resolve_all_missing_openalex=not incremental or not cached_openalex_resolved,
     )
-    payload = build_audit_payload(records, resolved, unresolved)
 
-    output_path = paths.root / args.output
+    output = (
+        DEFAULT_INCREMENTAL_AUDIT_OUTPUT
+        if incremental and args.output == DEFAULT_AUDIT_OUTPUT
+        else args.output
+    )
+    output_path = paths.root / output
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    save_provider_cache(payload, cache_path, merge_existing=True)
 
     print(
         "Citation audit: "
-        f"{payload['resolvedCount']}/{len(records)} resolved, "
-        f"{payload['recordedMismatchCount']} recorded mismatches, "
+        f"{len(source_records)} source paper(s), "
+        f"{payload['resolvedCount']}/{len(all_records)} Semantic Scholar resolved, "
+        f"{payload['openAlexResolvedCount']}/{len(all_records)} OpenAlex resolved, "
         f"{payload['missingArchiveCitationCount']} missing archive citations, "
         f"{payload['unconfirmedRecordedCitationCount']} unconfirmed recorded citations, "
+        f"{payload['confirmedRecordedCitationCount']} confirmed recorded citations, "
         f"{payload['referencesUnavailableCount']} unavailable reference lists, "
         f"{payload['unresolvedCount']} unresolved."
     )
     print(f"Wrote {os.path.relpath(output_path, paths.root)}")
+    print(f"Updated {os.path.relpath(cache_path, paths.root)}")
 
     return 1 if should_fail(payload, args.fail_on) else 0
 

@@ -38,8 +38,12 @@ jobs:
       - name: Validate curation data
         run: python3 pipeline/validate_data.py
 
-      - name: Audit OpenAlex citation references
-        run: python3 pipeline/audit_citations.py --fail-on confirmed --sleep 0.15
+      - name: Audit Semantic Scholar and OpenAlex citation references
+        env:
+          SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+          OPENALEX_MAILTO: ${{ vars.OPENALEX_MAILTO }}
+        run: python3 pipeline/audit_citations.py --fail-on confirmed
 
       - name: Build graph data
         run: python3 pipeline/build_graph.py
